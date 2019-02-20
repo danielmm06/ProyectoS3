@@ -57,6 +57,9 @@ public class personasDAO {
 		}    	
 		return listaPersonas;	
 	}
+    
+    
+    
     public static void main(String[] args) throws IOException {
 		
 		try {

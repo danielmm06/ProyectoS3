@@ -20,6 +20,9 @@ public class App {
 	public static final String USER_DB = "root"; // User DB
 	public static final String PASS_DB = ""; // Password DB
         
+        // Parametros del sistema
+	public static final String nameProyect = "Inscripción Especialización"; // Name Proyect
+        
         // Manejador de Base de datos
 	public static DataBase DB; // DB Handler
 	public static boolean printSQL = false; // Printer SQL in DAO
