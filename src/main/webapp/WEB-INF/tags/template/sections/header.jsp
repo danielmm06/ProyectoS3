@@ -5,7 +5,7 @@
 </div>
 <ul class="nav navbar-nav navbar-right">
     <li class="">
-        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" align="right" >
+<!--        <a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false" align="right" >
         	<label class="labelName">
         		<c:out value="${usuario.persona.nombre1}" /> <c:out value="${usuario.persona.nombre2}" /> <c:out value="${usuario.persona.apellido1}" /> <c:out value="${usuario.persona.apellido2}" />
         	</label>
@@ -17,7 +17,7 @@
         	<c:if test="${usuario.nickname ne 'app'}">
         		<label class="labelRol"><c:out value="${rolUser.nombre}" /></label>
         	</c:if>
-        </a>
+        </a>-->
         <ul class="dropdown-menu dropdown-usermenu pull-right">
             <li>
                 <a href="Other?p=Help">

@@ -3268,7 +3268,7 @@ ul.project_files li a i {
  * bootstrap-vertical-tabs - v1.2.1
  * https://dbtek.github.io/bootstrap-vertical-tabs
  * 2014-11-07
- * Copyright (c) 2014 İsmail Demirbilek
+ * Copyright (c) 2014 Ä°smail Demirbilek
  * License: MIT
  */
 
@@ -4328,6 +4328,10 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 	background-color: #3F729B !important;
 	color: white !important;
 }
+
+.table thead th{
+	border: 1px solid #3F729B !important;
+}
 .table-striped>tbody>tr {
 	background-color: white;
 }
@@ -4356,7 +4360,7 @@ table thead .checkbox.radio { margin-top:-7px;margin-top:-21px; }
 	box-shadow: 0px 0px 2px 1px rgba(38,99,150,1);
 }
 
-/* Color para la barra de t�tulo del iframe Resoluciones Acad�micas*/
+/* Color para la barra de título del iframe Resoluciones Académicas*/
 
 .ui-widget-header {
     border: 1px solid darkblue !important;

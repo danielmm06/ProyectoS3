@@ -46,7 +46,7 @@ private static final long serialVersionUID = 1L;
                         //----------------------------------------------------------
                         request.setAttribute("listaPersonas", listaPersonas);
                         
-                        getServletConfig().getServletContext().getRequestDispatcher("/views/Personas.jsp").forward(request,response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/views/prueba.jsp").forward(request,response);
 //                          RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/Personas.jsp");
 //                        request.getRequestDispatcher("/views/Personas.jsp").forward(request, response);
                 } else {

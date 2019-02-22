@@ -26,6 +26,10 @@ public class App {
         // Manejador de Base de datos
 	public static DataBase DB; // DB Handler
 	public static boolean printSQL = false; // Printer SQL in DAO
+        
+        // Ubicaciones path
+	public static String pathURL; // Url Web of Proyect
+	public static String pathPC; // Local path of folder "Downloads"
 
         // --------- INSTANCIAS ---------//
 	public static personasDAO personasDAO;
