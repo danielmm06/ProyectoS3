@@ -110,21 +110,59 @@ public class RolDAO {
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(rol.getIdTUsuario());
+            inputs.add(rol.getNombreTUsuario());
+           
+            result = db.ExecuteUpdate(psInsert,inputs);			
 
-            if (rol.getNombreTUsuario() != null) {
-                inputs.add(rol.getIdTUsuario());
-                inputs.add(rol.getNombreTUsuario());
-            } else {
-                inputs.add(null);
-                inputs.add(null);
-            }
-
-            result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
         }
         return result;
     }
+    
+    public long update(Rol rol) {
+    	long result;
+            try {
+                String columns = "";
+                ArrayList<Object> inputs = new ArrayList<Object>();
+                
+                	if(rol.getNombreTUsuario() != null ) {
+				columns += ",NOMBRE_T_USUARIO=?";				
+				inputs.add(rol.getNombreTUsuario());
+			}												
+			inputs.add(rol.getIdTUsuario());
+			columns = columns.substring(1);
+			
+			//if (psUpdate == null) {
+				psUpdate = db.PreparedUpdate(
+					"UPDATE ROL SET "+columns+" WHERE ID_T_USUARIO=?"
+				);
+			result = db.ExecuteUpdate(psUpdate,inputs);
+		} catch (SQLException e) {
+			throw new RuntimeException("Error al ejecutar actualización.", e);
+		}
+		return result;
+	}
+    
+        public long delete(Integer idTUsuario) {		
+		long result;
+		try {
+			if (psDelete == null) {
+				psDelete = db.PreparedUpdate(
+					"DELETE FROM ROL " +
+		    		"WHERE ID_T_USUARIO=?"
+				);
+            }
+			ArrayList<Object> inputs = new ArrayList<Object>();								
+			inputs.add(idTUsuario);
+			result = db.ExecuteUpdate(psDelete,inputs);
+		} catch (SQLException e) {
+			throw new RuntimeException("Error al ejecutar borrado.", e);
+		}
+		return result;		
+	}
+			
 
     public static void main(String[] args) throws IOException {
         try {
@@ -137,16 +175,29 @@ public class RolDAO {
 //            }
 
 //			System.out.println("GET ONE");
-//			int codPregDescuentos = 1;			
-//			PregDescuentos pregDescuentos = App.PregDescuentosDAO.get(codPregDescuentos);
-//			if(pregDescuentos.getCodPregDescuentos() != 0) {						
-//				System.out.println(pregDescuentos.getCodPregDescuentos()+" "+pregDescuentos.getPregunta()+" "+pregDescuentos.getTipoFormulario()+" "+pregDescuentos.getActivo());
+//			int idTUsuario = 1121200;			
+//			Rol rol = App.RolDAO.get(idTUsuario);
+//			if(rol.getIdTUsuario() != 0) {						
+//				System.out.println(rol.getIdTUsuario()+" "+rol.getNombreTUsuario());
 //			}
-                   System.out.println("INSERT");
-                   Rol rol = new Rol();
-                   rol.setIdTUsuario(1213);
-                   rol.setNombreTUsuario("ANDREA OCHOA");
-                  App.RolDAO.insert(rol);
+
+//                   System.out.println("INSERT");
+//                   Rol rol = new Rol();
+//                   rol.setIdTUsuario(1213);
+//                   rol.setNombreTUsuario("ANDREA OCHOA");
+//                  App.RolDAO.insert(rol);
+
+//                    System.out.println("UPDATE");				
+//                    Rol rol = new Rol();
+//                    rol.setIdTUsuario(1213);		
+//                    rol.setNombreTUsuario("Estudiante");
+//                    App.RolDAO.update(rol);		
+//                    System.out.println(App.RolDAO.update(rol));
+
+//                      System.out.println("DELETE");
+//                      App.RolDAO.delete(1121200);
+                        
+                  
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
