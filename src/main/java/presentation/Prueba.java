@@ -6,7 +6,7 @@
 package presentation;
 
 import conexion.App;
-import entity.Personas;
+import entity.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ private static final long serialVersionUID = 1L;
                         request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
                         
                         
-                        ArrayList<Personas> listaPersonas = App.personasDAO.getAll();
+                        ArrayList<Persona> listaPersonas = App.PersonaDAO.getAll();
                         //----------------------------------------------------------
                         request.setAttribute("listaPersonas", listaPersonas);
                         
@@ -81,7 +81,7 @@ private static final long serialVersionUID = 1L;
 			request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
             
             //linea de codigo para redireccionar
-                response.sendRedirect("SoportesIndividual");
+//                response.sendRedirect("SoportesIndividual");
 		
                 } else {
                     response.sendRedirect("Error?e=NotAuthorized");

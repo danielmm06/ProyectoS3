@@ -6,6 +6,7 @@
 package conexion;
 
 
+
 import java.io.IOException;
 
 import persistence.*;
@@ -16,7 +17,7 @@ import persistence.*;
 public class App {
     // Conexión base de datos
 	public static final String HOST_DB = "localhost:3306"; // Host:Port DB
-	public static final String NAME_DB = "prueba"; // Name DB
+	public static final String NAME_DB = "preinscripcion"; // Name DB
 	public static final String USER_DB = "root"; // User DB
 	public static final String PASS_DB = ""; // Password DB
         
@@ -32,7 +33,10 @@ public class App {
 	public static String pathPC; // Local path of folder "Downloads"
 
         // --------- INSTANCIAS ---------//
-	public static personasDAO personasDAO;
+	public static PersonaDAO PersonaDAO;
+        public static UsuariosDAO UsuariosDAO;
+        public static RolDAO RolDAO;
+        
         
         // Conectar con Base de Datos
 	public static void OpenConnection() {
@@ -54,7 +58,9 @@ public class App {
 	}
         
         public static void CreateInstancesDAO() {
-            personasDAO = new personasDAO();
+            PersonaDAO = new PersonaDAO();
+            UsuariosDAO = new UsuariosDAO();
+            RolDAO = new RolDAO();
         }
         
         
