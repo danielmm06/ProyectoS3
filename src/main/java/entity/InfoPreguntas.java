@@ -26,6 +26,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -33,8 +35,26 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "info_preguntas")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoPreguntas.findAll", query = "SELECT i FROM InfoPreguntas i")})
+    @NamedQuery(name = "InfoPreguntas.findAll", query = "SELECT i FROM InfoPreguntas i")
+    , @NamedQuery(name = "InfoPreguntas.findByIdPreguntas", query = "SELECT i FROM InfoPreguntas i WHERE i.idPreguntas = :idPreguntas")
+    , @NamedQuery(name = "InfoPreguntas.findByEmpresa", query = "SELECT i FROM InfoPreguntas i WHERE i.empresa = :empresa")
+    , @NamedQuery(name = "InfoPreguntas.findByTipoEmpresa", query = "SELECT i FROM InfoPreguntas i WHERE i.tipoEmpresa = :tipoEmpresa")
+    , @NamedQuery(name = "InfoPreguntas.findByCargo", query = "SELECT i FROM InfoPreguntas i WHERE i.cargo = :cargo")
+    , @NamedQuery(name = "InfoPreguntas.findByEmpDireccion", query = "SELECT i FROM InfoPreguntas i WHERE i.empDireccion = :empDireccion")
+    , @NamedQuery(name = "InfoPreguntas.findByEmpTelefono", query = "SELECT i FROM InfoPreguntas i WHERE i.empTelefono = :empTelefono")
+    , @NamedQuery(name = "InfoPreguntas.findByExistenciaPrograma", query = "SELECT i FROM InfoPreguntas i WHERE i.existenciaPrograma = :existenciaPrograma")
+    , @NamedQuery(name = "InfoPreguntas.findByExpeLaborFunciones", query = "SELECT i FROM InfoPreguntas i WHERE i.expeLaborFunciones = :expeLaborFunciones")
+    , @NamedQuery(name = "InfoPreguntas.findByRazones", query = "SELECT i FROM InfoPreguntas i WHERE i.razones = :razones")
+    , @NamedQuery(name = "InfoPreguntas.findByFinPrestamo", query = "SELECT i FROM InfoPreguntas i WHERE i.finPrestamo = :finPrestamo")
+    , @NamedQuery(name = "InfoPreguntas.findByFinAuxEmpresarial", query = "SELECT i FROM InfoPreguntas i WHERE i.finAuxEmpresarial = :finAuxEmpresarial")
+    , @NamedQuery(name = "InfoPreguntas.findByFinRecPropios", query = "SELECT i FROM InfoPreguntas i WHERE i.finRecPropios = :finRecPropios")
+    , @NamedQuery(name = "InfoPreguntas.findByFinBeca", query = "SELECT i FROM InfoPreguntas i WHERE i.finBeca = :finBeca")
+    , @NamedQuery(name = "InfoPreguntas.findByEgresadoUnillanos", query = "SELECT i FROM InfoPreguntas i WHERE i.egresadoUnillanos = :egresadoUnillanos")
+    , @NamedQuery(name = "InfoPreguntas.findByFechaFormulario", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaFormulario = :fechaFormulario")
+    , @NamedQuery(name = "InfoPreguntas.findByFechaLectura", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaLectura = :fechaLectura")
+    , @NamedQuery(name = "InfoPreguntas.findByComentarios", query = "SELECT i FROM InfoPreguntas i WHERE i.comentarios = :comentarios")})
 public class InfoPreguntas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -99,32 +119,30 @@ public class InfoPreguntas implements Serializable {
     @Column(name = "FECHA_FORMULARIO")
     @Temporal(TemporalType.DATE)
     private Date fechaFormulario;
-    @Size(max = 45)
     @Column(name = "FECHA_LECTURA")
-    private String fechaLectura;
+    @Temporal(TemporalType.DATE)
+    private Date fechaLectura;
     @Size(max = 45)
     @Column(name = "COMENTARIOS")
     private String comentarios;
     @Lob
     @Column(name = "VALIDACION_PREGUNTAS")
     private byte[] validacionPreguntas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
+    private Set<InfoIdiomas> infoIdiomasSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoPreguntas")
+    private Set<Persona> personaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
+    private Set<InfoLaboral> infoLaboralSet;
     @JoinColumn(name = "EMP_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne
     private Ciudad empCiudad;
-    @JoinColumn(name = "INFO_ACADEMICA", referencedColumnName = "ID_INFO_ACADEMICA")
-    @ManyToOne(optional = false)
-    private InfoAcademica infoAcademica;
-    @JoinColumn(name = "INFO_IDIOMAS", referencedColumnName = "ID_IDIOMAS")
-    @ManyToOne(optional = false)
-    private InfoIdiomas infoIdiomas;
-    @JoinColumn(name = "INFO_LABORAL", referencedColumnName = "ID_LABORAL")
-    @ManyToOne
-    private InfoLaboral infoLaboral;
-    @JoinColumn(name = "SOPORTE", referencedColumnName = "ID_SOPORTE")
-    @ManyToOne(optional = false)
-    private Soporte soporte;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoPreguntas")
-    private Set<Persona> personaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
+    private Set<InfoAcademica> infoAcademicaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
+    private Set<Cabecera> cabeceraSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
+    private Set<Soporte> soporteSet;
 
     public InfoPreguntas() {
     }
@@ -264,11 +282,11 @@ public class InfoPreguntas implements Serializable {
         this.fechaFormulario = fechaFormulario;
     }
 
-    public String getFechaLectura() {
+    public Date getFechaLectura() {
         return fechaLectura;
     }
 
-    public void setFechaLectura(String fechaLectura) {
+    public void setFechaLectura(Date fechaLectura) {
         this.fechaLectura = fechaLectura;
     }
 
@@ -288,6 +306,33 @@ public class InfoPreguntas implements Serializable {
         this.validacionPreguntas = validacionPreguntas;
     }
 
+    @XmlTransient
+    public Set<InfoIdiomas> getInfoIdiomasSet() {
+        return infoIdiomasSet;
+    }
+
+    public void setInfoIdiomasSet(Set<InfoIdiomas> infoIdiomasSet) {
+        this.infoIdiomasSet = infoIdiomasSet;
+    }
+
+    @XmlTransient
+    public Set<Persona> getPersonaSet() {
+        return personaSet;
+    }
+
+    public void setPersonaSet(Set<Persona> personaSet) {
+        this.personaSet = personaSet;
+    }
+
+    @XmlTransient
+    public Set<InfoLaboral> getInfoLaboralSet() {
+        return infoLaboralSet;
+    }
+
+    public void setInfoLaboralSet(Set<InfoLaboral> infoLaboralSet) {
+        this.infoLaboralSet = infoLaboralSet;
+    }
+
     public Ciudad getEmpCiudad() {
         return empCiudad;
     }
@@ -296,44 +341,31 @@ public class InfoPreguntas implements Serializable {
         this.empCiudad = empCiudad;
     }
 
-    public InfoAcademica getInfoAcademica() {
-        return infoAcademica;
+    @XmlTransient
+    public Set<InfoAcademica> getInfoAcademicaSet() {
+        return infoAcademicaSet;
     }
 
-    public void setInfoAcademica(InfoAcademica infoAcademica) {
-        this.infoAcademica = infoAcademica;
+    public void setInfoAcademicaSet(Set<InfoAcademica> infoAcademicaSet) {
+        this.infoAcademicaSet = infoAcademicaSet;
     }
 
-    public InfoIdiomas getInfoIdiomas() {
-        return infoIdiomas;
+    @XmlTransient
+    public Set<Cabecera> getCabeceraSet() {
+        return cabeceraSet;
     }
 
-    public void setInfoIdiomas(InfoIdiomas infoIdiomas) {
-        this.infoIdiomas = infoIdiomas;
+    public void setCabeceraSet(Set<Cabecera> cabeceraSet) {
+        this.cabeceraSet = cabeceraSet;
     }
 
-    public InfoLaboral getInfoLaboral() {
-        return infoLaboral;
+    @XmlTransient
+    public Set<Soporte> getSoporteSet() {
+        return soporteSet;
     }
 
-    public void setInfoLaboral(InfoLaboral infoLaboral) {
-        this.infoLaboral = infoLaboral;
-    }
-
-    public Soporte getSoporte() {
-        return soporte;
-    }
-
-    public void setSoporte(Soporte soporte) {
-        this.soporte = soporte;
-    }
-
-    public Set<Persona> getPersonaSet() {
-        return personaSet;
-    }
-
-    public void setPersonaSet(Set<Persona> personaSet) {
-        this.personaSet = personaSet;
+    public void setSoporteSet(Set<Soporte> soporteSet) {
+        this.soporteSet = soporteSet;
     }
 
     @Override

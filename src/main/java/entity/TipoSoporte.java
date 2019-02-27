@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -18,6 +20,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -25,14 +29,17 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "tipo_soporte")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoSoporte.findAll", query = "SELECT t FROM TipoSoporte t")})
+    @NamedQuery(name = "TipoSoporte.findAll", query = "SELECT t FROM TipoSoporte t")
+    , @NamedQuery(name = "TipoSoporte.findByIdTiposoporte", query = "SELECT t FROM TipoSoporte t WHERE t.idTiposoporte = :idTiposoporte")
+    , @NamedQuery(name = "TipoSoporte.findByNombre", query = "SELECT t FROM TipoSoporte t WHERE t.nombre = :nombre")})
 public class TipoSoporte implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_TIPOSOPORTE")
     private Integer idTiposoporte;
     @Basic(optional = false)
@@ -71,6 +78,7 @@ public class TipoSoporte implements Serializable {
         this.nombre = nombre;
     }
 
+    @XmlTransient
     public Set<Soporte> getSoporteSet() {
         return soporteSet;
     }

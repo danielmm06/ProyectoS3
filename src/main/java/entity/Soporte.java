@@ -6,9 +6,7 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,10 +16,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -29,8 +27,13 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "soporte")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s")})
+    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s")
+    , @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte")
+    , @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte")
+    , @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo")
+    , @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
 public class Soporte implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -53,11 +56,9 @@ public class Soporte implements Serializable {
     @NotNull
     @Column(name = "VALIDACION")
     private int validacion;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "soporte")
-    private Set<InfoPreguntas> infoPreguntasSet;
-    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "ID_PERSONA")
+    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
     @ManyToOne(optional = false)
-    private Persona idPersona;
+    private InfoPreguntas idPreguntas;
     @JoinColumn(name = "ID_TIPOSOPORTE", referencedColumnName = "ID_TIPOSOPORTE")
     @ManyToOne(optional = false)
     private TipoSoporte idTiposoporte;
@@ -108,20 +109,12 @@ public class Soporte implements Serializable {
         this.validacion = validacion;
     }
 
-    public Set<InfoPreguntas> getInfoPreguntasSet() {
-        return infoPreguntasSet;
+    public InfoPreguntas getIdPreguntas() {
+        return idPreguntas;
     }
 
-    public void setInfoPreguntasSet(Set<InfoPreguntas> infoPreguntasSet) {
-        this.infoPreguntasSet = infoPreguntasSet;
-    }
-
-    public Persona getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Persona idPersona) {
-        this.idPersona = idPersona;
+    public void setIdPreguntas(InfoPreguntas idPreguntas) {
+        this.idPreguntas = idPreguntas;
     }
 
     public TipoSoporte getIdTiposoporte() {

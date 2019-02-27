@@ -7,24 +7,21 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -32,16 +29,26 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "persona")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")})
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")
+    , @NamedQuery(name = "Persona.findByNombre1", query = "SELECT p FROM Persona p WHERE p.nombre1 = :nombre1")
+    , @NamedQuery(name = "Persona.findByNombre2", query = "SELECT p FROM Persona p WHERE p.nombre2 = :nombre2")
+    , @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1")
+    , @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2")
+    , @NamedQuery(name = "Persona.findByDocumento", query = "SELECT p FROM Persona p WHERE p.documento = :documento")
+    , @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion")
+    , @NamedQuery(name = "Persona.findByBarrio", query = "SELECT p FROM Persona p WHERE p.barrio = :barrio")
+    , @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")
+    , @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email")
+    , @NamedQuery(name = "Persona.findByDireccionOfic", query = "SELECT p FROM Persona p WHERE p.direccionOfic = :direccionOfic")
+    , @NamedQuery(name = "Persona.findByTelefonoOfic", query = "SELECT p FROM Persona p WHERE p.telefonoOfic = :telefonoOfic")
+    , @NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento")
+    , @NamedQuery(name = "Persona.findBySexo", query = "SELECT p FROM Persona p WHERE p.sexo = :sexo")
+    , @NamedQuery(name = "Persona.findByEstrato", query = "SELECT p FROM Persona p WHERE p.estrato = :estrato")})
 public class Persona implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Basic(optional = false)
-    @Column(name = "ID_PERSONA")
-    private Integer idPersona;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -60,11 +67,11 @@ public class Persona implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "APELLIDO2")
     private String apellido2;
+    @Id
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "TIPODOCUMENTO")
-    private String tipodocumento;
+    @Column(name = "DOCUMENTO")
+    private Integer documento;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -98,21 +105,19 @@ public class Persona implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "ESTADO_CIVIL")
-    private String estadoCivil;
+    @Column(name = "SEXO")
+    private String sexo;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
     @Column(name = "ESTRATO")
     private String estrato;
-    @Basic(optional = false)
-    @NotNull
-    @Size(min = 1, max = 45)
-    @Column(name = "SEXO")
-    private String sexo;
-    @JoinColumn(name = "DOCUMENTO", referencedColumnName = "ID_USUARIO")
+    @JoinColumn(name = "DOCUMENTO", referencedColumnName = "ID_USUARIO", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Usuarios usuarios;
+    @JoinColumn(name = "ESTADO_CIVIL", referencedColumnName = "ID")
     @ManyToOne(optional = false)
-    private Usuarios documento;
+    private EstadoCivil estadoCivil;
     @JoinColumn(name = "EXP_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne(optional = false)
     private Ciudad expCiudad;
@@ -128,37 +133,28 @@ public class Persona implements Serializable {
     @JoinColumn(name = "RES_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne(optional = false)
     private Ciudad resCiudad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
-    private Set<Soporte> soporteSet;
+    @JoinColumn(name = "TIPODOCUMENTO", referencedColumnName = "ID_DOCUMENTO")
+    @ManyToOne(optional = false)
+    private TipoDocumento tipodocumento;
 
     public Persona() {
     }
 
-    public Persona(Integer idPersona) {
-        this.idPersona = idPersona;
+    public Persona(Integer documento) {
+        this.documento = documento;
     }
 
-    public Persona(Integer idPersona, String nombre1, String apellido1, String apellido2, String tipodocumento, String direccion, String barrio, String email, Date fechaNacimiento, String estadoCivil, String estrato, String sexo) {
-        this.idPersona = idPersona;
+    public Persona(Integer documento, String nombre1, String apellido1, String apellido2, String direccion, String barrio, String email, Date fechaNacimiento, String sexo, String estrato) {
+        this.documento = documento;
         this.nombre1 = nombre1;
         this.apellido1 = apellido1;
         this.apellido2 = apellido2;
-        this.tipodocumento = tipodocumento;
         this.direccion = direccion;
         this.barrio = barrio;
         this.email = email;
         this.fechaNacimiento = fechaNacimiento;
-        this.estadoCivil = estadoCivil;
-        this.estrato = estrato;
         this.sexo = sexo;
-    }
-
-    public Integer getIdPersona() {
-        return idPersona;
-    }
-
-    public void setIdPersona(Integer idPersona) {
-        this.idPersona = idPersona;
+        this.estrato = estrato;
     }
 
     public String getNombre1() {
@@ -193,12 +189,12 @@ public class Persona implements Serializable {
         this.apellido2 = apellido2;
     }
 
-    public String getTipodocumento() {
-        return tipodocumento;
+    public Integer getDocumento() {
+        return documento;
     }
 
-    public void setTipodocumento(String tipodocumento) {
-        this.tipodocumento = tipodocumento;
+    public void setDocumento(Integer documento) {
+        this.documento = documento;
     }
 
     public String getDireccion() {
@@ -257,12 +253,12 @@ public class Persona implements Serializable {
         this.fechaNacimiento = fechaNacimiento;
     }
 
-    public String getEstadoCivil() {
-        return estadoCivil;
+    public String getSexo() {
+        return sexo;
     }
 
-    public void setEstadoCivil(String estadoCivil) {
-        this.estadoCivil = estadoCivil;
+    public void setSexo(String sexo) {
+        this.sexo = sexo;
     }
 
     public String getEstrato() {
@@ -273,20 +269,20 @@ public class Persona implements Serializable {
         this.estrato = estrato;
     }
 
-    public String getSexo() {
-        return sexo;
+    public Usuarios getUsuarios() {
+        return usuarios;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setUsuarios(Usuarios usuarios) {
+        this.usuarios = usuarios;
     }
 
-    public Usuarios getDocumento() {
-        return documento;
+    public EstadoCivil getEstadoCivil() {
+        return estadoCivil;
     }
 
-    public void setDocumento(Usuarios documento) {
-        this.documento = documento;
+    public void setEstadoCivil(EstadoCivil estadoCivil) {
+        this.estadoCivil = estadoCivil;
     }
 
     public Ciudad getExpCiudad() {
@@ -329,18 +325,18 @@ public class Persona implements Serializable {
         this.resCiudad = resCiudad;
     }
 
-    public Set<Soporte> getSoporteSet() {
-        return soporteSet;
+    public TipoDocumento getTipodocumento() {
+        return tipodocumento;
     }
 
-    public void setSoporteSet(Set<Soporte> soporteSet) {
-        this.soporteSet = soporteSet;
+    public void setTipodocumento(TipoDocumento tipodocumento) {
+        this.tipodocumento = tipodocumento;
     }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (idPersona != null ? idPersona.hashCode() : 0);
+        hash += (documento != null ? documento.hashCode() : 0);
         return hash;
     }
 
@@ -351,7 +347,7 @@ public class Persona implements Serializable {
             return false;
         }
         Persona other = (Persona) object;
-        if ((this.idPersona == null && other.idPersona != null) || (this.idPersona != null && !this.idPersona.equals(other.idPersona))) {
+        if ((this.documento == null && other.documento != null) || (this.documento != null && !this.documento.equals(other.documento))) {
             return false;
         }
         return true;
@@ -359,7 +355,7 @@ public class Persona implements Serializable {
 
     @Override
     public String toString() {
-        return "entity.Persona[ idPersona=" + idPersona + " ]";
+        return "entity.Persona[ documento=" + documento + " ]";
     }
     
 }

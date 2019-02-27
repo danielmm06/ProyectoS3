@@ -7,21 +7,22 @@ package entity;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -29,8 +30,14 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "info_laboral")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoLaboral.findAll", query = "SELECT i FROM InfoLaboral i")})
+    @NamedQuery(name = "InfoLaboral.findAll", query = "SELECT i FROM InfoLaboral i")
+    , @NamedQuery(name = "InfoLaboral.findByIdLaboral", query = "SELECT i FROM InfoLaboral i WHERE i.idLaboral = :idLaboral")
+    , @NamedQuery(name = "InfoLaboral.findByEmpresa", query = "SELECT i FROM InfoLaboral i WHERE i.empresa = :empresa")
+    , @NamedQuery(name = "InfoLaboral.findByCargo", query = "SELECT i FROM InfoLaboral i WHERE i.cargo = :cargo")
+    , @NamedQuery(name = "InfoLaboral.findByFechaInicio", query = "SELECT i FROM InfoLaboral i WHERE i.fechaInicio = :fechaInicio")
+    , @NamedQuery(name = "InfoLaboral.findByFechaFin", query = "SELECT i FROM InfoLaboral i WHERE i.fechaFin = :fechaFin")})
 public class InfoLaboral implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -59,8 +66,9 @@ public class InfoLaboral implements Serializable {
     @Column(name = "FECHA_FIN")
     @Temporal(TemporalType.DATE)
     private Date fechaFin;
-    @OneToMany(mappedBy = "infoLaboral")
-    private Set<InfoPreguntas> infoPreguntasSet;
+    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
+    @ManyToOne(optional = false)
+    private InfoPreguntas idPreguntas;
 
     public InfoLaboral() {
     }
@@ -117,12 +125,12 @@ public class InfoLaboral implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    public Set<InfoPreguntas> getInfoPreguntasSet() {
-        return infoPreguntasSet;
+    public InfoPreguntas getIdPreguntas() {
+        return idPreguntas;
     }
 
-    public void setInfoPreguntasSet(Set<InfoPreguntas> infoPreguntasSet) {
-        this.infoPreguntasSet = infoPreguntasSet;
+    public void setIdPreguntas(InfoPreguntas idPreguntas) {
+        this.idPreguntas = idPreguntas;
     }
 
     @Override

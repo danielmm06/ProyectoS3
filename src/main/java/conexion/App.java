@@ -36,6 +36,9 @@ public class App {
 	public static PersonaDAO PersonaDAO;
         public static UsuariosDAO UsuariosDAO;
         public static RolDAO RolDAO;
+        public static PaisDAO PaisDAO;
+        public static DepartamentoDAO DepartamentoDAO;
+        public static CiudadDAO CiudadDAO;
         
         
         // Conectar con Base de Datos
@@ -61,6 +64,9 @@ public class App {
             PersonaDAO = new PersonaDAO();
             UsuariosDAO = new UsuariosDAO();
             RolDAO = new RolDAO();
+            PaisDAO = new PaisDAO();
+            DepartamentoDAO = new DepartamentoDAO();
+            CiudadDAO = new CiudadDAO();
         }
         
         

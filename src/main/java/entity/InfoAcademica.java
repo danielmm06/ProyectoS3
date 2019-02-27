@@ -6,20 +6,20 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,8 +27,14 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "info_academica")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoAcademica.findAll", query = "SELECT i FROM InfoAcademica i")})
+    @NamedQuery(name = "InfoAcademica.findAll", query = "SELECT i FROM InfoAcademica i")
+    , @NamedQuery(name = "InfoAcademica.findByIdInfoAcademica", query = "SELECT i FROM InfoAcademica i WHERE i.idInfoAcademica = :idInfoAcademica")
+    , @NamedQuery(name = "InfoAcademica.findByUniversidad", query = "SELECT i FROM InfoAcademica i WHERE i.universidad = :universidad")
+    , @NamedQuery(name = "InfoAcademica.findByPrograma", query = "SELECT i FROM InfoAcademica i WHERE i.programa = :programa")
+    , @NamedQuery(name = "InfoAcademica.findByTituloObtenido", query = "SELECT i FROM InfoAcademica i WHERE i.tituloObtenido = :tituloObtenido")
+    , @NamedQuery(name = "InfoAcademica.findByA\u00f1o", query = "SELECT i FROM InfoAcademica i WHERE i.a\u00f1o = :a\u00f1o")})
 public class InfoAcademica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -57,8 +63,9 @@ public class InfoAcademica implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "A\u00d1O")
     private String año;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoAcademica")
-    private Set<InfoPreguntas> infoPreguntasSet;
+    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
+    @ManyToOne(optional = false)
+    private InfoPreguntas idPreguntas;
 
     public InfoAcademica() {
     }
@@ -115,12 +122,12 @@ public class InfoAcademica implements Serializable {
         this.año = año;
     }
 
-    public Set<InfoPreguntas> getInfoPreguntasSet() {
-        return infoPreguntasSet;
+    public InfoPreguntas getIdPreguntas() {
+        return idPreguntas;
     }
 
-    public void setInfoPreguntasSet(Set<InfoPreguntas> infoPreguntasSet) {
-        this.infoPreguntasSet = infoPreguntasSet;
+    public void setIdPreguntas(InfoPreguntas idPreguntas) {
+        this.idPreguntas = idPreguntas;
     }
 
     @Override

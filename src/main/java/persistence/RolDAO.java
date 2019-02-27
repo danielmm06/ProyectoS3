@@ -22,7 +22,7 @@ import java.util.ArrayList;
 public class RolDAO {
 //    private PreparedStatement psSelectAll;
 
-    private PreparedStatement psSelect;
+
     private PreparedStatement psInsert;
     private PreparedStatement psUpdate;
     private PreparedStatement psDelete;
@@ -78,6 +78,7 @@ public class RolDAO {
 
     public Rol get(int idTUsuario) {
         Rol rol = new Rol();
+        PreparedStatement psSelect = null;
         ResultSet result = null;
         try {
             if (psSelect == null) {
@@ -95,6 +96,21 @@ public class RolDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        }finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return rol;
     }
@@ -102,15 +118,14 @@ public class RolDAO {
     public long insert(Rol rol) {
         long result;
         try {
-            String columns = "ID_T_USUARIO,NOMBRE_T_USUARIO";
-            String values = "?,?";
+            String columns = "NOMBRE_T_USUARIO";
+            String values = "?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO ROL(" + columns + ") VALUES(" + values + ")"
+                        "INSERT INTO ROL(" + columns + ") VALUES(" + values + ")", "ID_T_USUARIO"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(rol.getIdTUsuario());
             inputs.add(rol.getNombreTUsuario());
            
             result = db.ExecuteUpdate(psInsert,inputs);			
@@ -146,21 +161,21 @@ public class RolDAO {
 	}
     
         public long delete(Integer idTUsuario) {		
-		long result;
-		try {
-			if (psDelete == null) {
-				psDelete = db.PreparedUpdate(
-					"DELETE FROM ROL " +
-		    		"WHERE ID_T_USUARIO=?"
-				);
+            long result;
+            try {
+                if (psDelete == null) {
+                        psDelete = db.PreparedUpdate(
+                        "DELETE FROM ROL " +
+                        "WHERE ID_T_USUARIO=?"
+                        );
+                    }
+                ArrayList<Object> inputs = new ArrayList<Object>();								
+                inputs.add(idTUsuario);
+                result = db.ExecuteUpdate(psDelete,inputs);
+            } catch (SQLException e) {
+                    throw new RuntimeException("Error al ejecutar borrado.", e);
             }
-			ArrayList<Object> inputs = new ArrayList<Object>();								
-			inputs.add(idTUsuario);
-			result = db.ExecuteUpdate(psDelete,inputs);
-		} catch (SQLException e) {
-			throw new RuntimeException("Error al ejecutar borrado.", e);
-		}
-		return result;		
+            return result;		
 	}
 			
 
@@ -181,11 +196,10 @@ public class RolDAO {
 //				System.out.println(rol.getIdTUsuario()+" "+rol.getNombreTUsuario());
 //			}
 
-//                   System.out.println("INSERT");
-//                   Rol rol = new Rol();
-//                   rol.setIdTUsuario(1213);
-//                   rol.setNombreTUsuario("ANDREA OCHOA");
-//                  App.RolDAO.insert(rol);
+//                        System.out.println("INSERT");				
+//                        Rol rol = new Rol();
+//                        rol.setNombreTUsuario("ADMIN");
+//                        App.RolDAO.insert(rol);	
 
 //                    System.out.println("UPDATE");				
 //                    Rol rol = new Rol();

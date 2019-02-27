@@ -6,7 +6,6 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,10 +15,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -27,8 +27,11 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "usuarios")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")})
+    @NamedQuery(name = "Usuarios.findAll", query = "SELECT u FROM Usuarios u")
+    , @NamedQuery(name = "Usuarios.findByIdUsuario", query = "SELECT u FROM Usuarios u WHERE u.idUsuario = :idUsuario")
+    , @NamedQuery(name = "Usuarios.findByContrasena", query = "SELECT u FROM Usuarios u WHERE u.contrasena = :contrasena")})
 public class Usuarios implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -40,10 +43,10 @@ public class Usuarios implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "CONTRASE\u00d1A")
-    private String contraseña;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "documento")
-    private Set<Persona> personaSet;
+    @Column(name = "CONTRASENA")
+    private String contrasena;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "usuarios")
+    private Persona persona;
     @JoinColumn(name = "ID_ROL", referencedColumnName = "ID_T_USUARIO")
     @ManyToOne(optional = false)
     private Rol idRol;
@@ -55,9 +58,9 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public Usuarios(Integer idUsuario, String contraseña) {
+    public Usuarios(Integer idUsuario, String contrasena) {
         this.idUsuario = idUsuario;
-        this.contraseña = contraseña;
+        this.contrasena = contrasena;
     }
 
     public Integer getIdUsuario() {
@@ -68,20 +71,20 @@ public class Usuarios implements Serializable {
         this.idUsuario = idUsuario;
     }
 
-    public String getContraseña() {
-        return contraseña;
+    public String getContrasena() {
+        return contrasena;
     }
 
-    public void setContraseña(String contraseña) {
-        this.contraseña = contraseña;
+    public void setContrasena(String contrasena) {
+        this.contrasena = contrasena;
     }
 
-    public Set<Persona> getPersonaSet() {
-        return personaSet;
+    public Persona getPersona() {
+        return persona;
     }
 
-    public void setPersonaSet(Set<Persona> personaSet) {
-        this.personaSet = personaSet;
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     public Rol getIdRol() {

@@ -24,6 +24,10 @@
     <class>entity.Usuarios</class>
     <class>entity.TipoSoporte</class>
     <class>entity.Pais</class>
+    <class>entity.EstadoCivil</class>
+    <class>entity.Cabecera</class>
+    <class>entity.TipoDocumento</class>
+    <class>entity.Categoria</class>
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
       <property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/preinscripcion?zeroDateTimeBehavior=convertToNull"/>

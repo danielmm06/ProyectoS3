@@ -8,7 +8,6 @@ package persistence;
 import conexion.App;
 import conexion.DataBase;
 import entity.Persona;
-import entity.Usuarios;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -51,13 +50,11 @@ public class PersonaDAO {
             ResultSet result = db.ExecuteQuery(psSelectAll);
 			while(result.next()) {
 				Persona persona = new Persona();
-				persona.setIdPersona(result.getInt("ID_PERSONA"));
 				persona.setNombre1(result.getString("NOMBRE1"));
                                 persona.setNombre2(result.getString("NOMBRE2"));
                                 persona.setApellido1(result.getString("APELLIDO1"));
                                 persona.setApellido2(result.getString("APELLIDO2"));
-                                Usuarios documento = App.UsuariosDAO.get(result.getInt("idUsuario"));
-				persona.setDocumento(documento);
+                               
                                 
                                 
 				listaPersonas.add(persona);

@@ -11,6 +11,8 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -20,6 +22,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -27,14 +31,17 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "ciudad")
+@XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")})
+    @NamedQuery(name = "Ciudad.findAll", query = "SELECT c FROM Ciudad c")
+    , @NamedQuery(name = "Ciudad.findByIdCiudad", query = "SELECT c FROM Ciudad c WHERE c.idCiudad = :idCiudad")
+    , @NamedQuery(name = "Ciudad.findByNombreCiudad", query = "SELECT c FROM Ciudad c WHERE c.nombreCiudad = :nombreCiudad")})
 public class Ciudad implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
-    @NotNull
     @Column(name = "ID_CIUDAD")
     private Integer idCiudad;
     @Basic(optional = false)
@@ -42,8 +49,6 @@ public class Ciudad implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "NOMBRE_CIUDAD")
     private String nombreCiudad;
-    @OneToMany(mappedBy = "empCiudad")
-    private Set<InfoPreguntas> infoPreguntasSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "expCiudad")
     private Set<Persona> personaSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "ciudadNacimiento")
@@ -52,6 +57,8 @@ public class Ciudad implements Serializable {
     private Set<Persona> personaSet2;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "resCiudad")
     private Set<Persona> personaSet3;
+    @OneToMany(mappedBy = "empCiudad")
+    private Set<InfoPreguntas> infoPreguntasSet;
     @JoinColumn(name = "ID_DPTO", referencedColumnName = "ID_DPTO")
     @ManyToOne(optional = false)
     private Departamento idDpto;
@@ -84,14 +91,7 @@ public class Ciudad implements Serializable {
         this.nombreCiudad = nombreCiudad;
     }
 
-    public Set<InfoPreguntas> getInfoPreguntasSet() {
-        return infoPreguntasSet;
-    }
-
-    public void setInfoPreguntasSet(Set<InfoPreguntas> infoPreguntasSet) {
-        this.infoPreguntasSet = infoPreguntasSet;
-    }
-
+    @XmlTransient
     public Set<Persona> getPersonaSet() {
         return personaSet;
     }
@@ -100,6 +100,7 @@ public class Ciudad implements Serializable {
         this.personaSet = personaSet;
     }
 
+    @XmlTransient
     public Set<Persona> getPersonaSet1() {
         return personaSet1;
     }
@@ -108,6 +109,7 @@ public class Ciudad implements Serializable {
         this.personaSet1 = personaSet1;
     }
 
+    @XmlTransient
     public Set<Persona> getPersonaSet2() {
         return personaSet2;
     }
@@ -116,12 +118,22 @@ public class Ciudad implements Serializable {
         this.personaSet2 = personaSet2;
     }
 
+    @XmlTransient
     public Set<Persona> getPersonaSet3() {
         return personaSet3;
     }
 
     public void setPersonaSet3(Set<Persona> personaSet3) {
         this.personaSet3 = personaSet3;
+    }
+
+    @XmlTransient
+    public Set<InfoPreguntas> getInfoPreguntasSet() {
+        return infoPreguntasSet;
+    }
+
+    public void setInfoPreguntasSet(Set<InfoPreguntas> infoPreguntasSet) {
+        this.infoPreguntasSet = infoPreguntasSet;
     }
 
     public Departamento getIdDpto() {
