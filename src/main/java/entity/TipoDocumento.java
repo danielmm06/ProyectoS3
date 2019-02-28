@@ -31,9 +31,9 @@ import javax.xml.bind.annotation.XmlTransient;
 @Table(name = "tipo_documento")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t")
-    , @NamedQuery(name = "TipoDocumento.findByIdDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.idDocumento = :idDocumento")
-    , @NamedQuery(name = "TipoDocumento.findByNombDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.nombDocumento = :nombDocumento")})
+    @NamedQuery(name = "TipoDocumento.findAll", query = "SELECT t FROM TipoDocumento t"),
+    @NamedQuery(name = "TipoDocumento.findByIdDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.idDocumento = :idDocumento"),
+    @NamedQuery(name = "TipoDocumento.findByNombDocumento", query = "SELECT t FROM TipoDocumento t WHERE t.nombDocumento = :nombDocumento")})
 public class TipoDocumento implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -111,5 +111,5 @@ public class TipoDocumento implements Serializable {
     public String toString() {
         return "entity.TipoDocumento[ idDocumento=" + idDocumento + " ]";
     }
-    
+
 }

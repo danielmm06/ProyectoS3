@@ -29,11 +29,11 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "soporte")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s")
-    , @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte")
-    , @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte")
-    , @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo")
-    , @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
+    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s"),
+    @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte"),
+    @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte"),
+    @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo"),
+    @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
 public class Soporte implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -149,5 +149,5 @@ public class Soporte implements Serializable {
     public String toString() {
         return "entity.Soporte[ idSoporte=" + idSoporte + " ]";
     }
-    
+
 }

@@ -29,10 +29,10 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "cabecera")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c")
-    , @NamedQuery(name = "Cabecera.findByIdCabecera", query = "SELECT c FROM Cabecera c WHERE c.idCabecera = :idCabecera")
-    , @NamedQuery(name = "Cabecera.findByPrograma", query = "SELECT c FROM Cabecera c WHERE c.programa = :programa")
-    , @NamedQuery(name = "Cabecera.findByFacultad", query = "SELECT c FROM Cabecera c WHERE c.facultad = :facultad")})
+    @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c"),
+    @NamedQuery(name = "Cabecera.findByIdCabecera", query = "SELECT c FROM Cabecera c WHERE c.idCabecera = :idCabecera"),
+    @NamedQuery(name = "Cabecera.findByPrograma", query = "SELECT c FROM Cabecera c WHERE c.programa = :programa"),
+    @NamedQuery(name = "Cabecera.findByFacultad", query = "SELECT c FROM Cabecera c WHERE c.facultad = :facultad")})
 public class Cabecera implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -135,5 +135,5 @@ public class Cabecera implements Serializable {
     public String toString() {
         return "entity.Cabecera[ idCabecera=" + idCabecera + " ]";
     }
-    
+
 }

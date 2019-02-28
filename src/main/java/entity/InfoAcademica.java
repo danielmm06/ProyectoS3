@@ -29,12 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "info_academica")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoAcademica.findAll", query = "SELECT i FROM InfoAcademica i")
-    , @NamedQuery(name = "InfoAcademica.findByIdInfoAcademica", query = "SELECT i FROM InfoAcademica i WHERE i.idInfoAcademica = :idInfoAcademica")
-    , @NamedQuery(name = "InfoAcademica.findByUniversidad", query = "SELECT i FROM InfoAcademica i WHERE i.universidad = :universidad")
-    , @NamedQuery(name = "InfoAcademica.findByPrograma", query = "SELECT i FROM InfoAcademica i WHERE i.programa = :programa")
-    , @NamedQuery(name = "InfoAcademica.findByTituloObtenido", query = "SELECT i FROM InfoAcademica i WHERE i.tituloObtenido = :tituloObtenido")
-    , @NamedQuery(name = "InfoAcademica.findByA\u00f1o", query = "SELECT i FROM InfoAcademica i WHERE i.a\u00f1o = :a\u00f1o")})
+    @NamedQuery(name = "InfoAcademica.findAll", query = "SELECT i FROM InfoAcademica i"),
+    @NamedQuery(name = "InfoAcademica.findByIdInfoAcademica", query = "SELECT i FROM InfoAcademica i WHERE i.idInfoAcademica = :idInfoAcademica"),
+    @NamedQuery(name = "InfoAcademica.findByUniversidad", query = "SELECT i FROM InfoAcademica i WHERE i.universidad = :universidad"),
+    @NamedQuery(name = "InfoAcademica.findByPrograma", query = "SELECT i FROM InfoAcademica i WHERE i.programa = :programa"),
+    @NamedQuery(name = "InfoAcademica.findByTituloObtenido", query = "SELECT i FROM InfoAcademica i WHERE i.tituloObtenido = :tituloObtenido"),
+    @NamedQuery(name = "InfoAcademica.findByA\u00f1o", query = "SELECT i FROM InfoAcademica i WHERE i.a\u00f1o = :a\u00f1o")})
 public class InfoAcademica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -154,5 +154,5 @@ public class InfoAcademica implements Serializable {
     public String toString() {
         return "entity.InfoAcademica[ idInfoAcademica=" + idInfoAcademica + " ]";
     }
-    
+
 }

@@ -7,7 +7,7 @@ package persistence;
 
 import conexion.App;
 import conexion.DataBase;
-import entity.Rol;
+import entity.EstadoCivil;
 import java.io.IOException;
 
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Daniel
  */
-public class RolDAO {
+public class EstadoCivilDAO {
 //    private PreparedStatement psSelectAll;
 
     private PreparedStatement psInsert;
@@ -28,7 +28,7 @@ public class RolDAO {
 
     private DataBase db;
 
-    public RolDAO() {
+    public EstadoCivilDAO() {
         if (App.DB != null) {
             this.db = App.DB;
         } else {
@@ -36,23 +36,23 @@ public class RolDAO {
         }
     }
 
-    public ArrayList<Rol> getAll() throws SQLException {
-        ArrayList<Rol> listaRol = new ArrayList<Rol>();
+    public ArrayList<EstadoCivil> getAll() throws SQLException {
+        ArrayList<EstadoCivil> listaEstadoCivil = new ArrayList<EstadoCivil>();
         PreparedStatement psSelectAll = null;
         ResultSet result = null;
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_T_USUARIO, NOMBRE_T_USUARIO "
-                        + "FROM ROL"
+                        "SELECT ID, ESTADO_CIVIL "
+                        + "FROM estado_civil"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
-                Rol rol = new Rol();
-                rol.setIdTUsuario(result.getInt("ID_T_USUARIO"));
-                rol.setNombreTUsuario(result.getString("NOMBRE_T_USUARIO"));
-                listaRol.add(rol);
+                EstadoCivil estado = new EstadoCivil();
+                estado.setId(result.getInt("ID"));
+                estado.setEstadoCivil(result.getString("ESTADO_CIVIL"));
+                listaEstadoCivil.add(estado);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -72,25 +72,25 @@ public class RolDAO {
                 }
             }
         }
-        return listaRol;
+        return listaEstadoCivil;
     }
 
-    public Rol get(int idTUsuario) {
-        Rol rol = new Rol();
+    public EstadoCivil get(int idEstado) {
+        EstadoCivil estado = new EstadoCivil();
         PreparedStatement psSelect = null;
         ResultSet result = null;
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_T_USUARIO,NOMBRE_T_USUARIO FROM ROL WHERE ID_T_USUARIO=?"
+                        "SELECT ID, ESTADO_CIVIL FROM estado_civil WHERE ID=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(idTUsuario);
+            inputs.add(idEstado);
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
-                rol.setIdTUsuario(result.getInt("ID_T_USUARIO"));
-                rol.setNombreTUsuario(result.getString("NOMBRE_T_USUARIO"));
+                estado.setId(result.getInt("ID"));
+                estado.setEstadoCivil(result.getString("ESTADO_CIVIL"));
 
             }
         } catch (SQLException e) {
@@ -111,21 +111,21 @@ public class RolDAO {
                 }
             }
         }
-        return rol;
+        return estado;
     }
 
-    public long insert(Rol rol) {
+    public long insert(EstadoCivil estado) {
         long result;
         try {
-            String columns = "NOMBRE_T_USUARIO";
+            String columns = "ESTADO_CIVIL";
             String values = "?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO ROL(" + columns + ") VALUES(" + values + ")", "ID_T_USUARIO"
+                        "INSERT INTO estado_civil(" + columns + ") VALUES(" + values + ")", "ID"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(rol.getNombreTUsuario());
+            inputs.add(estado.getEstadoCivil());
 
             result = db.ExecuteUpdate(psInsert, inputs);
 
@@ -135,22 +135,21 @@ public class RolDAO {
         return result;
     }
 
-    public long update(Rol rol) {
+    public long update(EstadoCivil estado) {
         long result;
         try {
             String columns = "";
             ArrayList<Object> inputs = new ArrayList<Object>();
-
-            if (rol.getNombreTUsuario() != null) {
-                columns += ",NOMBRE_T_USUARIO=?";
-                inputs.add(rol.getNombreTUsuario());
+            if (estado.getEstadoCivil() != null) {
+                columns += ",ESTADO_CIVIL=?";
+                inputs.add(estado.getEstadoCivil());
             }
-            inputs.add(rol.getIdTUsuario());
+            inputs.add(estado.getId());
             columns = columns.substring(1);
 
             //if (psUpdate == null) {
             psUpdate = db.PreparedUpdate(
-                    "UPDATE ROL SET " + columns + " WHERE ID_T_USUARIO=?"
+                    "UPDATE estado_civil SET " + columns + " WHERE ID=?"
             );
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
@@ -159,17 +158,17 @@ public class RolDAO {
         return result;
     }
 
-    public long delete(Integer idTUsuario) {
+    public long delete(int idEstado) {
         long result;
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM ROL "
-                        + "WHERE ID_T_USUARIO=?"
+                        "DELETE FROM estado_civil "
+                        + "WHERE ID=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(idTUsuario);
+            inputs.add(idEstado);
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);

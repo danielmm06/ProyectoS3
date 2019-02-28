@@ -7,7 +7,7 @@ package persistence;
 
 import conexion.App;
 import conexion.DataBase;
-import entity.Rol;
+import entity.TipoDocumento;
 import java.io.IOException;
 
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ import java.util.ArrayList;
  *
  * @author Daniel
  */
-public class RolDAO {
+public class TipoDocumentoDAO {
 //    private PreparedStatement psSelectAll;
 
     private PreparedStatement psInsert;
@@ -28,7 +28,7 @@ public class RolDAO {
 
     private DataBase db;
 
-    public RolDAO() {
+    public TipoDocumentoDAO() {
         if (App.DB != null) {
             this.db = App.DB;
         } else {
@@ -36,23 +36,23 @@ public class RolDAO {
         }
     }
 
-    public ArrayList<Rol> getAll() throws SQLException {
-        ArrayList<Rol> listaRol = new ArrayList<Rol>();
+    public ArrayList<TipoDocumento> getAll() throws SQLException {
+        ArrayList<TipoDocumento> listaTipoDocumento = new ArrayList<TipoDocumento>();
         PreparedStatement psSelectAll = null;
         ResultSet result = null;
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_T_USUARIO, NOMBRE_T_USUARIO "
-                        + "FROM ROL"
+                        "SELECT ID_DOCUMENTO, NOMB_DOCUMENTO "
+                        + "FROM tipo_documento"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
-                Rol rol = new Rol();
-                rol.setIdTUsuario(result.getInt("ID_T_USUARIO"));
-                rol.setNombreTUsuario(result.getString("NOMBRE_T_USUARIO"));
-                listaRol.add(rol);
+                TipoDocumento tdocumento = new TipoDocumento();
+                tdocumento.setIdDocumento(result.getInt("ID_DOCUMENTO"));
+                tdocumento.setNombDocumento(result.getString("NOMB_DOCUMENTO"));
+                listaTipoDocumento.add(tdocumento);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -72,25 +72,25 @@ public class RolDAO {
                 }
             }
         }
-        return listaRol;
+        return listaTipoDocumento;
     }
 
-    public Rol get(int idTUsuario) {
-        Rol rol = new Rol();
+    public TipoDocumento get(int idDocumento) {
+        TipoDocumento tdocumento = new TipoDocumento();
         PreparedStatement psSelect = null;
         ResultSet result = null;
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_T_USUARIO,NOMBRE_T_USUARIO FROM ROL WHERE ID_T_USUARIO=?"
+                        "SELECT ID_DOCUMENTO, NOMB_DOCUMENTO FROM tipo_documento WHERE ID_DOCUMENTO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(idTUsuario);
+            inputs.add(idDocumento);
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
-                rol.setIdTUsuario(result.getInt("ID_T_USUARIO"));
-                rol.setNombreTUsuario(result.getString("NOMBRE_T_USUARIO"));
+                tdocumento.setIdDocumento(result.getInt("ID_DOCUMENTO"));
+                tdocumento.setNombDocumento(result.getString("NOMB_DOCUMENTO"));
 
             }
         } catch (SQLException e) {
@@ -111,21 +111,21 @@ public class RolDAO {
                 }
             }
         }
-        return rol;
+        return tdocumento;
     }
 
-    public long insert(Rol rol) {
+    public long insert(TipoDocumento tdocumento) {
         long result;
         try {
-            String columns = "NOMBRE_T_USUARIO";
+            String columns = "NOMB_DOCUMENTO";
             String values = "?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO ROL(" + columns + ") VALUES(" + values + ")", "ID_T_USUARIO"
+                        "INSERT INTO tipo_documento(" + columns + ") VALUES(" + values + ")", "ID_DOCUMENTO"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(rol.getNombreTUsuario());
+            inputs.add(tdocumento.getNombDocumento());
 
             result = db.ExecuteUpdate(psInsert, inputs);
 
@@ -135,22 +135,21 @@ public class RolDAO {
         return result;
     }
 
-    public long update(Rol rol) {
+    public long update(TipoDocumento tdocumento) {
         long result;
         try {
             String columns = "";
             ArrayList<Object> inputs = new ArrayList<Object>();
-
-            if (rol.getNombreTUsuario() != null) {
-                columns += ",NOMBRE_T_USUARIO=?";
-                inputs.add(rol.getNombreTUsuario());
+            if (tdocumento.getNombDocumento() != null) {
+                columns += ",NOMB_DOCUMENTO=?";
+                inputs.add(tdocumento.getNombDocumento());
             }
-            inputs.add(rol.getIdTUsuario());
+            inputs.add(tdocumento.getIdDocumento());
             columns = columns.substring(1);
 
             //if (psUpdate == null) {
             psUpdate = db.PreparedUpdate(
-                    "UPDATE ROL SET " + columns + " WHERE ID_T_USUARIO=?"
+                    "UPDATE tipo_documento SET " + columns + " WHERE ID_DOCUMENTO=?"
             );
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
@@ -159,17 +158,17 @@ public class RolDAO {
         return result;
     }
 
-    public long delete(Integer idTUsuario) {
+    public long delete(int idTDocumento) {
         long result;
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM ROL "
-                        + "WHERE ID_T_USUARIO=?"
+                        "DELETE FROM tipo_documento "
+                        + "WHERE ID_DOCUMENTO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(idTUsuario);
+            inputs.add(idTDocumento);
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
