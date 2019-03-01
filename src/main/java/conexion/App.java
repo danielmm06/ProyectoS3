@@ -39,6 +39,10 @@ public class App {
     public static PaisDAO PaisDAO;
     public static DepartamentoDAO DepartamentoDAO;
     public static CiudadDAO CiudadDAO;
+    public static EstadoCivilDAO EstadoDAO;
+    public static InfoPreguntasDAO PreguntasDAO;
+    public static TipoDocumentoDAO DocumentoDAO;
+    
 
     // Conectar con Base de Datos
     public static void OpenConnection() {
@@ -66,6 +70,8 @@ public class App {
         PaisDAO = new PaisDAO();
         DepartamentoDAO = new DepartamentoDAO();
         CiudadDAO = new CiudadDAO();
+        EstadoDAO = new EstadoCivilDAO();
+        PreguntasDAO = new InfoPreguntasDAO();
+        DocumentoDAO = new TipoDocumentoDAO();
     }
-
 }

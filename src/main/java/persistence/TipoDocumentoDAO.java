@@ -181,28 +181,27 @@ public class TipoDocumentoDAO {
             App.OpenConnection();
 
 //            System.out.println("GET ALL");
-//            ArrayList<Rol> listaRoles = App.RolDAO.getAll();
-//            for (Rol rol : listaRoles) {
-//                System.out.println(rol.getIdTUsuario() + " " + rol.getNombreTUsuario());
+//            ArrayList<TipoDocumento> listaRoles = App.DocumentoDAO.getAll();
+//            for (TipoDocumento rol : listaRoles) {
+//                System.out.println(rol.getIdDocumento()+ " " + rol.getNombDocumento());
 //            }
-//			System.out.println("GET ONE");
-//			int idTUsuario = 1121200;			
-//			Rol rol = App.RolDAO.get(idTUsuario);
-//			if(rol.getIdTUsuario() != 0) {						
-//				System.out.println(rol.getIdTUsuario()+" "+rol.getNombreTUsuario());
-//			}
-//                        System.out.println("INSERT");				
-//                        Rol rol = new Rol();
-//                        rol.setNombreTUsuario("ADMIN");
-//                        App.RolDAO.insert(rol);	
-//                    System.out.println("UPDATE");				
-//                    Rol rol = new Rol();
-//                    rol.setIdTUsuario(1213);		
-//                    rol.setNombreTUsuario("Estudiante");
-//                    App.RolDAO.update(rol);		
-//                    System.out.println(App.RolDAO.update(rol));
-//                      System.out.println("DELETE");
-//                      App.RolDAO.delete(1121200);
+//            System.out.println("GET ONE");
+//            int idTUsuario = 1;
+//            TipoDocumento rol = App.DocumentoDAO.get(idTUsuario);
+//            if (rol.getIdDocumento()!= 0) {
+//                System.out.println(rol.getIdDocumento() + " " + rol.getNombDocumento());
+//            }
+//            System.out.println("INSERT");
+//            TipoDocumento rol = new TipoDocumento();
+//            rol.setNombDocumento("a");
+//            App.DocumentoDAO.insert(rol);
+//            System.out.println("UPDATE");
+//            TipoDocumento rol = new TipoDocumento();
+//            rol.setIdDocumento(4);
+//            rol.setNombDocumento("b");
+//            System.out.println(App.DocumentoDAO.update(rol));
+//            System.out.println("DELETE");
+//            App.DocumentoDAO.delete(4);
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {

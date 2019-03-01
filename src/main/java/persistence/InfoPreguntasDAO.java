@@ -14,6 +14,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -146,7 +147,7 @@ public class InfoPreguntasDAO {
             inputs.add(infoPreguntas.getCargo());
             inputs.add(infoPreguntas.getEmpDireccion());
             inputs.add(infoPreguntas.getEmpTelefono());
-            inputs.add(infoPreguntas.getEmpCiudad());
+            inputs.add(infoPreguntas.getEmpCiudad().getIdCiudad());
             inputs.add(infoPreguntas.getExistenciaPrograma());
             inputs.add(infoPreguntas.getExpeLaborFunciones());
             inputs.add(infoPreguntas.getRazones());
@@ -281,28 +282,80 @@ public class InfoPreguntasDAO {
             App.OpenConnection();
 
 //            System.out.println("GET ALL");
-//            ArrayList<Rol> listaRoles = App.RolDAO.getAll();
-//            for (Rol rol : listaRoles) {
-//                System.out.println(rol.getIdTUsuario() + " " + rol.getNombreTUsuario());
+//            ArrayList<InfoPreguntas> listaRoles = App.PreguntasDAO.getAll();
+//            for (InfoPreguntas rol : listaRoles) {
+//                System.out.println(rol.getIdPreguntas()
+//                        + " " + rol.getEmpresa()
+//                        + " " + rol.getTipoEmpresa()
+//                        + " " + rol.getCargo()
+//                        + " " + rol.getEmpDireccion()
+//                        + " " + rol.getEmpTelefono()
+//                        + " " + rol.getEmpCiudad().getIdCiudad()
+//                        + " " + rol.getExistenciaPrograma()
+//                        + " " + rol.getExpeLaborFunciones()
+//                        + " " + rol.getRazones()
+//                        + " " + rol.getFinPrestamo()
+//                        + " " + rol.getFinAuxEmpresarial()
+//                        + " " + rol.getFinRecPropios()
+//                        + " " + rol.getFinBeca()
+//                        + " " + rol.getEgresadoUnillanos()
+//                        + " " + rol.getFechaFormulario()
+//                        + " " + rol.getFechaLectura()
+//                        + " " + rol.getComentarios()
+//                        + " " + rol.getValidacionPreguntas()[0]);
 //            }
-//			System.out.println("GET ONE");
-//			int idTUsuario = 1121200;			
-//			Rol rol = App.RolDAO.get(idTUsuario);
-//			if(rol.getIdTUsuario() != 0) {						
-//				System.out.println(rol.getIdTUsuario()+" "+rol.getNombreTUsuario());
-//			}
-//                        System.out.println("INSERT");				
-//                        Rol rol = new Rol();
-//                        rol.setNombreTUsuario("ADMIN");
-//                        App.RolDAO.insert(rol);	
-//                    System.out.println("UPDATE");				
-//                    Rol rol = new Rol();
-//                    rol.setIdTUsuario(1213);		
-//                    rol.setNombreTUsuario("Estudiante");
-//                    App.RolDAO.update(rol);		
-//                    System.out.println(App.RolDAO.update(rol));
-//                      System.out.println("DELETE");
-//                      App.RolDAO.delete(1121200);
+//            System.out.println("GET ONE");
+//            int idTUsuario = 1;
+//            InfoPreguntas rol = App.PreguntasDAO.get(idTUsuario);
+//            if (rol.getIdPreguntas() != 0) {
+//                System.out.println(rol.getIdPreguntas()
+//                        + " " + rol.getEmpresa()
+//                        + " " + rol.getTipoEmpresa()
+//                        + " " + rol.getCargo()
+//                        + " " + rol.getEmpDireccion()
+//                        + " " + rol.getEmpTelefono()
+//                        + " " + rol.getEmpCiudad().getIdCiudad()
+//                        + " " + rol.getExistenciaPrograma()
+//                        + " " + rol.getExpeLaborFunciones()
+//                        + " " + rol.getRazones()
+//                        + " " + rol.getFinPrestamo()
+//                        + " " + rol.getFinAuxEmpresarial()
+//                        + " " + rol.getFinRecPropios()
+//                        + " " + rol.getFinBeca()
+//                        + " " + rol.getEgresadoUnillanos()
+//                        + " " + rol.getFechaFormulario()
+//                        + " " + rol.getFechaLectura()
+//                        + " " + rol.getComentarios()
+//                        + " " + rol.getValidacionPreguntas()[0]);
+//            }
+//            System.out.println("INSERT");
+//            InfoPreguntas rol = new InfoPreguntas();
+//            rol.setEmpresa("asd");
+//            rol.setTipoEmpresa("asd");
+//            rol.setCargo("asd");
+//            rol.setEmpDireccion("asd");
+//            rol.setEmpTelefono("Adasd");
+//            rol.setEmpCiudad(new Ciudad(1));
+//            rol.setExistenciaPrograma("asd");
+//            rol.setExpeLaborFunciones("asd");
+//            rol.setRazones("asd");
+//            rol.setFinPrestamo("asd");
+//            rol.setFinAuxEmpresarial("asd");
+//            rol.setFinRecPropios("asd");
+//            rol.setFinBeca("asd");
+//            rol.setEgresadoUnillanos("asd");
+//            rol.setFechaFormulario((new SimpleDateFormat("yyyy-MM-dd")).parse("2018-01-01"));
+//            rol.setFechaLectura(null);
+//            rol.setComentarios("asd");
+//            rol.setValidacionPreguntas(null);
+//            App.PreguntasDAO.insert(rol);
+//            System.out.println("UPDATE");
+//            InfoPreguntas rol = new InfoPreguntas();
+//            rol.setIdPreguntas(1);
+//            rol.setEmpresa("dsa");
+//            System.out.println(App.PreguntasDAO.update(rol));
+//            System.out.println("DELETE");
+//            App.PreguntasDAO.delete(2);
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {

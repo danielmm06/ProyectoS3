@@ -181,28 +181,27 @@ public class EstadoCivilDAO {
             App.OpenConnection();
 
 //            System.out.println("GET ALL");
-//            ArrayList<Rol> listaRoles = App.RolDAO.getAll();
-//            for (Rol rol : listaRoles) {
-//                System.out.println(rol.getIdTUsuario() + " " + rol.getNombreTUsuario());
+//            ArrayList<EstadoCivil> listaRoles = App.EstadoDAO.getAll();
+//            for (EstadoCivil rol : listaRoles) {
+//                System.out.println(rol.getId()+ " " + rol.getEstadoCivil());
 //            }
-//			System.out.println("GET ONE");
-//			int idTUsuario = 1121200;			
-//			Rol rol = App.RolDAO.get(idTUsuario);
-//			if(rol.getIdTUsuario() != 0) {						
-//				System.out.println(rol.getIdTUsuario()+" "+rol.getNombreTUsuario());
-//			}
-//                        System.out.println("INSERT");				
-//                        Rol rol = new Rol();
-//                        rol.setNombreTUsuario("ADMIN");
-//                        App.RolDAO.insert(rol);	
-//                    System.out.println("UPDATE");				
-//                    Rol rol = new Rol();
-//                    rol.setIdTUsuario(1213);		
-//                    rol.setNombreTUsuario("Estudiante");
-//                    App.RolDAO.update(rol);		
-//                    System.out.println(App.RolDAO.update(rol));
-//                      System.out.println("DELETE");
-//                      App.RolDAO.delete(1121200);
+//            System.out.println("GET ONE");
+//            int idTUsuario = 1;
+//            EstadoCivil rol = App.EstadoDAO.get(idTUsuario);
+//            if (rol.getId() != 0) {
+//                System.out.println(rol.getId() + " " + rol.getEstadoCivil());
+//            }
+//            System.out.println("INSERT");
+//            EstadoCivil rol = new EstadoCivil();
+//            rol.setEstadoCivil("ADMIN");
+//            App.EstadoDAO.insert(rol);
+//            System.out.println("UPDATE");
+//            EstadoCivil rol = new EstadoCivil();
+//            rol.setId(8);
+//            rol.setEstadoCivil("Estudiante");
+//            System.out.println(App.EstadoDAO.update(rol));
+//            System.out.println("DELETE");
+//            App.EstadoDAO.delete(8);
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
