@@ -29,12 +29,12 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Table(name = "info_academica")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoAcademica.findAll", query = "SELECT i FROM InfoAcademica i"),
-    @NamedQuery(name = "InfoAcademica.findByIdInfoAcademica", query = "SELECT i FROM InfoAcademica i WHERE i.idInfoAcademica = :idInfoAcademica"),
-    @NamedQuery(name = "InfoAcademica.findByUniversidad", query = "SELECT i FROM InfoAcademica i WHERE i.universidad = :universidad"),
-    @NamedQuery(name = "InfoAcademica.findByPrograma", query = "SELECT i FROM InfoAcademica i WHERE i.programa = :programa"),
-    @NamedQuery(name = "InfoAcademica.findByTituloObtenido", query = "SELECT i FROM InfoAcademica i WHERE i.tituloObtenido = :tituloObtenido"),
-    @NamedQuery(name = "InfoAcademica.findByA\u00f1o", query = "SELECT i FROM InfoAcademica i WHERE i.a\u00f1o = :a\u00f1o")})
+    @NamedQuery(name = "InfoAcademica.findAll", query = "SELECT i FROM InfoAcademica i")
+    , @NamedQuery(name = "InfoAcademica.findByIdInfoAcademica", query = "SELECT i FROM InfoAcademica i WHERE i.idInfoAcademica = :idInfoAcademica")
+    , @NamedQuery(name = "InfoAcademica.findByUniversidad", query = "SELECT i FROM InfoAcademica i WHERE i.universidad = :universidad")
+    , @NamedQuery(name = "InfoAcademica.findByPrograma", query = "SELECT i FROM InfoAcademica i WHERE i.programa = :programa")
+    , @NamedQuery(name = "InfoAcademica.findByTituloObtenido", query = "SELECT i FROM InfoAcademica i WHERE i.tituloObtenido = :tituloObtenido")
+    , @NamedQuery(name = "InfoAcademica.findByAno", query = "SELECT i FROM InfoAcademica i WHERE i.ano = :ano")})
 public class InfoAcademica implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -61,8 +61,8 @@ public class InfoAcademica implements Serializable {
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
-    @Column(name = "A\u00d1O")
-    private String año;
+    @Column(name = "ANO")
+    private String ano;
     @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
     @ManyToOne(optional = false)
     private InfoPreguntas idPreguntas;
@@ -74,12 +74,12 @@ public class InfoAcademica implements Serializable {
         this.idInfoAcademica = idInfoAcademica;
     }
 
-    public InfoAcademica(Integer idInfoAcademica, String universidad, String programa, String tituloObtenido, String año) {
+    public InfoAcademica(Integer idInfoAcademica, String universidad, String programa, String tituloObtenido, String ano) {
         this.idInfoAcademica = idInfoAcademica;
         this.universidad = universidad;
         this.programa = programa;
         this.tituloObtenido = tituloObtenido;
-        this.año = año;
+        this.ano = ano;
     }
 
     public Integer getIdInfoAcademica() {
@@ -114,12 +114,12 @@ public class InfoAcademica implements Serializable {
         this.tituloObtenido = tituloObtenido;
     }
 
-    public String getAño() {
-        return año;
+    public String getAno() {
+        return ano;
     }
 
-    public void setAño(String año) {
-        this.año = año;
+    public void setAno(String ano) {
+        this.ano = ano;
     }
 
     public InfoPreguntas getIdPreguntas() {
@@ -154,5 +154,5 @@ public class InfoAcademica implements Serializable {
     public String toString() {
         return "entity.InfoAcademica[ idInfoAcademica=" + idInfoAcademica + " ]";
     }
-
+    
 }
