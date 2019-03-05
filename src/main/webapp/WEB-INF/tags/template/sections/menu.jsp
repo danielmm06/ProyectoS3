@@ -1,36 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-
-
-<div class="menu_section">
-    <h3>Menú general</h3>
-    <ul class="nav side-menu">
-        <li>
-            <a href="javascript:void(0)" onclick="location.href=pathURL+'Home'" >
-            	<i class="fa fa-home"></i> Inicio 
-            </a>
-        </li>
-        <c:forEach items="${listaMenus}" var="menu" varStatus="loop">
-        	<c:if test="${menu.codMenuPadre==0}">
-        		<li>
-		            <a>
-		            	<i class="fa fa-<c:out value="${menu.icono}" />"></i>
-		            	<c:out value="${menu.nombre}" />
-		            	<span class="fa fa-chevron-down"></span>
-		            </a>
-		            <ul class="nav child_menu">
-		                <c:forEach items="${listaMenus}" var="item" varStatus="loop">
-		                	<c:if test="${item.codMenuPadre!=0 && item.codMenuPadre==menu.codMenu}">
-								<li>
-									<a onclick="location.href=pathURL+'<c:out value="${item.ruta}" />'" 
-									   target="_<c:out value="${item.target}" />"><c:out value="${item.nombre}" /></a>
-								</li>
-							</c:if>
-				    	</c:forEach>
-		            </ul>
-		        </li>
-        	</c:if>
-    	</c:forEach>
+<!-- Sidebar -->
+    <ul class="sidebar navbar-nav">
+      <li class="nav-item active">
+        <a class="nav-link" href="index.html">
+          <i class="fas fa-fw fa-tachometer-alt"></i>
+          <span>Dashboard</span>
+        </a>
+      </li>
+      <li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <i class="fas fa-fw fa-folder"></i>
+          <span>Pages</span>
+        </a>
+        <div class="dropdown-menu" aria-labelledby="pagesDropdown">
+          <h6 class="dropdown-header">Login Screens:</h6>
+          <a class="dropdown-item" href="login.html">Login</a>
+          <a class="dropdown-item" href="register.html">Register</a>
+          <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
+          <div class="dropdown-divider"></div>
+          <h6 class="dropdown-header">Other Pages:</h6>
+          <a class="dropdown-item" href="404.html">404 Page</a>
+          <a class="dropdown-item" href="blank.html">Blank Page</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="charts.html">
+          <i class="fas fa-fw fa-chart-area"></i>
+          <span>Charts</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="tables.html">
+          <i class="fas fa-fw fa-table"></i>
+          <span>Tables</span></a>
+      </li>
     </ul>
-</div>
