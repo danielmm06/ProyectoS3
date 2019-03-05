@@ -30,7 +30,12 @@ private static final long serialVersionUID = 1L;
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	try {// Inicializa conexión con base de datos
+	request.setCharacterEncoding("UTF-8");
+                        request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
+                        getServletConfig().getServletContext().getRequestDispatcher("/views/Registro.jsp").forward(request,response);
+//                     
+        /* 
+        try {// Inicializa conexión con base de datos
             App.OpenConnection();
 
             boolean sesionValida = true;
@@ -46,7 +51,7 @@ private static final long serialVersionUID = 1L;
                         //----------------------------------------------------------
                         request.setAttribute("listaPersonas", listaPersonas);
                         
-                        getServletConfig().getServletContext().getRequestDispatcher("/views/prueba.jsp").forward(request,response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/views/Registro.jsp").forward(request,response);
 //                          RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/Personas.jsp");
 //                        request.getRequestDispatcher("/views/Personas.jsp").forward(request, response);
                 } else {
@@ -62,9 +67,14 @@ private static final long serialVersionUID = 1L;
             // Cierra conexión
             App.CloseConnection();
         }
+        */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+           request.setCharacterEncoding("UTF-8");
+			request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
+            /*
+            
             try {// Inicializa conexión con base de datos
             App.OpenConnection();
 
@@ -95,7 +105,7 @@ private static final long serialVersionUID = 1L;
         } finally {
             // Cierra conexión
             App.CloseConnection();
-        }
+        }*/
 	}            
     
 }
