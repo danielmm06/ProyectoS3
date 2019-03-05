@@ -171,8 +171,9 @@ public class DataBase {
                     } catch (Exception e) {
                         try {
                             tipoDato = "Date";
-                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            Date date = (Date) formatter.parse(input.get(i).toString().split("\\.")[0]);
+//                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                            Date date = (Date) formatter.parse(input.get(i).toString().split("\\.")[0]);
+                            Date date = Date.valueOf(input.get(i).toString());
                             Timestamp inputTimestamp = new Timestamp(date.getTime());
                             pstmt.setTimestamp((i + 1), inputTimestamp);
                         } catch (Exception ex) {
@@ -238,8 +239,9 @@ public class DataBase {
                     } catch (Exception e) {
                         try {
                             tipoDato = "Date";
-                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-                            Date date = (Date) formatter.parse(input.get(i).toString().split("\\.")[0]);
+//                            SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//                            Date date = (Date) formatter.parse(input.get(i).toString().split("\\.")[0]);
+                            Date date = Date.valueOf(input.get(i).toString());
                             Timestamp inputTimestamp = new Timestamp(date.getTime());
                             pstmt.setTimestamp((i + 1), inputTimestamp);
                         } catch (Exception ex) {

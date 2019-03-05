@@ -7,14 +7,15 @@ package persistence;
 
 import conexion.App;
 import conexion.DataBase;
+import entity.Cabecera;
 import entity.Ciudad;
 import entity.InfoPreguntas;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.text.SimpleDateFormat;
 
 /**
  *
@@ -44,7 +45,7 @@ public class InfoPreguntasDAO {
 
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
+                        "SELECT ID_PREGUNTAS, CABECERA, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
                         + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
@@ -55,6 +56,7 @@ public class InfoPreguntasDAO {
             while (result.next()) {
                 InfoPreguntas infoPreguntas = new InfoPreguntas();
                 infoPreguntas.setIdPreguntas(result.getInt("ID_PREGUNTAS"));
+                infoPreguntas.setCabecera(new Cabecera(result.getInt("CABECERA")));
                 infoPreguntas.setEmpresa(result.getString("EMPRESA"));
                 infoPreguntas.setTipoEmpresa(result.getString("TIPO_EMPRESA"));
                 infoPreguntas.setCargo(result.getString("CARGO"));
@@ -72,7 +74,7 @@ public class InfoPreguntasDAO {
                 infoPreguntas.setFechaFormulario(result.getDate("FECHA_FORMULARIO"));
                 infoPreguntas.setFechaLectura(result.getDate("FECHA_LECTURA"));
                 infoPreguntas.setComentarios(result.getString("COMENTARIOS"));
-                infoPreguntas.setValidacionPreguntas(result.getBytes("VALIDACION_PREGUNTAS"));
+                infoPreguntas.setValidacionPreguntas(result.getInt("VALIDACION_PREGUNTAS"));
 
                 listaInfoPreguntas.add(infoPreguntas);
             }
@@ -89,7 +91,7 @@ public class InfoPreguntasDAO {
 
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
+                        "SELECT ID_PREGUNTAS, CABECERA, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
                         + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
@@ -101,6 +103,7 @@ public class InfoPreguntasDAO {
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
                 infoPreguntas.setIdPreguntas(result.getInt("ID_PREGUNTAS"));
+                infoPreguntas.setCabecera((new CabeceraDAO()).get(result.getInt("CABECERA")));
                 infoPreguntas.setEmpresa(result.getString("EMPRESA"));
                 infoPreguntas.setTipoEmpresa(result.getString("TIPO_EMPRESA"));
                 infoPreguntas.setCargo(result.getString("CARGO"));
@@ -118,7 +121,7 @@ public class InfoPreguntasDAO {
                 infoPreguntas.setFechaFormulario(result.getDate("FECHA_FORMULARIO"));
                 infoPreguntas.setFechaLectura(result.getDate("FECHA_LECTURA"));
                 infoPreguntas.setComentarios(result.getString("COMENTARIOS"));
-                infoPreguntas.setValidacionPreguntas(result.getBytes("VALIDACION_PREGUNTAS"));
+                infoPreguntas.setValidacionPreguntas(result.getInt("VALIDACION_PREGUNTAS"));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -129,12 +132,11 @@ public class InfoPreguntasDAO {
     public long insert(InfoPreguntas infoPreguntas) {
         long result;
         try {
-            String columns = "EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
+            String columns = "CABECERA, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                     + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                     + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
-                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
-                    + "VALIDACION_PREGUNTAS";
-            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS,VALIDACION_PREGUNTAS";
+            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO info_preguntas(" + columns + ") VALUES(" + values + ")",
@@ -142,6 +144,7 @@ public class InfoPreguntasDAO {
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(infoPreguntas.getCabecera().getIdCabecera());
             inputs.add(infoPreguntas.getEmpresa());
             inputs.add(infoPreguntas.getTipoEmpresa());
             inputs.add(infoPreguntas.getCargo());
@@ -172,7 +175,10 @@ public class InfoPreguntasDAO {
         try {
             String columns = "";
             ArrayList<Object> inputs = new ArrayList<Object>();
-
+            if (infoPreguntas.getCabecera() != null) {
+                columns += ",CABECERA=?";
+                inputs.add(infoPreguntas.getCabecera().getIdCabecera());
+            }
             if (infoPreguntas.getEmpresa() != null) {
                 columns += ",EMPRESA=?";
                 inputs.add(infoPreguntas.getEmpresa());
@@ -330,6 +336,7 @@ public class InfoPreguntasDAO {
 //            }
 //            System.out.println("INSERT");
 //            InfoPreguntas rol = new InfoPreguntas();
+//            rol.setCabecera(new Cabecera(4));
 //            rol.setEmpresa("asd");
 //            rol.setTipoEmpresa("asd");
 //            rol.setCargo("asd");
@@ -344,15 +351,15 @@ public class InfoPreguntasDAO {
 //            rol.setFinRecPropios("asd");
 //            rol.setFinBeca("asd");
 //            rol.setEgresadoUnillanos("asd");
-//            rol.setFechaFormulario((new SimpleDateFormat("yyyy-MM-dd")).parse("2018-01-01"));
-//            rol.setFechaLectura(null);
+//            rol.setFechaFormulario(Date.valueOf("2018-01-01"));
+//            rol.setFechaLectura(Date.valueOf("2018-01-01"));
 //            rol.setComentarios("asd");
-//            rol.setValidacionPreguntas(null);
+//            rol.setValidacionPreguntas(1);
 //            App.PreguntasDAO.insert(rol);
 //            System.out.println("UPDATE");
 //            InfoPreguntas rol = new InfoPreguntas();
-//            rol.setIdPreguntas(1);
-//            rol.setEmpresa("dsa");
+//            rol.setIdPreguntas(2);
+//            rol.setEmpresa("dasdasdad");
 //            System.out.println(App.PreguntasDAO.update(rol));
 //            System.out.println("DELETE");
 //            App.PreguntasDAO.delete(2);

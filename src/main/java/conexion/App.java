@@ -15,14 +15,14 @@ import persistence.*;
  */
 public class App {
 
-    // Conexión base de datos
+    // ConexiÃ³n base de datos
     public static final String HOST_DB = "localhost:3306"; // Host:Port DB
     public static final String NAME_DB = "preinscripcion"; // Name DB
     public static final String USER_DB = "root"; // User DB
     public static final String PASS_DB = ""; // Password DB
 
     // Parametros del sistema
-    public static final String nameProyect = "Inscripción Especialización"; // Name Proyect
+    public static final String nameProyect = "InscripciÃ³n EspecializaciÃ³n"; // Name Proyect
 
     // Manejador de Base de datos
     public static DataBase DB; // DB Handler
@@ -42,6 +42,13 @@ public class App {
     public static EstadoCivilDAO EstadoDAO;
     public static InfoPreguntasDAO PreguntasDAO;
     public static TipoDocumentoDAO DocumentoDAO;
+    public static CategoriaDAO CategoriaDAO;
+    public static CabeceraDAO CabeceraDAO;
+    public static TipoSoporteDAO TSoporteDAO;
+    public static SoporteDAO SoporteDAO;
+    public static InfoAcademicaDAO AcademicaDAO;
+    public static InfoIdiomasDAO IdiomasDAO;
+    public static InfoLaboralDAO LaboralDAO;
     
 
     // Conectar con Base de Datos
@@ -73,5 +80,12 @@ public class App {
         EstadoDAO = new EstadoCivilDAO();
         PreguntasDAO = new InfoPreguntasDAO();
         DocumentoDAO = new TipoDocumentoDAO();
+        CategoriaDAO = new CategoriaDAO();
+        CabeceraDAO = new CabeceraDAO();
+        TSoporteDAO = new TipoSoporteDAO();
+        SoporteDAO = new SoporteDAO();
+        AcademicaDAO = new InfoAcademicaDAO();
+        IdiomasDAO = new InfoIdiomasDAO();
+        LaboralDAO = new InfoLaboralDAO();
     }
 }

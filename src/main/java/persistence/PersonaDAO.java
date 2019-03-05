@@ -13,6 +13,7 @@ import entity.InfoPreguntas;
 import entity.Persona;
 import entity.TipoDocumento;
 import java.io.IOException;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -199,7 +200,7 @@ public class PersonaDAO {
             }
             if (persona.getTipodocumento() != null) {
                 columns += ",TIPODOCUMENTO=?";
-                inputs.add(persona.getTipodocumento());
+                inputs.add(persona.getTipodocumento().getIdDocumento());
             }
             if (persona.getExpCiudad() != null) {
                 columns += ",EXP_CIUDAD=?";
@@ -324,45 +325,65 @@ public class PersonaDAO {
 //                        + persona.getInfoPreguntas().getIdPreguntas()
 //                );
 //            }
-            System.out.println("GET ONE");
-            int documento = 123;
-            Persona persona = App.PersonaDAO.get(documento);
-            if (persona.getDocumento() != 0) {
-                System.out.println(
-                        persona.getNombre1() + ", "
-                        + persona.getNombre2() + ", "
-                        + persona.getApellido1() + ", "
-                        + persona.getApellido2() + ", "
-                        + persona.getDocumento() + ", "
-                        + persona.getTipodocumento().getIdDocumento() + ", "
-                        + persona.getExpCiudad().getIdCiudad() + ", "
-                        + persona.getDireccion() + ", "
-                        + persona.getBarrio() + ", "
-                        + persona.getResCiudad().getIdCiudad() + ", "
-                        + persona.getTelefono() + ", "
-                        + persona.getEmail() + ", "
-                        + persona.getDireccionOfic() + ", "
-                        + persona.getOficCiudad().getIdCiudad() + ", "
-                        + persona.getTelefonoOfic() + ", "
-                        + persona.getFechaNacimiento() + ", "
-                        + persona.getCiudadNacimiento().getIdCiudad() + ", "
-                        + persona.getSexo() + ", "
-                        + persona.getEstadoCivil().getId() + ", "
-                        + persona.getEstrato() + ", "
-                        + persona.getInfoPreguntas().getIdPreguntas()
-                );
-            }
-//                        System.out.println("INSERT");				
-//                        Rol rol = new Rol();
-//                        rol.setNombreTUsuario("ADMIN");
-//                        App.RolDAO.insert(rol);	
+//            System.out.println("GET ONE");
+//            int documento = 123;
+//            Persona persona = App.PersonaDAO.get(documento);
+//            if (persona.getDocumento() != 0) {
+//                System.out.println(
+//                        persona.getNombre1() + ", "
+//                        + persona.getNombre2() + ", "
+//                        + persona.getApellido1() + ", "
+//                        + persona.getApellido2() + ", "
+//                        + persona.getDocumento() + ", "
+//                        + persona.getTipodocumento().getIdDocumento() + ", "
+//                        + persona.getExpCiudad().getIdCiudad() + ", "
+//                        + persona.getDireccion() + ", "
+//                        + persona.getBarrio() + ", "
+//                        + persona.getResCiudad().getIdCiudad() + ", "
+//                        + persona.getTelefono() + ", "
+//                        + persona.getEmail() + ", "
+//                        + persona.getDireccionOfic() + ", "
+//                        + persona.getOficCiudad().getIdCiudad() + ", "
+//                        + persona.getTelefonoOfic() + ", "
+//                        + persona.getFechaNacimiento() + ", "
+//                        + persona.getCiudadNacimiento().getIdCiudad() + ", "
+//                        + persona.getSexo() + ", "
+//                        + persona.getEstadoCivil().getId() + ", "
+//                        + persona.getEstrato() + ", "
+//                        + persona.getInfoPreguntas().getIdPreguntas()
+//                );
+//            }
+//            System.out.println("INSERT");
+//            Persona persona = new Persona();
+//            persona.setNombre1("sdf");
+//            persona.setNombre2("asd");
+//            persona.setApellido1("asd");
+//            persona.setApellido2("asd");
+//            persona.setDocumento(1);
+//            persona.setTipodocumento(new TipoDocumento(1));
+//            persona.setExpCiudad(new Ciudad(1));
+//            persona.setDireccion("asd");
+//            persona.setBarrio("asd");
+//            persona.setResCiudad(new Ciudad(1));
+//            persona.setTelefono("654");
+//            persona.setEmail("asd");
+//            persona.setDireccionOfic("asd");
+//            persona.setOficCiudad(new Ciudad(1));
+//            persona.setTelefonoOfic("654");
+//            persona.setFechaNacimiento(Date.valueOf("2018-01-01"));
+//            persona.setCiudadNacimiento(new Ciudad(1));
+//            persona.setSexo("m");
+//            persona.setEstadoCivil(new EstadoCivil(1));
+//            persona.setEstrato("1");
+//            persona.setInfoPreguntas(new InfoPreguntas(1));
+//            App.PersonaDAO.insert(persona);
 //            System.out.println("UPDATE");
 //            Persona persona = new Persona();
-//            persona.setDocumento(123);
+//            persona.setDocumento(1);
 //            persona.setNombre2("Alex");
 //            System.out.println(App.PersonaDAO.update(persona));
 //            System.out.println("DELETE");
-//            App.RolDAO.delete(1121200);
+//            App.RolDAO.delete(1);
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
