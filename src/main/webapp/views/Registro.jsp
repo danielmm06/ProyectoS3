@@ -28,42 +28,7 @@
     }
     }
 
-            
- $("input[name='text']").on("keypress", function(evt) {
-     
-     
-    this.value = this.value.replace(/[^a-zA-Z]/g, ''); 
-  }
-);
-$("#Prestamos").on("keypress", function(evt) {
-  var keycode = evt.charCode || evt.keyCode;
-  if (keycode == 46 || this.value.length==3) {
-    return false;
-  }
-});
-
-            
-$("#ano").on("keypress", function(evt) {
-  var keycode = evt.charCode || evt.keyCode;
-  if (keycode == 46 || this.value.length==4) {
-    return false;
-  }
-});
-
-$("#mes").on("keypress", function(evt) {
-  var keycode = evt.charCode || evt.keyCode;
-  if (keycode == 46 || this.value.length==2) {
-    return false;
-  }
-});
-
-$("#dia").on("keypress", function(evt) {
-  var keycode = evt.charCode || evt.keyCode;
-  if (keycode == 46 || this.value.length==2) {
-    return false;
-  }
-});
-    	
+  
     	</script>
 		<!-- /Scripts -->
     </jsp:attribute>
@@ -116,7 +81,7 @@ $("#dia").on("keypress", function(evt) {
                             </div>
                             <div class="col-md-4">
                               <div class="form-label-group ">
-                                <input type="number" id="Documento" class="form-control form-control-sm" placeholder="N° Documento" required="required" >
+                                <input type="text" id="Documento" class="form-control form-control-sm" placeholder="N° Documento" required="required" >
                                 <label for="Documento"  >N° Documento</label>
                               </div>
                             </div>
@@ -201,14 +166,14 @@ $("#dia").on("keypress", function(evt) {
                             </div>
                             <div class="col-md-2">
                               <div class="form-label-group">
-                                <input type="number" id="Celular" class="form-control" placeholder="Celular"  >
+                                <input type="text" id="Celular" class="form-control" placeholder="Celular"  >
                                 <label for="Celular"  >Celular</label>
                               </div>
                             </div>
                             <div class="col-md-4">
                               <div class="form-label-group">
                                 <input type="email" id="Correo" class="form-control" placeholder="Correo" required="required" >
-                                <label for="Correo"  >Correo</label>
+                                <label for="Correo" >Correo</label>
                               </div>
                             </div>
                            
@@ -268,7 +233,7 @@ $("#dia").on("keypress", function(evt) {
                             </div>
                             <div class="col-md-3">
                              <div class="form-label-group">
-                                <input type="number" id="OfiTelefono" class="form-control" placeholder="OfiTelefono" required="required" >
+                                <input type="text" id="OfiTelefono" class="form-control" placeholder="OfiTelefono" required="required" >
                                 <label for="OfiTelefono"> Telefono</label>
                               </div>
                             </div>
@@ -280,7 +245,7 @@ $("#dia").on("keypress", function(evt) {
                             </div>
                             <div class="col-md-3">
                               <div class="form-label-group">
-                                <input type="number" id="OfiCelular" class="form-control" placeholder="OfiCelular" required="required" >
+                                <input type="text" id="OfiCelular" class="form-control" placeholder="OfiCelular" required="required" >
                                 <label for="OfiCelular"  >Celular</label>
                               </div>
                             </div>
@@ -340,18 +305,18 @@ $("#dia").on("keypress", function(evt) {
                                     <label class="input-group-text " for="Nacimiento">Fecha Nacimiento</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="number" class="form-control" id="ano" placeholder="Año" required="required"  required pattern="[0-9]{4}"  min="1950" max="2009" onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
+                                    <input type="text" class="form-control" id="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
                                     <label for="ano"  >Año</label>
                                     
 
 
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="number" id="mes" class="form-control" placeholder="Mes" required="required"  min="1" max="12" onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
+                                    <input type="text" id="mes" class="form-control" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
                                     <label for="mes"  >Mes</label>
                                 </div>
                                 <div class="form-label-group">
-                                    <input type="number" id="dia" class="form-control" placeholder="Dia" required="required"  min="1" max="31" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
+                                    <input type="text" id="dia" class="form-control" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
                                     <label for="dia"  >Dia</label>
                                 </div>
                                
@@ -562,7 +527,7 @@ $("#dia").on("keypress", function(evt) {
                             </div>
                             <div class="col-md-4">
                               <div class="form-label-group">
-                                <input type="number" id="EmpTelefono" class="form-control" placeholder="Telefono"  >
+                                <input type="text" id="EmpTelefono" class="form-control" placeholder="Telefono"  >
                                 <label for="EmpTelefono"  >Telefono</label>
                               </div>
                             </div>
@@ -938,7 +903,7 @@ $("#dia").on("keypress", function(evt) {
                                     <div class="input-group-prepend">
                                          <label for="Prestamo" class="input-group-text" >Prestamos</label>
                                     </div>
-                                    <input type="number" id="Prestamo"  class="form-control" placeholder=""  min="0" max="100" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                    <input type="text" id="Prestamo"  class="form-control" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
                               
                                 
                               
@@ -952,7 +917,7 @@ $("#dia").on("keypress", function(evt) {
                                     <div class="input-group-prepend">
                                          <label for="Prestamo" class="input-group-text" >Auxilio Empresarial</label>
                                     </div>
-                                    <input type="number" id="AuxEmp"  class="form-control" placeholder=""  min="0" max="100" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                    <input type="text" id="AuxEmp"  class="form-control" placeholder="" maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
                               
                                 
                               
@@ -976,7 +941,7 @@ $("#dia").on("keypress", function(evt) {
                                     <div class="input-group-prepend">
                                          <label for="Prestamo" class="input-group-text" >Recursos Propios</label>
                                     </div>
-                                    <input type="number" id="Recursos"  class="form-control" placeholder=""  min="0" max="100" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                    <input type="text" id="Recursos"  class="form-control" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
                               
                                 
                               
@@ -990,7 +955,7 @@ $("#dia").on("keypress", function(evt) {
                                     <div class="input-group-prepend">
                                          <label for="Prestamo" class="input-group-text" >Beca</label>
                                     </div>
-                                    <input type="number" id="Beca"  class="form-control" placeholder=""  min="0" max="100" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                    <input type="text" id="Beca"  class="form-control" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
                               
                                 
                               

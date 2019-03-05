@@ -33,7 +33,7 @@
           <div class="form-group">
               <p> El Usuario debe ser su Numero de Cedula</p>
             <div class="form-label-group">
-              <input type="number" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
+              <input type="text" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
               <label for="Usuario">Usuario</label>
             </div>
           </div>
