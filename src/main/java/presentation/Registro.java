@@ -6,11 +6,8 @@
 package presentation;
 
 import conexion.App;
-import entity.Persona;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.ArrayList;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -21,21 +18,16 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author Daniel
  */
-@WebServlet(name = "Prueba", urlPatterns = {"/Prueba"})
-public class Prueba extends HttpServlet {
+@WebServlet(name = "Registro", urlPatterns = {"/Registro"})
+public class Registro extends HttpServlet {
 private static final long serialVersionUID = 1L;
        
-    public Prueba() {
+    public Registro() {
         super();
     }
     
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	request.setCharacterEncoding("UTF-8");
-                        request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
-                        getServletConfig().getServletContext().getRequestDispatcher("/views/Registro.jsp").forward(request,response);
-//                     
-        /* 
-        try {// Inicializa conexión con base de datos
+	try {// Inicializa conexión con base de datos
             App.OpenConnection();
 
             boolean sesionValida = true;
@@ -44,14 +36,14 @@ private static final long serialVersionUID = 1L;
             if (sesionValida) {
                 if (permisoValido) {
                 	request.setCharacterEncoding("UTF-8");
-                        request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
+                        request.setAttribute("title", App.nameProyect+" - Registro"); 
                         
                         
-                        ArrayList<Persona> listaPersonas = App.PersonaDAO.getAll();
-                        //----------------------------------------------------------
-                        request.setAttribute("listaPersonas", listaPersonas);
+//                        ArrayList<Persona> listaPersonas = App.PersonaDAO.getAll();
+//                        //----------------------------------------------------------
+//                        request.setAttribute("listaPersonas", listaPersonas);
                         
-                        getServletConfig().getServletContext().getRequestDispatcher("/views/Registro.jsp").forward(request,response);
+                        getServletConfig().getServletContext().getRequestDispatcher("/views/preregistro.jsp").forward(request,response);
 //                          RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/Personas.jsp");
 //                        request.getRequestDispatcher("/views/Personas.jsp").forward(request, response);
                 } else {
@@ -59,7 +51,7 @@ private static final long serialVersionUID = 1L;
                 }
             } 
             else {
-                response.sendRedirect("Logout");
+                response.sendRedirect("Login");
             }
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
@@ -67,30 +59,25 @@ private static final long serialVersionUID = 1L;
             // Cierra conexión
             App.CloseConnection();
         }
-        */
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-           request.setCharacterEncoding("UTF-8");
-			request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
-            /*
-            
             try {// Inicializa conexión con base de datos
             App.OpenConnection();
 
             boolean sesionValida = true;
             boolean permisoValido = true;
-//          boolean sesionValida = App.CheckSession(request.getSession());
-//			boolean permisoValido = App.CheckPermits(request.getSession(), "INSCRIPCION_PREGRADO");
+//            boolean sesionValida = App.CheckSession(request.getSession());
+//            boolean permisoValido = App.CheckPermits(request.getSession(), "INSCRIPCION_PREGRADO");
             // Acciones, Envío de parametros y Redirección
               
               
             if (sesionValida) {
                 if (permisoValido) {
                 	request.setCharacterEncoding("UTF-8");
-			request.setAttribute("title", App.nameProyect+" - Descuento Individual"); 
-            
-            //linea de codigo para redireccionar
+			request.setAttribute("title", App.nameProyect+" - Registro"); 
+//            
+//            //linea de codigo para redireccionar
 //                response.sendRedirect("SoportesIndividual");
 		
                 } else {
@@ -98,14 +85,14 @@ private static final long serialVersionUID = 1L;
                 }
             } 
             else {
-                response.sendRedirect("Logout");
+                response.sendRedirect("Login");
             }
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
             // Cierra conexión
             App.CloseConnection();
-        }*/
+        }
 	}            
     
 }

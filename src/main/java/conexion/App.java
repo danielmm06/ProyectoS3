@@ -5,7 +5,10 @@
  */
 package conexion;
 
+import entity.Usuarios;
 import java.io.IOException;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 import persistence.*;
 
@@ -22,7 +25,7 @@ public class App {
     public static final String PASS_DB = ""; // Password DB
 
     // Parametros del sistema
-    public static final String nameProyect = "InscripciÃ³n EspecializaciÃ³n"; // Name Proyect
+    public static final String nameProyect = "Inscripción Especialización"; // Name Proyect
 
     // Manejador de Base de datos
     public static DataBase DB; // DB Handler
@@ -31,6 +34,13 @@ public class App {
     // Ubicaciones path
     public static String pathURL; // Url Web of Proyect
     public static String pathPC; // Local path of folder "Downloads"
+    
+    // Clave secreta para el password
+    public static final String SECRET_PASS = "3SP3C14L1Z4C10N"; // Password 
+    
+    // Mensajes de Error
+    public static String errorLogin; // Error Login Message
+    public static String errorSesion; // Error Old Session Message
 
     // --------- INSTANCIAS ---------//
     public static PersonaDAO PersonaDAO;
@@ -88,4 +98,57 @@ public class App {
         IdiomasDAO = new InfoIdiomasDAO();
         LaboralDAO = new InfoLaboralDAO();
     }
+    
+    // Validar Usuario
+	public static boolean AuthUser(Usuarios usuario, String password) {
+
+		
+		boolean valido = false;
+		if (usuario.getIdUsuario()!= null) {
+			String passwordMD5 = App.MD5(password+App.SECRET_PASS);
+			if (passwordMD5.equals(usuario.getContrasena())) {
+			
+			} else {
+				errorLogin = "Usuario o contraseña equivocados";
+			}
+		} else {
+			errorLogin = "Usuario no existe";
+		}
+		return valido;
+	}
+        
+        
+        // Cifrador MD5
+	public static String MD5(String cadena) {
+		String MD5 = "";
+		try {
+			MD5 = hash(cadena);
+		} catch (Exception e) {
+			throw new Error("Error al cifrar cadena");
+		}
+		return MD5;
+	}
+
+	private static String hash(String clear) {
+		try {
+			MessageDigest md = MessageDigest.getInstance("MD5");
+			md.reset();
+			byte[] b = md.digest(clear.getBytes());
+			int size = b.length;
+			StringBuffer h = new StringBuffer(size);
+			for (int i = 0; i < size; i++) {
+				int u = b[i] & 255;
+				if (u < 16) {
+					h.append("0" + Integer.toHexString(u));
+				} else {
+					h.append(Integer.toHexString(u));
+				}
+			}
+			return h.toString();
+		} catch (NoSuchAlgorithmException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

@@ -14,23 +14,8 @@
     </jsp:attribute>
     <jsp:attribute name="scripts">
     	<!-- Scripts -->
-    	<script type="text/javascript">
-            
-            
-         function otros(sel){
-    if (sel.value=="10"){
-        document.getElementById('Otrosok').style.display='block';
-        document.getElementById('Otrosok').required = true;
-    } else {
-        document.getElementById('Otrosok').style.display='none';
-        document.getElementById('Otrosok').required = false;
         
-    }
-    }
-
-  
-    	</script>
-		<!-- /Scripts -->
+    	<!-- /Scripts -->
     </jsp:attribute>
     
     <jsp:body>

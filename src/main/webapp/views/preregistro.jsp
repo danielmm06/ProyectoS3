@@ -14,12 +14,7 @@
     </jsp:attribute>
     <jsp:attribute name="scripts">
     	<!-- Scripts -->
-    	<script type="text/javascript">
-    		function myFormFunction() {
-    			console.log("myFormFunction.................");
-    			return true;
-    		}
-    	</script>
+    	<script type="text/javascript" src="views/js/login.js"></script>
 		<!-- /Scripts -->
     </jsp:attribute>
     
@@ -28,13 +23,13 @@
       <div class="card-header">Pre Registro</div>
       
       <div class="card-body">
-        <form>
+        <form name="Registroform" id="Registroform" method="post" action="Registro" autocomplete="off" data-check="true" data-confirm="true">
           
           <div class="form-group">
               <p> El Usuario debe ser su Numero de Cedula</p>
               <hr>
             <label for="Usuario">Usuario</label>
-              <input type="text" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
+              <input type="text" onkeypress="return soloNumeros(event)" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
               
             
           </div>
@@ -51,11 +46,10 @@
                 
           </div>
           
-          
-          <a class="btn btn-primary btn-block" href="login.jsp">Registrarme</a>
+          <input type="submit" id="botonRegistrar" name="botonRegistrar" class="btn btn-primary btn-lg btn-block" value="Registrarme" >
         </form>
         <div class="text-center">
-          <a class="d-block small mt-3" href="login.jsp">Pagina del Login</a>
+          <a class="d-block small mt-3" href="Login">Pagina del Login</a>
           
         </div>
       </div>
