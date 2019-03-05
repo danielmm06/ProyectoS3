@@ -32,22 +32,23 @@
           
           <div class="form-group">
               <p> El Usuario debe ser su Numero de Cedula</p>
-            <div class="form-label-group">
+              <hr>
+            <label for="Usuario">Usuario</label>
               <input type="text" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
-              <label for="Usuario">Usuario</label>
-            </div>
+              
+            
           </div>
           <div class="form-group">
-              <div class="form-label-group">
-                  <input type="password" id="Contrasena" class="form-control" placeholder="Contraseña" required="required">
               <label for="Contrasena">Contraseña</label>
-                </div>
+                  <input type="password" id="Contrasena" class="form-control" placeholder="Contraseña" required="required">
+              
+                
           </div>
           <div class="form-group">
-               <div class="form-label-group">
+               <label for="ConfirmContrasena">Confirmar Contraseña</label>
                   <input type="password" id="ConfirmContrasena" class="form-control" placeholder="Confirmar Contraseña" required="required">
-              <label for="ConfirmContrasena">Confirmar Contraseña</label>
-                </div>
+              
+                
           </div>
           
           

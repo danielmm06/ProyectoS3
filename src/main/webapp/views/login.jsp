@@ -30,16 +30,18 @@
       <div class="card-body">
         <form>
           <div class="form-group">
-            <div class="form-label-group">
-              <input type="text" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
+              
               <label for="Usuario">Usuario</label>
-            </div>
+           
+              <input type="text" autocomplete="off" id="Usuario" onkeypress="return soloNumeros(e)" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
+              
+            
           </div>
           <div class="form-group">
-            <div class="form-label-group">
+          <label for="Contrasena">Contraseña</label>
               <input type="password" id="Contrasena" class="form-control" placeholder="Contrasena" required="required">
-              <label for="Contrasena">Contraseña</label>
-            </div>
+             
+           
           </div>
           <div class="form-group">
             <div class="checkbox">

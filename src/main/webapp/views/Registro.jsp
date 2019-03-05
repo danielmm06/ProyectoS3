@@ -43,54 +43,86 @@
                 </div>
                 <div class="card-body  mx-auto mt-2">  
                     <form id="myform">
+                        <div class="form-group">
+                          <div class="form-row">
+                            <div class="col-md-3">
+                                <label for="Nombre1"  >Categoria</label>
+                                <select class="form-control" id="Categoria" required="required" autofocus="autofocus"  >
+                                    <option selected>--</option>
+                                    <option value="1">Especialización</option>
+                                    <option value="2">Maestría</option>
+                                    <option value="3">Doctorado</option>
+                                   
+                                </select>
+                              
+                            </div>
+                            <div class="col-md-4">
+                              <label for="Programa">Programa al que se inscrbe</label>
+                                <input type="text" id="Programa" name="text" class="form-control" placeholder="Programa Inscripción" required="required" >
+                                
+                             
+                            </div>
+                            <div class="col-md-5">
+                             <label for="Facultad">Perteneciente a la facultad</label>
+                                <input type="text" id="Facultad" name="text" class="form-control" placeholder="Facultad" required="required" >
+                                
+                              
+                            </div>
+                              
+                              
+                          </div>
+                        </div>
+                        <hr> <br>
+                        
                         <h4><label> Datos Personales</label></h4>
                         <hr>
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-3">
-                              <div class="form-label-group">
-                                <input type="text" id="Nombre1" name="text" class="form-control" placeholder="Primer Nombre" required="required" autofocus="autofocus"   pattern="[a-z]{1,15}" title="el nombre debe contener solo letras en minisculas. Ej: camilo">
                                 <label for="Nombre1"  >Primer Nombre</label>
-                              </div>
+                                <input type="text" id="Nombre1" name="text" class="form-control" placeholder="Primer Nombre" required="required"  >
+                                
+                              
                             </div>
                             <div class="col-md-3">
-                              <div class="form-label-group">
-                                <input type="text" id="Nombre2" name="text" class="form-control" placeholder="Segundo Nombre" required="required" pattern="[a-z]{1,15}" title="el nombre debe contener solo letras en minisculas. Ej: andres">
-                                <label for="Nombre2">Segundo Nombre</label>
-                              </div>
+                              <label for="Nombre2">Segundo Nombre</label>
+                                <input type="text" id="Nombre2" name="text" class="form-control" placeholder="Segundo Nombre" required="required" >
+                                
+                             
                             </div>
                             <div class="col-md-3">
-                              <div class="form-label-group">
-                                <input type="text" id="Apellido1" name="text" class="form-control" placeholder="Primer Apellido" required="required" pattern="[a-z]{1,15}" title="el apellido debe contener solo letras en minisculas. Ej: ramirez">
-                                <label for="Apellido1">Primer Apellido</label>
-                              </div>
+                             <label for="Apellido1">Primer Apellido</label>
+                                <input type="text" id="Apellido1" name="text" class="form-control" placeholder="Primer Apellido" required="required">
+                                
+                              
                             </div>
                              <div class="col-md-3">
-                              <div class="form-label-group">
-                                <input type="text" id="Apellido2"  name="text" class="form-control" placeholder="Segundo Apellido" required="required" pattern="[a-z]{1,15}" title="el apellido debe contener solo letras en minisculas. Ej: rodriguez">
-                                <label for="Apellido2">Segundo Apellido</label>
-                              </div>
+                             <label for="Apellido2">Segundo Apellido</label>
+                                <input type="text" id="Apellido2"  name="text" class="form-control" placeholder="Segundo Apellido" required="required">
+                                
+                              
                             </div>  
                               
                           </div>
                         </div>
+                        <hr> <br>
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-2">
                               
                             </div>
                             <div class="col-md-4">
-                              <div class="form-label-group ">
-                                <input type="text" id="Documento" class="form-control form-control-sm" placeholder="N° Documento" required="required" >
                                 <label for="Documento"  >N° Documento</label>
-                              </div>
+                              
+                                <input type="text" id="Documento" class="form-control " placeholder="N° Documento" required="required" >
+                                
+                             
                             </div>
                             <div class="col-md-4">
-                              <div class="input-group mb-3" style=" height: 34px; ">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text " id="inputGroup-sizing-default" for="TipoDocumento"  style=" padding-bottom: 11px; padding-top: 11px; ">Tipo Documento</label>
-                                </div>
-                                <select class="form-control" id="TipoDocumento" style=" padding-bottom: 11px; padding-top: 11px; height: 48px; " required="required">
+                              <label  id="inputGroup-sizing-default" for="TipoDocumento"  >Tipo Documento</label>
+                              
+                                
+                                <select class="form-control " id="TipoDocumento" required="required">
                                     <option selected>--</option>
                                     <option value="1">CC</option>
                                     <option value="2">TI</option>
@@ -98,7 +130,7 @@
                                     <option value="4">Pasaporte</option>
                                 </select>
                                
-                              </div>
+                              
                             </div>
                             <div class="col-md-2">
                                 
@@ -107,6 +139,9 @@
                             
                           </div>
                         </div>
+                        
+                      
+                        
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-12">
@@ -149,32 +184,37 @@
                             </div>
                           </div>
                         </div>
+                        <hr><br>
                         <div class="form-group">
                           <div class="form-row">
                             
                             <div class="col-md-3">
-                              <div class="form-label-group">
+                             
+                                  <label for="Direccion"  >Dirección</label>
                                 <input type="text" id="Direccion" class="form-control" placeholder="Direccion" required="required" >
-                                <label for="Direccion"  >Dirección</label>
-                              </div>
+                                
+                             
                             </div>
                             <div class="col-md-3">
-                             <div class="form-label-group">
+                             
+                                 <label for="Barrio">  Barrio</label>
                                 <input type="text" id="Barrio" class="form-control" placeholder="Barrio" required="required" >
-                                <label for="Barrio">  Barrio</label>
-                              </div>
+                                
+                              
                             </div>
                             <div class="col-md-2">
-                              <div class="form-label-group">
+                              
+                                  <label for="Celular"  >Celular</label>
                                 <input type="text" id="Celular" class="form-control" placeholder="Celular"  >
-                                <label for="Celular"  >Celular</label>
-                              </div>
+                                
+                              
                             </div>
                             <div class="col-md-4">
-                              <div class="form-label-group">
+                              
+                                  <label for="Correo" >Correo</label>
                                 <input type="email" id="Correo" class="form-control" placeholder="Correo" required="required" >
-                                <label for="Correo" >Correo</label>
-                              </div>
+                                
+                              
                             </div>
                            
                             
@@ -222,32 +262,35 @@
                             </div>
                           </div>
                         </div>
+                        <hr><br>
                         <div class="form-group">
                           <div class="form-row">
                             
                             <div class="col-md-4">
-                              <div class="form-label-group">
+                              
+                                  <label for="OfiDireccion"  >Dirección Oficina</label>
                                 <input type="text" id="OfiDireccion" class="form-control" placeholder="OfiDireccion" required="required" >
-                                <label for="OfiDireccion"  >Dirección Oficina</label>
-                              </div>
+                                
+                             
                             </div>
                             <div class="col-md-3">
-                             <div class="form-label-group">
+                             
+                                  <label for="OfiTelefono"> Telefono</label>
                                 <input type="text" id="OfiTelefono" class="form-control" placeholder="OfiTelefono" required="required" >
-                                <label for="OfiTelefono"> Telefono</label>
-                              </div>
+                               
+                              
                             </div>
                             <div class="col-md-2">
-                              <div class="form-label-group">
+                             <label for="Fax"  >Fax</label>
                                 <input type="text" id="Fax" class="form-control" placeholder="Fax"  >
-                                <label for="Fax"  >Fax</label>
-                              </div>
+                                
+                              
                             </div>
                             <div class="col-md-3">
-                              <div class="form-label-group">
+                              <label for="OfiCelular"  >Celular</label>
                                 <input type="text" id="OfiCelular" class="form-control" placeholder="OfiCelular" required="required" >
-                                <label for="OfiCelular"  >Celular</label>
-                              </div>
+                                
+                              
                             </div>
                            
                             
@@ -295,37 +338,43 @@
                             </div>
                           </div>
                         </div>
+                          <hr><br>
+                          <strong> <p> Fecha de Nacimiento</p> </strong>
                         <div class="form-group">
                           <div class="form-row">
-                            <div class="col-md-2">
-                            </div>
-                            <div class="col-md-8">
-                              <div class="input-group mx-3">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text " for="Nacimiento">Fecha Nacimiento</label>
-                                </div>
-                                <div class="form-label-group">
-                                    <input type="text" class="form-control" id="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
+                              
+                              
+                            <div class="col-md-4">
+                                
+                               
                                     <label for="ano"  >Año</label>
+                                    <input type="text" class="form-control " id="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
+                                 
+                            </div>
+                            <div class="col-md-4">
+                                
                                     
 
 
-                                </div>
-                                <div class="form-label-group">
-                                    <input type="text" id="mes" class="form-control" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
+                                
+                                
                                     <label for="mes"  >Mes</label>
-                                </div>
-                                <div class="form-label-group">
-                                    <input type="text" id="dia" class="form-control" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
-                                    <label for="dia"  >Dia</label>
-                                </div>
+                                    <input type="text" id="mes" class="form-control " placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
+                                    
+                                
                                
                                
-                              </div>
-                              <div class="col-md-2">
-                            </div>
-                            </div>
+                               
+                              
+                            
+                            
                           </div>
+                                <div class="col-md-4">
+                                  
+                                    <label for="dia"  >Dia</label>
+                                    <input type="text" id="dia" class="form-control " placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
+                                </div>  
+                            </div>
                         </div>
                         <div class="form-group">
                           <div class="form-row">
@@ -372,24 +421,23 @@
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-4">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
+                              
+                                
                                     
-                                    <label class="input-group-text " for="Sexo">Sexo</label>
-                                </div>
+                                    <label  for="Sexo">Sexo</label>
+                                
                                 <select class="form-control" id="Sexo" required="required">
                                     <option selected>--</option>
                                     <option value="1">Masculino</option>
                                     <option value="2">Femenino</option>
                                    
                                 </select>
-                              </div>
+                             
                             </div>
                             <div class="col-md-5">
-                              <div class="input-group">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text " for="Estado">Estado Civil</label>
-                                </div>
+                              
+                                    <label  for="Estado">Estado Civil</label>
+                                
                                 <select class="form-control" id="Estado" required="required">
                                     <option selected>--</option>
                                     <option value="1">Soltero</option>
@@ -400,14 +448,14 @@
                                     <option value="6">Religioso</option>
                                     <option value="7">Madre Soltera</option>
                                 </select>
-                              </div>
+                              
                             </div>
                             <div class="col-md-3">
-                              <div class="input-group">
+                              
                                 
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text " for="ResCiudad">Estrato</label>
-                                </div>
+                                
+                                    <label  for="ResCiudad">Estrato</label>
+                                
                                 <select class="form-control" id="ResCiudad" required="required">
                                     <option selected>--</option>
                                     <option value="1">0</option>
@@ -424,12 +472,12 @@
                                     <option value="12">6</option>
                                 </select>
                                
-                              </div>
+                              
                              
                             </div>
                           </div>
                         </div>
-                        
+                          <hr>
                         <br><br>
                         <h4><label> Información Academica</label></h4>
                         <p> Estudios a nivel de pregrado, postgrado y otros </p>
@@ -483,30 +531,30 @@
                           <div class="form-row">
                             
                             <div class="col-md-4">
-                              <div class="form-label-group">
+                               <label for="Empresa"  >Nombre Empresa</label>
                                 <input type="text" id="Empresa" class="form-control" placeholder="Empresa" required="required" >
-                                <label for="Empresa"  >Nombre Empresa</label>
-                              </div>
+                               
+                              
                             </div>
                             <div class="col-md-3">
-                              <div class="input-group mb-3" style=" height: 34px; ">
-                                <div class="input-group-prepend">
-                                    <label class="input-group-text " id="inputGroup-sizing-default" for="TipoEmpresa"  style=" padding-bottom: 11px; padding-top: 11px; ">Tipo</label>
-                                </div>
-                                <select class="form-control" id="TipoEmpresa" style=" padding-bottom: 11px; padding-top: 11px; height: 48px; " required="required">
+                              
+                                
+                                    <label   for="TipoEmpresa" >Tipo Empresa</label>
+                            
+                                <select class="form-control " id="TipoEmpresa"  required="required">
                                     <option selected>--</option>
                                     <option value="1">Publica</option>
                                     <option value="2">Privada</option>
                                     
                                 </select>
                                
-                              </div>
+                              
                             </div>
                             <div class="col-md-5">
-                              <div class="form-label-group">
+                              <label for="Cargo"  >Cargo</label>
                                 <input type="text"  name="text" id="Cargo" class="form-control" placeholder="Cargo"  >
-                                <label for="Cargo"  >Cargo</label>
-                              </div>
+                                
+                            
                             </div>
                             
                            
@@ -520,16 +568,16 @@
                             <div class="col-md-2">
                             </div>
                             <div class="col-md-4">
-                              <div class="form-label-group">
+                             <label for="EmpDireccion"  >Dirección</label>
                                 <input type="text" id="EmpDireccion" class="form-control" placeholder="Direccion" required="required" >
-                                <label for="EmpDireccion"  >Dirección</label>
-                              </div>
+                                
+                              
                             </div>
                             <div class="col-md-4">
-                              <div class="form-label-group">
+                              <label for="EmpTelefono"  >Telefono</label>
                                 <input type="text" id="EmpTelefono" class="form-control" placeholder="Telefono"  >
-                                <label for="EmpTelefono"  >Telefono</label>
-                              </div>
+                               
+                              
                             </div>
                             <div class="col-md-2">
                             </div>
@@ -579,6 +627,7 @@
                             </div>
                           </div>
                         </div>
+                        <hr><br>
                         <div class="form-group">
                           <div class="form-row">
                             <div class="col-md-12">
@@ -605,6 +654,7 @@
                             </div>
                           </div>
                         </div>
+                        <hr>
                         
                          <br><br>
                         <h4><label> Experiencia laboral Laboral</label></h4>
@@ -969,7 +1019,33 @@
                               
                               
                           </div>
+                            <hr> <br>
                         </div>
+                        
+                         <div class="form-group">
+                          <div class="form-row">
+                            <div class="col-md-3">
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text " for="Egresado">¿Es egresado Unillanos?</label>
+                                </div>
+                                <select class="form-control" id="Egresado"  required="required">
+                                    <option selected>--</option>
+                                    <option value="1">Si</option>
+                                    <option value="2">No</option>
+                                    
+                                </select>
+                                  
+                              </div>
+                                <p> No aplican Convenios U.Nacional-Idead-Ceres-U.Caldas </p>
+                            </div>
+                            <div class="col-md-3">
+                            </div>
+                          </div>
+                         </div>
+                        <hr> <br><br>
                         
                                
                            
@@ -978,31 +1054,20 @@
                         
                         
                                 
-                        
-                       
-                        <div class="form-group">
-                          <div class="form-label-group">
-                            <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required="required">
-                            <label for="inputEmail">Email address</label>
-                          </div>
-                        </div>
                         <div class="form-group">
                           <div class="form-row">
-                            <div class="col-md-6">
-                              <div class="form-label-group">
-                                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required="required">
-                                <label for="inputPassword">Password</label>
-                              </div>
+                            <div class="col-md-4">
                             </div>
-                            <div class="col-md-6">
-                              <div class="form-label-group">
-                                <input type="password" id="confirmPassword" class="form-control" placeholder="Confirm password" required="required">
-                                <label for="confirmPassword">Confirm password</label>
-                              </div>
+                              <div class="col-md-4">
+                                  <a class="btn btn-primary btn-block " href="login.html">Siguiente</a>
+                            </div>
+                              <div class="col-md-4">
                             </div>
                           </div>
                         </div>
-                        <a class="btn btn-primary btn-block" href="login.html">Register</a>
+                       
+                        
+                        
                     </form>
                         
 

@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 
-<t:template>
+<t:Estructura_Sistema>
 	<jsp:attribute name="title">
 		<c:out value="${title}" />
     </jsp:attribute>
@@ -46,4 +46,4 @@
         </div>
         <!-- /Content -->
     </jsp:body>
-</t:template>
+</t:Estructura_Sistema>
