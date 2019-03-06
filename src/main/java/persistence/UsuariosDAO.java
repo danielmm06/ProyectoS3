@@ -117,50 +117,6 @@ public class UsuariosDAO {
         }
         return usuarios;
     }
-    /**
-     * metodo para validar el login de los usuarios 
-     * @param idUsuario
-     * @param contrasena
-     * @return 
-     */
-    public Usuarios validarUsuario(int idUsuario, String contrasena) {
-        Usuarios usuarios = new Usuarios();
-        PreparedStatement psSelectUsuario = null;
-        ResultSet result = null;
-        try {
-            if (psSelectUsuario == null) {
-                psSelectUsuario = db.PreparedQuery(
-                        "SELECT ID_USUARIO, CONTRASENA FROM USUARIOS WHERE ID_USUARIO=? AND CONTRASENA=? "
-                );
-            }
-            ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(idUsuario);
-            inputs.add(DigestUtils.md5Hex(contrasena));
-            result = db.ExecuteQuery(psSelectUsuario, inputs);
-            while (result.next()) {
-                usuarios.setIdUsuario(result.getInt("ID_USUARIO"));
-                usuarios.setContrasena(result.getString("CONTRASENA"));/////////////////////////////////////////////////////
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Error al ejecutar consulta.", e);
-        } finally {
-            if (result != null) {
-                try {
-                    result.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException("Error al cerrar el resultset", e);
-                }
-            }
-            if (psSelectUsuario != null) {
-                try {
-                    psSelectUsuario.close();
-                } catch (SQLException e) {
-                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
-                }
-            }
-        }
-        return usuarios;
-    }
     
 
     public long insert(Usuarios usuarios) {
@@ -180,7 +136,8 @@ public class UsuariosDAO {
                 inputs.add(null);
             }
             if (usuarios.getContrasena() != null) {
-                inputs.add(DigestUtils.md5Hex(usuarios.getContrasena())); //agrega contraseña encriptada
+                inputs.add(App.MD5(usuarios.getContrasena()+App.SECRET_PASS)); 
+//                inputs.add(DigestUtils.md5Hex(usuarios.getContrasena())); //agrega contraseña encriptada
             } else {
                 inputs.add(null);
             }
@@ -206,7 +163,8 @@ public class UsuariosDAO {
 
             if (usuarios.getContrasena() != null) {
                 columns += ",CONTRASENA=?";
-                inputs.add(DigestUtils.md5Hex(usuarios.getContrasena()));
+                inputs.add(App.MD5(usuarios.getContrasena()+App.SECRET_PASS)); 
+//                inputs.add(DigestUtils.md5Hex(usuarios.getContrasena()));
             }
             if (usuarios.getIdRol() != null) {
                 columns += ",ID_ROL=?";
@@ -264,9 +222,9 @@ public class UsuariosDAO {
 
 
 //                        System.out.println("GET ONE");
-//			int idUsuario = 1121;
-//                        String contrasena = "daniel";
-//			Usuarios usuarios = App.UsuariosDAO.validarUsuario(idUsuario, contrasena);
+//			String idUsuario = "1121";
+////                        String contrasena = "daniel";
+//			Usuarios usuarios = App.UsuariosDAO.getnombre(idUsuario);
 //			if(usuarios.getIdUsuario() != 0) {						
 //                            System.out.println(usuarios.getIdUsuario()+" "+usuarios.getContrasena());
 //			}
@@ -276,7 +234,6 @@ public class UsuariosDAO {
 //                        usuarios.setContrasena("daniel");
 //                        Rol rol = new RolDAO().get(1);
 //                        usuarios.setIdRol(rol);
-//                        
 //                        App.UsuariosDAO.insert(usuarios);	
 //                    
 //                    System.out.println("UPDATE");				

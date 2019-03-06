@@ -26,12 +26,12 @@
         <form name="Loginform" id="Loginform" method="post" action="Login" autocomplete="off" data-check="true" data-confirm="true">
           <div class="form-group">
               <label for="Usuario">Usuario</label>
-              <input type="text" id="Usuario" onkeypress="return soloNumeros(event)" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula" >
+              <input type="text" id="Usuario" name="Usuario" onkeypress="return soloNumeros(event)" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula" >
           </div>
             
           <div class="form-group">
           <label for="Contrasena">Contraseña</label>
-              <input type="password"  id="Contrasena" class="form-control" placeholder="Contrasena" required="required">
+              <input type="password"  id="Contrasena" name="Contrasena" class="form-control" placeholder="Contrasena" required="required">
           </div>
             
           <div class="form-group">

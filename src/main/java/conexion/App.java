@@ -106,16 +106,24 @@ public class App {
 		boolean valido = false;
 		if (usuario.getIdUsuario()!= null) {
 			String passwordMD5 = App.MD5(password+App.SECRET_PASS);
+                        System.out.println("psss----> "+passwordMD5);
 			if (passwordMD5.equals(usuario.getContrasena())) {
-			
-			} else {
-				errorLogin = "Usuario o contraseña equivocados";
-			}
-		} else {
-			errorLogin = "Usuario no existe";
-		}
-		return valido;
-	}
+                            boolean captchaValido = true;
+                                if (captchaValido) {
+                                        valido = true;
+                                        errorLogin = "";
+                                } else {
+                                        errorLogin = "El campo captcha es obligatorio";
+                                }
+
+                            } else {
+                                    errorLogin = "Usuario o contraseña equivocados";
+                            }
+                    } else {
+                            errorLogin = "Usuario no existe";
+                    }
+                    return valido;
+            }
         
         
         // Cifrador MD5
