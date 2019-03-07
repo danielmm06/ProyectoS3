@@ -14,6 +14,7 @@
     </jsp:attribute>
     <jsp:attribute name="scripts">
     	<!-- Scripts -->
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
     	<script type="text/javascript" src="views/js/login.js"></script>
 		<!-- /Scripts -->
     </jsp:attribute>
@@ -29,24 +30,24 @@
               <p> El Usuario debe ser su Numero de Cedula</p>
               <hr>
             <label for="Usuario">Usuario</label>
-              <input type="text" onkeypress="return soloNumeros(event)" id="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
+            <input type="text" onkeypress="return soloNumeros(event)" id="Usuario" name="Usuario" class="form-control" placeholder="Cedula" required="required" autofocus="autofocus" title="Recuerde que su usuario es la cedula">
               
             
           </div>
           <div class="form-group">
               <label for="Contrasena">Contraseña</label>
-                  <input type="password" id="Contrasena" class="form-control" placeholder="Contraseña" required="required">
+              <input type="password" id="Contrasena" name="Contrasena" class="form-control" placeholder="Contraseña" required="required">
               
                 
           </div>
           <div class="form-group">
                <label for="ConfirmContrasena">Confirmar Contraseña</label>
-                  <input type="password" id="ConfirmContrasena" class="form-control" placeholder="Confirmar Contraseña" required="required">
+               <input type="password" id="ConfirmContrasena" name="ConfirmContrasena" class="form-control" placeholder="Confirmar Contraseña" required="required">
               
                 
           </div>
           
-          <input type="submit" id="botonRegistrar" name="botonRegistrar" class="btn btn-primary btn-lg btn-block" value="Registrarme" >
+          <input type="button" id="botonRegistrar" name="botonRegistrar" class="btn btn-primary btn-lg btn-block" value="Registrarme" >
         </form>
         <div class="text-center">
           <a class="d-block small mt-3" href="Login">Pagina del Login</a>
