@@ -88,9 +88,9 @@ public class Ajax extends HttpServlet {
 
                 //HTML
                  if(listaCiudad == null){
-                    out.println("<option  value='0' >Seleccione un departamento</option> ");
+                    out.println("<option  value='0' >Seleccione la ciudad</option> ");
                 }else{
-                    out.println("<option selected value='0' >Seleccione un departamento</option> ");
+                    out.println("<option selected value='0' >Seleccione la ciudad</option> ");
                     for (Ciudad cuidad : listaCiudad) {
                         out.println("<option value='" + cuidad.getIdCiudad() + "' >" + cuidad.getNombreCiudad() + "</option> ");
                     }
