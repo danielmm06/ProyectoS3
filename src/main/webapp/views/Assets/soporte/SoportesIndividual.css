@@ -1,0 +1,47 @@
+@charset "ISO-8859-1";
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+    width: 30%;
+    
+}
+.adjuntar{
+	width: 30%;
+	
+}
+.reciboPublico, .impuesto, .fosyga, .hijos{
+	width: 30%;
+	height: 32px;
+	border-radius: 5px;
+}
+
+#mdialTamanio{
+  width: 800px;
+  margin-top: 5%;
+}
+#mdialTamanio_ICFES{
+  width: 1000px;
+  margin-top: 5%;
+}
+
+
+$("#ejemplo").tooltip();
+
+.tooltip-inner {
+    white-space: pre-wrap;
+}

@@ -28,7 +28,11 @@
 
   <!-- Custom styles for this template-->
   <link href="views/Assets/css/sb-admin.css" rel="stylesheet">
+  
+   <link rel="shortcut icon" href="views/Assets/img/favicon.ico" type="image/x-icon">
+   <link rel="icon" href="views/Assets/img/favicon.ico" type="image/x-icon">
 
+    
 
     
 
