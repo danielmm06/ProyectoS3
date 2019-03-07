@@ -6,8 +6,11 @@
 package presentation;
 
 import conexion.App;
+import entity.Departamento;
+import entity.Pais;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.ArrayList;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -38,10 +41,9 @@ private static final long serialVersionUID = 1L;
                 	request.setCharacterEncoding("UTF-8");
                         request.setAttribute("title", App.nameProyect+" - Formulario"); 
                         
-                        
-//                        ArrayList<Persona> listaPersonas = App.PersonaDAO.getAll();
+                            ArrayList<Pais> listaPais = App.PaisDAO.getAll();
 //                        //----------------------------------------------------------
-//                        request.setAttribute("listaPersonas", listaPersonas);
+                            request.setAttribute("listaPais", listaPais);
                         
                         getServletConfig().getServletContext().getRequestDispatcher("/views/Registro.jsp").forward(request,response);
 //                          RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/Personas.jsp");

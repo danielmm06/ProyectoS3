@@ -9,6 +9,7 @@ import conexion.App;
 import conexion.DataBase;
 import entity.Ciudad;
 import entity.Departamento;
+import entity.Pais;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -89,6 +90,37 @@ public class CiudadDAO {
         }
         return ciudad;
     }
+    
+    public ArrayList<Ciudad> getByDepart(int idDpto) {
+        ArrayList<Ciudad> listaCiudadDerpt = new ArrayList<Ciudad>();
+        PreparedStatement psSelectGetByDepart = null;
+        ResultSet result = null;
+        try {
+            if (psSelectGetByDepart == null) {
+                    psSelectGetByDepart = db.PreparedQuery("SELECT ID_CIUDAD,NOMBRE_CIUDAD,ID_DPTO "
+                        + "FROM CIUDAD "
+                        + "WHERE ID_DPTO=?");
+                }
+                ArrayList<Object> inputs = new ArrayList<Object>();
+                inputs.add(idDpto);
+                result = db.ExecuteQuery(psSelectGetByDepart,inputs);
+                while(result.next()) {
+                    Ciudad ciudad = new Ciudad();
+                    ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
+                    ciudad.setNombreCiudad(result.getString("NOMBRE_CIUDAD"));
+                    Departamento departamento = new Departamento();
+                    departamento.setIdDpto(result.getInt("ID_DPTO"));
+                    ciudad.setIdDpto(departamento);
+                    
+                    listaCiudadDerpt.add(ciudad);
+                }
+		} catch (SQLException e) {
+			throw new RuntimeException("Error al ejecutar consulta.", e);
+		} 
+    	
+		return listaCiudadDerpt;
+	}
+    
 
     public long insert(Ciudad ciudad) {
         long result;
@@ -162,7 +194,7 @@ public class CiudadDAO {
             App.OpenConnection();
 
 //            System.out.println("GET ALL");
-//            ArrayList<Ciudad> listaCiudad = App.CiudadDAO.getAll();
+//            ArrayList<Ciudad> listaCiudad = App.CiudadDAO.getByDepart(22);
 //            for (Ciudad ciudad : listaCiudad) {
 //                System.out.println(ciudad.getIdCiudad() + " " + ciudad.getNombreCiudad() + " " + ciudad.getIdDpto().getIdDpto());
 //            }

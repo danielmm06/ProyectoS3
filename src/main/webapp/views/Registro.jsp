@@ -14,7 +14,8 @@
     </jsp:attribute>
     <jsp:attribute name="scripts">
     	<!-- Scripts -->
-        
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
+        <script type="text/javascript" src="views/js/formulario.js"></script>
     	<!-- /Scripts -->
     </jsp:attribute>
     
@@ -136,33 +137,27 @@
                                     <label class="input-group-text " for="ExpPais">Pais</label>
                                 </div>
                                 <select class="form-control" id="ExpPais" required="required">
-                                    <option selected>--</option>
-                                    <option value="1">Colombia</option>
-                                    <option value="2">Venezuela</option>
-                                    <option value="3">Estados Unidos</option>
-                                    <option value="4">:v</option>
+                                <option selected value="">Seleccione el Pais</option>
+                                    <c:forEach items="${listaPais}" var="ExpPais"> 
+                                        <option  value="<c:out value="${ExpPais.idPais}" />" ><c:out value="${ExpPais.nombrePais}" /></option>
+                                    </c:forEach>  
                                 </select>
                                   
                                 <div class="input-group-prepend">
                                     
                                     <label class="input-group-text " for="ExpDepartamento">Departamento</label>
                                 </div>
-                                <select class="form-control" id="ExpDepartamento" required="required">
-                                    <option selected>--</option>
-                                    <option value="1">Meta</option>
-                                    <option value="2">Arauca</option>
-                                    <option value="3">Antioquia</option>
-                                    <option value="4">Amazonas</option>
+                                <select class="form-control" id="ExpDepartamento" name="ExpDepartamento" required="required">
+                                    <option selected>Seleccione el Departamento</option>
                                 </select>
+                                  
                                 <div class="input-group-prepend">
                                     <label class="input-group-text " for="ExpCiudad">Ciudad</label>
                                 </div>
-                                <select class="form-control" id="ExpCiudad" required="required">
-                                    <option selected>--</option>
-                                    <option value="1">Villavicencio</option>
-                                    <option value="2">Cali</option>
-                                    <option value="3">Medellin</option>
-                                    <option value="4">Bogota</option>
+                                  
+                                <select class="form-control" id="ExpCiudad" name="ExpCiudad" required="required">
+                                    <option selected>Seleccione la Ciudad</option>
+                                    
                                 </select>
                                
                               </div>
@@ -1044,7 +1039,8 @@
                             <div class="col-md-4">
                             </div>
                               <div class="col-md-4">
-                                  <a class="btn btn-primary btn-block " href="login.html">Siguiente</a>
+                                  <input type="submit" id="botonFormulario" name="botonFormulario" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
+                                  <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
                             </div>
                               <div class="col-md-4">
                             </div>

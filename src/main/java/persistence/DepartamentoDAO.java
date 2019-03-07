@@ -89,6 +89,39 @@ public class DepartamentoDAO {
         }
         return departamento;
     }
+    
+    public ArrayList<Departamento> getByPais(int codPais) {
+        ArrayList<Departamento> listaDepartPais = new ArrayList<Departamento>();
+        PreparedStatement psSelectGetByPais = null;
+        ResultSet result = null;
+        try {
+            if (psSelectGetByPais == null) {
+                    psSelectGetByPais = db.PreparedQuery("SELECT ID_DPTO,NOMBRE_DPTO,ID_PAIS "
+                        + "FROM DEPARTAMENTO "
+                        + "WHERE ID_PAIS=?");
+                }
+                ArrayList<Object> inputs = new ArrayList<Object>();
+                inputs.add(codPais);
+                result = db.ExecuteQuery(psSelectGetByPais,inputs);
+                while(result.next()) {
+                    Departamento departamento = new Departamento();
+                    departamento.setIdDpto(result.getInt("ID_DPTO"));
+                    departamento.setNombreDpto(result.getString("NOMBRE_DPTO"));
+                    Pais pais = new Pais();
+                    pais.setIdPais(result.getInt("ID_PAIS"));
+                    departamento.setIdPais(pais);
+                    
+                    listaDepartPais.add(departamento);
+                }
+		} catch (SQLException e) {
+			throw new RuntimeException("Error al ejecutar consulta.", e);
+		} 
+    	
+		return listaDepartPais;
+	}
+    
+    
+    
 
     public long insert(Departamento departamento) {
         long result;
@@ -162,13 +195,13 @@ public class DepartamentoDAO {
             App.OpenConnection();
 
 //            System.out.println("GET ALL");
-//            ArrayList<Departamento> listaDepartamento = App.DepartamentoDAO.getAll();
+//            ArrayList<Departamento> listaDepartamento = App.DepartamentoDAO.getByPais(43);
 //            for (Departamento departamento : listaDepartamento) {
 //                    System.out.println(departamento.getIdDpto() +" "+ departamento.getNombreDpto() +" "+ departamento.getIdPais().getIdPais());
 //            }
 //            System.out.println("GET ONE");
-//            int codDepartamento = 22;		
-//            Departamento departamento = App.DepartamentoDAO.get(codDepartamento);
+//            int codDepartamento = 43;		
+//            Departamento departamento = App.DepartamentoDAO.getByCod(codDepartamento);
 //            System.out.println(departamento.getIdDpto() +" "+ departamento.getNombreDpto() +" "+ departamento.getIdPais().getIdPais());
 //            
 //            System.out.println("INSERT");				
