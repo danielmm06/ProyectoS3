@@ -30,33 +30,32 @@ import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Daniel
+ * @author niari
  */
 @Entity
 @Table(name = "info_preguntas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoPreguntas.findAll", query = "SELECT i FROM InfoPreguntas i")
-    , @NamedQuery(name = "InfoPreguntas.findByIdPreguntas", query = "SELECT i FROM InfoPreguntas i WHERE i.idPreguntas = :idPreguntas")
-    , @NamedQuery(name = "InfoPreguntas.findByEmpresa", query = "SELECT i FROM InfoPreguntas i WHERE i.empresa = :empresa")
-    , @NamedQuery(name = "InfoPreguntas.findByTipoEmpresa", query = "SELECT i FROM InfoPreguntas i WHERE i.tipoEmpresa = :tipoEmpresa")
-    , @NamedQuery(name = "InfoPreguntas.findByCargo", query = "SELECT i FROM InfoPreguntas i WHERE i.cargo = :cargo")
-    , @NamedQuery(name = "InfoPreguntas.findByEmpDireccion", query = "SELECT i FROM InfoPreguntas i WHERE i.empDireccion = :empDireccion")
-    , @NamedQuery(name = "InfoPreguntas.findByEmpTelefono", query = "SELECT i FROM InfoPreguntas i WHERE i.empTelefono = :empTelefono")
-    , @NamedQuery(name = "InfoPreguntas.findByExistenciaPrograma", query = "SELECT i FROM InfoPreguntas i WHERE i.existenciaPrograma = :existenciaPrograma")
-    , @NamedQuery(name = "InfoPreguntas.findByExpeLaborFunciones", query = "SELECT i FROM InfoPreguntas i WHERE i.expeLaborFunciones = :expeLaborFunciones")
-    , @NamedQuery(name = "InfoPreguntas.findByRazones", query = "SELECT i FROM InfoPreguntas i WHERE i.razones = :razones")
-    , @NamedQuery(name = "InfoPreguntas.findByFinPrestamo", query = "SELECT i FROM InfoPreguntas i WHERE i.finPrestamo = :finPrestamo")
-    , @NamedQuery(name = "InfoPreguntas.findByFinAuxEmpresarial", query = "SELECT i FROM InfoPreguntas i WHERE i.finAuxEmpresarial = :finAuxEmpresarial")
-    , @NamedQuery(name = "InfoPreguntas.findByFinRecPropios", query = "SELECT i FROM InfoPreguntas i WHERE i.finRecPropios = :finRecPropios")
-    , @NamedQuery(name = "InfoPreguntas.findByFinBeca", query = "SELECT i FROM InfoPreguntas i WHERE i.finBeca = :finBeca")
-    , @NamedQuery(name = "InfoPreguntas.findByEgresadoUnillanos", query = "SELECT i FROM InfoPreguntas i WHERE i.egresadoUnillanos = :egresadoUnillanos")
-    , @NamedQuery(name = "InfoPreguntas.findByFechaFormulario", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaFormulario = :fechaFormulario")
-    , @NamedQuery(name = "InfoPreguntas.findByFechaLectura", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaLectura = :fechaLectura")
-    , @NamedQuery(name = "InfoPreguntas.findByComentarios", query = "SELECT i FROM InfoPreguntas i WHERE i.comentarios = :comentarios")
-    , @NamedQuery(name = "InfoPreguntas.findByValidacionPreguntas", query = "SELECT i FROM InfoPreguntas i WHERE i.validacionPreguntas = :validacionPreguntas")})
+    @NamedQuery(name = "InfoPreguntas.findAll", query = "SELECT i FROM InfoPreguntas i"),
+    @NamedQuery(name = "InfoPreguntas.findByIdPreguntas", query = "SELECT i FROM InfoPreguntas i WHERE i.idPreguntas = :idPreguntas"),
+    @NamedQuery(name = "InfoPreguntas.findByEmpresa", query = "SELECT i FROM InfoPreguntas i WHERE i.empresa = :empresa"),
+    @NamedQuery(name = "InfoPreguntas.findByTipoEmpresa", query = "SELECT i FROM InfoPreguntas i WHERE i.tipoEmpresa = :tipoEmpresa"),
+    @NamedQuery(name = "InfoPreguntas.findByCargo", query = "SELECT i FROM InfoPreguntas i WHERE i.cargo = :cargo"),
+    @NamedQuery(name = "InfoPreguntas.findByEmpDireccion", query = "SELECT i FROM InfoPreguntas i WHERE i.empDireccion = :empDireccion"),
+    @NamedQuery(name = "InfoPreguntas.findByEmpTelefono", query = "SELECT i FROM InfoPreguntas i WHERE i.empTelefono = :empTelefono"),
+    @NamedQuery(name = "InfoPreguntas.findByExistenciaPrograma", query = "SELECT i FROM InfoPreguntas i WHERE i.existenciaPrograma = :existenciaPrograma"),
+    @NamedQuery(name = "InfoPreguntas.findByExpeLaborFunciones", query = "SELECT i FROM InfoPreguntas i WHERE i.expeLaborFunciones = :expeLaborFunciones"),
+    @NamedQuery(name = "InfoPreguntas.findByRazones", query = "SELECT i FROM InfoPreguntas i WHERE i.razones = :razones"),
+    @NamedQuery(name = "InfoPreguntas.findByFinPrestamo", query = "SELECT i FROM InfoPreguntas i WHERE i.finPrestamo = :finPrestamo"),
+    @NamedQuery(name = "InfoPreguntas.findByFinAuxEmpresarial", query = "SELECT i FROM InfoPreguntas i WHERE i.finAuxEmpresarial = :finAuxEmpresarial"),
+    @NamedQuery(name = "InfoPreguntas.findByFinRecPropios", query = "SELECT i FROM InfoPreguntas i WHERE i.finRecPropios = :finRecPropios"),
+    @NamedQuery(name = "InfoPreguntas.findByFinBeca", query = "SELECT i FROM InfoPreguntas i WHERE i.finBeca = :finBeca"),
+    @NamedQuery(name = "InfoPreguntas.findByEgresadoUnillanos", query = "SELECT i FROM InfoPreguntas i WHERE i.egresadoUnillanos = :egresadoUnillanos"),
+    @NamedQuery(name = "InfoPreguntas.findByFechaFormulario", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaFormulario = :fechaFormulario"),
+    @NamedQuery(name = "InfoPreguntas.findByFechaLectura", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaLectura = :fechaLectura"),
+    @NamedQuery(name = "InfoPreguntas.findByComentarios", query = "SELECT i FROM InfoPreguntas i WHERE i.comentarios = :comentarios"),
+    @NamedQuery(name = "InfoPreguntas.findByValidacionPreguntas", query = "SELECT i FROM InfoPreguntas i WHERE i.validacionPreguntas = :validacionPreguntas")})
 public class InfoPreguntas implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -129,18 +128,17 @@ public class InfoPreguntas implements Serializable {
     private Integer validacionPreguntas;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<InfoIdiomas> infoIdiomasSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "infoPreguntas")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<Persona> personaSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<InfoLaboral> infoLaboralSet;
     @JoinColumn(name = "EMP_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne
     private Ciudad empCiudad;
-    @JoinColumn(name = "CABECERA", referencedColumnName = "ID_CABECERA")
-    @ManyToOne(optional = false)
-    private Cabecera cabecera;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<InfoAcademica> infoAcademicaSet;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
+    private Set<Cabecera> cabeceraSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<Soporte> soporteSet;
 
@@ -341,14 +339,6 @@ public class InfoPreguntas implements Serializable {
         this.empCiudad = empCiudad;
     }
 
-    public Cabecera getCabecera() {
-        return cabecera;
-    }
-
-    public void setCabecera(Cabecera cabecera) {
-        this.cabecera = cabecera;
-    }
-
     @XmlTransient
     public Set<InfoAcademica> getInfoAcademicaSet() {
         return infoAcademicaSet;
@@ -356,6 +346,15 @@ public class InfoPreguntas implements Serializable {
 
     public void setInfoAcademicaSet(Set<InfoAcademica> infoAcademicaSet) {
         this.infoAcademicaSet = infoAcademicaSet;
+    }
+
+    @XmlTransient
+    public Set<Cabecera> getCabeceraSet() {
+        return cabeceraSet;
+    }
+
+    public void setCabeceraSet(Set<Cabecera> cabeceraSet) {
+        this.cabeceraSet = cabeceraSet;
     }
 
     @XmlTransient

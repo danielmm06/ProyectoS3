@@ -39,13 +39,48 @@ public class InfoPreguntasDAO {
         }
     }
 
+    public int count() throws SQLException {
+        PreparedStatement psSelectAll = null;
+        ResultSet result = null;
+        int count = 0;
+        try {
+            if (psSelectAll == null) {
+                psSelectAll = db.PreparedQuery(
+                        "SELECT COUNT(ID_PREGUNTAS) as count FROM info_preguntas"
+                );
+            }
+            result = db.ExecuteQuery(psSelectAll);
+            while (result.next()) {
+                count = result.getInt("count");
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return count;
+    }
+
     public ArrayList<InfoPreguntas> getAll() {
         ArrayList<InfoPreguntas> listaInfoPreguntas = new ArrayList<InfoPreguntas>();
         try {
 
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_PREGUNTAS, CABECERA, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
+                        "SELECT ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
                         + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
@@ -56,7 +91,6 @@ public class InfoPreguntasDAO {
             while (result.next()) {
                 InfoPreguntas infoPreguntas = new InfoPreguntas();
                 infoPreguntas.setIdPreguntas(result.getInt("ID_PREGUNTAS"));
-                infoPreguntas.setCabecera(new Cabecera(result.getInt("CABECERA")));
                 infoPreguntas.setEmpresa(result.getString("EMPRESA"));
                 infoPreguntas.setTipoEmpresa(result.getString("TIPO_EMPRESA"));
                 infoPreguntas.setCargo(result.getString("CARGO"));
@@ -91,7 +125,7 @@ public class InfoPreguntasDAO {
 
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_PREGUNTAS, CABECERA, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
+                        "SELECT ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
                         + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
@@ -103,7 +137,6 @@ public class InfoPreguntasDAO {
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
                 infoPreguntas.setIdPreguntas(result.getInt("ID_PREGUNTAS"));
-                infoPreguntas.setCabecera((new CabeceraDAO()).get(result.getInt("CABECERA")));
                 infoPreguntas.setEmpresa(result.getString("EMPRESA"));
                 infoPreguntas.setTipoEmpresa(result.getString("TIPO_EMPRESA"));
                 infoPreguntas.setCargo(result.getString("CARGO"));
@@ -132,19 +165,19 @@ public class InfoPreguntasDAO {
     public long insert(InfoPreguntas infoPreguntas) {
         long result;
         try {
-            String columns = "CABECERA, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
+            String columns = "ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                     + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                     + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
-                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS,VALIDACION_PREGUNTAS";
+                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, VALIDACION_PREGUNTAS";
             String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO info_preguntas(" + columns + ") VALUES(" + values + ")",
-                        "ID_PREGUNTAS"
+                        "INSERT INTO info_preguntas(" + columns + ") VALUES (" + values + ")",
+                        " ID_PREGUNTAS"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(infoPreguntas.getCabecera().getIdCabecera());
+            inputs.add(infoPreguntas.getIdPreguntas());
             inputs.add(infoPreguntas.getEmpresa());
             inputs.add(infoPreguntas.getTipoEmpresa());
             inputs.add(infoPreguntas.getCargo());
@@ -175,10 +208,6 @@ public class InfoPreguntasDAO {
         try {
             String columns = "";
             ArrayList<Object> inputs = new ArrayList<Object>();
-            if (infoPreguntas.getCabecera() != null) {
-                columns += ",CABECERA=?";
-                inputs.add(infoPreguntas.getCabecera().getIdCabecera());
-            }
             if (infoPreguntas.getEmpresa() != null) {
                 columns += ",EMPRESA=?";
                 inputs.add(infoPreguntas.getEmpresa());

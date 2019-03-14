@@ -25,29 +25,30 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Daniel
+ * @author niari
  */
 @Entity
 @Table(name = "persona")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p")
-    , @NamedQuery(name = "Persona.findByNombre1", query = "SELECT p FROM Persona p WHERE p.nombre1 = :nombre1")
-    , @NamedQuery(name = "Persona.findByNombre2", query = "SELECT p FROM Persona p WHERE p.nombre2 = :nombre2")
-    , @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1")
-    , @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2")
-    , @NamedQuery(name = "Persona.findByDocumento", query = "SELECT p FROM Persona p WHERE p.documento = :documento")
-    , @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion")
-    , @NamedQuery(name = "Persona.findByBarrio", query = "SELECT p FROM Persona p WHERE p.barrio = :barrio")
-    , @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono")
-    , @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email")
-    , @NamedQuery(name = "Persona.findByDireccionOfic", query = "SELECT p FROM Persona p WHERE p.direccionOfic = :direccionOfic")
-    , @NamedQuery(name = "Persona.findByTelefonoOfic", query = "SELECT p FROM Persona p WHERE p.telefonoOfic = :telefonoOfic")
-    , @NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento")
-    , @NamedQuery(name = "Persona.findBySexo", query = "SELECT p FROM Persona p WHERE p.sexo = :sexo")
-    , @NamedQuery(name = "Persona.findByEstrato", query = "SELECT p FROM Persona p WHERE p.estrato = :estrato")})
+    @NamedQuery(name = "Persona.findAll", query = "SELECT p FROM Persona p"),
+    @NamedQuery(name = "Persona.findByNombre1", query = "SELECT p FROM Persona p WHERE p.nombre1 = :nombre1"),
+    @NamedQuery(name = "Persona.findByNombre2", query = "SELECT p FROM Persona p WHERE p.nombre2 = :nombre2"),
+    @NamedQuery(name = "Persona.findByApellido1", query = "SELECT p FROM Persona p WHERE p.apellido1 = :apellido1"),
+    @NamedQuery(name = "Persona.findByApellido2", query = "SELECT p FROM Persona p WHERE p.apellido2 = :apellido2"),
+    @NamedQuery(name = "Persona.findByDocumento", query = "SELECT p FROM Persona p WHERE p.documento = :documento"),
+    @NamedQuery(name = "Persona.findByDireccion", query = "SELECT p FROM Persona p WHERE p.direccion = :direccion"),
+    @NamedQuery(name = "Persona.findByBarrio", query = "SELECT p FROM Persona p WHERE p.barrio = :barrio"),
+    @NamedQuery(name = "Persona.findByTelefono", query = "SELECT p FROM Persona p WHERE p.telefono = :telefono"),
+    @NamedQuery(name = "Persona.findByEmail", query = "SELECT p FROM Persona p WHERE p.email = :email"),
+    @NamedQuery(name = "Persona.findByDireccionOfic", query = "SELECT p FROM Persona p WHERE p.direccionOfic = :direccionOfic"),
+    @NamedQuery(name = "Persona.findByTelefonoOfic", query = "SELECT p FROM Persona p WHERE p.telefonoOfic = :telefonoOfic"),
+    @NamedQuery(name = "Persona.findByFaxOfic", query = "SELECT p FROM Persona p WHERE p.faxOfic = :faxOfic"),
+    @NamedQuery(name = "Persona.findByCelularOfic", query = "SELECT p FROM Persona p WHERE p.celularOfic = :celularOfic"),
+    @NamedQuery(name = "Persona.findByFechaNacimiento", query = "SELECT p FROM Persona p WHERE p.fechaNacimiento = :fechaNacimiento"),
+    @NamedQuery(name = "Persona.findBySexo", query = "SELECT p FROM Persona p WHERE p.sexo = :sexo"),
+    @NamedQuery(name = "Persona.findByEstrato", query = "SELECT p FROM Persona p WHERE p.estrato = :estrato")})
 public class Persona implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -99,6 +100,16 @@ public class Persona implements Serializable {
     private String telefonoOfic;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "FAX_OFIC")
+    private String faxOfic;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 45)
+    @Column(name = "CELULAR_OFIC")
+    private String celularOfic;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "FECHA_NACIMIENTO")
     @Temporal(TemporalType.DATE)
     private Date fechaNacimiento;
@@ -121,15 +132,15 @@ public class Persona implements Serializable {
     @JoinColumn(name = "EXP_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne(optional = false)
     private Ciudad expCiudad;
-    @JoinColumn(name = "INFO_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
-    @ManyToOne(optional = false)
-    private InfoPreguntas infoPreguntas;
     @JoinColumn(name = "CIUDAD_NACIMIENTO", referencedColumnName = "ID_CIUDAD")
     @ManyToOne(optional = false)
     private Ciudad ciudadNacimiento;
     @JoinColumn(name = "OFIC_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne
     private Ciudad oficCiudad;
+    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
+    @ManyToOne(optional = false)
+    private InfoPreguntas idPreguntas;
     @JoinColumn(name = "RES_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne(optional = false)
     private Ciudad resCiudad;
@@ -144,7 +155,7 @@ public class Persona implements Serializable {
         this.documento = documento;
     }
 
-    public Persona(Integer documento, String nombre1, String apellido1, String apellido2, String direccion, String barrio, String email, Date fechaNacimiento, String sexo, String estrato) {
+    public Persona(Integer documento, String nombre1, String apellido1, String apellido2, String direccion, String barrio, String email, String faxOfic, String celularOfic, Date fechaNacimiento, String sexo, String estrato) {
         this.documento = documento;
         this.nombre1 = nombre1;
         this.apellido1 = apellido1;
@@ -152,6 +163,8 @@ public class Persona implements Serializable {
         this.direccion = direccion;
         this.barrio = barrio;
         this.email = email;
+        this.faxOfic = faxOfic;
+        this.celularOfic = celularOfic;
         this.fechaNacimiento = fechaNacimiento;
         this.sexo = sexo;
         this.estrato = estrato;
@@ -245,6 +258,22 @@ public class Persona implements Serializable {
         this.telefonoOfic = telefonoOfic;
     }
 
+    public String getFaxOfic() {
+        return faxOfic;
+    }
+
+    public void setFaxOfic(String faxOfic) {
+        this.faxOfic = faxOfic;
+    }
+
+    public String getCelularOfic() {
+        return celularOfic;
+    }
+
+    public void setCelularOfic(String celularOfic) {
+        this.celularOfic = celularOfic;
+    }
+
     public Date getFechaNacimiento() {
         return fechaNacimiento;
     }
@@ -293,14 +322,6 @@ public class Persona implements Serializable {
         this.expCiudad = expCiudad;
     }
 
-    public InfoPreguntas getInfoPreguntas() {
-        return infoPreguntas;
-    }
-
-    public void setInfoPreguntas(InfoPreguntas infoPreguntas) {
-        this.infoPreguntas = infoPreguntas;
-    }
-
     public Ciudad getCiudadNacimiento() {
         return ciudadNacimiento;
     }
@@ -315,6 +336,14 @@ public class Persona implements Serializable {
 
     public void setOficCiudad(Ciudad oficCiudad) {
         this.oficCiudad = oficCiudad;
+    }
+
+    public InfoPreguntas getIdPreguntas() {
+        return idPreguntas;
+    }
+
+    public void setIdPreguntas(InfoPreguntas idPreguntas) {
+        this.idPreguntas = idPreguntas;
     }
 
     public Ciudad getResCiudad() {

@@ -7,24 +7,32 @@ function soloNumeros(e) {
     return ((key >= 48 && key <= 57) || (key == 8))
 }
 
+$(document).ready(function() {
+   $('#name').hide(); 
+});
+
 $('#botonRegistrar').on('click', function () {
-    $.ajax({
-        type: 'POST',
-        data: $('#Registroform').serialize(),
-        url: "Registro",
-        success: function (data) {
-            if (data != null) {
-                if (data) {
-                    alert("Insertado");
-                    window.location.replace("Login");
+    if ($('#name').val()=="") {
+        $.ajax({
+            type: 'POST',
+            data: $('#Registroform').serialize(),
+            url: "Registro",
+            success: function (data) {
+                if (data != null) {
+                    if (data) {
+                        alert("Registrado correctamente");
+                        window.location.replace("Login");
+                    } else {
+                        alert("La contraseña no coincide");
+                    }
                 } else {
-                    alert("La contraseña no coincide");
+                    alert("Hay valores invalidos");
                 }
-            } else {
-                alert("Hay valores invalidos");
             }
-        }
-    });
+        });
+    } else {
+        alert("Alerta de bots, peticion rechazada");
+    }
 });
 //$('#Usuario').focusout(function() {
 // var user = $(this).val();

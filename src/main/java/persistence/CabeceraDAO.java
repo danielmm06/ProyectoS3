@@ -10,6 +10,7 @@ import conexion.App;
 import conexion.DataBase;
 import entity.Cabecera;
 import entity.Categoria;
+import entity.InfoPreguntas;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -44,7 +45,7 @@ public class CabeceraDAO {
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_CABECERA, CATEGORIA, PROGRAMA, FACULTAD "
+                        "SELECT ID_CABECERA, CATEGORIA, PROGRAMA, FACULTAD, ID_PREGUNTAS "
                         + "FROM cabecera"
                 );
             }
@@ -55,6 +56,7 @@ public class CabeceraDAO {
                 cabecera.setCategoria(new Categoria(result.getInt("CATEGORIA")));
                 cabecera.setPrograma(result.getString("PROGRAMA"));
                 cabecera.setFacultad(result.getString("FACULTAD"));
+                cabecera.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
                 listaCabecera.add(cabecera);
             }
         } catch (SQLException e) {
@@ -85,7 +87,7 @@ public class CabeceraDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_CABECERA, CATEGORIA, PROGRAMA, FACULTAD FROM cabecera WHERE ID_CABECERA=?"
+                        "SELECT ID_CABECERA, CATEGORIA, PROGRAMA, FACULTAD, ID_PREGUNTAS FROM cabecera WHERE ID_CABECERA=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -96,6 +98,7 @@ public class CabeceraDAO {
                 cabecera.setCategoria((new CategoriaDAO()).get(result.getInt("CATEGORIA")));
                 cabecera.setPrograma(result.getString("PROGRAMA"));
                 cabecera.setFacultad(result.getString("FACULTAD"));
+                cabecera.setIdPreguntas((new InfoPreguntasDAO()).get(result.getInt("ID_PREGUNTAS")));
 
             }
         } catch (SQLException e) {
@@ -122,8 +125,8 @@ public class CabeceraDAO {
     public long insert(Cabecera cabecera) {
         long result;
         try {
-            String columns = "CATEGORIA, PROGRAMA, FACULTAD";
-            String values = "?,?,?";
+            String columns = "CATEGORIA, PROGRAMA, FACULTAD, ID_PREGUNTAS";
+            String values = "?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO cabecera(" + columns + ") VALUES(" + values + ")", "ID_CABECERA"
@@ -133,6 +136,7 @@ public class CabeceraDAO {
             inputs.add(cabecera.getCategoria().getIdCategoria());
             inputs.add(cabecera.getPrograma());
             inputs.add(cabecera.getFacultad());
+            inputs.add(cabecera.getIdPreguntas().getIdPreguntas());
 
             result = db.ExecuteUpdate(psInsert, inputs);
 
@@ -159,6 +163,10 @@ public class CabeceraDAO {
             if (cabecera.getFacultad() != null) {
                 columns += ",FACULTAD=?";
                 inputs.add(cabecera.getFacultad());
+            }
+            if (cabecera.getIdPreguntas() != null) {
+                columns += ",ID_PREGUNTAS=?";
+                inputs.add(cabecera.getIdPreguntas().getIdPreguntas());
             }
             inputs.add(cabecera.getIdCabecera());
             columns = columns.substring(1);
@@ -214,12 +222,12 @@ public class CabeceraDAO {
 //                        + rol.getPrograma() + " "
 //                        + rol.getFacultad());
 //            }
-            System.out.println("INSERT");
-            Cabecera rol = new Cabecera();
-            rol.setCategoria(new Categoria(1));
-            rol.setPrograma("asd");
-            rol.setFacultad("asd");
-            App.CabeceraDAO.insert(rol);
+//            System.out.println("INSERT");
+//            Cabecera rol = new Cabecera();
+//            rol.setCategoria(new Categoria(1));
+//            rol.setPrograma("asd");
+//            rol.setFacultad("asd");
+//            App.CabeceraDAO.insert(rol);
 //            System.out.println("UPDATE");
 //            Cabecera rol = new Cabecera();
 //            rol.setIdCabecera(1);

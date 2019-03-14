@@ -136,7 +136,7 @@ public class UsuariosDAO {
                 inputs.add(null);
             }
             if (usuarios.getContrasena() != null) {
-                inputs.add(App.MD5(usuarios.getContrasena()+App.SECRET_PASS)); 
+                inputs.add(App.MD5(usuarios.getContrasena()+ App.SECRET_PASS)); 
 //                inputs.add(DigestUtils.md5Hex(usuarios.getContrasena())); //agrega contraseña encriptada
             } else {
                 inputs.add(null);

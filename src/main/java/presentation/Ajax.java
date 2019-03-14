@@ -61,9 +61,9 @@ public class Ajax extends HttpServlet {
 
                 //HTML
                  if(listaDepartamentos == null){
-                    out.println("<option  value='0' >Seleccione un departamento</option> ");
+                    out.println("<option  value='0' >Seleccione el Departamento</option> ");
                 }else{
-                    out.println("<option selected value='0' >Seleccione un departamento</option> ");
+                    out.println("<option selected value='0' >Seleccione el Departamento</option> ");
                     for (Departamento dep : listaDepartamentos) {
                         out.println("<option value='" + dep.getIdDpto() + "' >" + dep.getNombreDpto() + "</option> ");
                     }
@@ -88,9 +88,9 @@ public class Ajax extends HttpServlet {
 
                 //HTML
                  if(listaCiudad == null){
-                    out.println("<option  value='0' >Seleccione la ciudad</option> ");
+                    out.println("<option  value='0' >Seleccione la Ciudad</option> ");
                 }else{
-                    out.println("<option selected value='0' >Seleccione la ciudad</option> ");
+                    out.println("<option selected value='0' >Seleccione la Ciudad</option> ");
                     for (Ciudad cuidad : listaCiudad) {
                         out.println("<option value='" + cuidad.getIdCiudad() + "' >" + cuidad.getNombreCiudad() + "</option> ");
                     }

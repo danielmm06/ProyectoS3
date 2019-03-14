@@ -49,9 +49,9 @@ public class PersonaDAO {
                 psSelectAll = db.PreparedQuery(
                         "SELECT NOMBRE1, NOMBRE2, APELLIDO1, APELLIDO2, DOCUMENTO, TIPODOCUMENTO, "
                         + "EXP_CIUDAD, DIRECCION, BARRIO, RES_CIUDAD, "
-                        + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, "
+                        + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, FAX_OFIC, CELULAR_OFIC,"
                         + "FECHA_NACIMIENTO, CIUDAD_NACIMIENTO, ESTADO_CIVIL, "
-                        + "ESTRATO, INFO_PREGUNTAS FROM persona"
+                        + "ESTRATO, ID_PREGUNTAS FROM persona"
                 );
             }
             ResultSet result = db.ExecuteQuery(psSelectAll);
@@ -72,11 +72,13 @@ public class PersonaDAO {
                 persona.setDireccionOfic(result.getString("DIRECCION_OFIC"));
                 persona.setOficCiudad(new Ciudad(result.getInt("OFIC_CIUDAD")));
                 persona.setTelefonoOfic(result.getString("TELEFONO_OFIC"));
+                persona.setFaxOfic(result.getString("FAX_OFIC"));
+                persona.setCelularOfic(result.getString("CELULAR_OFIC"));
                 persona.setFechaNacimiento(result.getDate("FECHA_NACIMIENTO"));
                 persona.setCiudadNacimiento(new Ciudad(result.getInt("CIUDAD_NACIMIENTO")));
                 persona.setEstadoCivil(new EstadoCivil(result.getInt("ESTADO_CIVIL")));
                 persona.setEstrato(result.getString("ESTRATO"));
-                persona.setInfoPreguntas(new InfoPreguntas(result.getInt("INFO_PREGUNTAS")));
+                persona.setIdPreguntas(new InfoPreguntas(result.getInt("INFO_PREGUNTAS")));
 
                 listaPersonas.add(persona);
             }
@@ -95,9 +97,9 @@ public class PersonaDAO {
                 psSelect = db.PreparedQuery(
                         "SELECT NOMBRE1, NOMBRE2, APELLIDO1, APELLIDO2, DOCUMENTO, TIPODOCUMENTO, "
                         + "EXP_CIUDAD, DIRECCION, BARRIO, RES_CIUDAD, "
-                        + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, "
+                        + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, FAX_OFIC, CELULAR_OFIC, "
                         + "FECHA_NACIMIENTO, CIUDAD_NACIMIENTO, SEXO, ESTADO_CIVIL, "
-                        + "ESTRATO, INFO_PREGUNTAS FROM persona WHERE DOCUMENTO=?"
+                        + "ESTRATO, ID_PREGUNTAS FROM persona WHERE DOCUMENTO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -119,12 +121,14 @@ public class PersonaDAO {
                 persona.setDireccionOfic(result.getString("DIRECCION_OFIC"));
                 persona.setOficCiudad((new CiudadDAO()).get(result.getInt("OFIC_CIUDAD")));
                 persona.setTelefonoOfic(result.getString("TELEFONO_OFIC"));
+                persona.setFaxOfic(result.getString("FAX_OFIC"));
+                persona.setCelularOfic(result.getString("CELULAR_OFIC"));
                 persona.setFechaNacimiento(result.getDate("FECHA_NACIMIENTO"));
                 persona.setCiudadNacimiento((new CiudadDAO()).get(result.getInt("CIUDAD_NACIMIENTO")));
                 persona.setSexo(result.getString("SEXO"));
                 persona.setEstadoCivil((new EstadoCivilDAO()).get(result.getInt("ESTADO_CIVIL")));
                 persona.setEstrato(result.getString("ESTRATO"));
-                persona.setInfoPreguntas((new InfoPreguntasDAO()).get(result.getInt("INFO_PREGUNTAS")));
+                persona.setIdPreguntas((new InfoPreguntasDAO()).get(result.getInt("INFO_PREGUNTAS")));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -137,10 +141,10 @@ public class PersonaDAO {
         try {
             String columns = "NOMBRE1, NOMBRE2, APELLIDO1, APELLIDO2, DOCUMENTO, TIPODOCUMENTO, "
                     + "EXP_CIUDAD, DIRECCION, BARRIO, RES_CIUDAD, "
-                    + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, "
+                    + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, FAX_OFIC, CELULAR_OFIC, "
                     + "FECHA_NACIMIENTO, CIUDAD_NACIMIENTO, SEXO,ESTADO_CIVIL, "
-                    + "ESTRATO, INFO_PREGUNTAS";
-            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+                    + "ESTRATO, ID_PREGUNTAS";
+            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO PERSONA(" + columns + ") VALUES(" + values + ")",
@@ -153,22 +157,24 @@ public class PersonaDAO {
             inputs.add(persona.getApellido1());
             inputs.add(persona.getApellido2());
             inputs.add(persona.getDocumento());
-            inputs.add(persona.getTipodocumento());
-            inputs.add(persona.getExpCiudad());
+            inputs.add(persona.getTipodocumento().getIdDocumento());
+            inputs.add(persona.getExpCiudad().getIdCiudad());
             inputs.add(persona.getDireccion());
             inputs.add(persona.getBarrio());
-            inputs.add(persona.getResCiudad());
+            inputs.add(persona.getResCiudad().getIdCiudad());
             inputs.add(persona.getTelefono());
             inputs.add(persona.getEmail());
             inputs.add(persona.getDireccionOfic());
-            inputs.add(persona.getOficCiudad());
+            inputs.add(persona.getOficCiudad().getIdCiudad());
             inputs.add(persona.getTelefonoOfic());
+            inputs.add(persona.getFaxOfic());
+            inputs.add(persona.getCelularOfic());
             inputs.add(persona.getFechaNacimiento());
-            inputs.add(persona.getCiudadNacimiento());
+            inputs.add(persona.getCiudadNacimiento().getIdCiudad());
             inputs.add(persona.getSexo());
-            inputs.add(persona.getEstadoCivil());
+            inputs.add(persona.getEstadoCivil().getId());
             inputs.add(persona.getEstrato());
-            inputs.add(persona.getInfoPreguntas());
+            inputs.add(persona.getIdPreguntas().getIdPreguntas());
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
@@ -238,6 +244,14 @@ public class PersonaDAO {
                 columns += ",TELEFONO_OFIC=?";
                 inputs.add(persona.getTelefonoOfic());
             }
+            if (persona.getFaxOfic()!= null) {
+                columns += ",FAX_OFIC=?";
+                inputs.add(persona.getFaxOfic());
+            }
+            if (persona.getCelularOfic()!= null) {
+                columns += ",CELULAR_OFIC=?";
+                inputs.add(persona.getCelularOfic());
+            }
             if (persona.getFechaNacimiento() != null) {
                 columns += ",FECHA_NACIMIENTO=?";
                 inputs.add(persona.getFechaNacimiento());
@@ -258,9 +272,9 @@ public class PersonaDAO {
                 columns += ",ESTRATO=?";
                 inputs.add(persona.getEstrato());
             }
-            if (persona.getInfoPreguntas() != null) {
-                columns += ",INFO_PREGUNTAS=?";
-                inputs.add(persona.getInfoPreguntas().getIdPreguntas());
+            if (persona.getIdPreguntas() != null) {
+                columns += ",ID_PREGUNTAS=?";
+                inputs.add(persona.getIdPreguntas().getIdPreguntas());
             }
 
             inputs.add(persona.getDocumento());

@@ -6,9 +6,7 @@
 package entity;
 
 import java.io.Serializable;
-import java.util.Set;
 import javax.persistence.Basic;
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,27 +16,24 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
- * @author Daniel
+ * @author niari
  */
 @Entity
 @Table(name = "cabecera")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c")
-    , @NamedQuery(name = "Cabecera.findByIdCabecera", query = "SELECT c FROM Cabecera c WHERE c.idCabecera = :idCabecera")
-    , @NamedQuery(name = "Cabecera.findByPrograma", query = "SELECT c FROM Cabecera c WHERE c.programa = :programa")
-    , @NamedQuery(name = "Cabecera.findByFacultad", query = "SELECT c FROM Cabecera c WHERE c.facultad = :facultad")})
+    @NamedQuery(name = "Cabecera.findAll", query = "SELECT c FROM Cabecera c"),
+    @NamedQuery(name = "Cabecera.findByIdCabecera", query = "SELECT c FROM Cabecera c WHERE c.idCabecera = :idCabecera"),
+    @NamedQuery(name = "Cabecera.findByPrograma", query = "SELECT c FROM Cabecera c WHERE c.programa = :programa"),
+    @NamedQuery(name = "Cabecera.findByFacultad", query = "SELECT c FROM Cabecera c WHERE c.facultad = :facultad")})
 public class Cabecera implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,11 +50,12 @@ public class Cabecera implements Serializable {
     @Size(min = 1, max = 45)
     @Column(name = "FACULTAD")
     private String facultad;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "cabecera")
-    private Set<InfoPreguntas> infoPreguntasSet;
     @JoinColumn(name = "CATEGORIA", referencedColumnName = "ID_CATEGORIA")
     @ManyToOne(optional = false)
     private Categoria categoria;
+    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
+    @ManyToOne(optional = false)
+    private InfoPreguntas idPreguntas;
 
     public Cabecera() {
     }
@@ -98,21 +94,20 @@ public class Cabecera implements Serializable {
         this.facultad = facultad;
     }
 
-    @XmlTransient
-    public Set<InfoPreguntas> getInfoPreguntasSet() {
-        return infoPreguntasSet;
-    }
-
-    public void setInfoPreguntasSet(Set<InfoPreguntas> infoPreguntasSet) {
-        this.infoPreguntasSet = infoPreguntasSet;
-    }
-
     public Categoria getCategoria() {
         return categoria;
     }
 
     public void setCategoria(Categoria categoria) {
         this.categoria = categoria;
+    }
+
+    public InfoPreguntas getIdPreguntas() {
+        return idPreguntas;
+    }
+
+    public void setIdPreguntas(InfoPreguntas idPreguntas) {
+        this.idPreguntas = idPreguntas;
     }
 
     @Override
