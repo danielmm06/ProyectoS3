@@ -80,6 +80,49 @@ public class InfoAcademicaDAO {
         return listaAcademica;
     }
 
+    public ArrayList<InfoAcademica> getAllByPreguntas(InfoPreguntas preguntas) {
+        ArrayList<InfoAcademica> listaAcademica = new ArrayList<InfoAcademica>();
+        PreparedStatement psSelectAll = null;
+        ResultSet result = null;
+        try {
+            if (psSelectAll == null) {
+                psSelectAll = db.PreparedQuery(
+                        "SELECT ID_INFO_ACADEMICA,UNIVERSIDAD,PROGRAMA,TITULO_OBTENIDO,ANO,ID_PREGUNTAS "
+                        + "FROM info_academica where ID_PREGUNTAS="+preguntas.getIdPreguntas()
+                );
+            }
+            result = db.ExecuteQuery(psSelectAll);
+            while (result.next()) {
+                InfoAcademica academica = new InfoAcademica();
+                academica.setIdInfoAcademica(result.getInt("ID_INFO_ACADEMICA"));
+                academica.setUniversidad(result.getString("UNIVERSIDAD"));
+                academica.setPrograma(result.getString("PROGRAMA"));
+                academica.setTituloObtenido(result.getString("TITULO_OBTENIDO"));
+                academica.setAno(result.getString("ANO"));
+                academica.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
+                listaAcademica.add(academica);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return listaAcademica;
+    }
+
     public InfoAcademica get(int idAcademica) {
         InfoAcademica academica = new InfoAcademica();
         PreparedStatement psSelect = null;
@@ -88,7 +131,7 @@ public class InfoAcademicaDAO {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
                         "SELECT ID_INFO_ACADEMICA,UNIVERSIDAD,PROGRAMA,TITULO_OBTENIDO,ANO,ID_PREGUNTAS "
-                                + "FROM info_academica WHERE ID_INFO_ACADEMICA=?"
+                        + "FROM info_academica WHERE ID_INFO_ACADEMICA=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -167,7 +210,7 @@ public class InfoAcademicaDAO {
                 columns += ",TITULO_OBTENIDO=?";
                 inputs.add(academica.getTituloObtenido());
             }
-            
+
             if (academica.getAno() != null) {
                 columns += ",ANO=?";
                 inputs.add(academica.getAno());

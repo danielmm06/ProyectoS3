@@ -50,7 +50,7 @@ public class Ajax extends HttpServlet {
     protected void processAjax(HttpServletRequest request, PrintWriter out, String value, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-        
+
         //BLOQUE DE CODIGO: formulario para traer los departamentos segun la ciudad
         if (value.equalsIgnoreCase("FormularioDept")) {
             try {
@@ -60,15 +60,13 @@ public class Ajax extends HttpServlet {
                 ArrayList<Departamento> listaDepartamentos = App.DepartamentoDAO.getByPais(pais);
 
                 //HTML
-                 if(listaDepartamentos == null){
-                    out.println("<option  value='0' >Seleccione el Departamento</option> ");
-                }else{
-                    out.println("<option selected value='0' >Seleccione el Departamento</option> ");
+                out.println("<option selected value=''>Seleccione el Departamento</option> ");
+                if (listaDepartamentos != null) {
                     for (Departamento dep : listaDepartamentos) {
                         out.println("<option value='" + dep.getIdDpto() + "' >" + dep.getNombreDpto() + "</option> ");
                     }
                 }
-                
+
             } catch (Exception e) {
                 throw new RuntimeException("Se ha generado un error inesperado", e);
             } finally {
@@ -76,26 +74,23 @@ public class Ajax extends HttpServlet {
             }
         }
         //FIN BLOQUE DE CODIGO: formulario
-        
-        
+
         //BLOQUE DE CODIGO: formulario para traer las ciudades segun el departamento
         if (value.equalsIgnoreCase("FormularioCiudad")) {
             try {
                 App.OpenConnection();
-                System.out.println(request.getParameter("content")+" <------");          
+                System.out.println(request.getParameter("content") + " <------");
                 int depart = Integer.parseInt(request.getParameter("content"));
                 ArrayList<Ciudad> listaCiudad = App.CiudadDAO.getByDepart(depart);
 
                 //HTML
-                 if(listaCiudad == null){
-                    out.println("<option  value='0' >Seleccione la Ciudad</option> ");
-                }else{
-                    out.println("<option selected value='0' >Seleccione la Ciudad</option> ");
+                    out.println("<option selected value='' >Seleccione la Ciudad</option>");
+                if (listaCiudad != null) {
                     for (Ciudad cuidad : listaCiudad) {
                         out.println("<option value='" + cuidad.getIdCiudad() + "' >" + cuidad.getNombreCiudad() + "</option> ");
                     }
                 }
-                
+
             } catch (Exception e) {
                 throw new RuntimeException("Se ha generado un error inesperado", e);
             } finally {
@@ -103,7 +98,6 @@ public class Ajax extends HttpServlet {
             }
         }
         //FIN BLOQUE DE CODIGO: formulario
-
 
     }
 }

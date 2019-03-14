@@ -78,7 +78,7 @@ public class PersonaDAO {
                 persona.setCiudadNacimiento(new Ciudad(result.getInt("CIUDAD_NACIMIENTO")));
                 persona.setEstadoCivil(new EstadoCivil(result.getInt("ESTADO_CIVIL")));
                 persona.setEstrato(result.getString("ESTRATO"));
-                persona.setIdPreguntas(new InfoPreguntas(result.getInt("INFO_PREGUNTAS")));
+                persona.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
 
                 listaPersonas.add(persona);
             }
@@ -128,7 +128,7 @@ public class PersonaDAO {
                 persona.setSexo(result.getString("SEXO"));
                 persona.setEstadoCivil((new EstadoCivilDAO()).get(result.getInt("ESTADO_CIVIL")));
                 persona.setEstrato(result.getString("ESTRATO"));
-                persona.setIdPreguntas((new InfoPreguntasDAO()).get(result.getInt("INFO_PREGUNTAS")));
+                persona.setIdPreguntas((new InfoPreguntasDAO()).get(result.getInt("ID_PREGUNTAS")));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);

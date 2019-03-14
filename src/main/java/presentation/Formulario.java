@@ -17,10 +17,12 @@ import entity.InfoPreguntas;
 import entity.Pais;
 import entity.Persona;
 import entity.TipoDocumento;
+import entity.Usuarios;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Iterator;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -55,6 +57,120 @@ public class Formulario extends HttpServlet {
                     ArrayList<Pais> listaPais = App.PaisDAO.getAll();
 //                        //----------------------------------------------------------
                     request.setAttribute("listaPais", listaPais);
+
+                    int user = Integer.parseInt(request.getParameter("user"));
+                    
+                    Persona persona = App.PersonaDAO.get(user);
+                    request.setAttribute("persona", persona);
+                    request.setAttribute("cabecera", App.CabeceraDAO.getByPreguntas(persona.getIdPreguntas()));
+                    request.setAttribute("preguntas", persona.getIdPreguntas());
+                    request.setAttribute("academica", App.AcademicaDAO.getAllByPreguntas(persona.getIdPreguntas()));
+                    request.setAttribute("laboral", App.LaboralDAO.getAllByPreguntas(persona.getIdPreguntas()));
+                    request.setAttribute("idiomas", App.IdiomasDAO.getAllByPreguntas(persona.getIdPreguntas()));
+                    
+//                    Persona persona = App.PersonaDAO.get(user);
+//                    
+//                    InfoPreguntas preguntas = persona.getIdPreguntas();
+//
+//                    ArrayList<String> formulario = new ArrayList<String>();
+//
+//                    Cabecera cabecera = App.CabeceraDAO.getByPreguntas(preguntas);
+//                    formulario.add(cabecera.getCategoria().getIdCategoria() + "");
+//                    formulario.add(cabecera.getPrograma());
+//                    formulario.add(cabecera.getFacultad());
+//
+//                    formulario.add(persona.getNombre1());
+//                    formulario.add(persona.getNombre2());
+//                    formulario.add(persona.getApellido1());
+//                    formulario.add(persona.getApellido2());
+//                    formulario.add(persona.getDocumento() + "");
+//                    formulario.add(persona.getTipodocumento().getIdDocumento() + "");
+//                    formulario.add(persona.getExpCiudad().getIdDpto().getIdPais().getIdPais() + "");
+//                    formulario.add(persona.getExpCiudad().getIdDpto().getIdDpto() + "");
+//                    formulario.add(persona.getExpCiudad().getIdCiudad() + "");
+//                    formulario.add(persona.getDireccion());
+//                    formulario.add(persona.getBarrio());
+//                    formulario.add(persona.getTelefono());
+//                    formulario.add(persona.getEmail());
+//                    formulario.add(persona.getResCiudad().getIdDpto().getIdPais().getIdPais() + "");
+//                    formulario.add(persona.getResCiudad().getIdDpto().getIdDpto() + "");
+//                    formulario.add(persona.getResCiudad().getIdCiudad() + "");
+//                    formulario.add(persona.getDireccionOfic());
+//                    formulario.add(persona.getTelefonoOfic());
+//                    formulario.add(persona.getFaxOfic());
+//                    formulario.add(persona.getCelularOfic());
+//                    formulario.add(persona.getOficCiudad().getIdDpto().getIdPais().getIdPais() + "");
+//                    formulario.add(persona.getOficCiudad().getIdDpto().getIdDpto() + "");
+//                    formulario.add(persona.getOficCiudad().getIdCiudad() + "");
+//                    formulario.add(persona.getFechaNacimiento().toString().split("-")[0]);
+//                    formulario.add(persona.getFechaNacimiento().toString().split("-")[1]);
+//                    formulario.add(persona.getFechaNacimiento().toString().split("-")[2]);
+//                    formulario.add(persona.getCiudadNacimiento().getIdDpto().getIdPais().getIdPais() + "");
+//                    formulario.add(persona.getCiudadNacimiento().getIdDpto().getIdDpto() + "");
+//                    formulario.add(persona.getCiudadNacimiento().getIdCiudad() + "");
+//                    formulario.add(persona.getSexo());
+//                    formulario.add(persona.getEstadoCivil().getId() + "");
+//                    formulario.add(persona.getEstrato());
+//
+//                    ArrayList<InfoAcademica> listAcademica = App.AcademicaDAO.getAllByPreguntas(preguntas);
+//                    if (!listAcademica.isEmpty()) {
+//                        formulario.add("academica");
+//                        for (Iterator<InfoAcademica> ite = listAcademica.iterator(); ite.hasNext();) {
+//                            InfoAcademica academica = ite.next();
+//                            formulario.add(academica.getUniversidad());
+//                            formulario.add(academica.getPrograma());
+//                            formulario.add(academica.getTituloObtenido());
+//                            formulario.add(academica.getAno());
+//                        }
+//                        formulario.add("finAcademica");
+//                    }
+//                    
+//                    formulario.add(preguntas.getEmpresa());
+//                    formulario.add(preguntas.getTipoEmpresa());
+//                    formulario.add(preguntas.getCargo());
+//                    formulario.add(preguntas.getEmpDireccion());
+//                    formulario.add(preguntas.getEmpTelefono());
+//                    formulario.add(preguntas.getEmpCiudad().getIdDpto().getIdPais().getIdPais() + "");
+//                    formulario.add(preguntas.getEmpCiudad().getIdDpto().getIdDpto() + "");
+//                    formulario.add(preguntas.getEmpCiudad().getIdCiudad() + "");
+//                    formulario.add(preguntas.getExistenciaPrograma());
+//                    formulario.add(preguntas.getExpeLaborFunciones());
+//                    
+//                    ArrayList<InfoLaboral> listLaboral = App.LaboralDAO.getAllByPreguntas(preguntas);
+//                    if (!listLaboral.isEmpty()) {
+//                        formulario.add("laboral");
+//                        for (Iterator<InfoLaboral> ite = listLaboral.iterator(); ite.hasNext();) {
+//                            InfoLaboral laboral = ite.next();
+//                            formulario.add(laboral.getEmpresa());
+//                            formulario.add(laboral.getCargo());
+//                            formulario.add(laboral.getFechaInicio().toString());
+//                            formulario.add(laboral.getFechaFin().toString());
+//                        }
+//                        formulario.add("finLaboral");
+//                    }
+//                    
+//                    ArrayList<InfoIdiomas> listIdiomas = App.IdiomasDAO.getAllByPreguntas(preguntas);
+//                    if (!listIdiomas.isEmpty()) {
+//                        formulario.add("idiomas");
+//                        for (Iterator<InfoIdiomas> ite = listIdiomas.iterator(); ite.hasNext();) {
+//                            InfoIdiomas idioma = ite.next();
+//                            formulario.add(idioma.getIdioma());
+//                            formulario.add(idioma.getComprende());
+//                            formulario.add(idioma.getHabla());
+//                            formulario.add(idioma.getEscribe());
+//                        }
+//                        formulario.add("finIdiomas");
+//                    }
+//                    formulario.add(preguntas.getRazones());
+//                    formulario.add(preguntas.getFinPrestamo());
+//                    formulario.add(preguntas.getFinAuxEmpresarial());
+//                    formulario.add(preguntas.getFinRecPropios());
+//                    formulario.add(preguntas.getFinBeca());
+//                    formulario.add(preguntas.getEgresadoUnillanos());
+                    
+//                    response.getWriter().print(formulario);
+                    
+//                    System.out.println(formulario);
 
                     getServletConfig().getServletContext().getRequestDispatcher("/views/Registro.jsp").forward(request, response);
 //                          RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/Personas.jsp");
@@ -204,7 +320,7 @@ public class Formulario extends HttpServlet {
                             App.LaboralDAO.insert(laboral);
                         }
                     }
-   
+
                     response.getWriter().print(true);
                 } else {
                     response.sendRedirect("Error?e=NotAuthorized");

@@ -80,6 +80,49 @@ public class InfoIdiomasDAO {
         return listaIdiomas;
     }
 
+    public ArrayList<InfoIdiomas> getAllByPreguntas(InfoPreguntas preguntas) {
+        ArrayList<InfoIdiomas> listaIdiomas = new ArrayList<InfoIdiomas>();
+        PreparedStatement psSelectAll = null;
+        ResultSet result = null;
+        try {
+            if (psSelectAll == null) {
+                psSelectAll = db.PreparedQuery(
+                        "SELECT ID_IDIOMAS,IDIOMA,COMPRENDE,HABLA,ESCRIBE,ID_PREGUNTAS "
+                        + "FROM info_idiomas where ID_PREGUNTAS="+preguntas.getIdPreguntas()
+                );
+            }
+            result = db.ExecuteQuery(psSelectAll);
+            while (result.next()) {
+                InfoIdiomas idiomas = new InfoIdiomas();
+                idiomas.setIdIdiomas(result.getInt("ID_IDIOMAS"));
+                idiomas.setIdioma(result.getString("IDIOMA"));
+                idiomas.setComprende(result.getString("COMPRENDE"));
+                idiomas.setHabla(result.getString("HABLA"));
+                idiomas.setEscribe(result.getString("ESCRIBE"));
+                idiomas.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
+                listaIdiomas.add(idiomas);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return listaIdiomas;
+    }
+
     public InfoIdiomas get(int idIdiomas) {
         InfoIdiomas idiomas = new InfoIdiomas();
         PreparedStatement psSelect = null;

@@ -84,7 +84,7 @@ public class Login extends HttpServlet {
                 System.out.println("valido--->" + valido);
 
                 if (valido == true) {
-                    response.sendRedirect("Formulario");
+                    response.sendRedirect("Formulario?user="+id_nickname);
                 } else {
                     response.sendRedirect("Login");
                 }

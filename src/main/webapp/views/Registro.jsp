@@ -34,7 +34,7 @@
                                 <div class="col-md-3">
                                     <label for="Categoria"  >Categoria</label>
                                     <select class="form-control" id="Categoria" name="Categoria" required="required" autofocus="autofocus"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="1">Especialización</option>
                                         <option value="2">Maestría</option>
                                         <option value="3">Doctorado</option>
@@ -44,13 +44,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="Programa">Programa al que se inscrbe</label>
-                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" >
+                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" value="${cabecera.programa}">
 
 
                                 </div>
                                 <div class="col-md-5">
                                     <label for="Facultad">Perteneciente a la facultad</label>
-                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" >
+                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" value="${cabecera.facultad}">
 
 
                                 </div>
@@ -66,25 +66,25 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label for="Nombre1"  >Primer Nombre</label>
-                                    <input type="text" id="Nombre1" name="Nombre1" class="form-control letras" placeholder="Primer Nombre" required="required"  >
+                                    <input type="text" id="Nombre1" name="Nombre1" class="form-control letras" placeholder="Primer Nombre" required="required" value="${persona.nombre1}">
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Nombre2">Segundo Nombre</label>
-                                    <input type="text" id="Nombre2" name="Nombre2" class="form-control letras" placeholder="Segundo Nombre" required="required" >
+                                    <input type="text" id="Nombre2" name="Nombre2" class="form-control letras" placeholder="Segundo Nombre" required="required" value="${persona.nombre2}">
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Apellido1">Primer Apellido</label>
-                                    <input type="text" id="Apellido1" name="Apellido1" class="form-control letras" placeholder="Primer Apellido" required="required">
+                                    <input type="text" id="Apellido1" name="Apellido1" class="form-control letras" placeholder="Primer Apellido" required="required" value="${persona.apellido1}">
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Apellido2">Segundo Apellido</label>
-                                    <input type="text" id="Apellido2"  name="Apellido2" class="form-control letras" placeholder="Segundo Apellido" required="required">
+                                    <input type="text" id="Apellido2"  name="Apellido2" class="form-control letras" placeholder="Segundo Apellido" required="required" value="${persona.apellido2}">
 
 
                                 </div>  
@@ -100,7 +100,7 @@
                                 <div class="col-md-4">
                                     <label for="Documento"  >N° Documento</label>
 
-                                    <input type="text" id="Documento" name="Documento" class="form-control numeros" placeholder="N° Documento" required="required" >
+                                    <input type="text" id="Documento" name="Documento" class="form-control numeros" placeholder="N° Documento" required="required" value="${persona.documento}">
 
 
                                 </div>
@@ -109,7 +109,7 @@
 
 
                                     <select class="form-control " id="TipoDocumento" name="TipoDocumento" required="required">
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="1">CC</option>
                                         <option value="2">TI</option>
                                         <option value="3">CE</option>
@@ -137,7 +137,7 @@
                                             <label class="input-group-text " for="ExpPais">Pais</label>
                                         </div>
                                         <select class="form-control pais" id="ExpPais" name="ExpPais" required="required">
-                                            <option selected value="0">Seleccione el Pais</option>
+                                            <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="ExpPais"> 
                                                 <option  value="<c:out value="${ExpPais.idPais}" />" ><c:out value="${ExpPais.nombrePais}" /></option>
                                             </c:forEach>  
@@ -148,7 +148,7 @@
                                             <label class="input-group-text " for="ExpDepartamento">Departamento</label>
                                         </div>
                                         <select class="form-control departamento" id="ExpDepartamento" name="ExpDepartamento" required="required">
-                                            <option selected value="0">Seleccione el Departamento</option>
+                                            <option selected value="">Seleccione el Departamento</option>
                                         </select>
 
                                         <div class="input-group-prepend">
@@ -156,7 +156,7 @@
                                         </div>
 
                                         <select class="form-control" id="ExpCiudad" name="ExpCiudad" required="required">
-                                            <option selected value="0">Seleccione la Ciudad</option>
+                                            <option selected value="">Seleccione la Ciudad</option>
 
                                         </select>
 
@@ -171,28 +171,28 @@
                                 <div class="col-md-3">
 
                                     <label for="Direccion"  >Dirección</label>
-                                    <input type="text" id="Direccion" name="Direccion" class="form-control lenum" placeholder="Direccion" required="required" >
+                                    <input type="text" id="Direccion" name="Direccion" class="form-control lenum" placeholder="Direccion" required="required" value="${persona.direccion}">
 
 
                                 </div>
                                 <div class="col-md-3">
 
                                     <label for="Barrio">  Barrio</label>
-                                    <input type="text" id="Barrio" name="Barrio" class="form-control" placeholder="Barrio" required="required" >
+                                    <input type="text" id="Barrio" name="Barrio" class="form-control lenum" placeholder="Barrio" required="required" value="${persona.barrio}">
 
 
                                 </div>
                                 <div class="col-md-2">
 
                                     <label for="Celular"  >Celular</label>
-                                    <input type="text" id="Celular" name="Celular" class="form-control numeros" placeholder="Celular"  >
+                                    <input type="text" id="Celular" name="Celular" class="form-control numeros" placeholder="Celular" value="${persona.telefono}">
 
 
                                 </div>
                                 <div class="col-md-4">
 
                                     <label for="Correo" >Correo</label>
-                                    <input type="email" id="Correo" name="Correo" class="form-control" placeholder="Correo" required="required" >
+                                    <input type="email" id="Correo" name="Correo" class="form-control correo" placeholder="Correo" required="required" value="${persona.email}">
 
 
                                 </div>
@@ -209,7 +209,7 @@
                                             <label class="input-group-text " for="ResPais">Pais</label>
                                         </div>
                                         <select class="form-control pais" id="ResPais" name="ResPais" required="required">
-                                            <option selected value="0">Seleccione el Pais</option>
+                                            <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="ResPais"> 
                                                 <option  value="<c:out value="${ResPais.idPais}" />" ><c:out value="${ResPais.nombrePais}" /></option>
                                             </c:forEach> 
@@ -220,13 +220,13 @@
                                             <label class="input-group-text " for="ResDepartamento">Departamento</label>
                                         </div>
                                         <select class="form-control departamento" id="ResDepartamento" name="ResDepartamento" required="required">
-                                            <option selected value="0">Seleccione el Departamento</option>
+                                            <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="ResCiudad">Ciudad</label>
                                         </div>
                                         <select class="form-control" id="ResCiudad" name="ResCiudad" required="required">
-                                            <option selected value="0">Seleccione la Ciudad</option>
+                                            <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
                                     </div>
@@ -240,26 +240,26 @@
                                 <div class="col-md-4">
 
                                     <label for="OfiDireccion"  >Dirección Oficina</label>
-                                    <input type="text" id="OfiDireccion" name="OfiDireccion" class="form-control" placeholder="OfiDireccion" required="required" >
+                                    <input type="text" id="OfiDireccion" name="OfiDireccion" class="form-control lenum" placeholder="OfiDireccion" required="required" value="${persona.direccionOfic}">
 
 
                                 </div>
                                 <div class="col-md-3">
 
                                     <label for="OfiTelefono"> Telefono</label>
-                                    <input type="text" id="OfiTelefono" name="OfiTelefono" class="form-control numeros" placeholder="OfiTelefono" required="required" >
+                                    <input type="text" id="OfiTelefono" name="OfiTelefono" class="form-control numeros" placeholder="OfiTelefono" required="required" value="${persona.telefonoOfic}">
 
 
                                 </div>
                                 <div class="col-md-2">
                                     <label for="Fax"  >Fax</label>
-                                    <input type="text" id="Fax" name="Fax" class="form-control numeros" placeholder="Fax"  >
+                                    <input type="text" id="Fax" name="Fax" class="form-control numeros" placeholder="Fax"  value="${persona.faxOfic}">
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="OfiCelular"  >Celular</label>
-                                    <input type="text" id="OfiCelular" name="OfiCelular" class="form-control numeros" placeholder="OfiCelular" required="required" >
+                                    <input type="text" id="OfiCelular" name="OfiCelular" class="form-control numeros" placeholder="OfiCelular" required="required" value="${persona.celularOfic}">
 
 
                                 </div>
@@ -276,7 +276,7 @@
                                             <label class="input-group-text " for="OfiPais">Pais</label>
                                         </div>
                                         <select class="form-control pais" id="OfiPais" name="OfiPais" required="required">
-                                            <option selected value="0">Seleccione el Pais</option>
+                                            <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="OfiPais"> 
                                                 <option  value="<c:out value="${OfiPais.idPais}" />" ><c:out value="${OfiPais.nombrePais}" /></option>
                                             </c:forEach> 
@@ -287,13 +287,13 @@
                                             <label class="input-group-text " for="OfiDepartamento">Departamento</label>
                                         </div>
                                         <select class="form-control departamento" id="OfiDepartamento" name="OfiDepartamento" required="required">
-                                            <option selected value="0">Seleccione el Departamento</option>
+                                            <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="OfiCiudad">Ciudad</label>
                                         </div>
                                         <select class="form-control" id="OfiCiudad" name="OfiCiudad" required="required">
-                                            <option selected value="0">Seleccione la Ciudad</option>
+                                            <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
                                     </div>
@@ -307,10 +307,8 @@
 
 
                                 <div class="col-md-4">
-
-
                                     <label for="ano"  >Año</label>
-                                    <input type="text" class="form-control numeros" id="ano" name="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
+                                    <input type="text" class="form-control numeros" id="ano" name="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}" value="${persona.fechaNacimiento}">
 
                                 </div>
                                 <div class="col-md-4">
@@ -321,7 +319,7 @@
 
 
                                     <label for="mes"  >Mes</label>
-                                    <input type="text" id="mes" name="mes" class="form-control numeros" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
+                                    <input type="text" id="mes" name="mes" class="form-control numeros" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}" value="${persona.celularOfic}">
 
 
 
@@ -334,7 +332,7 @@
                                 <div class="col-md-4">
 
                                     <label for="dia"  >Dia</label>
-                                    <input type="text" id="dia" name="dia" class="form-control numeros" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
+                                    <input type="text" id="dia" name="dia" class="form-control numeros" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}" value="${persona.celularOfic}">
                                 </div>  
                             </div>
                         </div>
@@ -347,7 +345,7 @@
                                             <label class="input-group-text " for="NacPais">Pais</label>
                                         </div>
                                         <select class="form-control pais" id="NacPais" name="NacPais" required="required">
-                                            <option selected value="0">Seleccione el Pais</option>
+                                            <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="NacPais"> 
                                                 <option  value="<c:out value="${NacPais.idPais}" />" ><c:out value="${NacPais.nombrePais}" /></option>
                                             </c:forEach> 
@@ -358,13 +356,13 @@
                                             <label class="input-group-text " for="NacDepartamento">Departamento</label>
                                         </div>
                                         <select class="form-control departamento" id="NacDepartamento" name="NacDepartamento" required="required">
-                                            <option selected value="0">Seleccione el Departamento</option>
+                                            <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="NacCiudad">Ciudad</label>
                                         </div>
                                         <select class="form-control" id="NacCiudad" name="NacCiudad" required="required">
-                                            <option selected value="0">Seleccione la Ciudad</option>
+                                            <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
                                     </div>
@@ -380,7 +378,7 @@
                                     <label  for="Sexo">Sexo</label>
 
                                     <select class="form-control" id="Sexo" name="Sexo" required="required">
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Masculino">Masculino</option>
                                         <option value="Femenino">Femenino</option>
 
@@ -392,7 +390,7 @@
                                     <label  for="Estado">Estado Civil</label>
 
                                     <select class="form-control" id="Estado" name="Estado" required="required">
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="1">Soltero</option>
                                         <option value="2">Casado</option>
                                         <option value="3">Unión Libre</option>
@@ -410,7 +408,7 @@
                                     <label  for="Estrato">Estrato</label>
 
                                     <select class="form-control" id="Estrato" name="Estrato" required="required">
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="3">3</option>
@@ -489,7 +487,7 @@
                                     <label   for="TipoEmpresa" >Tipo Empresa</label>
 
                                     <select class="form-control " id="TipoEmpresa" name="TipoEmpresa" required="required">
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Publica">Publica</option>
                                         <option value="Privada">Privada</option>
 
@@ -516,7 +514,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="EmpDireccion"  >Dirección</label>
-                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control" placeholder="Direccion" required="required" >
+                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" required="required" >
 
 
                                 </div>
@@ -541,7 +539,7 @@
                                             <label class="input-group-text " for="EmpPais">Pais</label>
                                         </div>
                                         <select class="form-control pais" id="EmpPais" name="EmpPais" required="required">
-                                            <option selected value="0">Seleccione el Pais</option>
+                                            <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="EmpPais"> 
                                                 <option  value="<c:out value="${EmpPais.idPais}" />" ><c:out value="${EmpPais.nombrePais}" /></option>
                                             </c:forEach> 
@@ -552,13 +550,13 @@
                                             <label class="input-group-text " for="EmpDepartamento">Departamento</label>
                                         </div>
                                         <select class="form-control departamento" id="EmpDepartamento" name="EmpDepartamento" required="required">
-                                            <option selected value="0">Seleccione el Departamento</option>
+                                            <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="EmpCiudad">Ciudad</label>
                                         </div>
                                         <select class="form-control" id="EmpCiudad" name="EmpCiudad" required="required">
-                                            <option selected value="0">Seleccione la Ciudad</option>
+                                            <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
                                     </div>
@@ -574,7 +572,7 @@
                                             <label class="input-group-text " for="Conocimiento">¿Cómo obtuvo conocimiento de la existencia de este programa?</label>
                                         </div>
                                         <select class="form-control" id="Conocimiento" name="Conocimiento" required="required">
-                                            <option selected>--</option>
+                                            <option value="" selected>--</option>
                                             <option value="Folleto">Folleto</option>
                                             <option value="Ventanilla">Ventanilla</option>
                                             <option value="Fax">Fax</option>
@@ -605,7 +603,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="funciones">Funciones</label>
                                         </div>
-                                        <textarea class="form-control" id="funciones" name="funciones"  required="required"></textarea>
+                                        <textarea class="form-control letras" id="funciones" name="funciones"  required="required"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -689,7 +687,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="EspComprende" name="EspComprende" required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -701,7 +699,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="EspHabla" name="EspHabla"  required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -714,7 +712,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="EspEscribe" name="EspEscribe" required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -734,7 +732,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="IngComprende" name="IngComprende"  required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -746,7 +744,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="IngHabla" name="IngHabla" required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -759,7 +757,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="IngEscribe" name="IngEscribe"  required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -779,7 +777,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="FranComprende" name="FranComprende"  required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -791,7 +789,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="FranHabla" name="FranHabla"  required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -803,7 +801,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="FranEscribe" name="FranEscribe"  required="required"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -830,7 +828,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="otroComprende" name="otroComprende"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -843,7 +841,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="otroHabla" name="otroHabla"  >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -856,7 +854,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <select class="form-control" id="otroEscribe" name="otroEscribe" >
-                                        <option selected>--</option>
+                                        <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
                                         <option value="Regular">Regular</option>
@@ -877,7 +875,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
 
-                                        <textarea class="form-control" id="razones" name="razones"  required="required"></textarea>
+                                        <textarea class="form-control letras" id="razones" name="razones"  required="required"></textarea>
                                     </div>
                                 </div>
                             </div>
@@ -971,7 +969,7 @@
                                             <label class="input-group-text " for="Egresado">¿Es egresado Unillanos?</label>
                                         </div>
                                         <select class="form-control" id="Egresado" name="Egresado" required="required">
-                                            <option selected>--</option>
+                                            <option value="" selected>--</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
 

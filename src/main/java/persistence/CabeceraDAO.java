@@ -122,6 +122,48 @@ public class CabeceraDAO {
         return cabecera;
     }
 
+    public Cabecera getByPreguntas(InfoPreguntas preguntas) {
+        Cabecera cabecera = new Cabecera();
+        PreparedStatement psSelect = null;
+        ResultSet result = null;
+        try {
+            if (psSelect == null) {
+                psSelect = db.PreparedQuery(
+                        "SELECT ID_CABECERA, CATEGORIA, PROGRAMA, FACULTAD, ID_PREGUNTAS FROM cabecera WHERE ID_PREGUNTAS=?"
+                );
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(preguntas.getIdPreguntas());
+            result = db.ExecuteQuery(psSelect, inputs);
+            while (result.next()) {
+                cabecera.setIdCabecera(result.getInt("ID_CABECERA"));
+                cabecera.setCategoria((new CategoriaDAO()).get(result.getInt("CATEGORIA")));
+                cabecera.setPrograma(result.getString("PROGRAMA"));
+                cabecera.setFacultad(result.getString("FACULTAD"));
+                cabecera.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
+
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return cabecera;
+    }
+
     public long insert(Cabecera cabecera) {
         long result;
         try {

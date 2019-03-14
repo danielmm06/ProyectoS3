@@ -88,12 +88,15 @@ $('.fechas').on('change', function (event) { //Validar formato de fechas
     }
 });
 
-$('.pais').on('change', function (event) {
-    AJAX($(event.target).val(), event.target.id.replace("Pais", "Departamento"), 'FormularioDept', true);
-});
-
-$('.departamento').on('change', function (event) {
-    AJAX($(event.target).val(), event.target.id.replace("Departamento", "Ciudad"), 'FormularioCiudad', true);
+$('.correo').on('change', function (event) { //Validar formato de fechas
+    if ($(event.target).val() != "") {
+        var regExp = /^[a-z\.]*\@[a-z]*\.[a-z\.]*$/;
+        if (!regExp.test($(event.target).val())) {
+            alert("El correo debe tener el formato micorreo@unejemplo.es o mi.correo@un.ejemplo.es");
+            $(event.target).val("");
+            $(event.target).focus();
+        }
+    }
 });
 
 $('#Conocimiento').on('change', function (event) {
@@ -102,6 +105,14 @@ $('#Conocimiento').on('change', function (event) {
     } else {
         $('#Otrosok').hide();
     }
+});
+
+$('.pais').on('change', function (event) {
+    AJAX($(event.target).val()!=""?$(event.target).val():"0", event.target.id.replace("Pais", "Departamento"), 'FormularioDept', true);
+});
+
+$('.departamento').on('change', function (event) {
+    AJAX($(event.target).val()!=""?$(event.target).val():"0", event.target.id.replace("Departamento", "Ciudad"), 'FormularioCiudad', true);
 });
 //var pais = document.getElementById("ExpPais");
 //alert(pais.value);

@@ -39,7 +39,7 @@ public class InfoLaboralDAO {
     }
 
     public ArrayList<InfoLaboral> getAll() throws SQLException {
-        ArrayList<InfoLaboral> listaIdiomas = new ArrayList<InfoLaboral>();
+        ArrayList<InfoLaboral> listaLaboral = new ArrayList<InfoLaboral>();
         PreparedStatement psSelectAll = null;
         ResultSet result = null;
         try {
@@ -58,7 +58,7 @@ public class InfoLaboralDAO {
                 laboral.setFechaInicio(Date.valueOf(result.getString("FECHA_INICIO")));
                 laboral.setFechaFin(Date.valueOf(result.getString("FECHA_FIN")));
                 laboral.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
-                listaIdiomas.add(laboral);
+                listaLaboral.add(laboral);
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -78,7 +78,50 @@ public class InfoLaboralDAO {
                 }
             }
         }
-        return listaIdiomas;
+        return listaLaboral;
+    }
+
+    public ArrayList<InfoLaboral> getAllByPreguntas(InfoPreguntas preguntas) {
+        ArrayList<InfoLaboral> listaLaboral = new ArrayList<InfoLaboral>();
+        PreparedStatement psSelectAll = null;
+        ResultSet result = null;
+        try {
+            if (psSelectAll == null) {
+                psSelectAll = db.PreparedQuery(
+                        "SELECT ID_LABORAL,EMPRESA,CARGO,FECHA_INICIO,FECHA_FIN,ID_PREGUNTAS "
+                        + "FROM info_laboral where ID_PREGUNTAS="+preguntas.getIdPreguntas()
+                );
+            }
+            result = db.ExecuteQuery(psSelectAll);
+            while (result.next()) {
+                InfoLaboral laboral = new InfoLaboral();
+                laboral.setIdLaboral(result.getInt("ID_LABORAL"));
+                laboral.setEmpresa(result.getString("EMPRESA"));
+                laboral.setCargo(result.getString("CARGO"));
+                laboral.setFechaInicio(Date.valueOf(result.getString("FECHA_INICIO")));
+                laboral.setFechaFin(Date.valueOf(result.getString("FECHA_FIN")));
+                laboral.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
+                listaLaboral.add(laboral);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return listaLaboral;
     }
 
     public InfoLaboral get(int idLaboral) {
@@ -89,7 +132,7 @@ public class InfoLaboralDAO {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
                         "SELECT ID_LABORAL,EMPRESA,CARGO,FECHA_INICIO,FECHA_FIN,ID_PREGUNTAS "
-                                + "FROM info_laboral WHERE ID_LABORAL=?"
+                        + "FROM info_laboral WHERE ID_LABORAL=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -168,7 +211,7 @@ public class InfoLaboralDAO {
                 columns += ",FECHA_INICIO=?";
                 inputs.add(laboral.getFechaInicio());
             }
-            
+
             if (laboral.getFechaFin() != null) {
                 columns += ",FECHA_FIN=?";
                 inputs.add(laboral.getFechaFin());
