@@ -89,7 +89,7 @@ public class SoporteDAO {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
                         "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PREGUNTAS "
-                                + "FROM soporte WHERE ID_SOPORTE=?"
+                        + "FROM soporte WHERE ID_SOPORTE=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -146,6 +146,14 @@ public class SoporteDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -168,7 +176,7 @@ public class SoporteDAO {
                 columns += ",ID_TIPOSOPORTE=?";
                 inputs.add(soporte.getIdTiposoporte().getIdTiposoporte());
             }
-            
+
             if (soporte.getValidacion() != 0) {
                 columns += ",VALIDACION=?";
                 inputs.add(soporte.getValidacion());
@@ -180,13 +188,22 @@ public class SoporteDAO {
             inputs.add(soporte.getIdSoporte());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE soporte SET " + columns + " WHERE ID_SOPORTE=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE soporte SET " + columns + " WHERE ID_SOPORTE=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -205,6 +222,14 @@ public class SoporteDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

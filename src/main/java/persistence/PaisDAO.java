@@ -99,6 +99,21 @@ public class PaisDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return pais;
     }
@@ -124,6 +139,14 @@ public class PaisDAO {
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -141,13 +164,22 @@ public class PaisDAO {
 
             inputs.add(pais.getIdPais());
             columns = columns.substring(1);
-
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE PAIS SET " + columns + " WHERE ID_PAIS=? "
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE PAIS SET " + columns + " WHERE ID_PAIS=? "
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -166,6 +198,14 @@ public class PaisDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

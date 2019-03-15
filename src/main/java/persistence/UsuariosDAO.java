@@ -14,7 +14,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  *
@@ -95,7 +94,7 @@ public class UsuariosDAO {
             while (result.next()) {
                 usuarios.setIdUsuario(result.getInt("ID_USUARIO"));
                 usuarios.setContrasena(result.getString("CONTRASENA"));
-                usuarios.setIdRol((new RolDAO()).get(result.getInt("ID_ROL"))); /////////////////////////////////////////////////////
+                usuarios.setIdRol((new RolDAO()).get(result.getInt("ID_ROL"))); 
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -151,6 +150,14 @@ public class UsuariosDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -182,6 +189,14 @@ public class UsuariosDAO {
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -200,6 +215,14 @@ public class UsuariosDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

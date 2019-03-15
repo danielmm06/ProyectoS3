@@ -88,7 +88,7 @@ public class InfoIdiomasDAO {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
                         "SELECT ID_IDIOMAS,IDIOMA,COMPRENDE,HABLA,ESCRIBE,ID_PREGUNTAS "
-                        + "FROM info_idiomas where ID_PREGUNTAS="+preguntas.getIdPreguntas()
+                        + "FROM info_idiomas where ID_PREGUNTAS=" + preguntas.getIdPreguntas()
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -131,7 +131,7 @@ public class InfoIdiomasDAO {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
                         "SELECT ID_IDIOMAS,IDIOMA,COMPRENDE,HABLA,ESCRIBE,ID_PREGUNTAS "
-                                + "FROM info_idiomas WHERE ID_IDIOMAS=?"
+                        + "FROM info_idiomas WHERE ID_IDIOMAS=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -188,6 +188,14 @@ public class InfoIdiomasDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -210,7 +218,7 @@ public class InfoIdiomasDAO {
                 columns += ",HABLA=?";
                 inputs.add(idiomas.getHabla());
             }
-            
+
             if (idiomas.getEscribe() != null) {
                 columns += ",ESCRIBE=?";
                 inputs.add(idiomas.getEscribe());
@@ -222,13 +230,22 @@ public class InfoIdiomasDAO {
             inputs.add(idiomas.getIdIdiomas());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE info_idiomas SET " + columns + " WHERE ID_IDIOMAS=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE info_idiomas SET " + columns + " WHERE ID_IDIOMAS=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -247,6 +264,14 @@ public class InfoIdiomasDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

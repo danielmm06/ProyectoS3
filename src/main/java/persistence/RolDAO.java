@@ -131,6 +131,14 @@ public class RolDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -148,13 +156,22 @@ public class RolDAO {
             inputs.add(rol.getIdTUsuario());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE ROL SET " + columns + " WHERE ID_T_USUARIO=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE ROL SET " + columns + " WHERE ID_T_USUARIO=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -173,6 +190,14 @@ public class RolDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

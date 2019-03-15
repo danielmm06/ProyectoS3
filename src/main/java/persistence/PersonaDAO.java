@@ -43,6 +43,7 @@ public class PersonaDAO {
 
     public ArrayList<Persona> getAll() {
         ArrayList<Persona> listaPersonas = new ArrayList<Persona>();
+        ResultSet result = null;
         try {
 
             if (psSelectAll == null) {
@@ -54,7 +55,7 @@ public class PersonaDAO {
                         + "ESTRATO, ID_PREGUNTAS FROM persona"
                 );
             }
-            ResultSet result = db.ExecuteQuery(psSelectAll);
+            result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 Persona persona = new Persona();
                 persona.setNombre1(result.getString("NOMBRE1"));
@@ -84,6 +85,21 @@ public class PersonaDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return listaPersonas;
     }
@@ -132,6 +148,21 @@ public class PersonaDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return persona;
     }
@@ -178,6 +209,14 @@ public class PersonaDAO {
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -244,11 +283,11 @@ public class PersonaDAO {
                 columns += ",TELEFONO_OFIC=?";
                 inputs.add(persona.getTelefonoOfic());
             }
-            if (persona.getFaxOfic()!= null) {
+            if (persona.getFaxOfic() != null) {
                 columns += ",FAX_OFIC=?";
                 inputs.add(persona.getFaxOfic());
             }
-            if (persona.getCelularOfic()!= null) {
+            if (persona.getCelularOfic() != null) {
                 columns += ",CELULAR_OFIC=?";
                 inputs.add(persona.getCelularOfic());
             }
@@ -279,13 +318,22 @@ public class PersonaDAO {
 
             inputs.add(persona.getDocumento());
             columns = columns.substring(1);
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE persona SET " + columns + " WHERE DOCUMENTO=? "
-            );
-
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE persona SET " + columns + " WHERE DOCUMENTO=? "
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -304,6 +352,14 @@ public class PersonaDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

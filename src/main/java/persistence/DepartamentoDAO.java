@@ -39,6 +39,7 @@ public class DepartamentoDAO {
 
     public ArrayList<Departamento> getAll() {
         ArrayList<Departamento> listaDepartamento = new ArrayList<Departamento>();
+        ResultSet result = null;
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
@@ -46,7 +47,7 @@ public class DepartamentoDAO {
                         + "FROM DEPARTAMENTO"
                 );
             }
-            ResultSet result = db.ExecuteQuery(psSelectAll);
+            result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 Departamento departamento = new Departamento();
                 departamento.setIdDpto(result.getInt("ID_DPTO"));
@@ -59,6 +60,21 @@ public class DepartamentoDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return listaDepartamento;
 
@@ -86,42 +102,69 @@ public class DepartamentoDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return departamento;
     }
-    
+
     public ArrayList<Departamento> getByPais(int codPais) {
         ArrayList<Departamento> listaDepartPais = new ArrayList<Departamento>();
         PreparedStatement psSelectGetByPais = null;
         ResultSet result = null;
         try {
             if (psSelectGetByPais == null) {
-                    psSelectGetByPais = db.PreparedQuery("SELECT ID_DPTO,NOMBRE_DPTO,ID_PAIS "
+                psSelectGetByPais = db.PreparedQuery("SELECT ID_DPTO,NOMBRE_DPTO,ID_PAIS "
                         + "FROM DEPARTAMENTO "
                         + "WHERE ID_PAIS=?");
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(codPais);
+            result = db.ExecuteQuery(psSelectGetByPais, inputs);
+            while (result.next()) {
+                Departamento departamento = new Departamento();
+                departamento.setIdDpto(result.getInt("ID_DPTO"));
+                departamento.setNombreDpto(result.getString("NOMBRE_DPTO"));
+                Pais pais = new Pais();
+                pais.setIdPais(result.getInt("ID_PAIS"));
+                departamento.setIdPais(pais);
+
+                listaDepartPais.add(departamento);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
                 }
-                ArrayList<Object> inputs = new ArrayList<Object>();
-                inputs.add(codPais);
-                result = db.ExecuteQuery(psSelectGetByPais,inputs);
-                while(result.next()) {
-                    Departamento departamento = new Departamento();
-                    departamento.setIdDpto(result.getInt("ID_DPTO"));
-                    departamento.setNombreDpto(result.getString("NOMBRE_DPTO"));
-                    Pais pais = new Pais();
-                    pais.setIdPais(result.getInt("ID_PAIS"));
-                    departamento.setIdPais(pais);
-                    
-                    listaDepartPais.add(departamento);
+            }
+            if (psSelectGetByPais != null) {
+                try {
+                    psSelectGetByPais.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
-		} catch (SQLException e) {
-			throw new RuntimeException("Error al ejecutar consulta.", e);
-		} 
-    	
-		return listaDepartPais;
-	}
-    
-    
-    
+            }
+        }
+
+        return listaDepartPais;
+    }
 
     public long insert(Departamento departamento) {
         long result;
@@ -140,6 +183,14 @@ public class DepartamentoDAO {
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -160,13 +211,22 @@ public class DepartamentoDAO {
 
             inputs.add(departamento.getIdDpto());
             columns = columns.substring(1);
-
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE DEPARTAMENTO SET " + columns + " WHERE ID_DPTO=? "
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE DEPARTAMENTO SET " + columns + " WHERE ID_DPTO=? "
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -185,6 +245,14 @@ public class DepartamentoDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

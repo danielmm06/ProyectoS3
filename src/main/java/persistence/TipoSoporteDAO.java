@@ -130,6 +130,14 @@ public class TipoSoporteDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -140,20 +148,29 @@ public class TipoSoporteDAO {
             String columns = "";
             ArrayList<Object> inputs = new ArrayList<Object>();
 
-            if (tSoporte.getNombre()!= null) {
+            if (tSoporte.getNombre() != null) {
                 columns += ",NOMBRE=?";
                 inputs.add(tSoporte.getNombre());
             }
             inputs.add(tSoporte.getIdTiposoporte());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE tipo_soporte SET " + columns + " WHERE ID_TIPOSOPORTE=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE tipo_soporte SET " + columns + " WHERE ID_TIPOSOPORTE=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -172,6 +189,14 @@ public class TipoSoporteDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -191,10 +216,10 @@ public class TipoSoporteDAO {
 //            if (rol.getIdTiposoporte() != 0) {
 //                System.out.println(rol.getIdTiposoporte() + " " + rol.getNombre());
 //            }
-            System.out.println("INSERT");
-            TipoSoporte rol = new TipoSoporte();
-            rol.setNombre("ADMIN");
-            App.TSoporteDAO.insert(rol);
+//            System.out.println("INSERT");
+//            TipoSoporte rol = new TipoSoporte();
+//            rol.setNombre("ADMIN");
+//            App.TSoporteDAO.insert(rol);
 //            System.out.println("UPDATE");
 //            TipoSoporte rol = new TipoSoporte();
 //            rol.setIdTiposoporte(1);

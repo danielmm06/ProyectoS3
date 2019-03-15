@@ -9,7 +9,6 @@ import conexion.App;
 import conexion.DataBase;
 import entity.Ciudad;
 import entity.Departamento;
-import entity.Pais;
 import java.io.IOException;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -41,6 +40,7 @@ public class CiudadDAO {
 
     public ArrayList<Ciudad> getAll() {
         ArrayList<Ciudad> listaCiudad = new ArrayList<Ciudad>();
+        ResultSet result = null;
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
@@ -48,7 +48,7 @@ public class CiudadDAO {
                         + "FROM CIUDAD"
                 );
             }
-            ResultSet result = db.ExecuteQuery(psSelectAll);
+            result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 Ciudad ciudad = new Ciudad();
                 ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
@@ -61,6 +61,21 @@ public class CiudadDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return listaCiudad;
     }
@@ -87,40 +102,69 @@ public class CiudadDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return ciudad;
     }
-    
+
     public ArrayList<Ciudad> getByDepart(int idDpto) {
         ArrayList<Ciudad> listaCiudadDerpt = new ArrayList<Ciudad>();
         PreparedStatement psSelectGetByDepart = null;
         ResultSet result = null;
         try {
             if (psSelectGetByDepart == null) {
-                    psSelectGetByDepart = db.PreparedQuery("SELECT ID_CIUDAD,NOMBRE_CIUDAD,ID_DPTO "
+                psSelectGetByDepart = db.PreparedQuery("SELECT ID_CIUDAD,NOMBRE_CIUDAD,ID_DPTO "
                         + "FROM CIUDAD "
                         + "WHERE ID_DPTO=?");
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(idDpto);
+            result = db.ExecuteQuery(psSelectGetByDepart, inputs);
+            while (result.next()) {
+                Ciudad ciudad = new Ciudad();
+                ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
+                ciudad.setNombreCiudad(result.getString("NOMBRE_CIUDAD"));
+                Departamento departamento = new Departamento();
+                departamento.setIdDpto(result.getInt("ID_DPTO"));
+                ciudad.setIdDpto(departamento);
+
+                listaCiudadDerpt.add(ciudad);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
                 }
-                ArrayList<Object> inputs = new ArrayList<Object>();
-                inputs.add(idDpto);
-                result = db.ExecuteQuery(psSelectGetByDepart,inputs);
-                while(result.next()) {
-                    Ciudad ciudad = new Ciudad();
-                    ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
-                    ciudad.setNombreCiudad(result.getString("NOMBRE_CIUDAD"));
-                    Departamento departamento = new Departamento();
-                    departamento.setIdDpto(result.getInt("ID_DPTO"));
-                    ciudad.setIdDpto(departamento);
-                    
-                    listaCiudadDerpt.add(ciudad);
+            }
+            if (psSelectGetByDepart != null) {
+                try {
+                    psSelectGetByDepart.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
-		} catch (SQLException e) {
-			throw new RuntimeException("Error al ejecutar consulta.", e);
-		} 
-    	
-		return listaCiudadDerpt;
-	}
-    
+            }
+        }
+
+        return listaCiudadDerpt;
+    }
 
     public long insert(Ciudad ciudad) {
         long result;
@@ -139,6 +183,14 @@ public class CiudadDAO {
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -160,13 +212,23 @@ public class CiudadDAO {
 
             inputs.add(ciudad.getIdCiudad());
             columns = columns.substring(1);
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE CIUDAD SET " + columns + " WHERE ID_CIUDAD=? "
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE CIUDAD SET " + columns + " WHERE ID_CIUDAD=? "
+                );
+            }
 
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -185,6 +247,14 @@ public class CiudadDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

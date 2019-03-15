@@ -148,13 +148,22 @@ public class CategoriaDAO {
             inputs.add(categoria.getIdCategoria());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE categoria SET " + columns + " WHERE ID_CATEGORIA=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE categoria SET " + columns + " WHERE ID_CATEGORIA=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -173,6 +182,14 @@ public class CategoriaDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

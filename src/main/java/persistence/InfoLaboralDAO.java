@@ -89,7 +89,7 @@ public class InfoLaboralDAO {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
                         "SELECT ID_LABORAL,EMPRESA,CARGO,FECHA_INICIO,FECHA_FIN,ID_PREGUNTAS "
-                        + "FROM info_laboral where ID_PREGUNTAS="+preguntas.getIdPreguntas()
+                        + "FROM info_laboral where ID_PREGUNTAS=" + preguntas.getIdPreguntas()
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -189,6 +189,14 @@ public class InfoLaboralDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -223,13 +231,22 @@ public class InfoLaboralDAO {
             inputs.add(laboral.getIdLaboral());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE info_laboral SET " + columns + " WHERE ID_LABORAL=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE info_laboral SET " + columns + " WHERE ID_LABORAL=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -248,6 +265,14 @@ public class InfoLaboralDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

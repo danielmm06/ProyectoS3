@@ -7,7 +7,6 @@ package persistence;
 
 import conexion.App;
 import conexion.DataBase;
-import entity.Cabecera;
 import entity.Ciudad;
 import entity.InfoPreguntas;
 import java.io.IOException;
@@ -40,16 +39,15 @@ public class InfoPreguntasDAO {
     }
 
     public int count() throws SQLException {
-        PreparedStatement psSelectAll = null;
         ResultSet result = null;
         int count = 0;
         try {
-            if (psSelectAll == null) {
-                psSelectAll = db.PreparedQuery(
+            if (psSelect == null) {
+                psSelect = db.PreparedQuery(
                         "SELECT COUNT(ID_PREGUNTAS) as count FROM info_preguntas"
                 );
             }
-            result = db.ExecuteQuery(psSelectAll);
+            result = db.ExecuteQuery(psSelect);
             while (result.next()) {
                 count = result.getInt("count");
             }
@@ -63,9 +61,9 @@ public class InfoPreguntasDAO {
                     throw new RuntimeException("Error al cerrar el resultset", e);
                 }
             }
-            if (psSelectAll != null) {
+            if (psSelect != null) {
                 try {
-                    psSelectAll.close();
+                    psSelect.close();
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -76,6 +74,7 @@ public class InfoPreguntasDAO {
 
     public ArrayList<InfoPreguntas> getAll() {
         ArrayList<InfoPreguntas> listaInfoPreguntas = new ArrayList<InfoPreguntas>();
+        ResultSet result = null;
         try {
 
             if (psSelectAll == null) {
@@ -87,7 +86,7 @@ public class InfoPreguntasDAO {
                         + "VALIDACION_PREGUNTAS FROM info_preguntas"
                 );
             }
-            ResultSet result = db.ExecuteQuery(psSelectAll);
+            result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 InfoPreguntas infoPreguntas = new InfoPreguntas();
                 infoPreguntas.setIdPreguntas(result.getInt("ID_PREGUNTAS"));
@@ -114,6 +113,21 @@ public class InfoPreguntasDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectAll != null) {
+                try {
+                    psSelectAll.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return listaInfoPreguntas;
     }
@@ -158,6 +172,21 @@ public class InfoPreguntasDAO {
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelect != null) {
+                try {
+                    psSelect.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return infoPreguntas;
     }
@@ -199,6 +228,14 @@ public class InfoPreguntasDAO {
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -283,13 +320,22 @@ public class InfoPreguntasDAO {
 
             inputs.add(infoPreguntas.getIdPreguntas());
             columns = columns.substring(1);
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE info_preguntas SET " + columns + " WHERE ID_PREGUNTAS=? "
-            );
-
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE info_preguntas SET " + columns + " WHERE ID_PREGUNTAS=? "
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -308,6 +354,14 @@ public class InfoPreguntasDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }

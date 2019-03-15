@@ -184,6 +184,14 @@ public class CabeceraDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -213,13 +221,22 @@ public class CabeceraDAO {
             inputs.add(cabecera.getIdCabecera());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE cabecera SET " + columns + " WHERE ID_CABECERA=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE cabecera SET " + columns + " WHERE ID_CABECERA=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -238,6 +255,14 @@ public class CabeceraDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -276,8 +301,8 @@ public class CabeceraDAO {
 //            rol.setPrograma("dsa");
 //            rol.setFacultad("dsa");
 //            System.out.println(App.CabeceraDAO.update(rol));
-//            System.out.println("DELETE");
-            App.CabeceraDAO.delete(2);
+////            System.out.println("DELETE");
+//            App.CabeceraDAO.delete(2);
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {

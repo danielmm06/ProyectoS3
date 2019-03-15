@@ -88,7 +88,7 @@ public class InfoAcademicaDAO {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
                         "SELECT ID_INFO_ACADEMICA,UNIVERSIDAD,PROGRAMA,TITULO_OBTENIDO,ANO,ID_PREGUNTAS "
-                        + "FROM info_academica where ID_PREGUNTAS="+preguntas.getIdPreguntas()
+                        + "FROM info_academica where ID_PREGUNTAS=" + preguntas.getIdPreguntas()
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -188,6 +188,14 @@ public class InfoAcademicaDAO {
 
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
+        } finally {
+            if (psInsert != null) {
+                try {
+                    psInsert.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -222,13 +230,22 @@ public class InfoAcademicaDAO {
             inputs.add(academica.getIdInfoAcademica());
             columns = columns.substring(1);
 
-            //if (psUpdate == null) {
-            psUpdate = db.PreparedUpdate(
-                    "UPDATE info_academica SET " + columns + " WHERE ID_INFO_ACADEMICA=?"
-            );
+            if (psUpdate == null) {
+                psUpdate = db.PreparedUpdate(
+                        "UPDATE info_academica SET " + columns + " WHERE ID_INFO_ACADEMICA=?"
+                );
+            }
             result = db.ExecuteUpdate(psUpdate, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar actualización.", e);
+        } finally {
+            if (psUpdate != null) {
+                try {
+                    psUpdate.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
@@ -247,6 +264,14 @@ public class InfoAcademicaDAO {
             result = db.ExecuteUpdate(psDelete, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
         }
         return result;
     }
