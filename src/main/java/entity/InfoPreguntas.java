@@ -12,14 +12,13 @@ import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -58,8 +57,8 @@ import javax.xml.bind.annotation.XmlTransient;
 public class InfoPreguntas implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
+    @NotNull
     @Column(name = "ID_PREGUNTAS")
     private Integer idPreguntas;
     @Size(max = 45)
@@ -129,12 +128,13 @@ public class InfoPreguntas implements Serializable {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<InfoIdiomas> infoIdiomasSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
-    private Set<Persona> personaSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<InfoLaboral> infoLaboralSet;
     @JoinColumn(name = "EMP_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne
     private Ciudad empCiudad;
+    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "DOCUMENTO", insertable = false, updatable = false)
+    @OneToOne(optional = false)
+    private Persona persona;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<InfoAcademica> infoAcademicaSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
@@ -314,15 +314,6 @@ public class InfoPreguntas implements Serializable {
     }
 
     @XmlTransient
-    public Set<Persona> getPersonaSet() {
-        return personaSet;
-    }
-
-    public void setPersonaSet(Set<Persona> personaSet) {
-        this.personaSet = personaSet;
-    }
-
-    @XmlTransient
     public Set<InfoLaboral> getInfoLaboralSet() {
         return infoLaboralSet;
     }
@@ -337,6 +328,14 @@ public class InfoPreguntas implements Serializable {
 
     public void setEmpCiudad(Ciudad empCiudad) {
         this.empCiudad = empCiudad;
+    }
+
+    public Persona getPersona() {
+        return persona;
+    }
+
+    public void setPersona(Persona persona) {
+        this.persona = persona;
     }
 
     @XmlTransient

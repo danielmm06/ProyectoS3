@@ -22,7 +22,7 @@
     <jsp:body>
         <div class="container-fluid">
             <div class="card mb-3">
-
+                <div id="info" hidden>${formulario}</div>
                 <div class="card-header">                    
                     <h2><i class="fa fa-file-alt" aria-hidden="true"></i> Formulario de Registro</h2>
 
@@ -305,34 +305,22 @@
                         <div class="form-group">
                             <div class="form-row">
 
-
                                 <div class="col-md-4">
                                     <label for="ano"  >Año</label>
-                                    <input type="text" class="form-control numeros" id="ano" name="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}" value="${persona.fechaNacimiento}">
+                                    <input type="text" class="form-control numeros" id="ano" name="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
 
                                 </div>
                                 <div class="col-md-4">
 
-
-
-
-
-
                                     <label for="mes"  >Mes</label>
-                                    <input type="text" id="mes" name="mes" class="form-control numeros" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}" value="${persona.celularOfic}">
-
-
-
-
-
-
+                                    <input type="text" id="mes" name="mes" class="form-control numeros" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
 
 
                                 </div>
                                 <div class="col-md-4">
 
                                     <label for="dia"  >Dia</label>
-                                    <input type="text" id="dia" name="dia" class="form-control numeros" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}" value="${persona.celularOfic}">
+                                    <input type="text" id="dia" name="dia" class="form-control numeros" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
                                 </div>  
                             </div>
                         </div>
@@ -440,29 +428,29 @@
 
                                 <tbody>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a11" name="a11" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a12" name="a12" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a13" name="a13" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a14" name="a14" maxlength="4" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a11" name="a11" style="outline: none" value="${academica.size()>=1?academica.get(0).universidad:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a12" name="a12" style="outline: none"value="${academica.size()>=1?academica.get(0).programa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a13" name="a13" style="outline: none"value="${academica.size()>=1?academica.get(0).tituloObtenido:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a14" name="a14" maxlength="4" style="outline: none"value="${academica.size()>=1?academica.get(0).ano:''}"></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a21" name="a21" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a22" name="a22" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a23" name="a23" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a24" name="a24" maxlength="4" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a21" name="a21" style="outline: none"value="${academica.size()>=2?academica.get(1).universidad:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a22" name="a22" style="outline: none"value="${academica.size()>=2?academica.get(1).programa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a23" name="a23" style="outline: none"value="${academica.size()>=2?academica.get(1).tituloObtenido:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a24" name="a24" maxlength="4" style="outline: none"value="${academica.size()>=2?academica.get(1).ano:''}"></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a31" name="a31" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a32" name="a32" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a33" name="a33" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a34" name="a34" maxlength="4" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a31" name="a31" style="outline: none"value="${academica.size()>=3?academica.get(2).universidad:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a32" name="a32" style="outline: none"value="${academica.size()>=3?academica.get(2).programa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a33" name="a33" style="outline: none"value="${academica.size()>=3?academica.get(2).tituloObtenido:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a34" name="a34" maxlength="4" style="outline: none"value="${academica.size()>=3?academica.get(2).ano:''}"></td>
                                     </tr>
                                     <tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a41" name="a41" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a42" name="a42" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a43" name="a43" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a44" name="a44" maxlength="4" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a41" name="a41" style="outline: none" value="${academica.size()>=4?academica.get(3).universidad:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a42" name="a42" style="outline: none" value="${academica.size()>=4?academica.get(3).programa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a43" name="a43" style="outline: none" value="${academica.size()>=4?academica.get(3).tituloObtenido:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a44" name="a44" maxlength="4" style="outline: none" value="${academica.size()>=4?academica.get(3).ano:''}"></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -477,7 +465,7 @@
 
                                 <div class="col-md-4">
                                     <label for="Empresa"  >Nombre Empresa</label>
-                                    <input type="text" id="Empresa" name="Empresa" class="form-control letras" placeholder="Empresa" required="required" >
+                                    <input type="text" id="Empresa" name="Empresa" class="form-control letras" placeholder="Empresa" required="required" value="${preguntas.empresa}">
 
 
                                 </div>
@@ -497,7 +485,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <label for="Cargo"  >Cargo</label>
-                                    <input type="text" id="Cargo" name="Cargo" class="form-control letras" placeholder="Cargo"  >
+                                    <input type="text" id="Cargo" name="Cargo" class="form-control letras" placeholder="Cargo" value="${preguntas.cargo}">
 
 
                                 </div>
@@ -514,13 +502,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="EmpDireccion"  >Dirección</label>
-                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" required="required" >
+                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" required="required" value="${preguntas.empDireccion}">
 
 
                                 </div>
                                 <div class="col-md-4">
                                     <label for="EmpTelefono"  >Telefono</label>
-                                    <input type="text" id="EmpTelefono" name="EmpTelefono" class="form-control numeros" placeholder="Telefono"  >
+                                    <input type="text" id="EmpTelefono" name="EmpTelefono" class="form-control numeros" placeholder="Telefono" value="${preguntas.empTelefono}">
 
 
                                 </div>
@@ -603,7 +591,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="funciones">Funciones</label>
                                         </div>
-                                        <textarea class="form-control letras" id="funciones" name="funciones"  required="required"></textarea>
+                                        <textarea class="form-control letras" id="funciones" name="funciones"  required="required">${preguntas.expeLaborFunciones}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -623,29 +611,29 @@
 
                                 <tbody>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l11" name="l11" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l12" name="l12" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l13" name="l13" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l14" name="l14" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l11" name="l11" style="outline: none" value="${laboral.size()>=1?laboral.get(0).empresa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l12" name="l12" style="outline: none" value="${laboral.size()>=1?laboral.get(0).cargo:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l13" name="l13" style="outline: none" value="${laboral.size()>=1?laboral.get(0).fechaInicio:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l14" name="l14" style="outline: none" value="${laboral.size()>=1?laboral.get(0).fechaFin:''}"></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l21" name="l21" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l22" name="l22" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l23" name="l23" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l24" name="l24" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l21" name="l21" style="outline: none" value="${laboral.size()>=2?laboral.get(1).empresa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l22" name="l22" style="outline: none" value="${laboral.size()>=2?laboral.get(1).cargo:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l23" name="l23" style="outline: none" value="${laboral.size()>=2?laboral.get(1).fechaInicio:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l24" name="l24" style="outline: none" value="${laboral.size()>=2?laboral.get(1).fechaFin:''}"></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l31" name="l31" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l32" name="l32" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l33" name="l33" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l34" name="l34" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l31" name="l31" style="outline: none" value="${laboral.size()>=3?laboral.get(2).empresa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l32" name="l32" style="outline: none" value="${laboral.size()>=3?laboral.get(2).cargo:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l33" name="l33" style="outline: none" value="${laboral.size()>=3?laboral.get(2).fechaInicio:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l34" name="l34" style="outline: none" value="${laboral.size()>=3?laboral.get(2).fechaFin:''}"></td>
                                     </tr>
                                     <tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l41" name="l41" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l42" name="l42" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l43" name="l43" style="outline: none"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l44" name="l44" style="outline: none"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l41" name="l41" style="outline: none" value="${laboral.size()>=4?laboral.get(3).empresa:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l42" name="l42" style="outline: none" value="${laboral.size()>=4?laboral.get(3).cargo:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l43" name="l43" style="outline: none" value="${laboral.size()>=4?laboral.get(3).fechaInicio:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l44" name="l44" style="outline: none" value="${laboral.size()>=4?laboral.get(3).fechaFin:''}"></td>
                                     </tr>
 
                                 </tbody>
@@ -875,7 +863,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
 
-                                        <textarea class="form-control letras" id="razones" name="razones"  required="required"></textarea>
+                                        <textarea class="form-control letras" id="razones" name="razones"  required="required">${preguntas.razones}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -890,7 +878,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Prestamo" class="input-group-text" >Prestamos</label>
                                         </div>
-                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finPrestamo}">
 
 
 
@@ -904,7 +892,7 @@
                                         <div class="input-group-prepend">
                                             <label for="AuxEmp" class="input-group-text" >Auxilio Empresarial</label>
                                         </div>
-                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros" placeholder="" maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros" placeholder="" maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finAuxEmpresarial}">
 
 
 
@@ -928,7 +916,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Recursos" class="input-group-text" >Recursos Propios</label>
                                         </div>
-                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finRecPropios}">
 
 
 
@@ -942,7 +930,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Beca" class="input-group-text" >Beca</label>
                                         </div>
-                                        <input type="text" id="Beca" name="Beca" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" >
+                                        <input type="text" id="Beca" name="Beca" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finBeca}">
 
 
 
@@ -1004,7 +992,7 @@
                             </div>
                         </div>
 
-                        <input type="text" id="name" name="name" value="">
+                        <input type="text" id="name" name="name" value="" style="display: none">
 
                     </form>
 

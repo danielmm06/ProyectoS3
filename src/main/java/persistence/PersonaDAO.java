@@ -52,7 +52,7 @@ public class PersonaDAO {
                         + "EXP_CIUDAD, DIRECCION, BARRIO, RES_CIUDAD, "
                         + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, FAX_OFIC, CELULAR_OFIC,"
                         + "FECHA_NACIMIENTO, CIUDAD_NACIMIENTO, ESTADO_CIVIL, "
-                        + "ESTRATO, ID_PREGUNTAS FROM persona"
+                        + "ESTRATO FROM persona"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -79,7 +79,6 @@ public class PersonaDAO {
                 persona.setCiudadNacimiento(new Ciudad(result.getInt("CIUDAD_NACIMIENTO")));
                 persona.setEstadoCivil(new EstadoCivil(result.getInt("ESTADO_CIVIL")));
                 persona.setEstrato(result.getString("ESTRATO"));
-                persona.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
 
                 listaPersonas.add(persona);
             }
@@ -96,6 +95,7 @@ public class PersonaDAO {
             if (psSelectAll != null) {
                 try {
                     psSelectAll.close();
+                    psSelectAll = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -115,7 +115,7 @@ public class PersonaDAO {
                         + "EXP_CIUDAD, DIRECCION, BARRIO, RES_CIUDAD, "
                         + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, FAX_OFIC, CELULAR_OFIC, "
                         + "FECHA_NACIMIENTO, CIUDAD_NACIMIENTO, SEXO, ESTADO_CIVIL, "
-                        + "ESTRATO, ID_PREGUNTAS FROM persona WHERE DOCUMENTO=?"
+                        + "ESTRATO FROM persona WHERE DOCUMENTO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -144,7 +144,6 @@ public class PersonaDAO {
                 persona.setSexo(result.getString("SEXO"));
                 persona.setEstadoCivil((new EstadoCivilDAO()).get(result.getInt("ESTADO_CIVIL")));
                 persona.setEstrato(result.getString("ESTRATO"));
-                persona.setIdPreguntas((new InfoPreguntasDAO()).get(result.getInt("ID_PREGUNTAS")));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -159,6 +158,7 @@ public class PersonaDAO {
             if (psSelect != null) {
                 try {
                     psSelect.close();
+                    psSelect = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -174,8 +174,8 @@ public class PersonaDAO {
                     + "EXP_CIUDAD, DIRECCION, BARRIO, RES_CIUDAD, "
                     + "TELEFONO, EMAIL, DIRECCION_OFIC, OFIC_CIUDAD, TELEFONO_OFIC, FAX_OFIC, CELULAR_OFIC, "
                     + "FECHA_NACIMIENTO, CIUDAD_NACIMIENTO, SEXO,ESTADO_CIVIL, "
-                    + "ESTRATO, ID_PREGUNTAS";
-            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+                    + "ESTRATO";
+            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO PERSONA(" + columns + ") VALUES(" + values + ")",
@@ -205,7 +205,6 @@ public class PersonaDAO {
             inputs.add(persona.getSexo());
             inputs.add(persona.getEstadoCivil().getId());
             inputs.add(persona.getEstrato());
-            inputs.add(persona.getIdPreguntas().getIdPreguntas());
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
@@ -213,6 +212,7 @@ public class PersonaDAO {
             if (psInsert != null) {
                 try {
                     psInsert.close();
+                    psInsert = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -311,16 +311,12 @@ public class PersonaDAO {
                 columns += ",ESTRATO=?";
                 inputs.add(persona.getEstrato());
             }
-            if (persona.getIdPreguntas() != null) {
-                columns += ",ID_PREGUNTAS=?";
-                inputs.add(persona.getIdPreguntas().getIdPreguntas());
-            }
 
             inputs.add(persona.getDocumento());
             columns = columns.substring(1);
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE persona SET " + columns + " WHERE DOCUMENTO=? "
+                        "UPDATE persona SET " + columns + " WHERE DOCUMENTO=?"
                 );
             }
             result = db.ExecuteUpdate(psUpdate, inputs);
@@ -330,6 +326,7 @@ public class PersonaDAO {
             if (psUpdate != null) {
                 try {
                     psUpdate.close();
+                    psUpdate = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -356,6 +353,7 @@ public class PersonaDAO {
             if (psDelete != null) {
                 try {
                     psDelete.close();
+                    psDelete = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }

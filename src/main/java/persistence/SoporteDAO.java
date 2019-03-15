@@ -150,6 +150,7 @@ public class SoporteDAO {
             if (psInsert != null) {
                 try {
                     psInsert.close();
+                    psInsert = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -200,6 +201,7 @@ public class SoporteDAO {
             if (psUpdate != null) {
                 try {
                     psUpdate.close();
+                    psUpdate = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -226,6 +228,7 @@ public class SoporteDAO {
             if (psDelete != null) {
                 try {
                     psDelete.close();
+                    psDelete = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }

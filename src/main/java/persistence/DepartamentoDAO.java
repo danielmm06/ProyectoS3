@@ -71,6 +71,7 @@ public class DepartamentoDAO {
             if (psSelectAll != null) {
                 try {
                     psSelectAll.close();
+                    psSelectAll = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -113,6 +114,7 @@ public class DepartamentoDAO {
             if (psSelect != null) {
                 try {
                     psSelect.close();
+                    psSelect = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -187,6 +189,7 @@ public class DepartamentoDAO {
             if (psInsert != null) {
                 try {
                     psInsert.close();
+                    psInsert = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -223,6 +226,7 @@ public class DepartamentoDAO {
             if (psUpdate != null) {
                 try {
                     psUpdate.close();
+                    psUpdate = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -249,6 +253,7 @@ public class DepartamentoDAO {
             if (psDelete != null) {
                 try {
                     psDelete.close();
+                    psDelete = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }

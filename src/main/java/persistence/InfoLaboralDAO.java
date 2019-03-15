@@ -193,6 +193,7 @@ public class InfoLaboralDAO {
             if (psInsert != null) {
                 try {
                     psInsert.close();
+                    psInsert = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -243,6 +244,7 @@ public class InfoLaboralDAO {
             if (psUpdate != null) {
                 try {
                     psUpdate.close();
+                    psUpdate = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }
@@ -269,6 +271,34 @@ public class InfoLaboralDAO {
             if (psDelete != null) {
                 try {
                     psDelete.close();
+                    psDelete = null;
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return result;
+    }
+    
+    public long deleteByPreguntas(InfoPreguntas preguntas) {
+        long result;
+        try {
+            if (psDelete == null) {
+                psDelete = db.PreparedUpdate(
+                        "DELETE FROM info_laboral "
+                        + "WHERE ID_PREGUNTAS=?"
+                );
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(preguntas.getIdPreguntas());
+            result = db.ExecuteUpdate(psDelete, inputs);
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar borrado.", e);
+        } finally {
+            if (psDelete != null) {
+                try {
+                    psDelete.close();
+                    psDelete = null;
                 } catch (SQLException e) {
                     throw new RuntimeException("Error al cerrar el preparedstatement", e);
                 }

@@ -8,6 +8,7 @@ package entity;
 import java.io.Serializable;
 import java.sql.Date;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -138,15 +139,14 @@ public class Persona implements Serializable {
     @JoinColumn(name = "OFIC_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne
     private Ciudad oficCiudad;
-    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
-    @ManyToOne(optional = false)
-    private InfoPreguntas idPreguntas;
     @JoinColumn(name = "RES_CIUDAD", referencedColumnName = "ID_CIUDAD")
     @ManyToOne(optional = false)
     private Ciudad resCiudad;
     @JoinColumn(name = "TIPODOCUMENTO", referencedColumnName = "ID_DOCUMENTO")
     @ManyToOne(optional = false)
     private TipoDocumento tipodocumento;
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
+    private InfoPreguntas infoPreguntas;
 
     public Persona() {
     }
@@ -338,14 +338,6 @@ public class Persona implements Serializable {
         this.oficCiudad = oficCiudad;
     }
 
-    public InfoPreguntas getIdPreguntas() {
-        return idPreguntas;
-    }
-
-    public void setIdPreguntas(InfoPreguntas idPreguntas) {
-        this.idPreguntas = idPreguntas;
-    }
-
     public Ciudad getResCiudad() {
         return resCiudad;
     }
@@ -360,6 +352,14 @@ public class Persona implements Serializable {
 
     public void setTipodocumento(TipoDocumento tipodocumento) {
         this.tipodocumento = tipodocumento;
+    }
+
+    public InfoPreguntas getInfoPreguntas() {
+        return infoPreguntas;
+    }
+
+    public void setInfoPreguntas(InfoPreguntas infoPreguntas) {
+        this.infoPreguntas = infoPreguntas;
     }
 
     @Override
