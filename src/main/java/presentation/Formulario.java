@@ -288,7 +288,7 @@ public class Formulario extends HttpServlet {
                         }
                     }
 
-                    response.getWriter().print(operation);
+                    response.sendRedirect("Soportes?user="+persona.getDocumento());
                 } else {
                     response.sendRedirect("Error?e=NotAuthorized");
                 }

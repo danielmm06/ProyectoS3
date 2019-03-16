@@ -81,7 +81,7 @@ public class Login extends HttpServlet {
 
                 //Procesamiento de la información
                 boolean valido = App.AuthUser(usuario, password);
-                System.out.println("valido--->" + valido);
+//                System.out.println("valido--->" + valido);
 
                 if (valido == true) {
                     response.sendRedirect("Formulario?user="+id_nickname);

@@ -139,8 +139,6 @@ public class InfoPreguntas implements Serializable {
     private Set<InfoAcademica> infoAcademicaSet;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
     private Set<Cabecera> cabeceraSet;
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPreguntas")
-    private Set<Soporte> soporteSet;
 
     public InfoPreguntas() {
     }
@@ -354,15 +352,6 @@ public class InfoPreguntas implements Serializable {
 
     public void setCabeceraSet(Set<Cabecera> cabeceraSet) {
         this.cabeceraSet = cabeceraSet;
-    }
-
-    @XmlTransient
-    public Set<Soporte> getSoporteSet() {
-        return soporteSet;
-    }
-
-    public void setSoporteSet(Set<Soporte> soporteSet) {
-        this.soporteSet = soporteSet;
     }
 
     @Override

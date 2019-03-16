@@ -55,9 +55,9 @@ public class Soporte implements Serializable {
     @NotNull
     @Column(name = "VALIDACION")
     private int validacion;
-    @JoinColumn(name = "ID_PREGUNTAS", referencedColumnName = "ID_PREGUNTAS")
+    @JoinColumn(name = "ID_PERSONA", referencedColumnName = "DOCUMENTO")
     @ManyToOne(optional = false)
-    private InfoPreguntas idPreguntas;
+    private Persona idPersona;
     @JoinColumn(name = "ID_TIPOSOPORTE", referencedColumnName = "ID_TIPOSOPORTE")
     @ManyToOne(optional = false)
     private TipoSoporte idTiposoporte;
@@ -108,12 +108,12 @@ public class Soporte implements Serializable {
         this.validacion = validacion;
     }
 
-    public InfoPreguntas getIdPreguntas() {
-        return idPreguntas;
+    public Persona getIdPersona() {
+        return idPersona;
     }
 
-    public void setIdPreguntas(InfoPreguntas idPreguntas) {
-        this.idPreguntas = idPreguntas;
+    public void setIdPersona(Persona idPersona) {
+        this.idPersona = idPersona;
     }
 
     public TipoSoporte getIdTiposoporte() {

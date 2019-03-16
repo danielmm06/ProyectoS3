@@ -106,7 +106,7 @@ public class App {
 		boolean valido = false;
 		if (usuario.getIdUsuario()!= null) {
 			String passwordMD5 = App.MD5(password+App.SECRET_PASS);
-                        System.out.println("psss----> "+passwordMD5);
+//                        System.out.println("psss----> "+passwordMD5);
 			if (passwordMD5.equals(usuario.getContrasena())) {
                             boolean captchaValido = true;
                                 if (captchaValido) {

@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="card-body  mx-auto mt-2">  
-                    <form id="myform">
+                    <form id="myform" method="POST" action="Formulario">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-3">
@@ -984,7 +984,7 @@
                                 <div class="col-md-4">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="button" id="botonFormulario" name="botonFormulario" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
+                                    <input type="submit" id="botonFormulario" name="botonFormulario" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
                                     <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
                                 </div>
                                 <div class="col-md-4">

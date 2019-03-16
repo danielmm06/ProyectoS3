@@ -7,6 +7,7 @@ package entity;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.Set;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -16,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
@@ -23,6 +25,7 @@ import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
@@ -147,6 +150,8 @@ public class Persona implements Serializable {
     private TipoDocumento tipodocumento;
     @OneToOne(cascade = CascadeType.ALL, mappedBy = "persona")
     private InfoPreguntas infoPreguntas;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "idPersona")
+    private Set<Soporte> soporteSet;
 
     public Persona() {
     }
@@ -360,6 +365,15 @@ public class Persona implements Serializable {
 
     public void setInfoPreguntas(InfoPreguntas infoPreguntas) {
         this.infoPreguntas = infoPreguntas;
+    }
+
+    @XmlTransient
+    public Set<Soporte> getSoporteSet() {
+        return soporteSet;
+    }
+
+    public void setSoporteSet(Set<Soporte> soporteSet) {
+        this.soporteSet = soporteSet;
     }
 
     @Override

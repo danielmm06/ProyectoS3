@@ -8,7 +8,7 @@ package persistence;
 
 import conexion.App;
 import conexion.DataBase;
-import entity.InfoPreguntas;
+import entity.Persona;
 import entity.Soporte;
 import entity.TipoSoporte;
 import java.io.IOException;
@@ -45,7 +45,7 @@ public class SoporteDAO {
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PREGUNTAS "
+                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PERSONA "
                         + "FROM soporte"
                 );
             }
@@ -57,7 +57,7 @@ public class SoporteDAO {
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
                 soporte.setIdTiposoporte(new TipoSoporte(result.getInt("ID_TIPOSOPORTE")));
                 soporte.setValidacion(result.getInt("VALIDACION"));
-                soporte.setIdPreguntas(new InfoPreguntas(result.getInt("ID_PREGUNTAS")));
+                soporte.setIdPersona(new Persona(result.getInt("ID_PERSONA")));
                 listaSoporte.add(soporte);
             }
         } catch (SQLException e) {
@@ -88,7 +88,7 @@ public class SoporteDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PREGUNTAS "
+                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PERSONA "
                         + "FROM soporte WHERE ID_SOPORTE=?"
                 );
             }
@@ -101,7 +101,7 @@ public class SoporteDAO {
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
                 soporte.setIdTiposoporte((new TipoSoporteDAO()).get(result.getInt("ID_TIPOSOPORTE")));
                 soporte.setValidacion(result.getInt("VALIDACION"));
-                soporte.setIdPreguntas((new InfoPreguntasDAO()).get(result.getInt("ID_PREGUNTAS")));
+                soporte.setIdPersona((new PersonaDAO()).get(result.getInt("ID_PERSONA")));
 
             }
         } catch (SQLException e) {
@@ -128,7 +128,7 @@ public class SoporteDAO {
     public long insert(Soporte soporte) {
         long result;
         try {
-            String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PREGUNTAS";
+            String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PERSONA";
             String values = "?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
@@ -140,7 +140,7 @@ public class SoporteDAO {
             inputs.add(soporte.getUrlArchivo());
             inputs.add(soporte.getIdTiposoporte().getIdTiposoporte());
             inputs.add(soporte.getValidacion());
-            inputs.add(soporte.getIdPreguntas().getIdPreguntas());
+            inputs.add(soporte.getIdPersona().getDocumento());
 
             result = db.ExecuteUpdate(psInsert, inputs);
 
@@ -182,9 +182,9 @@ public class SoporteDAO {
                 columns += ",VALIDACION=?";
                 inputs.add(soporte.getValidacion());
             }
-            if (soporte.getIdPreguntas() != null) {
-                columns += ",ID_PREGUNTAS=?";
-                inputs.add(soporte.getIdPreguntas().getIdPreguntas());
+            if (soporte.getIdPersona()!= null) {
+                columns += ",ID_PERSONA=?";
+                inputs.add(soporte.getIdPersona().getDocumento());
             }
             inputs.add(soporte.getIdSoporte());
             columns = columns.substring(1);

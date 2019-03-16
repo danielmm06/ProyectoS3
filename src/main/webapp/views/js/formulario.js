@@ -8,22 +8,22 @@ $(document).ready(function () {
         $('#ExpDepartamento').val(formulario[3]).change();
         setTimeout(function () {
             $('#ExpCiudad').val(formulario[4]);
-        }, 500);
-    }, 500);
+        }, 1000);
+    }, 1000);
     $('#ResPais').val(formulario[5]).change();
     setTimeout(function () {
         $('#ResDepartamento').val(formulario[6]).change();
         setTimeout(function () {
             $('#ResCiudad').val(formulario[7]);
-        }, 500);
-    }, 500);
+        }, 1000);
+    }, 1000);
     $('#OfiPais').val(formulario[8]).change();
     setTimeout(function () {
         $('#OfiDepartamento').val(formulario[9]).change();
         setTimeout(function () {
             $('#OfiCiudad').val(formulario[10]);
-        }, 500);
-    }, 500);
+        }, 1000);
+    }, 1000);
     $('#ano').val(formulario[11]);
     $('#mes').val(formulario[12]);
     $('#dia').val(formulario[13]);
@@ -32,8 +32,8 @@ $(document).ready(function () {
         $('#NacDepartamento').val(formulario[15]).change();
         setTimeout(function () {
             $('#NacCiudad').val(formulario[16]);
-        }, 500);
-    }, 500);
+        }, 1000);
+    }, 1000);
     $('#Sexo').val(formulario[17]);
     $('#Estado').val(formulario[18]);
     $('#Estrato').val(formulario[19]);
@@ -43,8 +43,8 @@ $(document).ready(function () {
         $('#EmpDepartamento').val(formulario[22]).change();
         setTimeout(function () {
             $('#EmpCiudad').val(formulario[23]);
-        }, 500);
-    }, 500);
+        }, 1000);
+    }, 1000);
     var otro = true;
     $('#Conocimiento option').each(function() {
         if ($(this).val() == formulario[24]) {
@@ -52,11 +52,12 @@ $(document).ready(function () {
         }
     });
     if (otro) {
-        $('#Conocimiento').val("Otros").change()
+        $('#Conocimiento').val("Otros").change();
         $('#Otrosok').val(formulario[24]);
     } else {
         $('#Conocimiento').val(formulario[24]).change();
     }
+    $('.tabla').focusout();
     $('#EspComprende').val(formulario[26]);
     $('#EspHabla').val(formulario[27]);
     $('#EspEscribe').val(formulario[28]);
@@ -68,7 +69,7 @@ $(document).ready(function () {
     $('#FranEscribe').val(formulario[36]);
     var index = 37;
     if (formulario[index] != "finIdiomas") {
-        $('#otroIdioma').val(formulario[index]);
+        $('#otroIdioma').val(formulario[index]).focusout();
         index++;
         $('#otroComprende').val(formulario[index]);
         index++;
@@ -82,28 +83,28 @@ $(document).ready(function () {
     $('#Egresado').val(formulario[index]);
 });
 
-$('#botonFormulario').on('click', function () {
-    if ($('#name').val() == "") {
-        $.ajax({
-            type: 'POST',
-            data: $('#myform').serialize(),
-            url: "Formulario",
-            success: function (operation) {
-                if (operation != null) {
-                    if (operation != 0) {
-                        alert("Guardado correctamente");
-                    } else {
-                        alert("Faltan datos");
-                    }
-                } else {
-                    alert("Hay valores invalidos");
-                }
-            }
-        });
-    }
-});
+//$('#botonFormulario').on('click', function () {
+//    if ($('#name').val() == "") {
+//        $.ajax({
+//            type: 'POST',
+//            data: $('#myform').serialize(),
+//            url: "Formulario",
+//            success: function (operation) {
+//                if (operation != null) {
+//                    if (operation != 0) {
+//                        alert("Guardado correctamente");
+//                    } else {
+//                        alert("Faltan datos");
+//                    }
+//                } else {
+//                    alert("Hay valores invalidos");
+//                }
+//            }
+//        });
+//    }
+//});
 
-$('#otroIdioma').on('change', function (event) {
+$('#otroIdioma').on('focusout', function (event) {
     if ($('#otroIdioma').val() != "") {
         $('#otroComprende').prop("required", true);
         $('#otroHabla').prop("required", true);
@@ -115,7 +116,7 @@ $('#otroIdioma').on('change', function (event) {
     }
 });
 
-$('.tabla').on('change', function (event) {
+$('.tabla').on('focusout', function (event) {
     if ($(event.target).val() != "") {
         for (var i = 2; i <= 4; i++) {
             $('#' + event.target.id.slice(0, -1) + i).attr("required", "required");
@@ -155,7 +156,7 @@ $('.fechas').on('keypress', function (event) { //Para fechas
     }
 });
 
-$('.fechas').on('change', function (event) { //Validar formato de fechas
+$('.fechas').on('focusout', function (event) { //Validar formato de fechas
     if ($(event.target).val() != "") {
         var regExp = /^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/;
         if (!regExp.test($(event.target).val())) {
@@ -166,7 +167,7 @@ $('.fechas').on('change', function (event) { //Validar formato de fechas
     }
 });
 
-$('.correo').on('change', function (event) { //Validar formato de fechas
+$('.correo').on('focusout', function (event) { //Validar formato de fechas
     if ($(event.target).val() != "") {
         var regExp = /^[a-z\.]*\@[a-z]*\.[a-z\.]*$/;
         if (!regExp.test($(event.target).val())) {
@@ -177,7 +178,7 @@ $('.correo').on('change', function (event) { //Validar formato de fechas
     }
 });
 
-$('#Conocimiento').on('change', function (event) {
+$('#Conocimiento').on('focusout', function (event) {
     if ($('#Conocimiento').val() == "Otros") {
         $('#Otrosok').show();
     } else {

@@ -79,7 +79,7 @@ public class Ajax extends HttpServlet {
         if (value.equalsIgnoreCase("FormularioCiudad")) {
             try {
                 App.OpenConnection();
-                System.out.println(request.getParameter("content") + " <------");
+//                System.out.println(request.getParameter("content") + " <------");
                 int depart = Integer.parseInt(request.getParameter("content"));
                 ArrayList<Ciudad> listaCiudad = App.CiudadDAO.getByDepart(depart);
 
