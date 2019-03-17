@@ -24,10 +24,6 @@ import java.util.ArrayList;
 public class SoporteDAO {
 //    private PreparedStatement psSelectAll;
 
-    private PreparedStatement psInsert;
-    private PreparedStatement psUpdate;
-    private PreparedStatement psDelete;
-
     private DataBase db;
 
     public SoporteDAO() {
@@ -81,7 +77,7 @@ public class SoporteDAO {
         return listaSoporte;
     }
 
-    public Soporte get(int idCategoria) {
+    public Soporte get(int idSoporte) {
         Soporte soporte = new Soporte();
         PreparedStatement psSelect = null;
         ResultSet result = null;
@@ -93,7 +89,7 @@ public class SoporteDAO {
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
-            inputs.add(idCategoria);
+            inputs.add(idSoporte);
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
                 soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
@@ -126,6 +122,7 @@ public class SoporteDAO {
     }
 
     public long insert(Soporte soporte) {
+        PreparedStatement psInsert = null;
         long result;
         try {
             String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,ID_TIPOSOPORTE,VALIDACION,ID_PERSONA";
@@ -160,6 +157,7 @@ public class SoporteDAO {
     }
 
     public long update(Soporte soporte) {
+        PreparedStatement psUpdate = null;
         long result;
         try {
             String columns = "";
@@ -182,7 +180,7 @@ public class SoporteDAO {
                 columns += ",VALIDACION=?";
                 inputs.add(soporte.getValidacion());
             }
-            if (soporte.getIdPersona()!= null) {
+            if (soporte.getIdPersona() != null) {
                 columns += ",ID_PERSONA=?";
                 inputs.add(soporte.getIdPersona().getDocumento());
             }
@@ -211,6 +209,7 @@ public class SoporteDAO {
     }
 
     public long delete(int idSoporte) {
+        PreparedStatement psDelete = null;
         long result;
         try {
             if (psDelete == null) {
@@ -235,6 +234,111 @@ public class SoporteDAO {
             }
         }
         return result;
+    }
+
+    public ArrayList<Soporte> getAllByAllPerson(int codPersona) {
+        ArrayList<Soporte> listaSoporte = new ArrayList<Soporte>();
+        PreparedStatement psSelectByAllPerson = null;
+        ResultSet result = null;
+        try {
+            if (psSelectByAllPerson == null) {
+                psSelectByAllPerson = db.PreparedQuery(
+                        "SELECT S.ID_SOPORTE,S.NOMBRE_SOPORTE,S.URL_ARCHIVO,S.ID_PERSONA,S.ID_TIPOSOPORTE, S.NOMBRE_TMP, S.VALIDACION, TI.NOMBRE AS NOMBRE_SOPORTE "
+                        + "FROM soporte S, tipo_soporte TI, PERSONA P "
+                        + "WHERE S.ID_PERSONA=? AND TI.ID_TIPOSOPORTE=S.ID_TIPOSOPORTE AND P.DOCUMENTO=S.ID_PERSONA AND URL_ARCHIVO LIKE '%soportes/" + codPersona + "/bienestar%' ORDER BY S.NOMBRE_SOPORTE"
+                );
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(codPersona);
+            result = db.ExecuteQuery(psSelectByAllPerson, inputs);
+            while (result.next()) {
+                Soporte soporte = new Soporte();
+                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
+                soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
+
+                Persona persona = new Persona();
+                persona.setDocumento(result.getInt("ID_PERSONA"));
+                soporte.setIdPersona(persona);
+
+                TipoSoporte tipoSoporte = new TipoSoporte();
+                tipoSoporte.setNombre(result.getString("NOMBRE_SOPORTE"));
+                tipoSoporte.setIdTiposoporte(result.getInt("ID_TIPOSOPORTE"));
+                soporte.setIdTiposoporte(tipoSoporte);
+
+                soporte.setNombreTmp(result.getString("NOMBRE_TMP"));
+
+                soporte.setValidacion(result.getInt("VALIDACION"));
+                listaSoporte.add(soporte);
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectByAllPerson != null) {
+                try {
+                    psSelectByAllPerson.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return listaSoporte;
+    }
+
+    public Soporte getByPersona(long codPersona) {
+        Soporte soporte = new Soporte();
+        ResultSet result = null;
+        PreparedStatement psSelectByPerson = null;
+        try {
+            if (psSelectByPerson == null) {
+                psSelectByPerson = db.PreparedQuery(
+                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP FROM soporte WHERE ID_PERSONA=?"
+                );
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(codPersona);
+            result = db.ExecuteQuery(psSelectByPerson, inputs);
+            while (result.next()) {
+                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
+                soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
+                //Persona persona = App.PersonaDAO.get(result.getInt("COD_PERSONA"));
+                Persona persona = new Persona();
+                persona.setDocumento(result.getInt("ID_PERSONA"));
+                soporte.setIdPersona(persona);
+                //TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(result.getInt("COD_TIPOSOPORTE"));
+                TipoSoporte tipoSoporte = new TipoSoporte();
+                tipoSoporte.setIdTiposoporte(result.getInt("ID_TIPOSOPORTE"));
+                soporte.setIdTiposoporte(tipoSoporte);
+             
+                soporte.setNombreTmp(result.getString("NOMBRE_TMP"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        } finally {
+            if (result != null) {
+                try {
+                    result.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el resultset", e);
+                }
+            }
+            if (psSelectByPerson != null) {
+                try {
+                    psSelectByPerson.close();
+                } catch (SQLException e) {
+                    throw new RuntimeException("Error al cerrar el preparedstatement", e);
+                }
+            }
+        }
+        return soporte;
     }
 
     public static void main(String[] args) throws IOException {

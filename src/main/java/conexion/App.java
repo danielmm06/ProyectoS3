@@ -54,7 +54,7 @@ public class App {
     public static TipoDocumentoDAO DocumentoDAO;
     public static CategoriaDAO CategoriaDAO;
     public static CabeceraDAO CabeceraDAO;
-    public static TipoSoporteDAO TSoporteDAO;
+    public static TipoSoporteDAO TipoSoporteDAO;
     public static SoporteDAO SoporteDAO;
     public static InfoAcademicaDAO AcademicaDAO;
     public static InfoIdiomasDAO IdiomasDAO;
@@ -92,7 +92,7 @@ public class App {
         DocumentoDAO = new TipoDocumentoDAO();
         CategoriaDAO = new CategoriaDAO();
         CabeceraDAO = new CabeceraDAO();
-        TSoporteDAO = new TipoSoporteDAO();
+        TipoSoporteDAO = new TipoSoporteDAO();
         SoporteDAO = new SoporteDAO();
         AcademicaDAO = new InfoAcademicaDAO();
         IdiomasDAO = new InfoIdiomasDAO();

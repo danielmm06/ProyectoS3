@@ -23,19 +23,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author niari
+ * @author Daniel
  */
 @Entity
 @Table(name = "info_idiomas")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoIdiomas.findAll", query = "SELECT i FROM InfoIdiomas i"),
-    @NamedQuery(name = "InfoIdiomas.findByIdIdiomas", query = "SELECT i FROM InfoIdiomas i WHERE i.idIdiomas = :idIdiomas"),
-    @NamedQuery(name = "InfoIdiomas.findByIdioma", query = "SELECT i FROM InfoIdiomas i WHERE i.idioma = :idioma"),
-    @NamedQuery(name = "InfoIdiomas.findByComprende", query = "SELECT i FROM InfoIdiomas i WHERE i.comprende = :comprende"),
-    @NamedQuery(name = "InfoIdiomas.findByHabla", query = "SELECT i FROM InfoIdiomas i WHERE i.habla = :habla"),
-    @NamedQuery(name = "InfoIdiomas.findByEscribe", query = "SELECT i FROM InfoIdiomas i WHERE i.escribe = :escribe")})
+    @NamedQuery(name = "InfoIdiomas.findAll", query = "SELECT i FROM InfoIdiomas i")
+    , @NamedQuery(name = "InfoIdiomas.findByIdIdiomas", query = "SELECT i FROM InfoIdiomas i WHERE i.idIdiomas = :idIdiomas")
+    , @NamedQuery(name = "InfoIdiomas.findByIdioma", query = "SELECT i FROM InfoIdiomas i WHERE i.idioma = :idioma")
+    , @NamedQuery(name = "InfoIdiomas.findByComprende", query = "SELECT i FROM InfoIdiomas i WHERE i.comprende = :comprende")
+    , @NamedQuery(name = "InfoIdiomas.findByHabla", query = "SELECT i FROM InfoIdiomas i WHERE i.habla = :habla")
+    , @NamedQuery(name = "InfoIdiomas.findByEscribe", query = "SELECT i FROM InfoIdiomas i WHERE i.escribe = :escribe")})
 public class InfoIdiomas implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

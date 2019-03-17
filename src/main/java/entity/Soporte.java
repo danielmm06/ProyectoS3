@@ -23,18 +23,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author niari
+ * @author Daniel
  */
 @Entity
 @Table(name = "soporte")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s"),
-    @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte"),
-    @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte"),
-    @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo"),
-    @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
+    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s")
+    , @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte")
+    , @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte")
+    , @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo")
+    , @NamedQuery(name = "Soporte.findByNombreTmp", query = "SELECT s FROM Soporte s WHERE s.nombreTmp = :nombreTmp")
+    , @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
 public class Soporte implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -53,6 +55,11 @@ public class Soporte implements Serializable {
     private String urlArchivo;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 60)
+    @Column(name = "NOMBRE_TMP")
+    private String nombreTmp;
+    @Basic(optional = false)
+    @NotNull
     @Column(name = "VALIDACION")
     private int validacion;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "DOCUMENTO")
@@ -69,10 +76,11 @@ public class Soporte implements Serializable {
         this.idSoporte = idSoporte;
     }
 
-    public Soporte(Integer idSoporte, String nombreSoporte, String urlArchivo, int validacion) {
+    public Soporte(Integer idSoporte, String nombreSoporte, String urlArchivo, String nombreTmp, int validacion) {
         this.idSoporte = idSoporte;
         this.nombreSoporte = nombreSoporte;
         this.urlArchivo = urlArchivo;
+        this.nombreTmp = nombreTmp;
         this.validacion = validacion;
     }
 
@@ -98,6 +106,14 @@ public class Soporte implements Serializable {
 
     public void setUrlArchivo(String urlArchivo) {
         this.urlArchivo = urlArchivo;
+    }
+
+    public String getNombreTmp() {
+        return nombreTmp;
+    }
+
+    public void setNombreTmp(String nombreTmp) {
+        this.nombreTmp = nombreTmp;
     }
 
     public int getValidacion() {

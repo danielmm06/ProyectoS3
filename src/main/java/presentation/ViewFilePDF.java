@@ -12,8 +12,8 @@ import conexion.App;
 
 public class ViewFilePDF extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-//	private static final String path = "C:/Users/" + System.getProperty("user.name") + "/Documents/"; //PRUEBAS
-	private static final String path = "/home/pasantes/Documentos/"; //SERVIDOR
+	private static final String path = "C:/Users/" + System.getProperty("user.name") + "/Documents/"; //PRUEBAS
+//	private static final String path = "/home/pasantes/Documentos/"; //SERVIDOR
 	
     public ViewFilePDF() {
         super();
