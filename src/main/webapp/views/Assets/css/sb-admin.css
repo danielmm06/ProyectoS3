@@ -2607,6 +2607,53 @@ fieldset:disabled a.btn {
   pointer-events: none;
 }
 
+.btn-adjuntar {
+  color: #fff;
+  background-color: #575F67;
+  border-color: #535A62;
+}
+
+.btn-adjuntar:hover {
+  color: #fff;
+  background-color: #31373C;
+  border-color: #25292D;
+}
+
+.btn-adjuntar:focus, .btn-adjuntar.focus {
+  -webkit-box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5);
+}
+
+.btn-file {
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    background: white;
+    cursor: inherit;
+    display: block;
+    width: 30%;
+    
+}
+
+
+
+
+
+
+
+
 .btn-primary {
   color: #fff;
   background-color: #007bff;
@@ -3211,6 +3258,9 @@ fieldset:disabled a.btn {
   margin-top: 0.5rem;
 }
 
+input[type="adjuntar"].btn-block,
+input[type="visualizar"].btn-block, 
+input[type="eliminar"].btn-block,  
 input[type="submit"].btn-block,
 input[type="reset"].btn-block,
 input[type="button"].btn-block {
