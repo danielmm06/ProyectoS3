@@ -12,17 +12,17 @@
     </jsp:attribute>
     <jsp:attribute name="styles">
         <!-- Styles -->
-        <link href="views/Assets/soporte/SoportesIndividual.css" rel="stylesheet" type="text/css">
+        <!--<link href="views/Assets/soporte/SoportesIndividual.css" rel="stylesheet" type="text/css">-->
         <!-- /Styles -->
     </jsp:attribute>
     <jsp:attribute name="scripts">
         <!-- Scripts -->
         <script src="views/Assets/soporte/SoportesIndividual.js" type="text/javascript"></script>
-        <script src="views/Assets/soporte/jquery.smartWizard.js" type="text/javascript"></script>
+        <!--<script src="views/Assets/soporte/jquery.smartWizard.js" type="text/javascript"></script>-->
         <!-- /Scripts -->
         <script type="text/javascript">
 
-            var goToStep = '<c:out value="${goToStep}"/>';
+//            var goToStep = '<c:out value="${goToStep}"/>';
 
 
 
@@ -46,7 +46,7 @@
                         
                         <h5><label> Comprobante pago de inscripción </label></h5>
                         
-                        <form action="SoportesIndividual" method="post" id="reciboPublico" enctype="multipart/form-data">
+                        <form action="Soportes" method="post" id="reciboPublico" enctype="multipart/form-data">
 
                             <div class="form-group">
                                  <div class="form-row">
@@ -57,7 +57,7 @@
                                     <div class="col-md-8">    
                                         <div class="btn btn-adjuntar btn-file">		  								
                                             Adjuntar
-                                            <input type="file"  name="RECIBOPUBLICO" onchange="ReciboPublico(this)" accept=".pdf">
+                                            <input type="file"  name="PAGO" onchange="ReciboPublico(this)" accept=".pdf">
                                         </div>
                                         <div class="btn btn-primary" id="enviar" onclick="sendFormReciboPublico(this)">		  								
                                             &nbsp;Enviar&nbsp;		  										  					
@@ -91,7 +91,7 @@
                       
                         <h5><label> Foto</label></h5>
                         
-                        <form action="SoportesIndividual" method="post" id="FormFosyga" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="FormFosyga" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -135,7 +135,7 @@
                         <h5><label> Diploma de Pregrado</label></h5>
                         
                                     
-                        <form action="SoportesIndividual" method="post" id="FormCertHijos" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="FormCertHijos" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -181,7 +181,7 @@
                         <h5><label> Acta de grado de Pregrado</label></h5>
                                        
                         
-                        <form action="SoportesIndividual" method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -226,7 +226,7 @@
                         <hr> 
                         <label>  <h5>Resolución - Servicio social obligatorio </h5> -Solo para profesionales en Salud-</label>
                        
-                        <form action="SoportesIndividual" method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -269,7 +269,7 @@
                         <hr> 
                         <h5><label> Fotocopia de cédula ampliada al 150% </label></h5> 
                                  
-                        <form action="SoportesIndividual" method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -311,7 +311,7 @@
                         <hr> 
                         <h5><label> Certificado EPS</label></h5> 
                                   
-                        <form action="SoportesIndividual" method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -353,7 +353,7 @@
                         <hr> 
                        <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
                            
-                        <form action="SoportesIndividual" method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -395,7 +395,7 @@
                         </form>	
                          <hr> 
                         <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
-                        <form action="SoportesIndividual" method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-4">
@@ -436,7 +436,7 @@
                         </form>	
                         <hr> <br><br>
 
-                        <form action="SoportesIndividual" method="post" id="general" name="general">
+                        <form action="Soportes"  method="post" id="general" name="general">
 
                             <div class="form-group">
                                 <div class="form-row">
