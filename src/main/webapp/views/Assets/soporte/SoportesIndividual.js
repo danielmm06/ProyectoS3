@@ -2,16 +2,16 @@ function ReciboPublico(element) {
 	var datos = element.value.split('\\');
 	var path = datos[datos.length - 1];	
 	document.getElementById("reciboP").value = path;
-//	alert("path "+document.getElementById("reciboP").value);
+	alert("path "+document.getElementById("reciboP").value);
 }
 
 function sendFormReciboPublico() {	
-//	alert("entro a enviar");
+	alert("entro a enviar");
 	var form = document.getElementById("reciboPublico");
 	var recibo = document.getElementById("reciboP").value;
-//	alert("recibo "+document.getElementById("reciboP").value);
+	alert("recibo "+document.getElementById("reciboP").value);
 	if(recibo != null && recibo != ''){
-//		alert("paso a cargar")
+		alert("paso a cargar")
 		form.submit();	
 	}else{
 		Alert("¡Campos Requeridos!","Por favor, cargue el soporte del recibo Publico","alert","Aceptar");

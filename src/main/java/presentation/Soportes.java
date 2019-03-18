@@ -65,9 +65,11 @@ public class Soportes extends HttpServlet {
             if (sesionValida) {
                 if (permisoValido) {
                     request.setCharacterEncoding("UTF-8");
-                    int documento = 123;
+                    int documento = Integer.parseInt(request.getParameter("user"));
+//                    int documento = 123;
                     request.setAttribute("title", App.nameProyect + " - Soportes");
-
+                    
+                    Persona persona = App.PersonaDAO.get(documento);
 //                    Persona persona = App.PersonaDAO.get(documento);
                     listaPathsNames = new String[10]; // INICIALIZACION DE LISTA CON NUMERO DE SOPORTES A SUBIR
                     listaPathsNamestmp = new String[10]; // INICIALIZACION DE LISTA CON NUMERO DE SOPORTES A SUBIR
@@ -116,7 +118,7 @@ public class Soportes extends HttpServlet {
                     request.setAttribute("listaPathsNames", listaPathsNames);
                     request.setAttribute("listasoporte", listasoporte);
                     request.setAttribute("soporte", soporte);
-//                    request.setAttribute("persona", persona);
+                    request.setAttribute("persona", persona);
 
                     getServletConfig().getServletContext().getRequestDispatcher("/views/Soporte.jsp").forward(request, response);
 //                          RequestDispatcher requestDispatcher = request.getRequestDispatcher("/views/Personas.jsp");
@@ -161,31 +163,34 @@ public class Soportes extends HttpServlet {
                 if (permisoValido) {
                     request.setCharacterEncoding("UTF-8");
                     request.setAttribute("title", App.nameProyect + " - Soporte");
-
+                    
+//                    int codPersona = Integer.parseInt(request.getParameter("user"));
                     int codPersona = 123;
+
+                    Persona persona = App.PersonaDAO.get(codPersona);
 
                     ArrayList<Input> inputs = getInputsForm(request);
                     int posicionArrayName = 0;
 
                     int cont = 0;
-                    for (Input input : inputs) {
-                        if (input.type.equals("input")) {
-                            if (input.value.equals("1")) {
-                                request.setAttribute("goToStep", 1);
-                            }
-                            if (input.value.equals("2")) {
-                                request.setAttribute("goToStep", 2);
-                            }
-                            if (input.value.equals("3")) {
-                                request.setAttribute("goToStep", 3);
-                            }
-                            processInputs();
-                        } else {
-
-                            String filePath = processFiles(input.fileItem, codPersona + "", input.name, input.value);
-                            String saveDB = savePathBD(codPersona + "", input.name, input.value);
-                        }
-                    }
+//                    for (Input input : inputs) {
+//                        if (input.type.equals("input")) {
+//                            if (input.value.equals("1")) {
+//                                request.setAttribute("goToStep", 1);
+//                            }
+//                            if (input.value.equals("2")) {
+//                                request.setAttribute("goToStep", 2);
+//                            }
+//                            if (input.value.equals("3")) {
+//                                request.setAttribute("goToStep", 3);
+//                            }
+//                            processInputs();
+//                        } else {
+//
+//                            String filePath = processFiles(input.fileItem, codPersona + "", input.name, input.value);
+//                            String saveDB = savePathBD(codPersona + "", input.name, input.value);
+//                        }
+//                    }
 
                     ArrayList<Soporte> listasoporte = App.SoporteDAO.getAllByAllPerson(codPersona);
                     for (Soporte soporte : listasoporte) {
@@ -240,9 +245,9 @@ public class Soportes extends HttpServlet {
                     request.setAttribute("listaPathsNames", listaPathsNames);
                     request.setAttribute("listasoporte", listasoporte);
                     request.setAttribute("soporte", soporte);
-//                    request.setAttribute("persona", persona);
+                    request.setAttribute("persona", persona);
 
-                    getServletConfig().getServletContext().getRequestDispatcher("/BIENESTAR/DESC_INDIVIDUAL/SoportesIndividual.jsp").forward(request, response);
+                    getServletConfig().getServletContext().getRequestDispatcher("/views/Soporte.jsp").forward(request, response);
                 }
 
             } else {
@@ -269,7 +274,7 @@ public class Soportes extends HttpServlet {
             System.out.println(nombre + " nombre");
 
             if (nombre.equals("HIJOS")) {
-//				System.out.println("soporte nombre  ---> "+ nombre);
+				System.out.println("soporte nombre  ---> "+ nombre);
                 Soporte soporteAct = new Soporte();
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {
@@ -287,7 +292,7 @@ public class Soportes extends HttpServlet {
                     }
                 }
                 if (soporteAct.getNombreSoporte()== null) {
-//					System.out.println("soporte Act reg ---> "+soporteAct.getNombreSoporte());
+					System.out.println("soporte Act reg ---> "+soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
                     filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
