@@ -68,7 +68,7 @@ public class Soportes extends HttpServlet {
                     int documento = Integer.parseInt(request.getParameter("user"));
 //                    int documento = 123;
                     request.setAttribute("title", App.nameProyect + " - Soportes");
-                    
+
                     Persona persona = App.PersonaDAO.get(documento);
 //                    Persona persona = App.PersonaDAO.get(documento);
                     listaPathsNames = new String[10]; // INICIALIZACION DE LISTA CON NUMERO DE SOPORTES A SUBIR
@@ -87,11 +87,12 @@ public class Soportes extends HttpServlet {
 
                         }
 
-                        if (soporte.getNombreSoporte().equals("RECIBOPUBLICO")) {
+                        if (soporte.getNombreSoporte().equals("PAGO")) {
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
+                            System.out.println("soporte "+soporte.getNombreTmp());
                         }
 
                         if (soporte.getNombreSoporte().equals("FOSYGA")) {
@@ -163,7 +164,7 @@ public class Soportes extends HttpServlet {
                 if (permisoValido) {
                     request.setCharacterEncoding("UTF-8");
                     request.setAttribute("title", App.nameProyect + " - Soporte");
-                    
+
 //                    int codPersona = Integer.parseInt(request.getParameter("user"));
                     int codPersona = 123;
 
@@ -173,24 +174,24 @@ public class Soportes extends HttpServlet {
                     int posicionArrayName = 0;
 
                     int cont = 0;
-//                    for (Input input : inputs) {
-//                        if (input.type.equals("input")) {
-//                            if (input.value.equals("1")) {
-//                                request.setAttribute("goToStep", 1);
-//                            }
+                    for (Input input : inputs) {
+                        if (input.type.equals("input")) {
+                            if (input.value.equals("1")) {
+                                request.setAttribute("goToStep", 1);
+                            }
 //                            if (input.value.equals("2")) {
 //                                request.setAttribute("goToStep", 2);
 //                            }
 //                            if (input.value.equals("3")) {
 //                                request.setAttribute("goToStep", 3);
 //                            }
-//                            processInputs();
-//                        } else {
-//
-//                            String filePath = processFiles(input.fileItem, codPersona + "", input.name, input.value);
-//                            String saveDB = savePathBD(codPersona + "", input.name, input.value);
-//                        }
-//                    }
+                            processInputs();
+                        } else {
+
+                            String filePath = processFiles(input.fileItem, codPersona + "", input.name, input.value);
+                            String saveDB = savePathBD(codPersona + "", input.name, input.value);
+                        }
+                    }
 
                     ArrayList<Soporte> listasoporte = App.SoporteDAO.getAllByAllPerson(codPersona);
                     for (Soporte soporte : listasoporte) {
@@ -206,13 +207,14 @@ public class Soportes extends HttpServlet {
                             cont++;
                         }
 
-                        if (soporte.getNombreSoporte().equals("RECIBOPUBLICO")) {
+                        if (soporte.getNombreSoporte().equals("PAGO")) {
 
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-//									System.out.println(xn + "xn");
+                            System.out.println(xn + " xn");
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
+                            System.out.println("soporte D "+soporte.getNombreTmp());
                             cont++;
                         }
 
@@ -274,12 +276,12 @@ public class Soportes extends HttpServlet {
             System.out.println(nombre + " nombre");
 
             if (nombre.equals("HIJOS")) {
-				System.out.println("soporte nombre  ---> "+ nombre);
+                System.out.println("soporte nombre  ---> " + nombre);
                 Soporte soporteAct = new Soporte();
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {
                         String fileName = nameDir + nombre + ".pdf";
-                        filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                         soporte.setUrlArchivo(filePath);
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
@@ -291,10 +293,10 @@ public class Soportes extends HttpServlet {
                         break;
                     }
                 }
-                if (soporteAct.getNombreSoporte()== null) {
-					System.out.println("soporte Act reg ---> "+soporteAct.getNombreSoporte());
+                if (soporteAct.getNombreSoporte() == null) {
+                    System.out.println("soporte Act reg ---> " + soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
-                    filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
@@ -310,17 +312,17 @@ public class Soportes extends HttpServlet {
                 }
             }
 
-            if (nombre.equals("RECIBOPUBLICO")) {
+            if (nombre.equals("PAGO")) {
                 Soporte soporteAct = new Soporte();
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {
                         String fileName = nameDir + nombre + ".pdf";
-                        filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                         soporte.setUrlArchivo(filePath);
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                         soporte.setIdPersona(persona);
-                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(186);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(2);
                         soporte.setIdTiposoporte(tipoSoporte);
                         soporte.setNombreTmp(nombtmp);
                         soporteAct = soporte;
@@ -330,12 +332,12 @@ public class Soportes extends HttpServlet {
                 if (soporteAct.getNombreSoporte() == null) {
 //					System.out.println("soporte Act recibo ---> "+soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
-                    filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                     soporteAct.setIdPersona(persona);
-                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(186);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(2);
                     soporteAct.setIdTiposoporte(tipoSoporte);
                     soporteAct.setNombreTmp(nombtmp);
                     App.SoporteDAO.insert(soporteAct);
@@ -351,7 +353,7 @@ public class Soportes extends HttpServlet {
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {
                         String fileName = nameDir + nombre + ".pdf";
-                        filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                         soporte.setUrlArchivo(filePath);
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
@@ -366,7 +368,7 @@ public class Soportes extends HttpServlet {
                 if (soporteAct.getNombreSoporte() == null) {
 //					System.out.println("soporte Act fosy ---> "+soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
-                    filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
@@ -387,7 +389,7 @@ public class Soportes extends HttpServlet {
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {
                         String fileName = nameDir + nombre + ".pdf";
-                        filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                         soporte.setUrlArchivo(filePath);
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
@@ -402,7 +404,7 @@ public class Soportes extends HttpServlet {
                 if (soporteAct.getNombreSoporte() == null) {
 //					System.out.println("soporte Act fosy ---> "+soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
-                    filePath = "soportes/" + nameDir + "/bienestar/" + fileName;
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
@@ -435,14 +437,14 @@ public class Soportes extends HttpServlet {
             if (!uploadDir3.exists()) {
                 uploadDir3.mkdir();
             }
-            File uploadDir = new File(UPLOAD_DIRECTORY + "/" + nameDir + "/bienestar");
+            File uploadDir = new File(UPLOAD_DIRECTORY + "/" + nameDir + "/Inscripcion");
             if (!uploadDir.exists()) {
                 uploadDir.mkdir();
             }
             String[] extension = fileItem.getName().split("\\.");
             String ext = extension[extension.length - 1];
             String fileName = nameDir + nombre + "." + ext;
-            filePath = UPLOAD_DIRECTORY + "/" + nameDir + "/bienestar/" + fileName;
+            filePath = UPLOAD_DIRECTORY + "/" + nameDir + "/Inscripcion/" + fileName;
             File file = new File(filePath);
             fileItem.write(file);
 

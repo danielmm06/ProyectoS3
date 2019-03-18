@@ -146,10 +146,10 @@ public class SoporteDAO {
             } else {
                 inputs.add(null);
             }
-            if (soporte.getValidacion() != null) {
+            if (soporte.getValidacion() != 0) {
                 inputs.add(soporte.getValidacion());
             } else {
-                inputs.add(null);
+                inputs.add(0);
             }
             System.out.println();
             result = db.ExecuteUpdate(psInsert, inputs);
@@ -264,7 +264,7 @@ public class SoporteDAO {
                 psSelectByAllPerson = db.PreparedQuery(
                         "SELECT S.ID_SOPORTE,S.NOMBRE_SOPORTE,S.URL_ARCHIVO,S.ID_PERSONA,S.ID_TIPOSOPORTE, S.NOMBRE_TMP, S.VALIDACION, TI.NOMBRE AS NOMBRE_SOPORTE "
                         + "FROM soporte S, tipo_soporte TI, PERSONA P "
-                        + "WHERE S.ID_PERSONA=? AND TI.ID_TIPOSOPORTE=S.ID_TIPOSOPORTE AND P.DOCUMENTO=S.ID_PERSONA AND URL_ARCHIVO LIKE '%soportes/" + codPersona + "/bienestar%' ORDER BY S.NOMBRE_SOPORTE"
+                        + "WHERE S.ID_PERSONA=? AND TI.ID_TIPOSOPORTE=S.ID_TIPOSOPORTE AND P.DOCUMENTO=S.ID_PERSONA AND URL_ARCHIVO LIKE '%soportes/" + codPersona + "/Inscripcion%' ORDER BY S.NOMBRE_SOPORTE"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
