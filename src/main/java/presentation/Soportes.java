@@ -95,12 +95,12 @@ public class Soportes extends HttpServlet {
                             System.out.println("soporte "+soporte.getNombreTmp());
                         }
 
-                        if (soporte.getNombreSoporte().equals("FOSYGA")) {
-
+                        if (soporte.getNombreSoporte().equals("FOTO")) {
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[1] = xn;
                             listaPathsNamestmp[1] = soporte.getNombreTmp();
+                            System.out.println("soporte foto--> "+soporte.getNombreTmp());
 
                         }
                         if (soporte.getNombreSoporte().equals("IMPUESTOPREDIAL")) {
@@ -208,23 +208,22 @@ public class Soportes extends HttpServlet {
                         }
 
                         if (soporte.getNombreSoporte().equals("PAGO")) {
-
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-                            System.out.println(xn + " xn");
+//                            System.out.println(xn + " xn");
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
-                            System.out.println("soporte D "+soporte.getNombreTmp());
+//                            System.out.println("soporte D "+soporte.getNombreTmp());
                             cont++;
                         }
 
-                        if (soporte.getNombreSoporte().equals("FOSYGA")) {
-
+                        if (soporte.getNombreSoporte().equals("FOTO")) {
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-//									System.out.println(xn + "xn");
+                            System.out.println(xn + "xn");
                             listaPathsNames[1] = xn;
                             listaPathsNamestmp[1] = soporte.getNombreTmp();
+                            System.out.println("soporte foto "+soporte.getNombreTmp());
                             cont++;
                         }
 
@@ -273,7 +272,7 @@ public class Soportes extends HttpServlet {
             String nameControl = nombre;
             String intControl = "";
 
-            System.out.println(nombre + " nombre");
+            System.out.println("nombre "+nombre );
 
             if (nombre.equals("HIJOS")) {
                 System.out.println("soporte nombre  ---> " + nombre);
@@ -330,7 +329,7 @@ public class Soportes extends HttpServlet {
                     }
                 }
                 if (soporteAct.getNombreSoporte() == null) {
-//					System.out.println("soporte Act recibo ---> "+soporteAct.getNombreSoporte());
+                    System.out.println("soporte Act foto ---> "+soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
                     filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
@@ -348,7 +347,7 @@ public class Soportes extends HttpServlet {
                 }
             }
 
-            if (nombre.equals("FOSYGA")) {
+            if (nombre.equals("FOTO")) {
                 Soporte soporteAct = new Soporte();
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {

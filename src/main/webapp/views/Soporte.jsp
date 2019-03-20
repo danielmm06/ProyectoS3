@@ -64,12 +64,12 @@
                                         </div>
                                      
                                         <c:if test="${listaPathsNames[0] ne null}">
-                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[0]}"/>')">		   									
+                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[0]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[0] eq null}">
-                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[0]}"/>')" style='display: none;' >		   									
+                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[0]}"/>')" style='display: none;' >		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -101,28 +101,28 @@
                                     <div class="col-md-8">    
                                         <div class="btn btn-adjuntar btn-file">		  								
                                             Adjuntar
-                                            <input type="file"  name="FOSYGA" onchange="FoSyga(this)" accept=".pdf">
+                                            <input type="file"  name="FOTO" onchange="FoSyga(this)" accept=".pdf">
                                         </div>
                                         <div class="btn btn-primary" id="enviar" onclick="sendFormFoSyga(this)">		  								
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[1] ne null}">
-                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[1]}"/>')">		   									
+                                        <div class="btn btn-success" id="verFOTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[1]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[1] eq null}">
-                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[1]}"/>')" style='display: none;'>		   									
+                                        <div class="btn btn-success" id="verFOTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[1]}"/>')" style='display: none;'>		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
                                         <c:if test="${listaPathsNames[1] ne null}">					
-                                        <div class="btn btn-danger" id="eliminarFOSYGA" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[1]}"/>', 'fosyga')">			  								
+                                        <div class="btn btn-danger" id="eliminarFOTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[1]}"/>', 'fosyga')">			  								
                                             Eliminar     					
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[1] eq null}">					
-                                        <div class="btn btn-danger" id="eliminarFOSYGA" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[1]}"/>', 'fosyga')" style='display: none;'>			  								
+                                        <div class="btn btn-danger" id="eliminarFOTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[1]}"/>', 'fosyga')" style='display: none;'>			  								
                                             Eliminar    					
                                         </div>
                                         </c:if>	

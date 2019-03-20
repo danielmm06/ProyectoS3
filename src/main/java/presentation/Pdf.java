@@ -8,20 +8,25 @@ package presentation;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-//import conexion.App;
-
-public class ViewFilePDF extends HttpServlet {
+/**
+ *
+ * @author Daniel
+ */
+@WebServlet(name = "Pdf", urlPatterns = {"/Pdf"})
+public class Pdf extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
     private static final String path = "C:/Users/" + System.getProperty("user.name") + "/Documents/"; //PRUEBAS
 //	private static final String path = "/home/pasantes/Documentos/"; //SERVIDOR
 
-    public ViewFilePDF() {
+    public Pdf() {
         super();
     }
 
@@ -48,7 +53,6 @@ public class ViewFilePDF extends HttpServlet {
                 response.setContentLength(tamanoInput);
                 response.getOutputStream().write(datosPDF);
             } else {
-                // Este padacito lo agreg� Juan C. Perez para la descarga de ficheros tipo word.
                 if (fileName.substring(fileName.length() - 3, fileName.length()).equals("DOC") || fileName.substring(fileName.length() - 3, fileName.length()).equals("doc")) {
                     response.setHeader("Content-disposition", "inline; filename=" + fileName);
                     response.setContentType("application/msword");
