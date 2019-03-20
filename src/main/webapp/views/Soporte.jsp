@@ -36,8 +36,8 @@
             <div class="card mb-3">
                 
                     <div class="card-header">                    
-                        <h3><i class="fas fa-file-pdf" aria-hidden="true"></i> <strong>SOPORTES DIGITALES</strong></h3>
-                        <p>Los campos marcados con <label  style="color: red;">(*)</label> son obligatorios.</p> 
+                         <h2><i class="fas fa-file-pdf" aria-hidden="true"></i>Soportes Digitales</h2>
+                        
                         <h6>Esta sección recoge todos los soportes de los documentos, por tanto deben ser veraces y legibles </h6><hr>                      	                    	
                         
                     </div>
@@ -69,7 +69,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[0] eq null}">
-                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[0]}"/>')" >		   									
+                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[0]}"/>')" style='display: none;' >		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -79,7 +79,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[0] eq null}">					
-                                        <div class="btn btn-danger" id="eliminarRECIBOPUBLICO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[0]}"/>', 'reciboP')" >			  								
+                                        <div class="btn btn-danger" id="eliminarRECIBOPUBLICO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[0]}"/>', 'reciboP')"  style='display: none;'>			  								
                                             Eliminar    					
                                         </div>
                                         </c:if>
@@ -112,7 +112,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[1] eq null}">
-                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[1]}"/>')" >		   									
+                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[1]}"/>')" style='display: none;'>		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -122,7 +122,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[1] eq null}">					
-                                        <div class="btn btn-danger" id="eliminarFOSYGA" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[1]}"/>', 'fosyga')">			  								
+                                        <div class="btn btn-danger" id="eliminarFOSYGA" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[1]}"/>', 'fosyga')" style='display: none;'>			  								
                                             Eliminar    					
                                         </div>
                                         </c:if>	
@@ -156,7 +156,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[2] eq null}">
-                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[2]}"/>')" >		   									
+                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[2]}"/>')" style='display: none;'>		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -166,7 +166,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[2] eq null}">					
-                                        <div class="btn btn-danger" id="eliminarcertificadoHijos" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[2]}"/>', 'hijos')" >			  								
+                                        <div class="btn btn-danger" id="eliminarcertificadoHijos" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[2]}"/>', 'hijos')" style='display: none;' >			  								
                                             Eliminar    					
                                         </div>
                                         </c:if>	
@@ -202,7 +202,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -212,7 +212,7 @@
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">					
-                                        <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" >			  								
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')"  style='display: none;'>			  								
                                             Eliminar    					
                                         </div>
                                         </c:if>	
@@ -247,7 +247,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -257,7 +257,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">					
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" >			  								
+                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')"  style='display: none;'>			  								
                                                 Eliminar    					
                                             </div>
                                         </c:if>	
@@ -290,7 +290,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -300,7 +300,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">					
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" >			  								
+                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" style='display: none;' >			  								
                                                 Eliminar    					
                                             </div>
                                         </c:if>
@@ -332,7 +332,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -342,7 +342,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">					
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" >			  								
+                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" style='display: none;' >			  								
                                                 Eliminar    					
                                             </div>
                                         </c:if>	
@@ -374,7 +374,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -384,7 +384,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">					
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" >			  								
+                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')"  style='display: none;'>			  								
                                                 Eliminar    					
                                             </div>
                                         </c:if>	
@@ -410,13 +410,14 @@
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormImpuesto(this)">		  								
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
+                                        <a href="javascript:void(0);" onclick="javascipt:window.open('ok.pdf');" class="popup">Clic to open.</a>
                                         <c:if test="${listaPathsNames[3] ne null}">
                                             <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -426,7 +427,7 @@
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">					
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" >			  								
+                                            <div class="btn btn-danger" id="eliminarIMPUESTO" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[3]}"/>', 'reciboI')" style='display: none;' >			  								
                                                 Eliminar    					
                                             </div>
                                         </c:if>	
@@ -434,7 +435,24 @@
                                 </div>
                             </div>
                         </form>	
-                        <hr> <br><br>
+                        <hr> <br>
+                         <div class="form-group" id="notasevaluador" style="display:none;">
+                            <div class="form-row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text " for="notas">Notas: </label>
+                                        </div>
+                                        <textarea class="form-control letras" id="notas" name="notas"  ></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                        <br>
+                            
+                        
+                        </div>
 
                         <form action="Soportes"  method="post" id="general" name="general">
 

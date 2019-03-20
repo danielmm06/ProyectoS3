@@ -3,15 +3,9 @@
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
         <a class="nav-link" href="Registro">
-          <i class="fas fa-fw fa-file-alt"></i>
-          <span>Registro</span>
+          <i class="fas fa-fw fa-table"></i>
+          <span>Listado Aspirantes</span>
         </a>
-      </li>
-      
-      <li class="nav-item">
-        <a class="nav-link" href="Soportes">
-          <i class="fas fa-fw fa-file-pdf"></i>
-          <span>Soportes</span></a>
       </li>
       
     </ul>

@@ -55,7 +55,7 @@
         </nav>
 
         <div id="wrapper">
-            <jsp:include page="/WEB-INF/tags/template/sections/menu.jsp" />
+            <jsp:include page="/WEB-INF/tags/template/sections/menu_admin.jsp" />
             <div id="content-wrapper">
                  <jsp:doBody/>
              <!-- Sticky Footer -->

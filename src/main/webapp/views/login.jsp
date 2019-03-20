@@ -34,15 +34,8 @@
                         <input type="password"  id="Contrasena" name="Contrasena" class="form-control" placeholder="Contrasena" required="required">
                     </div>
 
-                    <div class="form-group">
-                        <div class="checkbox">
-                            <label>
-                                <input type="checkbox" value="remember-me">
-                                Recordar Contraseña
-                            </label>
-                        </div>
-                    </div>
-                    <input type="submit" id="botonLogin" name="botonLogin" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
+                    
+                    <input type="submit" id="botonLogin" name="botonLogin" class="btn btn-primary btn-lg btn-block" value="Iniciar Sesión" >
                     
                     <input type="text" id="name" name="name" value="" style="display: none">
                 </form>

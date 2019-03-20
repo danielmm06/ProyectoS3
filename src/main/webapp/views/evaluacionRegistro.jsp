@@ -24,7 +24,7 @@
             <div class="card mb-3">
                 <div id="info" hidden>${formulario}</div>
                 <div class="card-header">                    
-                    <h2><i class="fa fa-file-alt" aria-hidden="true"></i> Formulario de Registro</h2>
+                    <h2><i class="fa fa-file-alt" aria-hidden="true"></i> Evalucación - Formulario de Registro</h2>
 
                 </div>
                 <div class="card-body  mx-auto mt-2">  
@@ -33,7 +33,7 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label for="Categoria"  >Categoria</label>
-                                    <select class="form-control" id="Categoria" name="Categoria" required="required" autofocus="autofocus"  >
+                                    <select class="form-control" id="Categoria" name="Categoria" required="required" autofocus="autofocus"  readonly >
                                         <option value="" selected>--</option>
                                         <option value="1">Especialización</option>
                                         <option value="2">Maestría</option>
@@ -44,13 +44,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="Programa">Programa al que se inscrbe</label>
-                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" value="${cabecera.programa}">
+                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" value="${cabecera.programa}" readonly>
 
 
                                 </div>
                                 <div class="col-md-5">
                                     <label for="Facultad">Perteneciente a la facultad</label>
-                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" value="${cabecera.facultad}">
+                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" value="${cabecera.facultad}" readonly>
 
 
                                 </div>
@@ -66,25 +66,25 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label for="Nombre1"  >Primer Nombre</label>
-                                    <input type="text" id="Nombre1" name="Nombre1" class="form-control letras" placeholder="Primer Nombre" required="required" value="${persona.nombre1}">
+                                    <input type="text" id="Nombre1" name="Nombre1" class="form-control letras" placeholder="Primer Nombre" required="required" value="${persona.nombre1}" readonly>
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Nombre2">Segundo Nombre</label>
-                                    <input type="text" id="Nombre2" name="Nombre2" class="form-control letras" placeholder="Segundo Nombre" required="required" value="${persona.nombre2}">
+                                    <input type="text" id="Nombre2" name="Nombre2" class="form-control letras" placeholder="Segundo Nombre" required="required" value="${persona.nombre2}" readonly>
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Apellido1">Primer Apellido</label>
-                                    <input type="text" id="Apellido1" name="Apellido1" class="form-control letras" placeholder="Primer Apellido" required="required" value="${persona.apellido1}">
+                                    <input type="text" id="Apellido1" name="Apellido1" class="form-control letras" placeholder="Primer Apellido" required="required" value="${persona.apellido1}" readonly>
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Apellido2">Segundo Apellido</label>
-                                    <input type="text" id="Apellido2"  name="Apellido2" class="form-control letras" placeholder="Segundo Apellido" required="required" value="${persona.apellido2}">
+                                    <input type="text" id="Apellido2"  name="Apellido2" class="form-control letras" placeholder="Segundo Apellido" required="required" value="${persona.apellido2}" readonly>
 
 
                                 </div>  
@@ -100,7 +100,7 @@
                                 <div class="col-md-4">
                                     <label for="Documento"  >N° Documento</label>
 
-                                    <input type="text" id="Documento" name="Documento" class="form-control numeros" placeholder="N° Documento" required="required" value="${persona.documento}">
+                                    <input type="text" id="Documento" name="Documento" class="form-control numeros" placeholder="N° Documento" required="required" value="${persona.documento}" readonly >
 
 
                                 </div>
@@ -108,7 +108,7 @@
                                     <label  id="inputGroup-sizing-default" for="TipoDocumento"  >Tipo Documento</label>
 
 
-                                    <select class="form-control " id="TipoDocumento" name="TipoDocumento" required="required">
+                                    <select class="form-control " id="TipoDocumento" name="TipoDocumento" required="required" readonly>
                                         <option value="" selected>--</option>
                                         <option value="1">CC</option>
                                         <option value="2">TI</option>
@@ -136,7 +136,7 @@
                                             <label class="input-group-text " for="Expedicion">Expedición</label>
                                             <label class="input-group-text " for="ExpPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="ExpPais" name="ExpPais" required="required">
+                                        <select class="form-control pais" id="ExpPais" name="ExpPais" required="required" readonly>
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="ExpPais"> 
                                                 <option  value="<c:out value="${ExpPais.idPais}" />" ><c:out value="${ExpPais.nombrePais}" /></option>
@@ -147,7 +147,7 @@
 
                                             <label class="input-group-text " for="ExpDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="ExpDepartamento" name="ExpDepartamento" required="required">
+                                        <select class="form-control departamento" id="ExpDepartamento" name="ExpDepartamento" required="required" readonly>
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
 
@@ -155,7 +155,7 @@
                                             <label class="input-group-text " for="ExpCiudad">Ciudad</label>
                                         </div>
 
-                                        <select class="form-control" id="ExpCiudad" name="ExpCiudad" required="required">
+                                        <select class="form-control" id="ExpCiudad" name="ExpCiudad" required="required" readonly>
                                             <option selected value="">Seleccione la Ciudad</option>
 
                                         </select>
@@ -171,28 +171,28 @@
                                 <div class="col-md-3">
 
                                     <label for="Direccion"  >Dirección</label>
-                                    <input type="text" id="Direccion" name="Direccion" class="form-control lenum" placeholder="Direccion" required="required" value="${persona.direccion}">
+                                    <input type="text" id="Direccion" name="Direccion" class="form-control lenum" placeholder="Direccion" required="required" value="${persona.direccion}" readonly>
 
 
                                 </div>
                                 <div class="col-md-3">
 
                                     <label for="Barrio">  Barrio</label>
-                                    <input type="text" id="Barrio" name="Barrio" class="form-control lenum" placeholder="Barrio" required="required" value="${persona.barrio}">
+                                    <input type="text" id="Barrio" name="Barrio" class="form-control lenum" placeholder="Barrio" required="required" value="${persona.barrio}" readonly>
 
 
                                 </div>
                                 <div class="col-md-2">
 
                                     <label for="Celular"  >Celular</label>
-                                    <input type="text" id="Celular" name="Celular" class="form-control numeros" placeholder="Celular" value="${persona.telefono}">
+                                    <input type="text" id="Celular" name="Celular" class="form-control numeros" placeholder="Celular" value="${persona.telefono}" readonly>
 
 
                                 </div>
                                 <div class="col-md-4">
 
                                     <label for="Correo" >Correo</label>
-                                    <input type="email" id="Correo" name="Correo" class="form-control correo" placeholder="Correo" required="required" value="${persona.email}">
+                                    <input type="email" id="Correo" name="Correo" class="form-control correo" placeholder="Correo" required="required" value="${persona.email}" readonly>
 
 
                                 </div>
@@ -208,7 +208,7 @@
                                             <label class="input-group-text " for="Residencia">Residencia</label>
                                             <label class="input-group-text " for="ResPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="ResPais" name="ResPais" required="required">
+                                        <select class="form-control pais" id="ResPais" name="ResPais" required="required" readonly>
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="ResPais"> 
                                                 <option  value="<c:out value="${ResPais.idPais}" />" ><c:out value="${ResPais.nombrePais}" /></option>
@@ -219,13 +219,13 @@
 
                                             <label class="input-group-text " for="ResDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="ResDepartamento" name="ResDepartamento" required="required">
+                                        <select class="form-control departamento" id="ResDepartamento" name="ResDepartamento" required="required" readonly>
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="ResCiudad">Ciudad</label>
                                         </div>
-                                        <select class="form-control" id="ResCiudad" name="ResCiudad" required="required">
+                                        <select class="form-control" id="ResCiudad" name="ResCiudad" required="required" readonly>
                                             <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
@@ -240,26 +240,26 @@
                                 <div class="col-md-4">
 
                                     <label for="OfiDireccion"  >Dirección Oficina</label>
-                                    <input type="text" id="OfiDireccion" name="OfiDireccion" class="form-control lenum" placeholder="OfiDireccion" required="required" value="${persona.direccionOfic}">
+                                    <input type="text" id="OfiDireccion" name="OfiDireccion" class="form-control lenum" placeholder="OfiDireccion" required="required" value="${persona.direccionOfic}" readonly>
 
 
                                 </div>
                                 <div class="col-md-3">
 
                                     <label for="OfiTelefono"> Telefono</label>
-                                    <input type="text" id="OfiTelefono" name="OfiTelefono" class="form-control numeros" placeholder="OfiTelefono" required="required" value="${persona.telefonoOfic}">
+                                    <input type="text" id="OfiTelefono" name="OfiTelefono" class="form-control numeros" placeholder="OfiTelefono" required="required" value="${persona.telefonoOfic}" readonly>
 
 
                                 </div>
                                 <div class="col-md-2">
                                     <label for="Fax"  >Fax</label>
-                                    <input type="text" id="Fax" name="Fax" class="form-control numeros" placeholder="Fax"  value="${persona.faxOfic}">
+                                    <input type="text" id="Fax" name="Fax" class="form-control numeros" placeholder="Fax"  value="${persona.faxOfic}" readonly>
 
 
                                 </div>
                                 <div class="col-md-3">
                                     <label for="OfiCelular"  >Celular</label>
-                                    <input type="text" id="OfiCelular" name="OfiCelular" class="form-control numeros" placeholder="OfiCelular" required="required" value="${persona.celularOfic}">
+                                    <input type="text" id="OfiCelular" name="OfiCelular" class="form-control numeros" placeholder="OfiCelular" required="required" value="${persona.celularOfic}" readonly>
 
 
                                 </div>
@@ -275,7 +275,7 @@
                                             <label class="input-group-text " for="Oficina">Oficina</label>
                                             <label class="input-group-text " for="OfiPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="OfiPais" name="OfiPais" required="required">
+                                        <select class="form-control pais" id="OfiPais" name="OfiPais" required="required" readonly>
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="OfiPais"> 
                                                 <option  value="<c:out value="${OfiPais.idPais}" />" ><c:out value="${OfiPais.nombrePais}" /></option>
@@ -286,13 +286,13 @@
 
                                             <label class="input-group-text " for="OfiDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="OfiDepartamento" name="OfiDepartamento" required="required">
+                                        <select class="form-control departamento" id="OfiDepartamento" name="OfiDepartamento" required="required" readonly>
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="OfiCiudad">Ciudad</label>
                                         </div>
-                                        <select class="form-control" id="OfiCiudad" name="OfiCiudad" required="required">
+                                        <select class="form-control" id="OfiCiudad" name="OfiCiudad" required="required" readonly>
                                             <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
@@ -307,20 +307,20 @@
 
                                 <div class="col-md-4">
                                     <label for="ano"  >Año</label>
-                                    <input type="text" class="form-control numeros" id="ano" name="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}">
+                                    <input type="text" class="form-control numeros" id="ano" name="ano" placeholder="Año" required="required"  maxlength="4" required pattern="[0-9]{4}"  onfocusout="if(this.value>2009){this.value='2009';}else if(this.value<1950){this.value='1950';}" readonly>
 
                                 </div>
                                 <div class="col-md-4">
 
                                     <label for="mes"  >Mes</label>
-                                    <input type="text" id="mes" name="mes" class="form-control numeros" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}">
+                                    <input type="text" id="mes" name="mes" class="form-control numeros" placeholder="Mes" maxlength="2" required="required"   onfocusout="if(this.value>12){this.value='12';}else if(this.value<1){this.value='1';}" readonly>
 
 
                                 </div>
                                 <div class="col-md-4">
 
                                     <label for="dia"  >Dia</label>
-                                    <input type="text" id="dia" name="dia" class="form-control numeros" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}">
+                                    <input type="text" id="dia" name="dia" class="form-control numeros" placeholder="Dia" required="required"  maxlength="2" onfocusout="if(this.value>31){this.value='31';}else if(this.value<1){this.value='1';}" readonly>
                                 </div>  
                             </div>
                         </div>
@@ -332,7 +332,7 @@
                                             <label class="input-group-text " for="Nacimiento">Nacimiento</label>
                                             <label class="input-group-text " for="NacPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="NacPais" name="NacPais" required="required">
+                                        <select class="form-control pais" id="NacPais" name="NacPais" required="required" readonly>
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="NacPais"> 
                                                 <option  value="<c:out value="${NacPais.idPais}" />" ><c:out value="${NacPais.nombrePais}" /></option>
@@ -343,13 +343,13 @@
 
                                             <label class="input-group-text " for="NacDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="NacDepartamento" name="NacDepartamento" required="required">
+                                        <select class="form-control departamento" id="NacDepartamento" name="NacDepartamento" required="required" readonly >
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="NacCiudad">Ciudad</label>
                                         </div>
-                                        <select class="form-control" id="NacCiudad" name="NacCiudad" required="required">
+                                        <select class="form-control" id="NacCiudad" name="NacCiudad" required="required" readonly>
                                             <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
@@ -365,7 +365,7 @@
 
                                     <label  for="Sexo">Sexo</label>
 
-                                    <select class="form-control" id="Sexo" name="Sexo" required="required">
+                                    <select class="form-control" id="Sexo" name="Sexo" required="required" readonly>
                                         <option value="" selected>--</option>
                                         <option value="Masculino">Masculino</option>
                                         <option value="Femenino">Femenino</option>
@@ -377,7 +377,7 @@
 
                                     <label  for="Estado">Estado Civil</label>
 
-                                    <select class="form-control" id="Estado" name="Estado" required="required">
+                                    <select class="form-control" id="Estado" name="Estado" required="required" readonly>
                                         <option value="" selected>--</option>
                                         <option value="1">Soltero</option>
                                         <option value="2">Casado</option>
@@ -395,7 +395,7 @@
 
                                     <label  for="Estrato">Estrato</label>
 
-                                    <select class="form-control" id="Estrato" name="Estrato" required="required">
+                                    <select class="form-control" id="Estrato" name="Estrato" required="required" readonly>
                                         <option value="" selected>--</option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
@@ -416,7 +416,7 @@
                         <p> Estudios a nivel de pregrado, postgrado y otros </p>
                         <hr>
                         <div class="table-responsive">
-                            <table class="table table-bordered text-center" id="InfoAcademica"  width="100%" cellspacing="0">
+                            <table class="table table-bordered text-center" id="InfoAcademica"  width="100%" cellspacing="0" >
                                 <thead>
                                     <tr>
                                         <th  class="text-center">Universidad</th>
@@ -428,29 +428,29 @@
 
                                 <tbody>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a11" name="a11" style="outline: none" value="${academica.size()>=1?academica.get(0).universidad:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a12" name="a12" style="outline: none"value="${academica.size()>=1?academica.get(0).programa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a13" name="a13" style="outline: none"value="${academica.size()>=1?academica.get(0).tituloObtenido:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a14" name="a14" maxlength="4" style="outline: none"value="${academica.size()>=1?academica.get(0).ano:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a11" name="a11" style="outline: none" value="${academica.size()>=1?academica.get(0).universidad:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a12" name="a12" style="outline: none"value="${academica.size()>=1?academica.get(0).programa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a13" name="a13" style="outline: none"value="${academica.size()>=1?academica.get(0).tituloObtenido:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a14" name="a14" maxlength="4" style="outline: none"value="${academica.size()>=1?academica.get(0).ano:''}" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a21" name="a21" style="outline: none"value="${academica.size()>=2?academica.get(1).universidad:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a22" name="a22" style="outline: none"value="${academica.size()>=2?academica.get(1).programa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a23" name="a23" style="outline: none"value="${academica.size()>=2?academica.get(1).tituloObtenido:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a24" name="a24" maxlength="4" style="outline: none"value="${academica.size()>=2?academica.get(1).ano:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a21" name="a21" style="outline: none"value="${academica.size()>=2?academica.get(1).universidad:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a22" name="a22" style="outline: none"value="${academica.size()>=2?academica.get(1).programa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a23" name="a23" style="outline: none"value="${academica.size()>=2?academica.get(1).tituloObtenido:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a24" name="a24" maxlength="4" style="outline: none"value="${academica.size()>=2?academica.get(1).ano:''}" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a31" name="a31" style="outline: none"value="${academica.size()>=3?academica.get(2).universidad:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a32" name="a32" style="outline: none"value="${academica.size()>=3?academica.get(2).programa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a33" name="a33" style="outline: none"value="${academica.size()>=3?academica.get(2).tituloObtenido:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a34" name="a34" maxlength="4" style="outline: none"value="${academica.size()>=3?academica.get(2).ano:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a31" name="a31" style="outline: none"value="${academica.size()>=3?academica.get(2).universidad:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a32" name="a32" style="outline: none"value="${academica.size()>=3?academica.get(2).programa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a33" name="a33" style="outline: none"value="${academica.size()>=3?academica.get(2).tituloObtenido:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a34" name="a34" maxlength="4" style="outline: none"value="${academica.size()>=3?academica.get(2).ano:''}" readonly></td>
                                     </tr>
                                     <tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a41" name="a41" style="outline: none" value="${academica.size()>=4?academica.get(3).universidad:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a42" name="a42" style="outline: none" value="${academica.size()>=4?academica.get(3).programa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a43" name="a43" style="outline: none" value="${academica.size()>=4?academica.get(3).tituloObtenido:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a44" name="a44" maxlength="4" style="outline: none" value="${academica.size()>=4?academica.get(3).ano:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a41" name="a41" style="outline: none" value="${academica.size()>=4?academica.get(3).universidad:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a42" name="a42" style="outline: none" value="${academica.size()>=4?academica.get(3).programa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a43" name="a43" style="outline: none" value="${academica.size()>=4?academica.get(3).tituloObtenido:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a44" name="a44" maxlength="4" style="outline: none" value="${academica.size()>=4?academica.get(3).ano:''}" readonly></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -465,7 +465,7 @@
 
                                 <div class="col-md-4">
                                     <label for="Empresa"  >Nombre Empresa</label>
-                                    <input type="text" id="Empresa" name="Empresa" class="form-control letras" placeholder="Empresa" required="required" value="${preguntas.empresa}">
+                                    <input type="text" id="Empresa" name="Empresa" class="form-control letras" placeholder="Empresa" required="required" value="${preguntas.empresa}" readonly>
 
 
                                 </div>
@@ -474,7 +474,7 @@
 
                                     <label   for="TipoEmpresa" >Tipo Empresa</label>
 
-                                    <select class="form-control " id="TipoEmpresa" name="TipoEmpresa" required="required">
+                                    <select class="form-control " id="TipoEmpresa" name="TipoEmpresa" required="required" readonly>
                                         <option value="" selected>--</option>
                                         <option value="Publica">Publica</option>
                                         <option value="Privada">Privada</option>
@@ -485,7 +485,7 @@
                                 </div>
                                 <div class="col-md-5">
                                     <label for="Cargo"  >Cargo</label>
-                                    <input type="text" id="Cargo" name="Cargo" class="form-control letras" placeholder="Cargo" value="${preguntas.cargo}">
+                                    <input type="text" id="Cargo" name="Cargo" class="form-control letras" placeholder="Cargo" value="${preguntas.cargo}" readonly>
 
 
                                 </div>
@@ -502,13 +502,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="EmpDireccion"  >Dirección</label>
-                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" required="required" value="${preguntas.empDireccion}">
+                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" required="required" value="${preguntas.empDireccion}" readonly>
 
 
                                 </div>
                                 <div class="col-md-4">
                                     <label for="EmpTelefono"  >Telefono</label>
-                                    <input type="text" id="EmpTelefono" name="EmpTelefono" class="form-control numeros" placeholder="Telefono" value="${preguntas.empTelefono}">
+                                    <input type="text" id="EmpTelefono" name="EmpTelefono" class="form-control numeros" placeholder="Telefono" value="${preguntas.empTelefono}" readonly>
 
 
                                 </div>
@@ -526,7 +526,7 @@
                                             <label class="input-group-text " for="Residencia">Empresa</label>
                                             <label class="input-group-text " for="EmpPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="EmpPais" name="EmpPais" required="required">
+                                        <select class="form-control pais" id="EmpPais" name="EmpPais" required="required" readonly>
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="EmpPais"> 
                                                 <option  value="<c:out value="${EmpPais.idPais}" />" ><c:out value="${EmpPais.nombrePais}" /></option>
@@ -537,13 +537,13 @@
 
                                             <label class="input-group-text " for="EmpDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="EmpDepartamento" name="EmpDepartamento" required="required">
+                                        <select class="form-control departamento" id="EmpDepartamento" name="EmpDepartamento" required="required" readonly>
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="EmpCiudad">Ciudad</label>
                                         </div>
-                                        <select class="form-control" id="EmpCiudad" name="EmpCiudad" required="required">
+                                        <select class="form-control" id="EmpCiudad" name="EmpCiudad" required="required" readonly>
                                             <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
@@ -559,7 +559,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="Conocimiento">¿Cómo obtuvo conocimiento de la existencia de este programa?</label>
                                         </div>
-                                        <select class="form-control" id="Conocimiento" name="Conocimiento" required="required">
+                                        <select class="form-control" id="Conocimiento" name="Conocimiento" required="required" readonly>
                                             <option value="" selected>--</option>
                                             <option value="Folleto">Folleto</option>
                                             <option value="Ventanilla">Ventanilla</option>
@@ -572,7 +572,7 @@
                                             <option value="Promoción Universitaria">Promoción Universitaria</option>
                                             <option value="Otros" >Otros   </option>
                                         </select>
-                                        <input type="text" id="Otrosok" name="Otrosok" style="display:none;" class="form-control letras" placeholder="¿Cuales?"  autofocus="autofocus">
+                                        <input type="text" id="Otrosok" name="Otrosok" style="display:none;" class="form-control letras" placeholder="¿Cuales?"  autofocus="autofocus" readonly>
 
                                     </div>
                                 </div>
@@ -591,7 +591,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="funciones">Funciones</label>
                                         </div>
-                                        <textarea class="form-control letras" id="funciones" name="funciones"  required="required">${preguntas.expeLaborFunciones}</textarea>
+                                        <textarea class="form-control letras" id="funciones" name="funciones"  required="required" readonly>${preguntas.expeLaborFunciones}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -611,29 +611,29 @@
 
                                 <tbody>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l11" name="l11" style="outline: none" value="${laboral.size()>=1?laboral.get(0).empresa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l12" name="l12" style="outline: none" value="${laboral.size()>=1?laboral.get(0).cargo:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l13" name="l13" style="outline: none" value="${laboral.size()>=1?laboral.get(0).fechaInicio:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l14" name="l14" style="outline: none" value="${laboral.size()>=1?laboral.get(0).fechaFin:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l11" name="l11" style="outline: none" value="${laboral.size()>=1?laboral.get(0).empresa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l12" name="l12" style="outline: none" value="${laboral.size()>=1?laboral.get(0).cargo:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l13" name="l13" style="outline: none" value="${laboral.size()>=1?laboral.get(0).fechaInicio:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l14" name="l14" style="outline: none" value="${laboral.size()>=1?laboral.get(0).fechaFin:''}" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l21" name="l21" style="outline: none" value="${laboral.size()>=2?laboral.get(1).empresa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l22" name="l22" style="outline: none" value="${laboral.size()>=2?laboral.get(1).cargo:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l23" name="l23" style="outline: none" value="${laboral.size()>=2?laboral.get(1).fechaInicio:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l24" name="l24" style="outline: none" value="${laboral.size()>=2?laboral.get(1).fechaFin:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l21" name="l21" style="outline: none" value="${laboral.size()>=2?laboral.get(1).empresa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l22" name="l22" style="outline: none" value="${laboral.size()>=2?laboral.get(1).cargo:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l23" name="l23" style="outline: none" value="${laboral.size()>=2?laboral.get(1).fechaInicio:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l24" name="l24" style="outline: none" value="${laboral.size()>=2?laboral.get(1).fechaFin:''}" readonly></td>
                                     </tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l31" name="l31" style="outline: none" value="${laboral.size()>=3?laboral.get(2).empresa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l32" name="l32" style="outline: none" value="${laboral.size()>=3?laboral.get(2).cargo:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l33" name="l33" style="outline: none" value="${laboral.size()>=3?laboral.get(2).fechaInicio:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l34" name="l34" style="outline: none" value="${laboral.size()>=3?laboral.get(2).fechaFin:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l31" name="l31" style="outline: none" value="${laboral.size()>=3?laboral.get(2).empresa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l32" name="l32" style="outline: none" value="${laboral.size()>=3?laboral.get(2).cargo:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l33" name="l33" style="outline: none" value="${laboral.size()>=3?laboral.get(2).fechaInicio:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l34" name="l34" style="outline: none" value="${laboral.size()>=3?laboral.get(2).fechaFin:''}" readonly></td>
                                     </tr>
                                     <tr>
                                     <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l41" name="l41" style="outline: none" value="${laboral.size()>=4?laboral.get(3).empresa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l42" name="l42" style="outline: none" value="${laboral.size()>=4?laboral.get(3).cargo:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l43" name="l43" style="outline: none" value="${laboral.size()>=4?laboral.get(3).fechaInicio:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l44" name="l44" style="outline: none" value="${laboral.size()>=4?laboral.get(3).fechaFin:''}"></td>
+                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="l41" name="l41" style="outline: none" value="${laboral.size()>=4?laboral.get(3).empresa:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="l42" name="l42" style="outline: none" value="${laboral.size()>=4?laboral.get(3).cargo:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l43" name="l43" style="outline: none" value="${laboral.size()>=4?laboral.get(3).fechaInicio:''}" readonly></td>
+                                        <td><input class="border-0 text-center container-fluid fechas" type="text" id="l44" name="l44" style="outline: none" value="${laboral.size()>=4?laboral.get(3).fechaFin:''}" readonly></td>
                                     </tr>
 
                                 </tbody>
@@ -674,7 +674,7 @@
                                     <strong> <label   class="input-group-text ">Español</label></strong>
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="EspComprende" name="EspComprende" required="required"  >
+                                    <select class="form-control" id="EspComprende" name="EspComprende" required="required"  readonly>
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -686,7 +686,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="EspHabla" name="EspHabla"  required="required"  >
+                                    <select class="form-control" id="EspHabla" name="EspHabla"  required="required" readonly >
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -699,7 +699,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="EspEscribe" name="EspEscribe" required="required"  >
+                                    <select class="form-control" id="EspEscribe" name="EspEscribe" required="required"  readonly>
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -719,7 +719,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="IngComprende" name="IngComprende"  required="required"  >
+                                    <select class="form-control" id="IngComprende" name="IngComprende"  required="required" readonly >
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -731,7 +731,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="IngHabla" name="IngHabla" required="required"  >
+                                    <select class="form-control" id="IngHabla" name="IngHabla" required="required"  readonly>
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -744,7 +744,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="IngEscribe" name="IngEscribe"  required="required"  >
+                                    <select class="form-control" id="IngEscribe" name="IngEscribe"  required="required" readonly >
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -764,7 +764,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="FranComprende" name="FranComprende"  required="required"  >
+                                    <select class="form-control" id="FranComprende" name="FranComprende"  required="required"  readonly>
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -776,7 +776,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="FranHabla" name="FranHabla"  required="required"  >
+                                    <select class="form-control" id="FranHabla" name="FranHabla"  required="required" readonly >
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -788,7 +788,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="FranEscribe" name="FranEscribe"  required="required"  >
+                                    <select class="form-control" id="FranEscribe" name="FranEscribe"  required="required"  readonly>
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -808,14 +808,14 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="otroIdioma">Otro</label>
                                         </div>
-                                        <input type="text" id="otroIdioma" name="otroIdioma" class="form-control letras" placeholder="¿Cual?" >
+                                        <input type="text" id="otroIdioma" name="otroIdioma" class="form-control letras" placeholder="¿Cual?"  readonly>
 
 
                                     </div>
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="otroComprende" name="otroComprende"  >
+                                    <select class="form-control" id="otroComprende" name="otroComprende" readonly >
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -828,7 +828,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="otroHabla" name="otroHabla"  >
+                                    <select class="form-control" id="otroHabla" name="otroHabla" readonly >
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -841,7 +841,7 @@
 
                                 </div>
                                 <div class="col-md-3">
-                                    <select class="form-control" id="otroEscribe" name="otroEscribe" >
+                                    <select class="form-control" id="otroEscribe" name="otroEscribe" readonly>
                                         <option value="" selected>--</option>
                                         <option value="Muy Bien">Muy Bien</option>
                                         <option value="Bien">Bien</option>
@@ -863,7 +863,7 @@
                                 <div class="col-md-12">
                                     <div class="input-group">
 
-                                        <textarea class="form-control letras" id="razones" name="razones"  required="required">${preguntas.razones}</textarea>
+                                        <textarea class="form-control letras" id="razones" name="razones"  required="required" readonly>${preguntas.razones}</textarea>
                                     </div>
                                 </div>
                             </div>
@@ -878,7 +878,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Prestamo" class="input-group-text" >Prestamos</label>
                                         </div>
-                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finPrestamo}">
+                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finPrestamo}" readonly>
 
 
 
@@ -892,7 +892,7 @@
                                         <div class="input-group-prepend">
                                             <label for="AuxEmp" class="input-group-text" >Auxilio Empresarial</label>
                                         </div>
-                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros" placeholder="" maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finAuxEmpresarial}">
+                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros" placeholder="" maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finAuxEmpresarial}" readonly>
 
 
 
@@ -916,7 +916,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Recursos" class="input-group-text" >Recursos Propios</label>
                                         </div>
-                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finRecPropios}">
+                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finRecPropios}" readonly>
 
 
 
@@ -930,7 +930,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Beca" class="input-group-text" >Beca</label>
                                         </div>
-                                        <input type="text" id="Beca" name="Beca" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finBeca}">
+                                        <input type="text" id="Beca" name="Beca" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finBeca}" readonly>
 
 
 
@@ -956,7 +956,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="Egresado">¿Es egresado Unillanos?</label>
                                         </div>
-                                        <select class="form-control" id="Egresado" name="Egresado" required="required">
+                                        <select class="form-control" id="Egresado" name="Egresado" required="required" readonly>
                                             <option value="" selected>--</option>
                                             <option value="Si">Si</option>
                                             <option value="No">No</option>
@@ -970,8 +970,26 @@
                                 </div>
                             </div>
                         </div>
-                        <hr> <br>
-                        <div class="form-group" id="notasevaluador" style="display:none;">
+                        <hr> 
+
+
+
+
+
+
+
+
+                        
+
+                        <input type="text" id="name" name="name" value="" style="display: none">
+
+                    </form>
+
+
+
+                </div>
+                <div class="card-footer small text-muted">
+                    <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
@@ -985,45 +1003,20 @@
                                 <div class="col-md-2"></div>
                             </div>
                         <br>
-                            
-                        
-                        </div>
-                            
-
-
-
-
-
-
-
-                        <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-4">
                                 </div>
                                 <div class="col-md-4">
-                                    <input type="submit" id="botonFormulario" name="botonFormulario" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
+                                    <input type="submit" id="botonEvaluacion" name="botonEvaluacion" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
+                                    
+                                    
                                     <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
                                 </div>
                                 <div class="col-md-4">
                                 </div>
                             </div>
+                        
                         </div>
-
-                        <input type="text" id="name" name="name" value="" style="display: none; ">
-
-                    </form>
-
-
-
-                </div>
-                <div class="card-footer small text-muted">
-                    <p style="margin-bottom: 5px;"> 
-                        - El valor de la inscripción solo es reembolsable 
-                        por circunstancias provenientes de
-                        la Universidad. <br>
-                        - Para que su inscripción surta efecto, usted deberá cumplir las exigencias del
-                        programa al que se inscribe.
-                    </p>
                 </div>
 
 
