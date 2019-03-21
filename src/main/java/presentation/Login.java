@@ -43,7 +43,7 @@ public class Login extends HttpServlet {
                 if (permisoValido) {
                     request.setCharacterEncoding("UTF-8");
                     request.setAttribute("title", App.nameProyect + " - Login");
-                    
+
                     HttpSession session = request.getSession();
                     session.invalidate();
 
@@ -82,6 +82,7 @@ public class Login extends HttpServlet {
                 //Ejecución de consultas
                 UsuariosDAO usuarioDAO = new UsuariosDAO();
                 Usuarios usuario = usuarioDAO.get(id_nickname);
+                String tipo = usuario.getIdRol().getNombreTUsuario();
 
                 //Procesamiento de la información
                 boolean valido = App.AuthUser(usuario, password);
@@ -90,7 +91,12 @@ public class Login extends HttpServlet {
                 if (valido == true) {
                     HttpSession session = request.getSession(true);//-----------------------------------------------------------------------------
                     session.setAttribute("user", id_nickname);//-----------------------------------------------------------------------------
-                    response.sendRedirect("Formulario");
+                    session.setAttribute("rol", tipo);
+                    if (tipo.equalsIgnoreCase("admin")) {
+                        response.sendRedirect("Admin");
+                    } else {
+                        response.sendRedirect("Formulario");
+                    }
                 } else {
                     response.sendRedirect("Login");
                 }

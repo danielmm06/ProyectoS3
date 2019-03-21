@@ -81,6 +81,10 @@ $(document).ready(function () {
         index++;
     }
     $('#Egresado').val(formulario[index]);
+    if (formulario[index + 1] != "null") {
+        $('#notas').val(formulario[index + 1]);
+        $('#notasevaluador').removeAttr("hidden");
+    }
     $('#OfiDireccion').blur();
     $('#Empresa').blur();
 });
@@ -241,7 +245,7 @@ $('.recursos').on('focus', function (event) {
 });
 
 $('.recursos').on('blur', function (event) {
-    if ($(event.target).val() < 0 || $(event.target).val() == ""){
+    if ($(event.target).val() < 0 || $(event.target).val() == "") {
         $(event.target).val("0");
     } else if ($(event.target).val() > 100) {
         $(event.target).val("100");

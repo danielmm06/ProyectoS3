@@ -28,7 +28,7 @@
 
                 </div>
                 <div class="card-body  mx-auto mt-2">  
-                    <form id="myform" method="POST" action="Formulario">
+                    <form id="myform" method="POST" action="evaluarRegistro">
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-3">
@@ -979,50 +979,51 @@
 
 
 
-                        
+
 
                         <input type="text" id="name" name="name" value="" style="display: none">
 
+
+
+
+
+                        </div>
+                        <div class="card-footer small text-muted">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-2"></div>
+                                    <div class="col-md-8">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text " for="notas">Notas: </label>
+                                            </div>
+                                            <textarea class="form-control letras" id="notas" name="notas" required="required" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-2"></div>
+                                </div>
+                                <br>
+                                <div class="form-row">
+                                    <div class="col-md-4">
+                                    </div>
+                                    <div class="col-md-4">
+                                        <input type="submit" id="botonEvaluacion" name="botonEvaluacion" class="btn btn-primary btn-lg btn-block" value="Evaluar" >
+
+
+                                        <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
+                                    </div>
+                                    <div class="col-md-4">
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
                     </form>
 
 
 
                 </div>
-                <div class="card-footer small text-muted">
-                    <div class="form-group">
-                            <div class="form-row">
-                                <div class="col-md-2"></div>
-                                <div class="col-md-8">
-                                    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                            <label class="input-group-text " for="notas">Notas: </label>
-                                        </div>
-                                        <textarea class="form-control letras" id="notas" name="notas"  ></textarea>
-                                    </div>
-                                </div>
-                                <div class="col-md-2"></div>
-                            </div>
-                        <br>
-                            <div class="form-row">
-                                <div class="col-md-4">
-                                </div>
-                                <div class="col-md-4">
-                                    <input type="submit" id="botonEvaluacion" name="botonEvaluacion" class="btn btn-primary btn-lg btn-block" value="Siguiente" >
-                                    
-                                    
-                                    <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
-                                </div>
-                                <div class="col-md-4">
-                                </div>
-                            </div>
-                        
-                        </div>
-                </div>
-
-
-
             </div>
-        </div>
-        <!-- /Content -->
-    </jsp:body>
-</t:Estructura_Sistema>
+            <!-- /Content -->
+        </jsp:body>
+    </t:Estructura_Sistema>

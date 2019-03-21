@@ -49,7 +49,7 @@ public class InfoPreguntasDAO {
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
                         + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
-                        + "VALIDACION_PREGUNTAS FROM info_preguntas"
+                        + "VALIDACION_PREGUNTAS, ESTADO FROM info_preguntas"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -74,6 +74,7 @@ public class InfoPreguntasDAO {
                 infoPreguntas.setFechaLectura(result.getDate("FECHA_LECTURA"));
                 infoPreguntas.setComentarios(result.getString("COMENTARIOS"));
                 infoPreguntas.setValidacionPreguntas(result.getInt("VALIDACION_PREGUNTAS"));
+                infoPreguntas.setEstado(result.getString("ESTADO"));
 
                 listaInfoPreguntas.add(infoPreguntas);
             }
@@ -110,7 +111,7 @@ public class InfoPreguntasDAO {
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
                         + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
-                        + "VALIDACION_PREGUNTAS FROM info_preguntas WHERE ID_PREGUNTAS=?"
+                        + "VALIDACION_PREGUNTAS,ESTADO FROM info_preguntas WHERE ID_PREGUNTAS=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -136,6 +137,7 @@ public class InfoPreguntasDAO {
                 infoPreguntas.setFechaLectura(result.getDate("FECHA_LECTURA"));
                 infoPreguntas.setComentarios(result.getString("COMENTARIOS"));
                 infoPreguntas.setValidacionPreguntas(result.getInt("VALIDACION_PREGUNTAS"));
+                infoPreguntas.setEstado(result.getString("ESTADO"));
             }
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar consulta.", e);
@@ -165,8 +167,8 @@ public class InfoPreguntasDAO {
             String columns = "ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                     + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                     + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
-                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, VALIDACION_PREGUNTAS";
-            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, VALIDACION_PREGUNTAS, ESTADO";
+            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO info_preguntas(" + columns + ") VALUES (" + values + ")",
@@ -193,6 +195,7 @@ public class InfoPreguntasDAO {
             inputs.add(infoPreguntas.getFechaLectura());
             inputs.add(infoPreguntas.getComentarios());
             inputs.add(infoPreguntas.getValidacionPreguntas());
+            inputs.add(infoPreguntas.getEstado());
             result = db.ExecuteUpdate(psInsert, inputs);
         } catch (SQLException e) {
             throw new RuntimeException("Error al ejecutar inserción.", e);
@@ -285,6 +288,10 @@ public class InfoPreguntasDAO {
             if (infoPreguntas.getValidacionPreguntas() != null) {
                 columns += ",VALIDACION_PREGUNTAS=?";
                 inputs.add(infoPreguntas.getValidacionPreguntas());
+            }
+            if (infoPreguntas.getEstado()!= null) {
+                columns += ",ESTADO=?";
+                inputs.add(infoPreguntas.getEstado());
             }
 
             inputs.add(infoPreguntas.getIdPreguntas());

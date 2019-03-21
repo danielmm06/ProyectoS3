@@ -114,6 +114,7 @@ public class Formulario extends HttpServlet {
                         formulario.add("finIdiomas");
 
                         formulario.add(preguntas.getEgresadoUnillanos());
+                        formulario.add(preguntas.getComentarios());
 
 //                        response.getWriter().print(formulario);
                         request.setAttribute("formulario", formulario);

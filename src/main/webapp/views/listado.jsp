@@ -15,7 +15,7 @@
     <jsp:attribute name="scripts">
         <!-- Scripts -->
         <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
-        <script type="text/javascript" src="views/js/formulario.js"></script>
+        <script type="text/javascript" src="views/js/admin.js"></script>
         <!-- /Scripts -->
     </jsp:attribute>
 
@@ -28,61 +28,33 @@
 
                 </div>
                 <div class="card-body  mx-auto mt-2">  
-                    <form id="myform" method="POST" action="Formulario">
-                       
-                      
-                       
-                       
-                      
+                    <form id="myform" method="GET" action="evaluarRegistro">
+                        <input hidden="" id="doc" name="doc">
                         <h5><label> Aspirantes a la Especialización de Gestion de Proyectos</label></h5>
                         <!--<p> Estudios a nivel de pregrado, postgrado y otros </p>-->
                         <hr>
                         <div class="table-responsive">
-                            <table class="table table-bordered text-center" id="InfoAcademica"  width="100%" cellspacing="0">
+                            <table class="table table-bordered text-center" width="100%" cellspacing="0">
                                 <thead>
                                     <tr>
-                                       
+
                                         <th  class="text-center" style="width: 15%;">Documento</th>
-                                        <th  class="text-center">Aspirtante</th>
-                                        <th  class="text-center"  style="width: 15%;">Estado</th>
+                                        <th  class="text-center" style="width: 15%;">Aspirante</th>
+                                        <th  class="text-center" style="width: 15%;">Estado</th>
                                         <th  class="text-center" style="width: 15%;">Aprobacion</th>
                                         <th  class="text-center" style="width: 10%;">Evaluar</th>
-                                       
+
                                     </tr>
                                 </thead>
 
-                                <tbody>
-                                    <tr>
-                                        
-                                        <td><input class="border-0 text-center container-fluid numeros" type="text" id="a12" name="a12" style="outline: none"value="${academica.size()>=1?academica.get(0).programa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a13" name="a13" style="outline: none"value="${academica.size()>=1?academica.get(0).tituloObtenido:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a14" name="a14"  style="outline: none"value="${academica.size()>=1?academica.get(0).ano:''}"></td>
-                                         <td><input class="border-0 text-center container-fluid letras" type="text" id="a14" name="a14"  style="outline: none"value="${academica.size()>=1?academica.get(0).ano:''}"></td>
-                              
-                                        <td ><div class="btn btn-success "  id="enviar" onclick="sendFormReciboPublico(this)">		  								
-                                            &nbsp;Evaluar&nbsp;		  										  					
-                                        </div>
-                                            </td>
-                                           
-                                    </tr>
-                                    <tr>
-                                        <td><input class="border-0 text-center container-fluid tabla letras" type="text" id="a21" name="a21" style="outline: none"value="${academica.size()>=2?academica.get(1).universidad:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a22" name="a22" style="outline: none"value="${academica.size()>=2?academica.get(1).programa:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a23" name="a23" style="outline: none"value="${academica.size()>=2?academica.get(1).tituloObtenido:''}"></td>
-                                        <td><input class="border-0 text-center container-fluid letras" type="text" id="a14" name="a14"  style="outline: none"value="${academica.size()>=1?academica.get(0).ano:''}"></td>
-                                       
-                                        <td ><div class="btn btn-success "  id="enviar" onclick="sendFormReciboPublico(this)">		  								
-                                            &nbsp;Evaluar&nbsp;		  										  					
-                                        </div>
-                                            </td>
-                                            
-                                    </tr>
-                                   
+                                <tbody id="cuerpo">
+
+
                                 </tbody>
                             </table>
                         </div>
 
-                        
+
 
 
 
@@ -111,7 +83,7 @@
 
                 </div>
                 <div class="card-footer small text-muted">
-                   
+
                 </div>
 
 

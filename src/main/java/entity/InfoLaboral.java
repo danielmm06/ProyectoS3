@@ -26,20 +26,19 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Daniel
+ * @author niari
  */
 @Entity
 @Table(name = "info_laboral")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "InfoLaboral.findAll", query = "SELECT i FROM InfoLaboral i")
-    , @NamedQuery(name = "InfoLaboral.findByIdLaboral", query = "SELECT i FROM InfoLaboral i WHERE i.idLaboral = :idLaboral")
-    , @NamedQuery(name = "InfoLaboral.findByEmpresa", query = "SELECT i FROM InfoLaboral i WHERE i.empresa = :empresa")
-    , @NamedQuery(name = "InfoLaboral.findByCargo", query = "SELECT i FROM InfoLaboral i WHERE i.cargo = :cargo")
-    , @NamedQuery(name = "InfoLaboral.findByFechaInicio", query = "SELECT i FROM InfoLaboral i WHERE i.fechaInicio = :fechaInicio")
-    , @NamedQuery(name = "InfoLaboral.findByFechaFin", query = "SELECT i FROM InfoLaboral i WHERE i.fechaFin = :fechaFin")})
+    @NamedQuery(name = "InfoLaboral.findAll", query = "SELECT i FROM InfoLaboral i"),
+    @NamedQuery(name = "InfoLaboral.findByIdLaboral", query = "SELECT i FROM InfoLaboral i WHERE i.idLaboral = :idLaboral"),
+    @NamedQuery(name = "InfoLaboral.findByEmpresa", query = "SELECT i FROM InfoLaboral i WHERE i.empresa = :empresa"),
+    @NamedQuery(name = "InfoLaboral.findByCargo", query = "SELECT i FROM InfoLaboral i WHERE i.cargo = :cargo"),
+    @NamedQuery(name = "InfoLaboral.findByFechaInicio", query = "SELECT i FROM InfoLaboral i WHERE i.fechaInicio = :fechaInicio"),
+    @NamedQuery(name = "InfoLaboral.findByFechaFin", query = "SELECT i FROM InfoLaboral i WHERE i.fechaFin = :fechaFin")})
 public class InfoLaboral implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

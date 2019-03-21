@@ -23,20 +23,20 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
- * @author Daniel
+ * @author niari
  */
 @Entity
 @Table(name = "soporte")
 @XmlRootElement
 @NamedQueries({
-    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s")
-    , @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte")
-    , @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte")
-    , @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo")
-    , @NamedQuery(name = "Soporte.findByNombreTmp", query = "SELECT s FROM Soporte s WHERE s.nombreTmp = :nombreTmp")
-    , @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
+    @NamedQuery(name = "Soporte.findAll", query = "SELECT s FROM Soporte s"),
+    @NamedQuery(name = "Soporte.findByIdSoporte", query = "SELECT s FROM Soporte s WHERE s.idSoporte = :idSoporte"),
+    @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte"),
+    @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo"),
+    @NamedQuery(name = "Soporte.findByNombreTmp", query = "SELECT s FROM Soporte s WHERE s.nombreTmp = :nombreTmp"),
+    @NamedQuery(name = "Soporte.findByComentario", query = "SELECT s FROM Soporte s WHERE s.comentario = :comentario"),
+    @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
 public class Soporte implements Serializable {
-
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -55,13 +55,17 @@ public class Soporte implements Serializable {
     private String urlArchivo;
     @Basic(optional = false)
     @NotNull
-    @Size(min = 1, max = 60)
+    @Size(min = 1, max = 100)
     @Column(name = "NOMBRE_TMP")
     private String nombreTmp;
+    @Size(max = 100)
+    @Column(name = "COMENTARIO")
+    private String comentario;
     @Basic(optional = false)
     @NotNull
+    @Size(min = 1, max = 45)
     @Column(name = "VALIDACION")
-    private int validacion;
+    private String validacion;
     @JoinColumn(name = "ID_PERSONA", referencedColumnName = "DOCUMENTO")
     @ManyToOne(optional = false)
     private Persona idPersona;
@@ -76,7 +80,7 @@ public class Soporte implements Serializable {
         this.idSoporte = idSoporte;
     }
 
-    public Soporte(Integer idSoporte, String nombreSoporte, String urlArchivo, String nombreTmp, int validacion) {
+    public Soporte(Integer idSoporte, String nombreSoporte, String urlArchivo, String nombreTmp, String validacion) {
         this.idSoporte = idSoporte;
         this.nombreSoporte = nombreSoporte;
         this.urlArchivo = urlArchivo;
@@ -116,11 +120,19 @@ public class Soporte implements Serializable {
         this.nombreTmp = nombreTmp;
     }
 
-    public int getValidacion() {
+    public String getComentario() {
+        return comentario;
+    }
+
+    public void setComentario(String comentario) {
+        this.comentario = comentario;
+    }
+
+    public String getValidacion() {
         return validacion;
     }
 
-    public void setValidacion(int validacion) {
+    public void setValidacion(String validacion) {
         this.validacion = validacion;
     }
 

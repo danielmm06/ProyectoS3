@@ -969,7 +969,7 @@
                             </div>
                         </div>
                         <hr> <br>
-                        <div class="form-group" id="notasevaluador" style="display:none;">
+                        <div class="form-group" id="notasevaluador" hidden>
                             <div class="form-row">
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
@@ -977,7 +977,7 @@
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="notas">Notas: </label>
                                         </div>
-                                        <textarea class="form-control letras" id="notas" name="notas"  ></textarea>
+                                        <textarea class="form-control " id="notas" name="notas"  readonly></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-2"></div>

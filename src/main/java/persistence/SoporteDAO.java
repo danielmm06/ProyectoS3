@@ -41,7 +41,7 @@ public class SoporteDAO {
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,VALIDACION "
+                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,COMENTARIO,VALIDACION "
                         + "FROM soporte"
                 );
             }
@@ -54,7 +54,8 @@ public class SoporteDAO {
                 soporte.setIdPersona(new Persona(result.getInt("ID_PERSONA")));
                 soporte.setIdTiposoporte(new TipoSoporte(result.getInt("ID_TIPOSOPORTE")));
                 soporte.setNombreTmp(result.getNString("NOMBRE_TMP"));
-                soporte.setValidacion(result.getInt("VALIDACION"));
+                soporte.setValidacion(result.getString("COMENTARIO"));
+                soporte.setValidacion(result.getString("VALIDACION"));
 
                 listaSoporte.add(soporte);
             }
@@ -86,7 +87,7 @@ public class SoporteDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,VALIDACION "
+                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,COMENTARIO,VALIDACION "
                         + "FROM soporte WHERE ID_SOPORTE=?"
                 );
             }
@@ -100,7 +101,8 @@ public class SoporteDAO {
                 soporte.setIdPersona((new PersonaDAO()).get(result.getInt("ID_PERSONA")));
                 soporte.setIdTiposoporte((new TipoSoporteDAO()).get(result.getInt("ID_TIPOSOPORTE")));
                 soporte.setNombreTmp(result.getNString("NOMBRE_TMP"));
-                soporte.setValidacion(result.getInt("VALIDACION"));
+                soporte.setValidacion(result.getString("COMENTARIO"));
+                soporte.setValidacion(result.getString("VALIDACION"));
 
             }
         } catch (SQLException e) {
@@ -128,8 +130,8 @@ public class SoporteDAO {
         PreparedStatement psInsert = null;
         long result;
         try {
-            String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,VALIDACION";
-            String values = "?,?,?,?,?,?";
+            String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,COMENTARIO,VALIDACION";
+            String values = "?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO soporte(" + columns + ") VALUES(" + values + ")", "ID_SOPORTE"
@@ -146,7 +148,8 @@ public class SoporteDAO {
             } else {
                 inputs.add(null);
             }
-            if (soporte.getValidacion() != 0) {
+            inputs.add((soporte.getComentario()));
+            if (soporte.getValidacion() != null) {
                 inputs.add(soporte.getValidacion());
             } else {
                 inputs.add(0);
@@ -198,7 +201,12 @@ public class SoporteDAO {
                 inputs.add(soporte.getIdPersona().getDocumento());
             }
 
-            if (soporte.getValidacion() != 0) {
+            if (soporte.getComentario()!= null) {
+                columns += ",COMENTARIO=?";
+                inputs.add(soporte.getComentario());
+            }
+
+            if (soporte.getValidacion() != null) {
                 columns += ",VALIDACION=?";
                 inputs.add(soporte.getValidacion());
             }
@@ -287,7 +295,7 @@ public class SoporteDAO {
 
                 soporte.setNombreTmp(result.getString("NOMBRE_TMP"));
 
-                soporte.setValidacion(result.getInt("VALIDACION"));
+                soporte.setValidacion(result.getString("VALIDACION"));
                 listaSoporte.add(soporte);
             }
         } catch (SQLException e) {
