@@ -69,7 +69,7 @@ $(document).ready(function () {
     $('#FranEscribe').val(formulario[36]);
     var index = 37;
     if (formulario[index] != "finIdiomas") {
-        $('#otroIdioma').val(formulario[index]).focusout();
+        $('#otroIdioma').val(formulario[index]).blur();
         index++;
         $('#otroComprende').val(formulario[index]);
         index++;
@@ -81,6 +81,8 @@ $(document).ready(function () {
         index++;
     }
     $('#Egresado').val(formulario[index]);
+    $('#OfiDireccion').blur();
+    $('#Empresa').blur();
 });
 
 //$('#botonFormulario').on('click', function () {
@@ -106,9 +108,9 @@ $(document).ready(function () {
 
 $('#otroIdioma').on('blur', function (event) {
     if ($('#otroIdioma').val() != "") {
-        $('#otroComprende').prop("required", true);
-        $('#otroHabla').prop("required", true);
-        $('#otroEscribe').prop("required", true);
+        $('#otroComprende').attr("required", "required");
+        $('#otroHabla').attr("required", "required");
+        $('#otroEscribe').attr("required", "required");
     } else {
         $('#otroComprende').removeAttr("required");
         $('#otroHabla').removeAttr("required");
@@ -136,7 +138,6 @@ $('#OfiDireccion').on('blur', function (event) {
 
 $('#Empresa').on('blur', function (event) {
     if ($('#Empresa').val() != "") {
-        $('#Empresa').prop("required", true);
         $('#TipoEmpresa').prop("required", true);
         $('#Cargo').prop("required", true);
         $('#EmpDireccion').prop("required", true);
@@ -145,7 +146,6 @@ $('#Empresa').on('blur', function (event) {
         $('#EmpDepartamento').prop("required", true);
         $('#EmpCiudad').prop("required", true);
     } else {
-        $('#Empresa').removeAttr("required");
         $('#TipoEmpresa').removeAttr("required");
         $('#Cargo').removeAttr("required");
         $('#EmpDireccion').removeAttr("required");

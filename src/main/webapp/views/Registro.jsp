@@ -465,7 +465,7 @@
 
                                 <div class="col-md-4">
                                     <label for="Empresa"  >Nombre Empresa</label>
-                                    <input type="text" id="Empresa" name="Empresa" class="form-control letras" placeholder="Empresa" required="required" value="${preguntas.empresa}">
+                                    <input type="text" id="Empresa" name="Empresa" class="form-control letras" placeholder="Empresa" value="${preguntas.empresa}">
 
 
                                 </div>
@@ -474,7 +474,7 @@
 
                                     <label   for="TipoEmpresa" >Tipo Empresa</label>
 
-                                    <select class="form-control " id="TipoEmpresa" name="TipoEmpresa" required="required">
+                                    <select class="form-control " id="TipoEmpresa" name="TipoEmpresa">
                                         <option value="" selected>--</option>
                                         <option value="Publica">Publica</option>
                                         <option value="Privada">Privada</option>
@@ -502,7 +502,7 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="EmpDireccion"  >Dirección</label>
-                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" required="required" value="${preguntas.empDireccion}">
+                                    <input type="text" id="EmpDireccion" name="EmpDireccion" class="form-control lenum" placeholder="Direccion" value="${preguntas.empDireccion}">
 
 
                                 </div>
@@ -526,7 +526,7 @@
                                             <label class="input-group-text " for="Residencia">Empresa</label>
                                             <label class="input-group-text " for="EmpPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="EmpPais" name="EmpPais" required="required">
+                                        <select class="form-control pais" id="EmpPais" name="EmpPais">
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="EmpPais"> 
                                                 <option  value="<c:out value="${EmpPais.idPais}" />" ><c:out value="${EmpPais.nombrePais}" /></option>
@@ -537,13 +537,13 @@
 
                                             <label class="input-group-text " for="EmpDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="EmpDepartamento" name="EmpDepartamento" required="required">
+                                        <select class="form-control departamento" id="EmpDepartamento" name="EmpDepartamento" >
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="EmpCiudad">Ciudad</label>
                                         </div>
-                                        <select class="form-control" id="EmpCiudad" name="EmpCiudad" required="required">
+                                        <select class="form-control" id="EmpCiudad" name="EmpCiudad">
                                             <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
