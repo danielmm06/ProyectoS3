@@ -29,13 +29,13 @@
                 </div>
                 <div class="card-body  mx-auto mt-2">  
                     <form id="myform" method="POST" action="Formulario">
-                        <div class="form-group">
+                        <div class="form-group" style='display: none;'>
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label for="Categoria"  >Categoria</label>
-                                    <select class="form-control" id="Categoria" name="Categoria" required="required" autofocus="autofocus"  >
-                                        <option value="" selected>--</option>
-                                        <option value="1">Especialización</option>
+                                    <select class="form-control" id="Categoria" name="Categoria" required="required"   >
+                                        <option value="" >--</option>
+                                        <option value="1" selected>Especialización</option>
                                         <option value="2">Maestría</option>
                                         <option value="3">Doctorado</option>
 
@@ -44,13 +44,13 @@
                                 </div>
                                 <div class="col-md-4">
                                     <label for="Programa">Programa al que se inscrbe</label>
-                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" value="${cabecera.programa}">
+                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" value="Gestion de Proyectos" >
 
 
                                 </div>
                                 <div class="col-md-5">
                                     <label for="Facultad">Perteneciente a la facultad</label>
-                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" value="${cabecera.facultad}">
+                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" value="FCE" >
 
 
                                 </div>
@@ -66,7 +66,7 @@
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label for="Nombre1"  >Primer Nombre</label>
-                                    <input type="text" id="Nombre1" name="Nombre1" class="form-control letras" placeholder="Primer Nombre" required="required" value="${persona.nombre1}">
+                                    <input type="text" id="Nombre1" name="Nombre1" class="form-control letras" placeholder="Primer Nombre" required="required" value="${persona.nombre1}" autofocus="autofocus">
 
 
                                 </div>
@@ -572,7 +572,7 @@
                                             <option value="Promoción Universitaria">Promoción Universitaria</option>
                                             <option value="Otros" >Otros   </option>
                                         </select>
-                                        <input type="text" id="Otrosok" name="Otrosok" style="display:none;" class="form-control letras" placeholder="¿Cuales?"  autofocus="autofocus">
+                                        <input type="text" id="Otrosok" name="Otrosok" style="display:none;" class="form-control letras" placeholder="¿Cuales?"  >
 
                                     </div>
                                 </div>
