@@ -410,7 +410,7 @@
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormImpuesto(this)">		  								
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
-                                        <a href="javascript:void(0);" onclick="javascipt:window.open('ok.pdf');" class="popup">Clic to open.</a>
+                                        
                                         <c:if test="${listaPathsNames[3] ne null}">
                                             <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						

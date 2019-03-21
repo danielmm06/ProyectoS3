@@ -8,45 +8,45 @@ $(document).ready(function () {
         $('#ExpDepartamento').val(formulario[3]).change();
         setTimeout(function () {
             $('#ExpCiudad').val(formulario[4]);
-        }, 1000);
-    }, 1000);
-    $('#ResPais').val(formulario[5]).change();
-    setTimeout(function () {
-        $('#ResDepartamento').val(formulario[6]).change();
-        setTimeout(function () {
-            $('#ResCiudad').val(formulario[7]);
-        }, 1000);
-    }, 1000);
-    $('#OfiPais').val(formulario[8]).change();
-    setTimeout(function () {
-        $('#OfiDepartamento').val(formulario[9]).change();
-        setTimeout(function () {
-            $('#OfiCiudad').val(formulario[10]);
-        }, 1000);
-    }, 1000);
+            $('#ResPais').val(formulario[5]).change();
+            setTimeout(function () {
+                $('#ResDepartamento').val(formulario[6]).change();
+                setTimeout(function () {
+                    $('#ResCiudad').val(formulario[7]);
+                    $('#OfiPais').val(formulario[8]).change();
+                    setTimeout(function () {
+                        $('#OfiDepartamento').val(formulario[9]).change();
+                        setTimeout(function () {
+                            $('#OfiCiudad').val(formulario[10]);
+                            $('#NacPais').val(formulario[14]).change();
+                            setTimeout(function () {
+                                $('#NacDepartamento').val(formulario[15]).change();
+                                setTimeout(function () {
+                                    $('#NacCiudad').val(formulario[16]);
+                                    $('#EmpPais').val(formulario[21]).change();
+                                    setTimeout(function () {
+                                        $('#EmpDepartamento').val(formulario[22]).change();
+                                        setTimeout(function () {
+                                            $('#EmpCiudad').val(formulario[23]);
+                                        }, 500);
+                                    }, 500);
+                                }, 500);
+                            }, 500);
+                        }, 500);
+                    }, 500);
+                }, 500);
+            }, 500);
+        }, 500);
+    }, 500);
     $('#ano').val(formulario[11]);
     $('#mes').val(formulario[12]);
     $('#dia').val(formulario[13]);
-    $('#NacPais').val(formulario[14]).change();
-    setTimeout(function () {
-        $('#NacDepartamento').val(formulario[15]).change();
-        setTimeout(function () {
-            $('#NacCiudad').val(formulario[16]);
-        }, 1000);
-    }, 1000);
     $('#Sexo').val(formulario[17]);
     $('#Estado').val(formulario[18]);
     $('#Estrato').val(formulario[19]);
     $('#TipoEmpresa').val(formulario[20]);
-    $('#EmpPais').val(formulario[21]).change();
-    setTimeout(function () {
-        $('#EmpDepartamento').val(formulario[22]).change();
-        setTimeout(function () {
-            $('#EmpCiudad').val(formulario[23]);
-        }, 1000);
-    }, 1000);
     var otro = true;
-    $('#Conocimiento option').each(function() {
+    $('#Conocimiento option').each(function () {
         if ($(this).val() == formulario[24]) {
             otro = false;
         }
@@ -104,7 +104,7 @@ $(document).ready(function () {
 //    }
 //});
 
-$('#otroIdioma').on('focusout', function (event) {
+$('#otroIdioma').on('blur', function (event) {
     if ($('#otroIdioma').val() != "") {
         $('#otroComprende').prop("required", true);
         $('#otroHabla').prop("required", true);
@@ -116,7 +116,47 @@ $('#otroIdioma').on('focusout', function (event) {
     }
 });
 
-$('.tabla').on('focusout', function (event) {
+$('#OfiDireccion').on('blur', function (event) {
+    if ($('#OfiDireccion').val() != "") {
+        $('#OfiDireccion').prop("required", true)
+        $('#OfiTelefono').prop("required", true);
+        $('#Celular').prop("required", true);
+        $('#OfiPais').prop("required", true);
+        $('#OfiDepartamento').prop("required", true);
+        $('#OfiCiudad').prop("required", true);
+    } else {
+        $('#OfiDireccion').removeAttr("required");
+        $('#OfiTelefono').removeAttr("required");
+        $('#Celular').removeAttr("required");
+        $('#OfiPais').removeAttr("required");
+        $('#OfiDepartamento').removeAttr("required");
+        $('#OfiCiudad').removeAttr("required");
+    }
+});
+
+$('#Empresa').on('blur', function (event) {
+    if ($('#Empresa').val() != "") {
+        $('#Empresa').prop("required", true);
+        $('#TipoEmpresa').prop("required", true);
+        $('#Cargo').prop("required", true);
+        $('#EmpDireccion').prop("required", true);
+        $('#EmpTelefono').prop("required", true)
+        $('#EmpPais').prop("required", true);
+        $('#EmpDepartamento').prop("required", true);
+        $('#EmpCiudad').prop("required", true);
+    } else {
+        $('#Empresa').removeAttr("required");
+        $('#TipoEmpresa').removeAttr("required");
+        $('#Cargo').removeAttr("required");
+        $('#EmpDireccion').removeAttr("required");
+        $('#EmpTelefono').removeAttr("required");
+        $('#EmpPais').removeAttr("required");
+        $('#EmpDepartamento').removeAttr("required");
+        $('#EmpCiudad').removeAttr("required");
+    }
+});
+
+$('.tabla').on('blur', function (event) {
     if ($(event.target).val() != "") {
         for (var i = 2; i <= 4; i++) {
             $('#' + event.target.id.slice(0, -1) + i).attr("required", "required");
@@ -156,7 +196,7 @@ $('.fechas').on('keypress', function (event) { //Para fechas
     }
 });
 
-$('.fechas').on('focusout', function (event) { //Validar formato de fechas
+$('.fechas').on('blur', function (event) { //Validar formato de fechas
     if ($(event.target).val() != "") {
         var regExp = /^[0-9]{4}\-[0-9]{1,2}\-[0-9]{1,2}$/;
         if (!regExp.test($(event.target).val())) {
@@ -167,7 +207,7 @@ $('.fechas').on('focusout', function (event) { //Validar formato de fechas
     }
 });
 
-$('.correo').on('focusout', function (event) { //Validar formato de fechas
+$('.correo').on('blur', function (event) { //Validar formato de fechas
     if ($(event.target).val() != "") {
         var regExp = /^[a-z\.]*\@[a-z]*\.[a-z\.]*$/;
         if (!regExp.test($(event.target).val())) {
@@ -178,7 +218,7 @@ $('.correo').on('focusout', function (event) { //Validar formato de fechas
     }
 });
 
-$('#Conocimiento').on('focusout', function (event) {
+$('#Conocimiento').on('change', function (event) {
     if ($('#Conocimiento').val() == "Otros") {
         $('#Otrosok').show();
     } else {
@@ -192,6 +232,29 @@ $('.pais').on('change', function (event) {
 
 $('.departamento').on('change', function (event) {
     AJAX($(event.target).val() != "" ? $(event.target).val() : "0", event.target.id.replace("Departamento", "Ciudad"), 'FormularioCiudad', true);
+});
+
+var suma = parseInt($('#Prestamo').val()) + parseInt($('#AuxEmp').val()) + parseInt($('#Recursos').val()) + parseInt($('#Beca').val());
+
+$('.recursos').on('focus', function (event) {
+    suma = suma - parseInt($(event.target).val());
+});
+
+$('.recursos').on('blur', function (event) {
+    if ($(event.target).val() < 0 || $(event.target).val() == ""){
+        $(event.target).val("0");
+    } else if ($(event.target).val() > 100) {
+        $(event.target).val("100");
+    }
+    suma = suma + parseInt($(event.target).val());
+});
+
+$(document).on('submit', function (event) {
+    if (suma != 100) {
+        event.preventDefault();
+        event.stopPropagation();
+        alert("La suma de los recursos no da el 100%");
+    }
 });
 //var pais = document.getElementById("ExpPais");
 //alert(pais.value);

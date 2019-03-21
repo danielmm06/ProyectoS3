@@ -16,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import persistence.UsuariosDAO;
 
 /**
@@ -84,7 +85,9 @@ public class Login extends HttpServlet {
 //                System.out.println("valido--->" + valido);
 
                 if (valido == true) {
-                    response.sendRedirect("Formulario?user="+id_nickname);
+                    HttpSession session = request.getSession(true);//-----------------------------------------------------------------------------
+                    session.setAttribute("user", id_nickname);//-----------------------------------------------------------------------------
+                    response.sendRedirect("Formulario?user=" + id_nickname);
                 } else {
                     response.sendRedirect("Login");
                 }

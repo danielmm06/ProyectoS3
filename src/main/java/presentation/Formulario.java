@@ -28,6 +28,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -58,7 +59,9 @@ public class Formulario extends HttpServlet {
 //                        //----------------------------------------------------------
                     request.setAttribute("listaPais", listaPais);
 
-                    int user = Integer.parseInt(request.getParameter("user"));
+                    //int user = Integer.parseInt(request.getParameter("user"));
+                    HttpSession session = request.getSession();//-----------------------------------------------------------------------------
+                    int user = Integer.parseInt(String.valueOf(session.getAttribute("user")));//-----------------------------------------------------------------------------
                     Persona persona = App.PersonaDAO.get(user);
                     if (persona.getDocumento() != null) {
                         InfoPreguntas preguntas = App.PreguntasDAO.get(persona.getDocumento());

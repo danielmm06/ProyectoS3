@@ -240,14 +240,14 @@
                                 <div class="col-md-4">
 
                                     <label for="OfiDireccion"  >Dirección Oficina</label>
-                                    <input type="text" id="OfiDireccion" name="OfiDireccion" class="form-control lenum" placeholder="OfiDireccion" required="required" value="${persona.direccionOfic}">
+                                    <input type="text" id="OfiDireccion" name="OfiDireccion" class="form-control lenum" placeholder="OfiDireccion" value="${persona.direccionOfic}">
 
 
                                 </div>
                                 <div class="col-md-3">
 
                                     <label for="OfiTelefono"> Telefono</label>
-                                    <input type="text" id="OfiTelefono" name="OfiTelefono" class="form-control numeros" placeholder="OfiTelefono" required="required" value="${persona.telefonoOfic}">
+                                    <input type="text" id="OfiTelefono" name="OfiTelefono" class="form-control numeros" placeholder="OfiTelefono" value="${persona.telefonoOfic}">
 
 
                                 </div>
@@ -259,7 +259,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="OfiCelular"  >Celular</label>
-                                    <input type="text" id="OfiCelular" name="OfiCelular" class="form-control numeros" placeholder="OfiCelular" required="required" value="${persona.celularOfic}">
+                                    <input type="text" id="OfiCelular" name="OfiCelular" class="form-control numeros" placeholder="OfiCelular" value="${persona.celularOfic}">
 
 
                                 </div>
@@ -275,7 +275,7 @@
                                             <label class="input-group-text " for="Oficina">Oficina</label>
                                             <label class="input-group-text " for="OfiPais">Pais</label>
                                         </div>
-                                        <select class="form-control pais" id="OfiPais" name="OfiPais" required="required">
+                                        <select class="form-control pais" id="OfiPais" name="OfiPais">
                                             <option selected value="">Seleccione el Pais</option>
                                             <c:forEach items="${listaPais}" var="OfiPais"> 
                                                 <option  value="<c:out value="${OfiPais.idPais}" />" ><c:out value="${OfiPais.nombrePais}" /></option>
@@ -286,13 +286,13 @@
 
                                             <label class="input-group-text " for="OfiDepartamento">Departamento</label>
                                         </div>
-                                        <select class="form-control departamento" id="OfiDepartamento" name="OfiDepartamento" required="required">
+                                        <select class="form-control departamento" id="OfiDepartamento" name="OfiDepartamento">
                                             <option selected value="">Seleccione el Departamento</option>
                                         </select>
                                         <div class="input-group-prepend">
                                             <label class="input-group-text " for="OfiCiudad">Ciudad</label>
                                         </div>
-                                        <select class="form-control" id="OfiCiudad" name="OfiCiudad" required="required">
+                                        <select class="form-control" id="OfiCiudad" name="OfiCiudad">
                                             <option selected value="">Seleccione la Ciudad</option>
                                         </select>
 
@@ -878,7 +878,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Prestamo" class="input-group-text" >Prestamos</label>
                                         </div>
-                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finPrestamo}">
+                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finPrestamo}">
 
 
 
@@ -892,7 +892,7 @@
                                         <div class="input-group-prepend">
                                             <label for="AuxEmp" class="input-group-text" >Auxilio Empresarial</label>
                                         </div>
-                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros" placeholder="" maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finAuxEmpresarial}">
+                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros recursos" placeholder="" maxlength="4" value="${preguntas.finAuxEmpresarial}">
 
 
 
@@ -916,9 +916,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Recursos" class="input-group-text" >Recursos Propios</label>
                                         </div>
-                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finRecPropios}">
-
-
+                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finRecPropios}">
 
                                         <div class="input-group-append">
                                             <span class="input-group-text" >%</span>
@@ -930,7 +928,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Beca" class="input-group-text" >Beca</label>
                                         </div>
-                                        <input type="text" id="Beca" name="Beca" class="form-control numeros" placeholder=""  maxlength="4" onfocusout="if(this.value>100){this.value='100';}else if(this.value<0){this.value='0';}" value="${preguntas.finBeca}">
+                                        <input type="text" id="Beca" name="Beca" class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finBeca}">
 
 
 

@@ -18,6 +18,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import org.apache.commons.fileupload.FileItem;
 import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
@@ -65,10 +66,11 @@ public class Soportes extends HttpServlet {
             if (sesionValida) {
                 if (permisoValido) {
                     request.setCharacterEncoding("UTF-8");
-                    int documento = Integer.parseInt(request.getParameter("user"));
 //                    int documento = 123;
                     request.setAttribute("title", App.nameProyect + " - Soportes");
-
+                    
+                    HttpSession session = request.getSession();
+                    int documento = Integer.parseInt(String.valueOf(session.getAttribute("user")));
                     Persona persona = App.PersonaDAO.get(documento);
 //                    Persona persona = App.PersonaDAO.get(documento);
                     listaPathsNames = new String[10]; // INICIALIZACION DE LISTA CON NUMERO DE SOPORTES A SUBIR
@@ -166,7 +168,9 @@ public class Soportes extends HttpServlet {
                     request.setAttribute("title", App.nameProyect + " - Soporte");
 
 //                    int codPersona = Integer.parseInt(request.getParameter("user"));
-                    int codPersona = 123;
+                    
+                    HttpSession session = request.getSession();//-----------------------------------------------------------------------------
+                    int codPersona = Integer.parseInt(String.valueOf(session.getAttribute("user")));//-----------------------------------------------------------------------------
 
                     Persona persona = App.PersonaDAO.get(codPersona);
 
