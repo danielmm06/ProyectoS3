@@ -57,12 +57,16 @@
                                     <div class="col-md-4">    
                                         
                                      
-                                        
-                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[0]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[0] ne null}">
+                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[0]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
-                                       
-                                          
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[0] eq null}">
+                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[0]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+                                        </c:if>    
                                         
                                     </div>
                                     
@@ -81,11 +85,16 @@
                                        <h5><label> Foto</label></h5></div>
                                     <div class="col-md-4">    
                                         
-                                       
-                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[1]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[1] ne null}">
+                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[1]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
-                                       
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[1] eq null}">
+                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[1]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+                                        </c:if>    
                                         
                                     </div>
                                 </div>
@@ -103,12 +112,16 @@
                                        <h5><label> Diploma de Pregrado</label></h5> </div>
                                     <div class="col-md-4">
                                         
-                                        
-                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[2]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[2] ne null}">
+                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[2]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
-                                        
-                                        
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[2] eq null}">
+                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[2]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+                                        </c:if>    
                                         
                                     </div>
                                 </div>
@@ -128,12 +141,16 @@
                                        <h5><label> Acta de grado de Pregrado</label></h5> </div>
                                     <div class="col-md-4">
                                         
-                                        
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[3] ne null}">
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
-                                       
-                                         
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[3] eq null}">
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+                                        </c:if>    
                                         
                                     </div>
                                 </div>
@@ -143,7 +160,7 @@
 
                                   
                         <hr> 
-                        <c:if test="${listaPathsNames[3] ne null}">
+                        
                         <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
@@ -152,47 +169,23 @@
                         </div>
                                     <div class="col-md-4">    
                                         
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[3] ne null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
-                                        
-                                        
-                                            
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[3] eq null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                                Visualizar
+                                            </div>
+                                        </c:if>    
                                        
                                     </div>
                                 </div>
                             </div>
-                                                <hr>
-                        </form>
-                              
-                        </c:if>                        
-                                                
-                        <c:if test="${listaPathsNames[3] eq null}">                
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label>  <h5>Resolución - Servicio social obligatorio </h5> -Solo para profesionales en Salud-</label>
-                        </div>
-                                    <div class="col-md-4">    
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                       
-                                       
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                                                 <hr> 
                         </form>	
-                                              
-                        </c:if>  
                         
-                         
+                        <hr> 
                         
                                  
                         <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
@@ -202,12 +195,16 @@
                                        <h5><label> Fotocopia de cédula ampliada al 150% </label></h5>  </div>
                                     <div class="col-md-4">    
                                         
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[3] ne null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
-                                      
-                                         
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[3] eq null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                                Visualizar
+                                            </div>
+                                        </c:if>    
                                         
                                     </div>
                                 </div>
@@ -223,19 +220,23 @@
                                      <h5><label> Certificado EPS</label></h5>   </div>
                                     <div class="col-md-4">
                                         
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[3] ne null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
-                                       
-                                         
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[3] eq null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                                Visualizar
+                                            </div>
+                                        </c:if>    
                                         
                                     </div>
                                 </div>
                             </div>
                         </form>	
                         <hr> 
-                           <c:if test="${listaPathsNames[3] ne null}">
+                           
                         <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
@@ -244,42 +245,23 @@
                           </div>
                                     <div class="col-md-4">
                                         
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[3] ne null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
-                                        
-                                        
-                                        
-                                    </div> 
-                                </div>
-                            </div>
-                                  <hr>           
-                        </form>	
-                           </c:if>
-                        <c:if test="${listaPathsNames[3] eq null}">
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
-                          </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[3] eq null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
                                                 Visualizar
                                             </div>
-                                         
+                                        </c:if>    
                                         
                                     </div> 
                                 </div>
                             </div>
-                                     <hr>        
+                                            
                         </form>	
-                        </c:if>  
-                         <c:if test="${listaPathsNames[3] ne null}">
+                         <hr> 
                            <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
@@ -288,40 +270,23 @@
                        </div>
                                     <div class="col-md-4">
                                         
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <c:if test="${listaPathsNames[3] ne null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
-                                        
-                                        
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                               <hr> 
-                        </form>	
-                        </c:if>
-                        <c:if test="${listaPathsNames[3] eq null}">
-                         <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
-                       </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                        </c:if>
+                                        <c:if test="${listaPathsNames[3] eq null}">
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
                                                 Visualizar
                                             </div>
-                                          
+                                        </c:if>    
                                         
                                     </div>
                                 </div>
                             </div>
                         </form>	
-                         </c:if>                         
+                        <hr> 
+
                         
 
 
@@ -337,17 +302,16 @@
                                     <div class="col-md-8">
                                         <div class="input-group">
                                             <div class="input-group-prepend">
-                                                <label class="input-group-text " for="notas2">Observaciones: </label>
+                                                <label class="input-group-text " for="notas2">Notas: </label>
                                             </div>
                                             <textarea class="form-control letras" id="notas2" name="notas2"  ></textarea>
                                         </div>
-                                        <h6> - No diligenciar este campo, daria por sentado que los soportes fueron subidos correctamente - </h6>
                                     </div>
                                     <div class="col-md-2"></div>
                                 </div>
                             <br>
                                 <div class="form-row">
-                                    <div class="col-md-4">
+                                    <div class="col-md-2">
                                     </div>
                                     <div class="col-md-4">
                                         <input type="submit" id="botonEvaluacion" name="botonEvaluacion" class="btn btn-primary btn-lg btn-block" value="Evaluar" >
@@ -355,8 +319,11 @@
 
                                         <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
                                     </div>
-                                   
                                     <div class="col-md-4">
+                                         <input type="submit" id="botonValidar" name="botonValidar" class="btn btn-primary btn-lg btn-block" value="Aprobar" >
+
+                                    </div>
+                                    <div class="col-md-2">
                                     </div>
                                 </div>
 
