@@ -106,7 +106,6 @@ public class Soportes extends HttpServlet {
 
                         }
                         if (soporte.getNombreSoporte().equals("PREGRADO")) {
-
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[1] = xn;
@@ -203,7 +202,6 @@ public class Soportes extends HttpServlet {
                     System.out.println("lista de soportes "+soporte.getNombreSoporte());
 
                         if (soporte.getNombreSoporte().equals("DIPLOMA")) {
-
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             System.out.println(xn + "xn");
@@ -218,7 +216,7 @@ public class Soportes extends HttpServlet {
 //                            System.out.println(xn + " xn");
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
-//                            System.out.println("soporte D "+soporte.getNombreTmp());
+                            System.out.println("soporte D "+soporte.getNombreTmp());
                             cont++;
                         }
 
