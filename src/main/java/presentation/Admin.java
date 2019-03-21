@@ -27,6 +27,10 @@ import persistence.UsuariosDAO;
  */
 @WebServlet(name = "Admin", urlPatterns = {"/Admin"})
 public class Admin extends HttpServlet {
+    
+    public Admin() {
+        super();
+    }
 
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -58,12 +62,8 @@ public class Admin extends HttpServlet {
                         Persona next = iterator.next();
                         formulario.add(next.getDocumento() + "");
                         formulario.add(next.getNombre1() + " " + next.getNombre2() + " " + next.getApellido1() + " " + next.getApellido2());
-                        formulario.add(preguntas.get(cont).getValidacionPreguntas() + "");
-                        if (preguntas.get(cont).getEstado() != null) {
-                            formulario.add(preguntas.get(cont).getEstado());
-                        } else {
-                            formulario.add("Sin calificar");
-                        }
+                        formulario.add(preguntas.get(cont).getValidacionPreguntas());
+                        formulario.add(preguntas.get(cont).getEstado());
                         cont++;
                     }
                     request.setAttribute("formulario", formulario);
@@ -100,13 +100,12 @@ public class Admin extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         try {
-            
 
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
             //Cierra conexión 
-            App.CloseConnection();
+//            App.CloseConnection();
         }
     }
 

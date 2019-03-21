@@ -53,6 +53,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "InfoPreguntas.findByFechaFormulario", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaFormulario = :fechaFormulario"),
     @NamedQuery(name = "InfoPreguntas.findByFechaLectura", query = "SELECT i FROM InfoPreguntas i WHERE i.fechaLectura = :fechaLectura"),
     @NamedQuery(name = "InfoPreguntas.findByComentarios", query = "SELECT i FROM InfoPreguntas i WHERE i.comentarios = :comentarios"),
+    @NamedQuery(name = "InfoPreguntas.findByComentarioSoporte", query = "SELECT i FROM InfoPreguntas i WHERE i.comentarioSoporte = :comentarioSoporte"),
     @NamedQuery(name = "InfoPreguntas.findByValidacionPreguntas", query = "SELECT i FROM InfoPreguntas i WHERE i.validacionPreguntas = :validacionPreguntas"),
     @NamedQuery(name = "InfoPreguntas.findByEstado", query = "SELECT i FROM InfoPreguntas i WHERE i.estado = :estado")})
 public class InfoPreguntas implements Serializable {
@@ -121,11 +122,17 @@ public class InfoPreguntas implements Serializable {
     @Column(name = "FECHA_LECTURA")
     @Temporal(TemporalType.DATE)
     private Date fechaLectura;
-    @Size(max = 45)
+    @Size(max = 300)
     @Column(name = "COMENTARIOS")
     private String comentarios;
+    @Basic(optional = false)
+    @NotNull
+    @Size(min = 1, max = 300)
+    @Column(name = "COMENTARIO_SOPORTE")
+    private String comentarioSoporte;
+    @Size(max = 45)
     @Column(name = "VALIDACION_PREGUNTAS")
-    private Integer validacionPreguntas;
+    private String validacionPreguntas;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -153,7 +160,7 @@ public class InfoPreguntas implements Serializable {
         this.idPreguntas = idPreguntas;
     }
 
-    public InfoPreguntas(Integer idPreguntas, String razones, String finPrestamo, String finAuxEmpresarial, String finRecPropios, String finBeca, String egresadoUnillanos, Date fechaFormulario, String estado) {
+    public InfoPreguntas(Integer idPreguntas, String razones, String finPrestamo, String finAuxEmpresarial, String finRecPropios, String finBeca, String egresadoUnillanos, Date fechaFormulario, String comentarioSoporte, String estado) {
         this.idPreguntas = idPreguntas;
         this.razones = razones;
         this.finPrestamo = finPrestamo;
@@ -162,6 +169,7 @@ public class InfoPreguntas implements Serializable {
         this.finBeca = finBeca;
         this.egresadoUnillanos = egresadoUnillanos;
         this.fechaFormulario = fechaFormulario;
+        this.comentarioSoporte = comentarioSoporte;
         this.estado = estado;
     }
 
@@ -301,11 +309,19 @@ public class InfoPreguntas implements Serializable {
         this.comentarios = comentarios;
     }
 
-    public Integer getValidacionPreguntas() {
+    public String getComentarioSoporte() {
+        return comentarioSoporte;
+    }
+
+    public void setComentarioSoporte(String comentarioSoporte) {
+        this.comentarioSoporte = comentarioSoporte;
+    }
+
+    public String getValidacionPreguntas() {
         return validacionPreguntas;
     }
 
-    public void setValidacionPreguntas(Integer validacionPreguntas) {
+    public void setValidacionPreguntas(String validacionPreguntas) {
         this.validacionPreguntas = validacionPreguntas;
     }
 

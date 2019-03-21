@@ -3,7 +3,7 @@ $(document).ready(function () {
     var formulario = info.substring(1, info.length - 1).split(', ');
     info = "<tr>";
     for (var i = 0; i < formulario.length; i++) {
-        info += "<td>" + formulario[i] + "</td>";
+        info += "<td><input class='border-0 text-center container-fluid' type='text' style='outline: none' value='" + formulario[i] + "' readonly></td>";
         if ((i + 1) % 4 == 0) {
             info += "<td><div class='btn btn-success' id='enviar' onclick='sendFormReciboPublico(" + formulario[i - 3] + ")'>&nbsp;Evaluar&nbsp;</div></td>";
             info += "</tr><tr>";

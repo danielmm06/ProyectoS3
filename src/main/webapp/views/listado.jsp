@@ -39,7 +39,7 @@
                                     <tr>
 
                                         <th  class="text-center" style="width: 15%;">Documento</th>
-                                        <th  class="text-center" style="width: 15%;">Aspirante</th>
+                                        <th  class="text-center" >Aspirante</th>
                                         <th  class="text-center" style="width: 15%;">Estado</th>
                                         <th  class="text-center" style="width: 15%;">Aprobacion</th>
                                         <th  class="text-center" style="width: 10%;">Evaluar</th>

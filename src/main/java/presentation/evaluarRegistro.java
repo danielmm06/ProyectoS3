@@ -29,6 +29,10 @@ import javax.servlet.http.HttpSession;
 @WebServlet(name = "evaluarRegistro", urlPatterns = {"/evaluarRegistro"})
 public class evaluarRegistro extends HttpServlet {
 
+    public evaluarRegistro() {
+        super();
+    }
+
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -147,10 +151,15 @@ public class evaluarRegistro extends HttpServlet {
             App.OpenConnection();
             InfoPreguntas info = App.PreguntasDAO.get(Integer.parseInt(request.getParameter("Documento")));
             info.setComentarios(request.getParameter("notas"));
-            info.setEstado("Calificado");
+            HttpSession session = request.getSession();
+            if (request.getParameter("notas").equalsIgnoreCase("")) {
+                session.setAttribute("registro", true);
+            } else {
+                session.setAttribute("registro", false);
+            }
             App.PreguntasDAO.update(info);
-            
-            response.sendRedirect("Admin");//"+info.getIdPreguntas());
+
+            response.sendRedirect("evaluarSoporte");//"+info.getIdPreguntas());
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {

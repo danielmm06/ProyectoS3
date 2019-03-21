@@ -34,7 +34,6 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Soporte.findByNombreSoporte", query = "SELECT s FROM Soporte s WHERE s.nombreSoporte = :nombreSoporte"),
     @NamedQuery(name = "Soporte.findByUrlArchivo", query = "SELECT s FROM Soporte s WHERE s.urlArchivo = :urlArchivo"),
     @NamedQuery(name = "Soporte.findByNombreTmp", query = "SELECT s FROM Soporte s WHERE s.nombreTmp = :nombreTmp"),
-    @NamedQuery(name = "Soporte.findByComentario", query = "SELECT s FROM Soporte s WHERE s.comentario = :comentario"),
     @NamedQuery(name = "Soporte.findByValidacion", query = "SELECT s FROM Soporte s WHERE s.validacion = :validacion")})
 public class Soporte implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -58,9 +57,6 @@ public class Soporte implements Serializable {
     @Size(min = 1, max = 100)
     @Column(name = "NOMBRE_TMP")
     private String nombreTmp;
-    @Size(max = 100)
-    @Column(name = "COMENTARIO")
-    private String comentario;
     @Basic(optional = false)
     @NotNull
     @Size(min = 1, max = 45)
@@ -118,14 +114,6 @@ public class Soporte implements Serializable {
 
     public void setNombreTmp(String nombreTmp) {
         this.nombreTmp = nombreTmp;
-    }
-
-    public String getComentario() {
-        return comentario;
-    }
-
-    public void setComentario(String comentario) {
-        this.comentario = comentario;
     }
 
     public String getValidacion() {

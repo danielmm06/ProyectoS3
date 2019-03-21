@@ -997,7 +997,7 @@
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text " for="notas">Notas: </label>
                                             </div>
-                                            <textarea class="form-control letras" id="notas" name="notas" required="required" ></textarea>
+                                            <textarea class="form-control letras" id="notas" name="notas" ></textarea>
                                         </div>
                                     </div>
                                     <div class="col-md-2"></div>

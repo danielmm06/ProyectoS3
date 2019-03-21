@@ -48,7 +48,7 @@ public class InfoPreguntasDAO {
                         "SELECT ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
-                        + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
+                        + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, COMENTARIO_SOPORTE, "
                         + "VALIDACION_PREGUNTAS, ESTADO FROM info_preguntas"
                 );
             }
@@ -73,7 +73,8 @@ public class InfoPreguntasDAO {
                 infoPreguntas.setFechaFormulario(result.getDate("FECHA_FORMULARIO"));
                 infoPreguntas.setFechaLectura(result.getDate("FECHA_LECTURA"));
                 infoPreguntas.setComentarios(result.getString("COMENTARIOS"));
-                infoPreguntas.setValidacionPreguntas(result.getInt("VALIDACION_PREGUNTAS"));
+                infoPreguntas.setComentarioSoporte(result.getString("COMENTARIO_SOPORTE"));
+                infoPreguntas.setValidacionPreguntas(result.getString("VALIDACION_PREGUNTAS"));
                 infoPreguntas.setEstado(result.getString("ESTADO"));
 
                 listaInfoPreguntas.add(infoPreguntas);
@@ -110,7 +111,7 @@ public class InfoPreguntasDAO {
                         "SELECT ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                         + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                         + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
-                        + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, "
+                        + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, COMENTARIO_SOPORTE, "
                         + "VALIDACION_PREGUNTAS,ESTADO FROM info_preguntas WHERE ID_PREGUNTAS=?"
                 );
             }
@@ -136,7 +137,8 @@ public class InfoPreguntasDAO {
                 infoPreguntas.setFechaFormulario(result.getDate("FECHA_FORMULARIO"));
                 infoPreguntas.setFechaLectura(result.getDate("FECHA_LECTURA"));
                 infoPreguntas.setComentarios(result.getString("COMENTARIOS"));
-                infoPreguntas.setValidacionPreguntas(result.getInt("VALIDACION_PREGUNTAS"));
+                infoPreguntas.setComentarioSoporte(result.getString("COMENTARIO_SOPORTE"));
+                infoPreguntas.setValidacionPreguntas(result.getString("VALIDACION_PREGUNTAS"));
                 infoPreguntas.setEstado(result.getString("ESTADO"));
             }
         } catch (SQLException e) {
@@ -167,8 +169,8 @@ public class InfoPreguntasDAO {
             String columns = "ID_PREGUNTAS, EMPRESA, TIPO_EMPRESA, CARGO, EMP_DIRECCION, EMP_TELEFONO, "
                     + "EMP_CIUDAD, EXISTENCIA_PROGRAMA, EXPE_LABOR_FUNCIONES, RAZONES, "
                     + "FIN_PRESTAMO, FIN_AUX_EMPRESARIAL, FIN_REC_PROPIOS, FIN_BECA, EGRESADO_UNILLANOS, "
-                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, VALIDACION_PREGUNTAS, ESTADO";
-            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
+                    + "FECHA_FORMULARIO, FECHA_LECTURA, COMENTARIOS, COMENTARIO_SOPORTE, VALIDACION_PREGUNTAS, ESTADO";
+            String values = "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
                         "INSERT INTO info_preguntas(" + columns + ") VALUES (" + values + ")",
@@ -194,6 +196,7 @@ public class InfoPreguntasDAO {
             inputs.add(infoPreguntas.getFechaFormulario());
             inputs.add(infoPreguntas.getFechaLectura());
             inputs.add(infoPreguntas.getComentarios());
+            inputs.add(infoPreguntas.getComentarioSoporte());
             inputs.add(infoPreguntas.getValidacionPreguntas());
             inputs.add(infoPreguntas.getEstado());
             result = db.ExecuteUpdate(psInsert, inputs);
@@ -284,6 +287,10 @@ public class InfoPreguntasDAO {
             if (infoPreguntas.getComentarios() != null) {
                 columns += ",COMENTARIOS=?";
                 inputs.add(infoPreguntas.getComentarios());
+            }
+            if (infoPreguntas.getComentarioSoporte()!= null) {
+                columns += ",COMENTARIO_SOPORTE=?";
+                inputs.add(infoPreguntas.getComentarioSoporte());
             }
             if (infoPreguntas.getValidacionPreguntas() != null) {
                 columns += ",VALIDACION_PREGUNTAS=?";
