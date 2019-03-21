@@ -72,7 +72,6 @@ public class Soportes extends HttpServlet {
                     HttpSession session = request.getSession();
                     int documento = Integer.parseInt(String.valueOf(session.getAttribute("user")));
                     Persona persona = App.PersonaDAO.get(documento);
-//                    Persona persona = App.PersonaDAO.get(documento);
                     listaPathsNames = new String[10]; // INICIALIZACION DE LISTA CON NUMERO DE SOPORTES A SUBIR
                     listaPathsNamestmp = new String[10]; // INICIALIZACION DE LISTA CON NUMERO DE SOPORTES A SUBIR
 
@@ -80,12 +79,13 @@ public class Soportes extends HttpServlet {
 
                     for (Soporte soporte : listasoporte) {
 
-                        if (soporte.getNombreSoporte().equals("HIJOS")) {
+                        if (soporte.getNombreSoporte().equals("DIPLOMA")) {
 
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[2] = xn;
                             listaPathsNamestmp[2] = soporte.getNombreTmp();
+                            System.out.println("soporte DIPLOMA--> "+soporte.getNombreTmp());
 
                         }
 
@@ -94,7 +94,7 @@ public class Soportes extends HttpServlet {
                             String xn = x[x.length - 1];
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
-                            System.out.println("soporte "+soporte.getNombreTmp());
+                            System.out.println("soporte PAGO--> "+soporte.getNombreTmp());
                         }
 
                         if (soporte.getNombreSoporte().equals("FOTO")) {
@@ -105,12 +105,13 @@ public class Soportes extends HttpServlet {
                             System.out.println("soporte foto--> "+soporte.getNombreTmp());
 
                         }
-                        if (soporte.getNombreSoporte().equals("IMPUESTOPREDIAL")) {
+                        if (soporte.getNombreSoporte().equals("PREGRADO")) {
 
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[1] = xn;
                             listaPathsNamestmp[1] = soporte.getNombreTmp();
+                            System.out.println("soporte PREGRADO--> "+soporte.getNombreTmp());
                         }
 
                     }
@@ -199,13 +200,13 @@ public class Soportes extends HttpServlet {
 
                     ArrayList<Soporte> listasoporte = App.SoporteDAO.getAllByAllPerson(codPersona);
                     for (Soporte soporte : listasoporte) {
-//								System.out.println(soporte.getNombreSoporte()+" lista de soportes ");
+                    System.out.println("lista de soportes "+soporte.getNombreSoporte());
 
-                        if (soporte.getNombreSoporte().equals("HIJOS")) {
+                        if (soporte.getNombreSoporte().equals("DIPLOMA")) {
 
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-//									System.out.println(xn + "xn");
+                            System.out.println(xn + "xn");
                             listaPathsNames[2] = xn;
                             listaPathsNamestmp[2] = soporte.getNombreTmp();
                             cont++;
@@ -231,13 +232,13 @@ public class Soportes extends HttpServlet {
                             cont++;
                         }
 
-                        if (soporte.getNombreSoporte().equals("IMPUESTOPREDIAL")) {
+                        if (soporte.getNombreSoporte().equals("PREGRADO")) {
 
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-//									System.out.println(xn + "xn");
-                            listaPathsNames[1] = xn;
-                            listaPathsNamestmp[1] = soporte.getNombreTmp();
+                            System.out.println("xn " +xn);
+                            listaPathsNames[3] = xn;
+                            listaPathsNamestmp[3] = soporte.getNombreTmp();
                             cont++;
                         }
 
@@ -278,7 +279,7 @@ public class Soportes extends HttpServlet {
 
             System.out.println("nombre "+nombre );
 
-            if (nombre.equals("HIJOS")) {
+            if (nombre.equals("DIPLOMA")) {
                 System.out.println("soporte nombre  ---> " + nombre);
                 Soporte soporteAct = new Soporte();
                 for (Soporte soporte : listasoporte) {
@@ -289,7 +290,7 @@ public class Soportes extends HttpServlet {
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                         soporte.setIdPersona(persona);
-                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(188);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(3);
                         soporte.setIdTiposoporte(tipoSoporte);
                         soporte.setNombreTmp(nombtmp);
                         soporteAct = soporte;
@@ -304,7 +305,7 @@ public class Soportes extends HttpServlet {
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                     soporteAct.setIdPersona(persona);
-                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(188);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(3);
                     soporteAct.setIdTiposoporte(tipoSoporte);
                     soporteAct.setNombreTmp(nombtmp);
                     App.SoporteDAO.insert(soporteAct);
@@ -387,7 +388,7 @@ public class Soportes extends HttpServlet {
                 }
             }
 
-            if (nombre.equals("IMPUESTOPREDIAL")) {
+            if (nombre.equals("PREGRADO")) {
                 Soporte soporteAct = new Soporte();
                 for (Soporte soporte : listasoporte) {
                     if (soporte.getNombreSoporte().equals(nombre)) {
@@ -397,7 +398,7 @@ public class Soportes extends HttpServlet {
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                         soporte.setIdPersona(persona);
-                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(189);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(4);
                         soporte.setIdTiposoporte(tipoSoporte);
                         soporte.setNombreTmp(nombtmp);
                         soporteAct = soporte;
@@ -412,7 +413,7 @@ public class Soportes extends HttpServlet {
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                     soporteAct.setIdPersona(persona);
-                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(189);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(4);
                     soporteAct.setIdTiposoporte(tipoSoporte);
                     soporteAct.setNombreTmp(nombtmp);
                     App.SoporteDAO.insert(soporteAct);

@@ -86,7 +86,7 @@ public class Ajax extends HttpServlet {
                 ArrayList<Ciudad> listaCiudad = App.CiudadDAO.getByDepart(depart);
 
                 //HTML
-                    out.println("<option selected value='' >Seleccione la Ciudad</option>");
+                out.println("<option selected value='' >Seleccione la Ciudad</option>");
                 if (listaCiudad != null) {
                     for (Ciudad cuidad : listaCiudad) {
                         out.println("<option value='" + cuidad.getIdCiudad() + "' >" + cuidad.getNombreCiudad() + "</option> ");
@@ -100,26 +100,28 @@ public class Ajax extends HttpServlet {
             }
         }
         //FIN BLOQUE DE CODIGO: formulario
-        
+
         //BLOQUE DE CODIGO: Eliminar soportes 
-        if(value.equalsIgnoreCase("EliminarSoportes")) {
-                    try {
-                        App.OpenConnection();                   
-                        String path = request.getParameter("content");    
-                        System.out.println("path eliminar "+path);
-                        File file = new File(path);
-                        file.delete();
-                        String aborrar = "soportes"+path.split("soportes")[1];
-                        Soporte soporte = App.SoporteDAO.getByPath(aborrar);
-                        System.out.println("Eliminar Soporte "+soporte);
-                        long delete = App.SoporteDAO.delete(soporte.getIdSoporte());
-                        System.out.println("delete "+delete);
-                    } catch (Exception e) {
-                        throw new RuntimeException("Se ha generado un error inesperado", e);
-                    } finally {
-                        App.CloseConnection();
-                    }
-                }
-                //FIN BLOQUE DE CODIGO: Eliminar soportes 
+        if (value.equalsIgnoreCase("EliminarSoportes")) {
+            try {
+                App.OpenConnection();
+                String path = request.getParameter("content");
+                System.out.println("path eliminar " + path);
+                File file = new File(path);
+                file.delete();
+                String aborrar = "soportes" + path.split("soportes")[1];
+                Soporte soporte = App.SoporteDAO.getByPath(aborrar);
+                System.out.println("Eliminar Soporte " + soporte);
+                long delete = App.SoporteDAO.delete(soporte.getIdSoporte());
+//                response.sendRedirect("Soportes");
+                System.out.println("delete " + delete);
+//                response.sendRedirect("sopoetes");
+            } catch (Exception e) {
+                throw new RuntimeException("Se ha generado un error inesperado", e);
+            } finally {
+                App.CloseConnection();
+            }
+        }
+        //FIN BLOQUE DE CODIGO: Eliminar soportes 
     }
 }

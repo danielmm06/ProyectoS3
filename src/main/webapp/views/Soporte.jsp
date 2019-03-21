@@ -145,18 +145,18 @@
                                     <div class="col-md-8">
                                         <div class="btn btn-adjuntar btn-file">				  								
                                             Adjuntar
-                                            <input type="file" name="HIJOS" onchange="CertHijos(this)" accept=".pdf">
+                                            <input type="file" name="DIPLOMA" onchange="CertHijos(this)" accept=".pdf">
                                         </div>
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormCertHijos(this)">		  								
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[2] ne null}">
-                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[2]}"/>')">		   									
+                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[2]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[2] eq null}">
-                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[2]}"/>')" style='display: none;'>		   									
+                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[2]}"/>')" style='display: none;'>		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -191,18 +191,18 @@
                                     <div class="col-md-8">
                                         <div class="btn btn-adjuntar btn-file">				  								
                                             Adjuntar
-                                            <input type="file"  name="RECIBOIMPUESTO" onchange="ReciboImpuesto(this)" accept=".pdf">
+                                            <input type="file"  name="PREGRADO" onchange="ReciboImpuesto(this)" accept=".pdf">
                                         </div>
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormImpuesto(this)">		  								
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[3] ne null}">
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                             Visualizar
                                         </div>
                                         </c:if>    
@@ -242,12 +242,12 @@
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[3] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" style='display: none;'>		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -285,12 +285,12 @@
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[3] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')" style='display: none;'>		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -327,12 +327,12 @@
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[3] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -369,12 +369,12 @@
                                             &nbsp;Enviar&nbsp;		  										  					
                                         </div>
                                         <c:if test="${listaPathsNames[3] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
@@ -412,12 +412,12 @@
                                         </div>
                                         
                                         <c:if test="${listaPathsNames[3] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                                 Visualizar		   						
                                             </div>
                                         </c:if>
                                         <c:if test="${listaPathsNames[3] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('ViewFilePDF?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
+                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')"  style='display: none;'>		   									
                                                 Visualizar
                                             </div>
                                         </c:if>    
