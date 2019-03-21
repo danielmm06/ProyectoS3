@@ -82,7 +82,7 @@ function deleteSoporte(path,id) {
 	Alert("¡Confirmar acción!","¿Esta seguro de Eliminar el Archivo?","confirm","Aceptar,Cancelar");
 	var aceptar = document.getElementById('btnPrimaryAlert');
 	aceptar.addEventListener('click',function(){		
-		AJAX2(path, null, 'EliminarSoportesBienestar', false);
+		AJAX(path, null, 'EliminarSoportes', false);
 		document.getElementById(id).value = '';		
 		document.getElementById("eliminar"+id).setAttribute("style", "pointer-events: none;");
 		document.getElementById("ver"+id).setAttribute("style", "pointer-events: none;");

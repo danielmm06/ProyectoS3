@@ -360,6 +360,40 @@ public class SoporteDAO {
         return soporte;
     }
 
+    public Soporte getByPath(String path) {
+        Soporte soporte = new Soporte();
+        PreparedStatement psSelectByPath = null;
+        ResultSet result = null;
+        try {
+            if (psSelectByPath == null) {
+                psSelectByPath = db.PreparedQuery(
+                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP FROM soporte WHERE URL_ARCHIVO=?"
+                );
+            }
+            ArrayList<Object> inputs = new ArrayList<Object>();
+            inputs.add(path);
+            result = db.ExecuteQuery(psSelectByPath, inputs);
+            while (result.next()) {
+                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
+                soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
+                //Persona persona = App.PersonaDAO.get(result.getInt("COD_PERSONA"));
+                Persona persona = new Persona();
+                persona.setDocumento(result.getInt("ID_PERSONA"));
+                soporte.setIdPersona(persona);
+                //TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(result.getInt("COD_TIPOSOPORTE"));
+                TipoSoporte tipoSoporte = new TipoSoporte();
+                tipoSoporte.setIdTiposoporte(result.getInt("ID_TIPOSOPORTE"));
+                soporte.setIdTiposoporte(tipoSoporte);
+
+                soporte.setNombreTmp(result.getString("NOMBRE_TMP"));
+            }
+        } catch (SQLException e) {
+            throw new RuntimeException("Error al ejecutar consulta.", e);
+        }
+        return soporte;
+    }
+
     public static void main(String[] args) throws IOException {
         try {
             App.OpenConnection();

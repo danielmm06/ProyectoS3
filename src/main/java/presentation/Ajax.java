@@ -8,6 +8,8 @@ package presentation;
 import conexion.App;
 import entity.Ciudad;
 import entity.Departamento;
+import entity.Soporte;
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
@@ -98,6 +100,26 @@ public class Ajax extends HttpServlet {
             }
         }
         //FIN BLOQUE DE CODIGO: formulario
-
+        
+        //BLOQUE DE CODIGO: Eliminar soportes 
+        if(value.equalsIgnoreCase("EliminarSoportes")) {
+                    try {
+                        App.OpenConnection();                   
+                        String path = request.getParameter("content");    
+                        System.out.println("path eliminar "+path);
+                        File file = new File(path);
+                        file.delete();
+                        String aborrar = "soportes"+path.split("soportes")[1];
+                        Soporte soporte = App.SoporteDAO.getByPath(aborrar);
+                        System.out.println("Eliminar Soporte "+soporte);
+                        long delete = App.SoporteDAO.delete(soporte.getIdSoporte());
+                        System.out.println("delete "+delete);
+                    } catch (Exception e) {
+                        throw new RuntimeException("Se ha generado un error inesperado", e);
+                    } finally {
+                        App.CloseConnection();
+                    }
+                }
+                //FIN BLOQUE DE CODIGO: Eliminar soportes 
     }
 }
