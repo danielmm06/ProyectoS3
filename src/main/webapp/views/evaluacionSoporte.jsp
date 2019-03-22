@@ -143,7 +143,7 @@
 
 
                     <hr> 
-                    <c:if test="${listaPathsNames[3] ne null}">
+                    <c:if test="${listaPathsNames[4] ne null}">
                         <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
@@ -153,7 +153,7 @@
                                     <div class="col-md-4">    
 
 
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[4]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
 
@@ -168,7 +168,7 @@
 
                     </c:if>                        
 
-                    <c:if test="${listaPathsNames[3] eq null}">                
+                    <c:if test="${listaPathsNames[4] eq null}">                
                         <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
                             <div class="form-group">
                                 <div class="form-row">
@@ -178,7 +178,7 @@
                                     <div class="col-md-4">    
 
 
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[4]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
 
@@ -203,7 +203,7 @@
                                 <div class="col-md-4">    
 
 
-                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[5]}"/>')">		   									
                                         Visualizar		   						
                                     </div>
 
@@ -224,7 +224,7 @@
                                 <div class="col-md-4">
 
 
-                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[6]}"/>')">		   									
                                         Visualizar		   						
                                     </div>
 
@@ -235,7 +235,7 @@
                         </div>
                     </form>	
                     <hr> 
-                    <c:if test="${listaPathsNames[3] ne null}">
+                    <c:if test="${listaPathsNames[7] ne null}">
                         <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
@@ -245,7 +245,7 @@
                                     <div class="col-md-4">
 
 
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[7]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
 
@@ -257,7 +257,7 @@
                             <hr>           
                         </form>	
                     </c:if>
-                    <c:if test="${listaPathsNames[3] eq null}">
+                    <c:if test="${listaPathsNames[7] eq null}">
                         <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
                             <div class="form-group">
                                 <div class="form-row">
@@ -268,7 +268,7 @@
 
 
 
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[7]}"/>')" >		   									
                                             Visualizar
                                         </div>
 
@@ -279,7 +279,7 @@
                             <hr>        
                         </form>	
                     </c:if>  
-                    <c:if test="${listaPathsNames[3] ne null}">
+                    <c:if test="${listaPathsNames[8] ne null}">
                         <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
@@ -289,7 +289,7 @@
                                     <div class="col-md-4">
 
 
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
 
@@ -301,7 +301,7 @@
                             <hr> 
                         </form>	
                     </c:if>
-                    <c:if test="${listaPathsNames[3] eq null}">
+                    <c:if test="${listaPathsNames[8] eq null}">
                         <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
                             <div class="form-group">
                                 <div class="form-row">
@@ -312,7 +312,7 @@
 
 
 
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')" >		   									
                                             Visualizar
                                         </div>
 

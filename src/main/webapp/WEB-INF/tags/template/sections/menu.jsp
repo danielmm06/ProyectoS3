@@ -2,7 +2,7 @@
 <!-- Sidebar -->
     <ul class="sidebar navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="Registro">
+        <a class="nav-link" href="Formulario">
           <i class="fas fa-fw fa-file-alt"></i>
           <span>Registro</span>
         </a>
