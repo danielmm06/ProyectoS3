@@ -68,7 +68,7 @@ public class Soportes extends HttpServlet {
                     request.setCharacterEncoding("UTF-8");
 //                    int documento = 123;
                     request.setAttribute("title", App.nameProyect + " - Soportes");
-                    
+
                     HttpSession session = request.getSession();
                     int documento = Integer.parseInt(String.valueOf(session.getAttribute("user")));
                     Persona persona = App.PersonaDAO.get(documento);
@@ -80,12 +80,11 @@ public class Soportes extends HttpServlet {
                     for (Soporte soporte : listasoporte) {
 
                         if (soporte.getNombreSoporte().equals("DIPLOMA")) {
-
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[2] = xn;
                             listaPathsNamestmp[2] = soporte.getNombreTmp();
-                            System.out.println("soporte DIPLOMA--> "+soporte.getNombreTmp());
+                            System.out.println("soporte DIPLOMA--> " + soporte.getNombreTmp());
 
                         }
 
@@ -94,7 +93,7 @@ public class Soportes extends HttpServlet {
                             String xn = x[x.length - 1];
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
-                            System.out.println("soporte PAGO--> "+soporte.getNombreTmp());
+                            System.out.println("soporte PAGO--> " + soporte.getNombreTmp());
                         }
 
                         if (soporte.getNombreSoporte().equals("FOTO")) {
@@ -102,15 +101,55 @@ public class Soportes extends HttpServlet {
                             String xn = x[x.length - 1];
                             listaPathsNames[1] = xn;
                             listaPathsNamestmp[1] = soporte.getNombreTmp();
-                            System.out.println("soporte foto--> "+soporte.getNombreTmp());
+                            System.out.println("soporte foto--> " + soporte.getNombreTmp());
 
                         }
                         if (soporte.getNombreSoporte().equals("PREGRADO")) {
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-                            listaPathsNames[1] = xn;
-                            listaPathsNamestmp[1] = soporte.getNombreTmp();
-                            System.out.println("soporte PREGRADO--> "+soporte.getNombreTmp());
+                            listaPathsNames[3] = xn;
+                            listaPathsNamestmp[3] = soporte.getNombreTmp();
+                            System.out.println("soporte PREGRADO--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("RESOLUCION")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[4] = xn;
+                            listaPathsNamestmp[4] = soporte.getNombreTmp();
+                            System.out.println("soporte RESOLUCION--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("CEDULA")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[5] = xn;
+                            listaPathsNamestmp[5] = soporte.getNombreTmp();
+                            System.out.println("soporte CEDULA--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("EPS")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[6] = xn;
+                            listaPathsNamestmp[6] = soporte.getNombreTmp();
+                            System.out.println("soporte EPS--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("EGRESADO")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[7] = xn;
+                            listaPathsNamestmp[7] = soporte.getNombreTmp();
+                            System.out.println("soporte CARNETEGRESADO--> " + soporte.getNombreTmp());
+                        }
+                        
+                        if (soporte.getNombreSoporte().equals("VOTACION")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[8] = xn;
+                            listaPathsNamestmp[8] = soporte.getNombreTmp();
+                            System.out.println("soporte CERTIFICADOVOTACION--> "+soporte.getNombreTmp());
                         }
 
                     }
@@ -168,7 +207,6 @@ public class Soportes extends HttpServlet {
                     request.setAttribute("title", App.nameProyect + " - Soporte");
 
 //                    int codPersona = Integer.parseInt(request.getParameter("user"));
-                    
                     HttpSession session = request.getSession();//-----------------------------------------------------------------------------
                     int codPersona = Integer.parseInt(String.valueOf(session.getAttribute("user")));//-----------------------------------------------------------------------------
 
@@ -199,7 +237,7 @@ public class Soportes extends HttpServlet {
 
                     ArrayList<Soporte> listasoporte = App.SoporteDAO.getAllByAllPerson(codPersona);
                     for (Soporte soporte : listasoporte) {
-                    System.out.println("lista de soportes "+soporte.getNombreSoporte());
+                        System.out.println("lista de soportes " + soporte.getNombreSoporte());
 
                         if (soporte.getNombreSoporte().equals("DIPLOMA")) {
                             String[] x = soporte.getUrlArchivo().split("soportes");
@@ -216,7 +254,7 @@ public class Soportes extends HttpServlet {
 //                            System.out.println(xn + " xn");
                             listaPathsNames[0] = xn;
                             listaPathsNamestmp[0] = soporte.getNombreTmp();
-                            System.out.println("soporte D "+soporte.getNombreTmp());
+                            System.out.println("soporte D " + soporte.getNombreTmp());
                             cont++;
                         }
 
@@ -226,7 +264,7 @@ public class Soportes extends HttpServlet {
                             System.out.println(xn + "xn");
                             listaPathsNames[1] = xn;
                             listaPathsNamestmp[1] = soporte.getNombreTmp();
-                            System.out.println("soporte foto "+soporte.getNombreTmp());
+                            System.out.println("soporte foto " + soporte.getNombreTmp());
                             cont++;
                         }
 
@@ -234,9 +272,59 @@ public class Soportes extends HttpServlet {
 
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-                            System.out.println("xn " +xn);
+                            System.out.println("xn " + xn);
                             listaPathsNames[3] = xn;
                             listaPathsNamestmp[3] = soporte.getNombreTmp();
+                            cont++;
+                        }
+
+                        if (soporte.getNombreSoporte().equals("RESOLUCION")) {
+
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            System.out.println("xn " + xn);
+                            listaPathsNames[4] = xn;
+                            listaPathsNamestmp[4] = soporte.getNombreTmp();
+                            cont++;
+                        }
+
+                        if (soporte.getNombreSoporte().equals("CEDULA")) {
+
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            System.out.println("xn " + xn);
+                            listaPathsNames[5] = xn;
+                            listaPathsNamestmp[5] = soporte.getNombreTmp();
+                            cont++;
+                        }
+
+                        if (soporte.getNombreSoporte().equals("EPS")) {
+
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            System.out.println("xn " + xn);
+                            listaPathsNames[6] = xn;
+                            listaPathsNamestmp[6] = soporte.getNombreTmp();
+                            cont++;
+                        }
+
+                        if (soporte.getNombreSoporte().equals("CARNETEGRESADO")) {
+                            System.out.println("dopost*** "+soporte.getNombreSoporte());
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            System.out.println("xn7 " + xn);
+                            listaPathsNames[7] = xn;
+                            listaPathsNamestmp[7] = soporte.getNombreTmp();
+                            cont++;
+                        }
+                        
+                        if (soporte.getNombreSoporte().equals("CERTIFICADOVOTACION")) {
+
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            System.out.println("xn " +xn);
+                            listaPathsNames[8] = xn;
+                            listaPathsNamestmp[8] = soporte.getNombreTmp();
                             cont++;
                         }
 
@@ -275,7 +363,7 @@ public class Soportes extends HttpServlet {
             String nameControl = nombre;
             String intControl = "";
 
-            System.out.println("nombre "+nombre );
+            System.out.println("nombre " + nombre);
 
             if (nombre.equals("DIPLOMA")) {
                 System.out.println("soporte nombre  ---> " + nombre);
@@ -332,7 +420,7 @@ public class Soportes extends HttpServlet {
                     }
                 }
                 if (soporteAct.getNombreSoporte() == null) {
-                    System.out.println("soporte Act foto ---> "+soporteAct.getNombreSoporte());
+                    System.out.println("soporte Act foto ---> " + soporteAct.getNombreSoporte());
                     String fileName = nameDir + nombre + ".pdf";
                     filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
                     soporteAct.setUrlArchivo(filePath);
@@ -360,7 +448,7 @@ public class Soportes extends HttpServlet {
                         soporte.setNombreSoporte(nombre);
                         Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                         soporte.setIdPersona(persona);
-                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(187);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(10);
                         soporte.setIdTiposoporte(tipoSoporte);
                         soporte.setNombreTmp(nombtmp);
                         soporteAct = soporte;
@@ -375,7 +463,7 @@ public class Soportes extends HttpServlet {
                     soporteAct.setNombreSoporte(nombre);
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                     soporteAct.setIdPersona(persona);
-                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(187);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(10);
                     soporteAct.setIdTiposoporte(tipoSoporte);
                     soporteAct.setNombreTmp(nombtmp);
                     App.SoporteDAO.insert(soporteAct);
@@ -412,6 +500,191 @@ public class Soportes extends HttpServlet {
                     Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
                     soporteAct.setIdPersona(persona);
                     TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(4);
+                    soporteAct.setIdTiposoporte(tipoSoporte);
+                    soporteAct.setNombreTmp(nombtmp);
+                    App.SoporteDAO.insert(soporteAct);
+                } else {
+                    if (soporteAct.getNombreSoporte().equals(nombre)) {
+                        App.SoporteDAO.update(soporteAct);
+                    }
+                }
+            }
+
+            if (nombre.equals("RESOLUCION")) {
+                Soporte soporteAct = new Soporte();
+                for (Soporte soporte : listasoporte) {
+                    if (soporte.getNombreSoporte().equals(nombre)) {
+                        String fileName = nameDir + nombre + ".pdf";
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                        soporte.setUrlArchivo(filePath);
+                        soporte.setNombreSoporte(nombre);
+                        Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                        soporte.setIdPersona(persona);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(5);
+                        soporte.setIdTiposoporte(tipoSoporte);
+                        soporte.setNombreTmp(nombtmp);
+                        soporteAct = soporte;
+                        break;
+                    }
+                }
+                if (soporteAct.getNombreSoporte() == null) {
+//					System.out.println("soporte Act fosy ---> "+soporteAct.getNombreSoporte());
+                    String fileName = nameDir + nombre + ".pdf";
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                    soporteAct.setUrlArchivo(filePath);
+                    soporteAct.setNombreSoporte(nombre);
+                    Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                    soporteAct.setIdPersona(persona);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(5);
+                    soporteAct.setIdTiposoporte(tipoSoporte);
+                    soporteAct.setNombreTmp(nombtmp);
+                    App.SoporteDAO.insert(soporteAct);
+                } else {
+                    if (soporteAct.getNombreSoporte().equals(nombre)) {
+                        App.SoporteDAO.update(soporteAct);
+                    }
+                }
+            }
+
+            if (nombre.equals("CEDULA")) {
+                Soporte soporteAct = new Soporte();
+                for (Soporte soporte : listasoporte) {
+                    if (soporte.getNombreSoporte().equals(nombre)) {
+                        String fileName = nameDir + nombre + ".pdf";
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                        soporte.setUrlArchivo(filePath);
+                        soporte.setNombreSoporte(nombre);
+                        Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                        soporte.setIdPersona(persona);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(6);
+                        soporte.setIdTiposoporte(tipoSoporte);
+                        soporte.setNombreTmp(nombtmp);
+                        soporteAct = soporte;
+                        break;
+                    }
+                }
+                if (soporteAct.getNombreSoporte() == null) {
+//					System.out.println("soporte Act fosy ---> "+soporteAct.getNombreSoporte());
+                    String fileName = nameDir + nombre + ".pdf";
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                    soporteAct.setUrlArchivo(filePath);
+                    soporteAct.setNombreSoporte(nombre);
+                    Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                    soporteAct.setIdPersona(persona);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(6);
+                    soporteAct.setIdTiposoporte(tipoSoporte);
+                    soporteAct.setNombreTmp(nombtmp);
+                    App.SoporteDAO.insert(soporteAct);
+                } else {
+                    if (soporteAct.getNombreSoporte().equals(nombre)) {
+                        App.SoporteDAO.update(soporteAct);
+                    }
+                }
+            }
+
+            if (nombre.equals("EPS")) {
+                Soporte soporteAct = new Soporte();
+                for (Soporte soporte : listasoporte) {
+                    if (soporte.getNombreSoporte().equals(nombre)) {
+                        String fileName = nameDir + nombre + ".pdf";
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                        soporte.setUrlArchivo(filePath);
+                        soporte.setNombreSoporte(nombre);
+                        Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                        soporte.setIdPersona(persona);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(7);
+                        soporte.setIdTiposoporte(tipoSoporte);
+                        soporte.setNombreTmp(nombtmp);
+                        soporteAct = soporte;
+                        break;
+                    }
+                }
+                if (soporteAct.getNombreSoporte() == null) {
+                    System.out.println("soporte Act fosy *---> "+soporteAct.getNombreSoporte());
+                    String fileName = nameDir + nombre + ".pdf";
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                    soporteAct.setUrlArchivo(filePath);
+                    soporteAct.setNombreSoporte(nombre);
+                    Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                    soporteAct.setIdPersona(persona);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(7);
+                    soporteAct.setIdTiposoporte(tipoSoporte);
+                    soporteAct.setNombreTmp(nombtmp);
+                    App.SoporteDAO.insert(soporteAct);
+                } else {
+                    if (soporteAct.getNombreSoporte().equals(nombre)) {
+                        App.SoporteDAO.update(soporteAct);
+                    }
+                }
+            }
+
+            if (nombre.equals("EGRESADO")) {
+                Soporte soporteAct = new Soporte();
+                for (Soporte soporte : listasoporte) {
+                    if (soporte.getNombreSoporte().equals(nombre)) {
+                        String fileName = nameDir + nombre + ".pdf";
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                        soporte.setUrlArchivo(filePath);
+                        soporte.setNombreSoporte(nombre);
+                        Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                        soporte.setIdPersona(persona);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(8);
+                        soporte.setIdTiposoporte(tipoSoporte);
+                        soporte.setNombreTmp(nombtmp);
+                        soporteAct = soporte;
+                        break;
+                    }
+                }
+                if (soporteAct.getNombreSoporte() == null) {
+                    System.out.println("soporte Act carnet egresado ****---> "+soporteAct.getNombreSoporte());
+                    String fileName = nameDir + nombre + ".pdf";
+                    System.out.println("carnet "+fileName);
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                    System.out.println("carnet filePath "+filePath);
+                    soporteAct.setUrlArchivo(filePath);
+                    soporteAct.setNombreSoporte(nombre);
+                    Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                    System.out.println("persona "+persona.getDocumento());
+                    soporteAct.setIdPersona(persona);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(8);
+                    System.out.println("tipo soporte carnet "+tipoSoporte.getNombre());
+                    soporteAct.setIdTiposoporte(tipoSoporte);
+                    soporteAct.setNombreTmp(nombtmp);
+                    System.out.println("nombre temp "+soporteAct.getNombreTmp());
+                    App.SoporteDAO.insert(soporteAct);
+                } else {
+                    if (soporteAct.getNombreSoporte().equals(nombre)) {
+                        App.SoporteDAO.update(soporteAct);
+                    }
+                }
+            }
+            
+            if (nombre.equals("VOTACION")) {
+                Soporte soporteAct = new Soporte();
+                for (Soporte soporte : listasoporte) {
+                    if (soporte.getNombreSoporte().equals(nombre)) {
+                        String fileName = nameDir + nombre + ".pdf";
+                        filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                        soporte.setUrlArchivo(filePath);
+                        soporte.setNombreSoporte(nombre);
+                        Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                        soporte.setIdPersona(persona);
+                        TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(9);
+                        soporte.setIdTiposoporte(tipoSoporte);
+                        soporte.setNombreTmp(nombtmp);
+                        soporteAct = soporte;
+                        break;
+                    }
+                }
+                if (soporteAct.getNombreSoporte() == null) {
+//                  System.out.println("soporte Act fosy ---> "+soporteAct.getNombreSoporte());
+                    String fileName = nameDir + nombre + ".pdf";
+                    filePath = "soportes/" + nameDir + "/Inscripcion/" + fileName;
+                    soporteAct.setUrlArchivo(filePath);
+                    soporteAct.setNombreSoporte(nombre);
+                    Persona persona = App.PersonaDAO.get((int) Long.parseLong(nameDir));
+                    soporteAct.setIdPersona(persona);
+                    TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(9);
                     soporteAct.setIdTiposoporte(tipoSoporte);
                     soporteAct.setNombreTmp(nombtmp);
                     App.SoporteDAO.insert(soporteAct);

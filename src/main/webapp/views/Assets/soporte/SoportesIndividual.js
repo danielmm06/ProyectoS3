@@ -75,10 +75,108 @@ function sendFormCertHijos() {
     if (RegistroHijos != null && RegistroHijos != '') {
         form3.submit();
     } else {
-        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte de los Hijos", "alert", "Aceptar");
+        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte del Diploma de Pregrado", "alert", "Aceptar");
     }
 }
 /////////////////////////////////////////////////////////////////////////////////////////////////////  
+
+function ReciboImpuesto1(element) {
+    var datos1 = element.value.split('\\');
+    var path4 = datos1[datos1.length - 1];
+    document.getElementById("reciboI1").value = path4;
+}
+
+function sendFormImpuesto1() {
+
+    var form4 = document.getElementById("reciboImpuesto1");
+    var reciboI1 = document.getElementById("reciboI1").value;
+    alert("recibo " + document.getElementById("reciboI1").value);
+    if (reciboI1 != null && reciboI1 != '') {
+        alert("paso a cargar")
+        form4.submit();
+    } else {
+        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte de la Resolución - Servicio social obligatorio ", "alert", "Aceptar");
+    }
+}
+
+function ReciboImpuesto2(element) {
+    var datos5 = element.value.split('\\');
+    var path5 = datos5[datos5.length - 1];
+    document.getElementById("reciboI2").value = path5;
+}
+
+function sendFormImpuesto2() {
+
+    var form5 = document.getElementById("reciboImpuesto2");
+    alert("form " + document.getElementById("reciboImpuesto2").value);
+    var reciboI2 = document.getElementById("reciboI2").value;
+    alert("recibo " + document.getElementById("reciboI2").value);
+    if (reciboI2 != null && reciboI2 != '') {
+        alert("paso a cargar")
+        form5.submit();
+    } else {
+        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte de la Fotocopia de cédula ampliada al 150% ", "alert", "Aceptar");
+    }
+}
+
+function ReciboImpuesto3(element) {
+    var datos6 = element.value.split('\\');
+    var path6 = datos6[datos6.length - 1];
+    document.getElementById("reciboI3").value = path6;
+}
+
+function sendFormImpuesto3() {
+
+    var form6 = document.getElementById("reciboImpuesto3");
+    var reciboI3 = document.getElementById("reciboI3").value;
+    alert("recibo " + document.getElementById("reciboI3").value);
+    if (reciboI3 != null && reciboI3 != '') {
+        alert("paso a cargar")
+        form6.submit();
+    } else {
+        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte del Certificado de la EPS ", "alert", "Aceptar");
+    }
+}
+
+function ReciboImpuesto4(element) {
+    var datos7 = element.value.split('\\');
+    var path7 = datos7[datos7.length - 1];
+    document.getElementById("reciboI4").value = path7;
+    alert("path "+document.getElementById("reciboI4").value);
+}
+
+function sendFormImpuesto4() {
+
+    var form7 = document.getElementById("reciboImpuesto4");
+    var reciboI4 = document.getElementById("reciboI4").value;
+    alert("recibo " + document.getElementById("reciboI4").value);
+    if (reciboI4 != null && reciboI4 != '') {
+        alert("paso a cargar")
+        form7.submit();
+    } else {
+        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte del Carné de Egresado ", "alert", "Aceptar");
+    }
+}
+
+
+function ReciboImpuesto5(element) {
+    var datos8 = element.value.split('\\');
+    var path7 = datos8[datos8.length - 1];
+    document.getElementById("reciboI5").value = path7;
+}
+
+function sendFormImpuesto5() {
+
+    var form8 = document.getElementById("reciboImpuesto5");
+    var reciboI5 = document.getElementById("reciboI5").value;
+    alert("recibo " + document.getElementById("reciboI5").value);
+    if (reciboI5 != null && reciboI5 != '') {
+        alert("paso a cargar")
+        form8.submit();
+    } else {
+        Alert("¡Campos Requeridos!", "Por favor, cargue el soporte del Certificado de votación ", "alert", "Aceptar");
+    }
+}
 
 function deleteSoporte(path, id) {
     Alert("¡Confirmar acción!", "¿Esta seguro de Eliminar el Archivo?", "confirm", "Aceptar,Cancelar");
@@ -90,8 +188,6 @@ function deleteSoporte(path, id) {
         document.getElementById("ver" + id).setAttribute('style', 'display: none;');
     })
 }
-
-
 
 function General2() {
     Alert("¡Gracias por realizar el proceso de Carga de Soportes!", "alert", "Aceptar");
