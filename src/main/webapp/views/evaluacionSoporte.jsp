@@ -279,33 +279,9 @@
                             <hr>        
                         </form>	
                     </c:if>  
-                   
-                     
-                   
-                   
-                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" >
+                    <c:if test="${listaPathsNames[8] ne null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
-                                 <c:if test="${listaPathsNames[8] ne null}">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                        <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
-                                    </div>
-                                    <div class="col-md-4">
-
-
-
-                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')" >		   									
-                                            Visualizar
-                                        </div>
-
-
-                                    </div>
-                                            <hr> 
-                                </div>
-                            </div>
-                                             </c:if>
-                                             <c:if test="${listaPathsNames[8] eq null}">
-                            <div class="form-group" style='display: none;'>
                                 <div class="form-row">
                                     <div class="col-md-8">
                                         <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
@@ -321,15 +297,31 @@
 
                                     </div>
                                 </div>
-                                            <hr> 
-                            </div>                
-                              </c:if>               
-                                            
-                                            
-                                            
-                                            
+                            </div>
+                            <hr> 
                         </form>	
-                                            
+                    </c:if>
+                    <c:if test="${listaPathsNames[8] eq null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-8">
+                                        <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
+                                    </div>
+                                    <div class="col-md-4">
+
+
+
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>	
+                    </c:if>                         
 
 
 
