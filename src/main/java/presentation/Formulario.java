@@ -211,8 +211,8 @@ public class Formulario extends HttpServlet {
                     preguntas.setFechaLectura(null);
                     preguntas.setComentarios(null);
                     preguntas.setComentarioSoporte(null);
-                    preguntas.setValidacionPreguntas("No aprobado");
-                    preguntas.setEstado("No evaluado");
+                    preguntas.setValidacionPreguntas("No evaluado");
+                    preguntas.setEstado("No aprobado");
 
                     if (App.PreguntasDAO.get(preguntas.getIdPreguntas()).getIdPreguntas() == null) {
                         App.PreguntasDAO.insert(preguntas);

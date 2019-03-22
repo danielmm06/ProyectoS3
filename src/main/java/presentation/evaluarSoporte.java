@@ -53,14 +53,14 @@ public class evaluarSoporte extends HttpServlet {
             throws ServletException, IOException {
         try {
             /**
-             * Inicializa conexiÃ³n con base de datos
+             * Inicializa conexión con base de datos
              */
             App.OpenConnection();
 
             boolean sesionValida = true;
             boolean permisoValido = true;
             /**
-             * Acciones, EnvÃ­o de parametros y RedirecciÃ³n
+             * Acciones, Envío de parametros y Redirección
              */
             if (sesionValida) {
                 if (permisoValido) {
@@ -79,7 +79,6 @@ public class evaluarSoporte extends HttpServlet {
                     for (Soporte soporte : listasoporte) {
 
                         if (soporte.getNombreSoporte().equals("DIPLOMA")) {
-
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
                             listaPathsNames[2] = xn;
@@ -105,17 +104,56 @@ public class evaluarSoporte extends HttpServlet {
 
                         }
                         if (soporte.getNombreSoporte().equals("PREGRADO")) {
-
                             String[] x = soporte.getUrlArchivo().split("soportes");
                             String xn = x[x.length - 1];
-                            listaPathsNames[1] = xn;
-                            listaPathsNamestmp[1] = soporte.getNombreTmp();
+                            listaPathsNames[3] = xn;
+                            listaPathsNamestmp[3] = soporte.getNombreTmp();
                             System.out.println("soporte PREGRADO--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("RESOLUCION")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[4] = xn;
+                            listaPathsNamestmp[4] = soporte.getNombreTmp();
+                            System.out.println("soporte RESOLUCION--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("CEDULA")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[5] = xn;
+                            listaPathsNamestmp[5] = soporte.getNombreTmp();
+                            System.out.println("soporte CEDULA--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("EPS")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[6] = xn;
+                            listaPathsNamestmp[6] = soporte.getNombreTmp();
+                            System.out.println("soporte EPS--> " + soporte.getNombreTmp());
+                        }
+
+                        if (soporte.getNombreSoporte().equals("EGRESADO")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[7] = xn;
+                            listaPathsNamestmp[7] = soporte.getNombreTmp();
+                            System.out.println("soporte CARNETEGRESADO--> " + soporte.getNombreTmp());
+                        }
+                        
+                        if (soporte.getNombreSoporte().equals("VOTACION")) {
+                            String[] x = soporte.getUrlArchivo().split("soportes");
+                            String xn = x[x.length - 1];
+                            listaPathsNames[8] = xn;
+                            listaPathsNamestmp[8] = soporte.getNombreTmp();
+                            System.out.println("soporte CERTIFICADOVOTACION--> "+soporte.getNombreTmp());
                         }
 
                     }
                     Soporte soporte = App.SoporteDAO.getByPersona(documento);
-
+                    
                     InfoPreguntas preguntas = App.PreguntasDAO.get(documento);
 
                     request.setAttribute("pathDelete", UPLOAD_DIRECTORY);
@@ -138,7 +176,7 @@ public class evaluarSoporte extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
-            // Cierra conexiÃ³n
+            // Cierra conexión
             App.CloseConnection();
         }
     }
@@ -163,14 +201,14 @@ public class evaluarSoporte extends HttpServlet {
             System.out.println(info.getComentarioSoporte() + " - " + info.getComentarios());
             if (info.getComentarioSoporte() == "") {
                 if (info.getComentarios() == null) {
-                    info.setValidacionPreguntas("Aprobado");
+                    info.setEstado("Aprobado");
                 } else {
-                    info.setValidacionPreguntas("No aprobado");
+                    info.setEstado("No aprobado");
                 }
             } else {
-                info.setValidacionPreguntas("No aprobado");
+                info.setEstado("No aprobado");
             }
-            info.setEstado("Evaluado");
+            info.setValidacionPreguntas("Evaluado");
             info.setFechaLectura(Date.valueOf(LocalDate.now()));
             
             App.PreguntasDAO.update(info);
@@ -179,7 +217,7 @@ public class evaluarSoporte extends HttpServlet {
         } catch (Exception e) {
             throw new RuntimeException("Se ha generado un error inesperado", e);
         } finally {
-            //Cierra conexiÃ³n 
+            //Cierra conexiÃƒÂ³n 
             App.CloseConnection();
         }
     }

@@ -435,10 +435,9 @@
                         </div>
                     </form> 
                     <hr> <br>
-                    <div class="form-group" id="notasevaluador"  <c:out value="${(notas==null)?'hidden':''}"/>>
+                    <div class="form-group" id="notasevaluador" <c:out value="${(notas==null)?'hidden':''}"/>>
                         <div class="form-row">
-                            <div class="col-md-2"></div>
-                            <div class="col-md-8">
+                            <div class="col-md-12">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
                                         <label class="input-group-text " for="notas">Observaciones </label>
@@ -446,14 +445,14 @@
                                     <textarea class="form-control letras" id="notas" name="notas" readonly><c:out value="${(notas!=null)?notas:''}"/></textarea>
                                 </div>
                             </div>
-                            <div class="col-md-2"></div>
+                           
                         </div>
                         <br>
 
 
                     </div>
 
-                    <form action="Login"  method="get" id="general" name="general">
+                    <form action="Login"  method="get" id="general" name="general" enctype="multipart/form-data">
 
                         <div class="form-group">
                             <div class="form-row">

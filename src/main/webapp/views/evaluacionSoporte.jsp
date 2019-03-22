@@ -347,8 +347,8 @@
                                 <div class="col-md-2"></div>
                             </div>
                         </div>
-                            <br>
-                         <div class="form-group">
+                        <br>
+                        <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-4">
                                 </div>
