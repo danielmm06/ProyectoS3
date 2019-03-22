@@ -8,10 +8,10 @@
         </a>
       </li>
       
-      <li class="nav-item">
+<!--      <li class="nav-item">
         <a class="nav-link" href="Soportes">
           <i class="fas fa-fw fa-file-pdf"></i>
           <span>Soportes</span></a>
-      </li>
+      </li>-->
       
     </ul>
