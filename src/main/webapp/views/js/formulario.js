@@ -52,8 +52,13 @@ $(document).ready(function () {
         }
     });
     if (otro) {
-        $('#Conocimiento').val("Otros").change();
-        $('#Otrosok').val(formulario[24]);
+        if (formulario[24] == null) {
+            $('#Conocimiento').val("").change();
+            $('#Otrosok').val("");
+        } else {
+            $('#Conocimiento').val("Otros").change();
+            $('#Otrosok').val(formulario[24]);
+        }
     } else {
         $('#Conocimiento').val(formulario[24]).change();
     }

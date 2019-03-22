@@ -53,13 +53,16 @@ public class evaluarRegistro extends HttpServlet {
             if (sesionValida) {
                 if (permisoValido) {
                     request.setCharacterEncoding("UTF-8");
-                    request.setAttribute("title", App.nameProyect + " - Admin");
+                    request.setAttribute("title", App.nameProyect + " - Registro");
 
                     ArrayList<Pais> listaPais = App.PaisDAO.getAll();
 //                        //----------------------------------------------------------
                     request.setAttribute("listaPais", listaPais);
 
                     int user = Integer.parseInt(request.getParameter("doc")); //---------------------------------------
+                    HttpSession sesion = request.getSession();
+                    sesion.setAttribute("actual", user);
+                    
                     Persona persona = App.PersonaDAO.get(user);
                     if (persona.getDocumento() != null) {
                         InfoPreguntas preguntas = App.PreguntasDAO.get(persona.getDocumento());
@@ -149,14 +152,10 @@ public class evaluarRegistro extends HttpServlet {
 
         try {
             App.OpenConnection();
-            InfoPreguntas info = App.PreguntasDAO.get(Integer.parseInt(request.getParameter("Documento")));
-            info.setComentarios(request.getParameter("notas"));
             HttpSession session = request.getSession();
-            if (request.getParameter("notas").equalsIgnoreCase("")) {
-                session.setAttribute("registro", true);
-            } else {
-                session.setAttribute("registro", false);
-            }
+            InfoPreguntas info = App.PreguntasDAO.get(Integer.parseInt(String.valueOf(session.getAttribute("actual"))));
+            info.setComentarios(request.getParameter("notas"));
+            
             App.PreguntasDAO.update(info);
 
             response.sendRedirect("evaluarSoporte");//"+info.getIdPreguntas());

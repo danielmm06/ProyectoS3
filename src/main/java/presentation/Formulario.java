@@ -208,8 +208,11 @@ public class Formulario extends HttpServlet {
                     preguntas.setFinBeca(request.getParameter("Beca"));
                     preguntas.setEgresadoUnillanos(request.getParameter("Egresado"));
                     preguntas.setFechaFormulario(Date.valueOf(LocalDate.now()));
-                    preguntas.setValidacionPreguntas("Sin evaluar");
-                    preguntas.setEstado("Sin calificar");
+                    preguntas.setFechaLectura(null);
+                    preguntas.setComentarios(null);
+                    preguntas.setComentarioSoporte(null);
+                    preguntas.setValidacionPreguntas("No aprobado");
+                    preguntas.setEstado("No evaluado");
 
                     if (App.PreguntasDAO.get(preguntas.getIdPreguntas()).getIdPreguntas() == null) {
                         App.PreguntasDAO.insert(preguntas);

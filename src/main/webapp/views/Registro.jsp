@@ -975,7 +975,7 @@
                                 <div class="col-md-8">
                                     <div class="input-group">
                                         <div class="input-group-prepend">
-                                            <label class="input-group-text " for="notas">Notas: </label>
+                                            <label class="input-group-text " for="notas">Observaciones: </label>
                                         </div>
                                         <textarea class="form-control " id="notas" name="notas"  readonly></textarea>
                                     </div>

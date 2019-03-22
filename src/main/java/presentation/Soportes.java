@@ -6,6 +6,7 @@
 package presentation;
 
 import conexion.App;
+import entity.InfoPreguntas;
 import entity.Persona;
 import entity.Soporte;
 import entity.TipoSoporte;
@@ -331,6 +332,8 @@ public class Soportes extends HttpServlet {
                     }
 
                     Soporte soporte = App.SoporteDAO.getByPersona(codPersona);
+                    
+                    InfoPreguntas preguntas = App.PreguntasDAO.get(codPersona);
 
                     request.setAttribute("pathDelete", UPLOAD_DIRECTORY);
                     request.setAttribute("listaPathsNamestmp", listaPathsNamestmp);
@@ -338,6 +341,7 @@ public class Soportes extends HttpServlet {
                     request.setAttribute("listasoporte", listasoporte);
                     request.setAttribute("soporte", soporte);
                     request.setAttribute("persona", persona);
+                    request.setAttribute("notas", preguntas.getComentarioSoporte());
 
                     getServletConfig().getServletContext().getRequestDispatcher("/views/Soporte.jsp").forward(request, response);
                 }

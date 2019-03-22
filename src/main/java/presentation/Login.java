@@ -92,6 +92,7 @@ public class Login extends HttpServlet {
                     HttpSession session = request.getSession(true);//-----------------------------------------------------------------------------
                     session.setAttribute("user", id_nickname);//-----------------------------------------------------------------------------
                     session.setAttribute("rol", tipo);
+                    
                     if (tipo.equalsIgnoreCase("admin")) {
                         response.sendRedirect("Admin");
                     } else {

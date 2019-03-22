@@ -997,7 +997,7 @@
                                             <div class="input-group-prepend">
                                                 <label class="input-group-text " for="notas">Observaciones: </label>
                                             </div>
-                                            <textarea class="form-control letras" id="notas" name="notas" ></textarea>
+                                            <textarea class="form-control" id="notas" name="notas" ></textarea>
                                         </div>
                                         <h6> - No diligenciar este campo, daria por sentado que el formulario fue llenado correctamente - </h6>
                                         

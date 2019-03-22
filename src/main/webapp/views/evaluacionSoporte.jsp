@@ -34,336 +34,338 @@
 
         <div class="container-fluid">
             <div class="card mb-3">
-                
-                    <div class="card-header">                    
-                        <h2><i class="fas fa-file-pdf" aria-hidden="true"></i> Evaluación - Soportes Digitales</h2>
-                  
-                        <h6>Esta sección recoge todos los soportes de los documentos, por tanto deben ser veraces y legibles </h6><hr>                      	                    	
-                        
-                    </div>
 
-                    <div class="card-body  mx-auto mt-2">  
-                        
-                        
-                        
-                        <form action="Soportes" method="post" id="reciboPublico" enctype="multipart/form-data">
+                <div class="card-header">                    
+                    <h2><i class="fas fa-file-pdf" aria-hidden="true"></i> Evaluación - Soportes Digitales</h2>
 
-                            <div class="form-group">
-                                 <div class="form-row">
-                                    
-                                        
-                                    <div class="col-md-8">
-                                       <h5><label> Comprobante pago de inscripción </label></h5> </div>
-                                    <div class="col-md-4">    
-                                        
-                                     
-                                        
-                                        <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[0]}"/>')">		   									
-                                            Visualizar		   						
-                                        </div>
-                                       
-                                          
-                                        
+                    <h6>Esta sección recoge todos los soportes de los documentos, por tanto deben ser veraces y legibles </h6><hr>                      	                    	
+
+                </div>
+
+                <div class="card-body  mx-auto mt-2">  
+
+
+
+                    <form action="evaluarSoporte" method="post" id="reciboPublico" enctype="multipart/form-data">
+
+                        <div class="form-group">
+                            <div class="form-row">
+
+
+                                <div class="col-md-8">
+                                    <h5><label> Comprobante pago de inscripción </label></h5> </div>
+                                <div class="col-md-4">    
+
+
+
+                                    <div class="btn btn-success" id="verRECIBOPUBLICO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[0]}"/>')">		   									
+                                        Visualizar		   						
                                     </div>
-                                    
-                                     
+
+
+
                                 </div>
-                            </div> <!-- END COL-SM-11 -->
-                        </form>
-                        <hr>
-                      
-                        
-                        
-                        <form action="Soportes"  method="post" id="FormFosyga" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                       <h5><label> Foto</label></h5></div>
-                                    <div class="col-md-4">    
-                                        
-                                       
-                                        <div class="btn btn-success" id="verFOSYGA" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[1]}"/>')">		   									
-                                            Visualizar		   						
-                                        </div>
-                                       
-                                        
+
+
+                            </div>
+                        </div> <!-- END COL-SM-11 -->
+                    </form>
+                    <hr>
+
+
+
+                    <form action="evaluarSoporte"  method="post" id="FormFosyga" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <h5><label> Foto</label></h5></div>
+                                <div class="col-md-4">    
+
+
+                                    <div class="btn btn-success" id="verFOSYGA" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[1]}"/>')">		   									
+                                        Visualizar		   						
                                     </div>
+
+
                                 </div>
                             </div>
-                        </form>
-                                   
-                        <hr>
-                        
-                        
-                                    
-                        <form action="Soportes"  method="post" id="FormCertHijos" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                       <h5><label> Diploma de Pregrado</label></h5> </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                        <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[2]}"/>')">		   									
-                                            Visualizar		   						
-                                        </div>
-                                        
-                                        
-                                        
+                        </div>
+                    </form>
+
+                    <hr>
+
+
+
+                    <form action="evaluarSoporte"  method="post" id="FormCertHijos" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <h5><label> Diploma de Pregrado</label></h5> </div>
+                                <div class="col-md-4">
+
+
+                                    <div class="btn btn-success" id="vercertificadoHijos" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[2]}"/>')">		   									
+                                        Visualizar		   						
                                     </div>
+
+
+
                                 </div>
                             </div>
-                        </form>
-                                    
+                        </div>
+                    </form>
 
-                                        
-                        <hr> 
-                        
-                                       
-                        
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
+
+
+                    <hr> 
+
+
+
+                    <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <h5><label> Acta de grado de Pregrado</label></h5> </div>
+                                <div class="col-md-4">
+
+
+                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        Visualizar		   						
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>	
+
+
+
+                    <hr> 
+                    <c:if test="${listaPathsNames[3] ne null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-8">
-                                       <h5><label> Acta de grado de Pregrado</label></h5> </div>
-                                    <div class="col-md-4">
-                                        
-                                        
+                                        <label>  <h5>Resolución - Servicio social obligatorio </h5> -Solo para profesionales en Salud-</label>
+                                    </div>
+                                    <div class="col-md-4">    
+
+
                                         <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
                                             Visualizar		   						
                                         </div>
-                                       
-                                         
-                                        
+
+
+
+
                                     </div>
                                 </div>
                             </div>
-                        </form>	
-
-
-                                  
-                        <hr> 
-                        <c:if test="${listaPathsNames[3] ne null}">
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label>  <h5>Resolución - Servicio social obligatorio </h5> -Solo para profesionales en Salud-</label>
-                        </div>
-                                    <div class="col-md-4">    
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                        
-                                        
-                                            
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                                                <hr>
+                            <hr>
                         </form>
-                              
-                        </c:if>                        
-                                                
-                        <c:if test="${listaPathsNames[3] eq null}">                
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
+
+                    </c:if>                        
+
+                    <c:if test="${listaPathsNames[3] eq null}">                
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
                             <div class="form-group">
                                 <div class="form-row">
                                     <div class="col-md-8">
-                                      <label>  <h5>Resolución - Servicio social obligatorio </h5> -Solo para profesionales en Salud-</label>
-                        </div>
+                                        <label>  <h5>Resolución - Servicio social obligatorio </h5> -Solo para profesionales en Salud-</label>
+                                    </div>
                                     <div class="col-md-4">    
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                       
-                                       
-                                       
-                                    </div>
-                                </div>
-                            </div>
-                                                 <hr> 
-                        </form>	
-                                              
-                        </c:if>  
-                        
-                         
-                        
-                                 
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                       <h5><label> Fotocopia de cédula ampliada al 150% </label></h5>  </div>
-                                    <div class="col-md-4">    
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                      
-                                         
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </form>	
-                        <hr> 
-                        
-                                  
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                     <h5><label> Certificado EPS</label></h5>   </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                       
-                                         
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </form>	
-                        <hr> 
-                           <c:if test="${listaPathsNames[3] ne null}">
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
-                          </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                        
-                                        
-                                        
-                                    </div> 
-                                </div>
-                            </div>
-                                  <hr>           
-                        </form>	
-                           </c:if>
-                        <c:if test="${listaPathsNames[3] eq null}">
-                        <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
-                          </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
-                                                Visualizar
-                                            </div>
-                                         
-                                        
-                                    </div> 
-                                </div>
-                            </div>
-                                     <hr>        
-                        </form>	
-                        </c:if>  
-                         <c:if test="${listaPathsNames[3] ne null}">
-                           <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
-                       </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
-                                                Visualizar		   						
-                                            </div>
-                                        
-                                        
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                               <hr> 
-                        </form>	
-                        </c:if>
-                        <c:if test="${listaPathsNames[3] eq null}">
-                         <form action="Soportes"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-8">
-                                      <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
-                       </div>
-                                    <div class="col-md-4">
-                                        
-                                        
-                                        
-                                            <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
-                                                Visualizar
-                                            </div>
-                                          
-                                        
-                                    </div>
-                                </div>
-                            </div>
-                        </form>	
-                         </c:if>                         
-                        
 
 
-
-
-                            <!-- END COL XS -->
-                       
-                    </div>
-                      <div class="card-footer small text-muted">
-                        <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-2"></div>
-                                    <div class="col-md-8">
-                                        <div class="input-group">
-                                            <div class="input-group-prepend">
-                                                <label class="input-group-text " for="notas2">Observaciones: </label>
-                                            </div>
-                                            <textarea class="form-control letras" id="notas2" name="notas2"  ></textarea>
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            Visualizar		   						
                                         </div>
-                                        <h6> - No diligenciar este campo, daria por sentado que los soportes fueron subidos correctamente - </h6>
-                                    </div>
-                                    <div class="col-md-2"></div>
-                                </div>
-                            <br>
-                                <div class="form-row">
-                                    <div class="col-md-4">
-                                    </div>
-                                    <div class="col-md-4">
-                                        <input type="submit" id="botonEvaluacion" name="botonEvaluacion" class="btn btn-primary btn-lg btn-block" value="Evaluar" >
 
 
-                                        <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
-                                    </div>
-                                   
-                                    <div class="col-md-4">
+
                                     </div>
                                 </div>
-
                             </div>
-                      </div>                <!-- END CLASS CONTAINER -->
+                            <hr> 
+                        </form>	
 
-                
+                    </c:if>  
+
+
+
+
+                    <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <h5><label> Fotocopia de cédula ampliada al 150% </label></h5>  </div>
+                                <div class="col-md-4">    
+
+
+                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        Visualizar		   						
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>	
+                    <hr> 
+
+
+                    <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-8">
+                                    <h5><label> Certificado EPS</label></h5>   </div>
+                                <div class="col-md-4">
+
+
+                                    <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                        Visualizar		   						
+                                    </div>
+
+
+
+                                </div>
+                            </div>
+                        </div>
+                    </form>	
+                    <hr> 
+                    <c:if test="${listaPathsNames[3] ne null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-8">
+                                        <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
+                                    </div>
+                                    <div class="col-md-4">
+
+
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            Visualizar		   						
+                                        </div>
+
+
+
+                                    </div> 
+                                </div>
+                            </div>
+                            <hr>           
+                        </form>	
+                    </c:if>
+                    <c:if test="${listaPathsNames[3] eq null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-8">
+                                        <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
+                                    </div>
+                                    <div class="col-md-4">
+
+
+
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+
+
+                                    </div> 
+                                </div>
+                            </div>
+                            <hr>        
+                        </form>	
+                    </c:if>  
+                    <c:if test="${listaPathsNames[3] ne null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data">
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-8">
+                                        <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
+                                    </div>
+                                    <div class="col-md-4">
+
+
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')">		   									
+                                            Visualizar		   						
+                                        </div>
+
+
+
+                                    </div>
+                                </div>
+                            </div>
+                            <hr> 
+                        </form>	
+                    </c:if>
+                    <c:if test="${listaPathsNames[3] eq null}">
+                        <form action="evaluarSoporte"  method="post" id="reciboImpuesto" enctype="multipart/form-data" style='display: none;'>
+                            <div class="form-group">
+                                <div class="form-row">
+                                    <div class="col-md-8">
+                                        <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
+                                    </div>
+                                    <div class="col-md-4">
+
+
+
+                                        <div class="btn btn-success" id="verIMPUESTO" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[3]}"/>')" >		   									
+                                            Visualizar
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </form>	
+                    </c:if>                         
+
+
+
+
+
+                    <!-- END COL XS -->
+
+                </div>
+                <div class="card-footer small text-muted">
+                    <form action="evaluarSoporte"  method="POST" id="observacion">
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-2"></div>
+                                <div class="col-md-8">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <label class="input-group-text " for="notas2">Observaciones: </label>
+                                        </div>
+                                        <textarea class="form-control" id="notas2" name="notas2"><c:out value="${(notas!=null)?notas:''}"/></textarea>
+                                    </div>
+                                    <h6> - No diligenciar este campo, daria por sentado que los soportes fueron subidos correctamente - </h6>
+                                </div>
+                                <div class="col-md-2"></div>
+                            </div>
+                            <br>
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                </div>
+                                <div class="col-md-4">
+                                    <input type="submit" id="botonEvaluacion" name="botonEvaluacion" class="btn btn-primary btn-lg btn-block" value="Evaluar" >
+
+
+                                    <!--<a class="btn btn-primary btn-block " href="login.html">Siguiente</a>-->
+                                </div>
+
+                                <div class="col-md-4">
+                                </div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>                <!-- END CLASS CONTAINER -->
+
+
             </div> <!-- END ROW PRINCIPAL -->
         </div> <!-- END CLASS CONTAINER -->
         <!-- /Content -->

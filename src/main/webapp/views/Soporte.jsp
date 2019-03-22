@@ -18,6 +18,7 @@
     <jsp:attribute name="scripts">
         <!-- Scripts -->
         <script src="views/Assets/soporte/SoportesIndividual.js" type="text/javascript"></script>
+        <script src="js/jquery-3.3.1.min.js" type="text/javascript"></script>
         <!--<script src="views/Assets/soporte/jquery.smartWizard.js" type="text/javascript"></script>-->
         <!-- /Scripts -->
         <script type="text/javascript">
@@ -312,11 +313,11 @@
                     <h5><label> Certificado EPS</label></h5> 
 
                     <form action="Soportes"  method="post" id="reciboImpuesto3" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-4">
-                                        <!-- <input type="hidden" value="1" id="cp" name="cp"> -->
-                                        <input type="text" id="reciboI3" class="form-control" value='<c:if test="${listaPathsNamestmp[6] ne ''}"><c:out value="${listaPathsNamestmp[6]}" /></c:if>' placeholder=" Elija archivo..." readonly />
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <!-- <input type="hidden" value="1" id="cp" name="cp"> -->
+                                    <input type="text" id="reciboI3" class="form-control" value='<c:if test="${listaPathsNamestmp[6] ne ''}"><c:out value="${listaPathsNamestmp[6]}" /></c:if>' placeholder=" Elija archivo..." readonly />
                                     </div>
                                     <div class="col-md-8">    
                                         <div class="btn btn-adjuntar btn-file">                                         
@@ -326,39 +327,39 @@
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormImpuesto3(this)">                                        
                                             &nbsp;Enviar&nbsp;                                                                  
                                         </div>
-                                        <c:if test="${listaPathsNames[6] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO3" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[6]}"/>')">                                         
-                                                Visualizar                              
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${listaPathsNames[6] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO3" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[6]}"/>')" style='display: none;'>                                          
-                                                Visualizar
-                                            </div>
-                                        </c:if>    
-                                        <c:if test="${listaPathsNames[6] ne null}">                 
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO3" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[6]}"/>', 'reciboI3')">                                         
-                                                Eliminar                        
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${listaPathsNames[6] eq null}">                 
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO3" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[6]}"/>', 'reciboI3')"  style='display: none;'>                                         
-                                                Eliminar                        
-                                            </div>
-                                        </c:if> 
-                                    </div>
+                                    <c:if test="${listaPathsNames[6] ne null}">
+                                        <div class="btn btn-success" id="verIMPUESTO3" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[6]}"/>')">                                         
+                                            Visualizar                              
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${listaPathsNames[6] eq null}">
+                                        <div class="btn btn-success" id="verIMPUESTO3" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[6]}"/>')" style='display: none;'>                                          
+                                            Visualizar
+                                        </div>
+                                    </c:if>    
+                                    <c:if test="${listaPathsNames[6] ne null}">                 
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO3" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[6]}"/>', 'reciboI3')">                                         
+                                            Eliminar                        
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${listaPathsNames[6] eq null}">                 
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO3" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[6]}"/>', 'reciboI3')"  style='display: none;'>                                         
+                                            Eliminar                        
+                                        </div>
+                                    </c:if> 
                                 </div>
                             </div>
-                        </form> 
+                        </div>
+                    </form> 
                     <hr> 
                     <label>  <h5>Copia Carné de Egresado </h5>-10% de descuento, si es Egresado-</label> 
 
                     <form action="Soportes"  method="post" id="reciboImpuesto4" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-4">
-                                        <!-- <input type="hidden" value="1" id="cp" name="cp"> -->
-                                        <input type="text" id="reciboI4" class="form-control" value='<c:if test="${listaPathsNamestmp[7] ne ''}"><c:out value="${listaPathsNamestmp[7]}" /></c:if>' placeholder=" Elija archivo..." readonly />
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <!-- <input type="hidden" value="1" id="cp" name="cp"> -->
+                                    <input type="text" id="reciboI4" class="form-control" value='<c:if test="${listaPathsNamestmp[7] ne ''}"><c:out value="${listaPathsNamestmp[7]}" /></c:if>' placeholder=" Elija archivo..." readonly />
                                     </div>
                                     <div class="col-md-8">    
                                         <div class="btn btn-adjuntar btn-file">                                         
@@ -368,38 +369,38 @@
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormImpuesto4(this)">                                        
                                             &nbsp;Enviar&nbsp;                                                                  
                                         </div>
-                                        <c:if test="${listaPathsNames[7] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO4" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[7]}"/>')">                                         
-                                                Visualizar                              
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${listaPathsNames[7] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO4" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[7]}"/>')" style='display: none;'>                                          
-                                                Visualizar
-                                            </div>
-                                        </c:if>    
-                                        <c:if test="${listaPathsNames[7] ne null}">                 
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO4" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[7]}"/>', 'reciboI4')">                                         
-                                                Eliminar                        
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${listaPathsNames[7] eq null}">                 
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO4" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[7]}"/>', 'reciboI4')"  style='display: none;'>                                         
-                                                Eliminar                        
-                                            </div>
-                                        </c:if> 
-                                    </div>
+                                    <c:if test="${listaPathsNames[7] ne null}">
+                                        <div class="btn btn-success" id="verIMPUESTO4" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[7]}"/>')">                                         
+                                            Visualizar                              
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${listaPathsNames[7] eq null}">
+                                        <div class="btn btn-success" id="verIMPUESTO4" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[7]}"/>')" style='display: none;'>                                          
+                                            Visualizar
+                                        </div>
+                                    </c:if>    
+                                    <c:if test="${listaPathsNames[7] ne null}">                 
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO4" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[7]}"/>', 'reciboI4')">                                         
+                                            Eliminar                        
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${listaPathsNames[7] eq null}">                 
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO4" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[7]}"/>', 'reciboI4')"  style='display: none;'>                                         
+                                            Eliminar                        
+                                        </div>
+                                    </c:if> 
                                 </div>
                             </div>
-                        </form> 	
+                        </div>
+                    </form> 	
                     <hr> 
                     <label><h5> Certificado de votación </h5>-10% de descuento sobre la matricula- </label> 
                     <form action="Soportes"  method="post" id="reciboImpuesto5" enctype="multipart/form-data">
-                            <div class="form-group">
-                                <div class="form-row">
-                                    <div class="col-md-4">
-                                        <!-- <input type="hidden" value="1" id="cp" name="cp"> -->
-                                        <input type="text" id="reciboI5" class="form-control" value='<c:if test="${listaPathsNamestmp[8] ne ''}"><c:out value="${listaPathsNamestmp[8]}" /></c:if>' placeholder=" Elija archivo..." readonly />
+                        <div class="form-group">
+                            <div class="form-row">
+                                <div class="col-md-4">
+                                    <!-- <input type="hidden" value="1" id="cp" name="cp"> -->
+                                    <input type="text" id="reciboI5" class="form-control" value='<c:if test="${listaPathsNamestmp[8] ne ''}"><c:out value="${listaPathsNamestmp[8]}" /></c:if>' placeholder=" Elija archivo..." readonly />
                                     </div>
                                     <div class="col-md-8">    
                                         <div class="btn btn-adjuntar btn-file">                                         
@@ -409,40 +410,40 @@
                                         <div class="btn btn-primary " id="enviar" onclick="sendFormImpuesto5(this)">                                        
                                             &nbsp;Enviar&nbsp;                                                                  
                                         </div>
-                                        <c:if test="${listaPathsNames[8] ne null}">
-                                            <div class="btn btn-success" id="verIMPUESTO5" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')">                                         
-                                                Visualizar                              
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${listaPathsNames[8] eq null}">
-                                            <div class="btn btn-success" id="verIMPUESTO5" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')" style='display: none;'>                                          
-                                                Visualizar
-                                            </div>
-                                        </c:if>    
-                                        <c:if test="${listaPathsNames[8] ne null}">                 
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO5" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[8]}"/>', 'reciboI5')">                                         
-                                                Eliminar                        
-                                            </div>
-                                        </c:if>
-                                        <c:if test="${listaPathsNames[8] eq null}">                 
-                                            <div class="btn btn-danger" id="eliminarIMPUESTO5" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[8]}"/>', 'reciboI5')"  style='display: none;'>                                         
-                                                Eliminar                        
-                                            </div>
-                                        </c:if> 
-                                    </div>
+                                    <c:if test="${listaPathsNames[8] ne null}">
+                                        <div class="btn btn-success" id="verIMPUESTO5" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')">                                         
+                                            Visualizar                              
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${listaPathsNames[8] eq null}">
+                                        <div class="btn btn-success" id="verIMPUESTO5" onclick="window.open('Pdf?path=soportes<c:out value="${listaPathsNames[8]}"/>')" style='display: none;'>                                          
+                                            Visualizar
+                                        </div>
+                                    </c:if>    
+                                    <c:if test="${listaPathsNames[8] ne null}">                 
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO5" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[8]}"/>', 'reciboI5')">                                         
+                                            Eliminar                        
+                                        </div>
+                                    </c:if>
+                                    <c:if test="${listaPathsNames[8] eq null}">                 
+                                        <div class="btn btn-danger" id="eliminarIMPUESTO5" onclick="deleteSoporte('<c:out value="${pathDelete}"/><c:out value="${listaPathsNames[8]}"/>', 'reciboI5')"  style='display: none;'>                                         
+                                            Eliminar                        
+                                        </div>
+                                    </c:if> 
                                 </div>
                             </div>
-                        </form> 
+                        </div>
+                    </form> 
                     <hr> <br>
-                    <div class="form-group" id="notasevaluador" style="display:none;">
+                    <div class="form-group" id="notasevaluador"  <c:out value="${(notas==null)?'hidden':''}"/>>
                         <div class="form-row">
                             <div class="col-md-2"></div>
                             <div class="col-md-8">
                                 <div class="input-group">
                                     <div class="input-group-prepend">
-                                        <label class="input-group-text " for="notas">Notas: </label>
+                                        <label class="input-group-text " for="notas">Observaciones </label>
                                     </div>
-                                    <textarea class="form-control letras" id="notas" name="notas"  ></textarea>
+                                    <textarea class="form-control letras" id="notas" name="notas" readonly><c:out value="${(notas!=null)?notas:''}"/></textarea>
                                 </div>
                             </div>
                             <div class="col-md-2"></div>
@@ -452,14 +453,14 @@
 
                     </div>
 
-                    <form action="Soportes"  method="post" id="general" name="general">
+                    <form action="Login"  method="get" id="general" name="general">
 
                         <div class="form-group">
                             <div class="form-row">
                                 <div class="col-md-3"></div>
 
                                 <div class="col-md-6">
-                                    <input type="button"  id="botonSoporte" name="Submit" class="btn btn-primary btn-lg btn-block"  value="Finalizar carga de Soportes" onclick="General2()" >
+                                    <input type="button"  id="botonSoporte" name="Submit" class="btn btn-primary btn-lg btn-block"  value="Finalizar" onclick="General2()">
 
                                 </div>
                                 <div class="col-md-3"></div>

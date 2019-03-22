@@ -190,11 +190,10 @@ function deleteSoporte(path, id) {
 }
 
 function General2() {
-    Alert("¡Gracias por realizar el proceso de Carga de Soportes!", "alert", "Aceptar");
+    Alert("¡Incripcion finalizada!", "¡Gracias por realizar el proceso de Inscripción!", "alert", "Aceptar");
     
-    var form = document.getElementById("general");
     var aceptar = document.getElementById('btnPrimaryAlert');
     aceptar.addEventListener('click', function () {
-        form.submit();
-    })
+        $('#general').submit();
+    });
 }
