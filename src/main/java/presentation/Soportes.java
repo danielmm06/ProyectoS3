@@ -32,8 +32,8 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 public class Soportes extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private final String UPLOAD_DIRECTORY = "C:/Users/" + System.getProperty("user.name") + "/Documents/soportes"; // PRUEBAS
-    //private final String UPLOAD_DIRECTORY = "/home/pasantes/Documentos/soportes"; //SERVIDOR
+//    private final String UPLOAD_DIRECTORY = "C:/Users/" + System.getProperty("user.name") + "/Documents/soportes"; // PRUEBAS
+    private final String UPLOAD_DIRECTORY = "/home/esgene/soportes"; //SERVIDOR
     private final int MAX_FILE_SIZE = 1024 * 1024 * 40; // 40MB
     private final int MAX_REQUEST_SIZE = 1024 * 1024 * 50; // 50MB
     private String[] listaPathsNames;

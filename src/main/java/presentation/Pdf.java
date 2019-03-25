@@ -23,8 +23,8 @@ import javax.servlet.http.HttpServletResponse;
 public class Pdf extends HttpServlet {
 
     private static final long serialVersionUID = 1L;
-    private static final String path = "C:/Users/" + System.getProperty("user.name") + "/Documents/"; //PRUEBAS
-//	private static final String path = "/home/pasantes/Documentos/"; //SERVIDOR
+//    private static final String path = "C:/Users/" + System.getProperty("user.name") + "/Documents/"; //PRUEBAS
+	private static final String path = "/home/esgene"; //SERVIDOR
 
     public Pdf() {
         super();

@@ -41,20 +41,20 @@ public class SoporteDAO {
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,VALIDACION "
+                        "SELECT id_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,id_persona,id_TIPOSOPORTE,NOMBRE_TMP,VALidACION "
                         + "FROM soporte"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 Soporte soporte = new Soporte();
-                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setIdSoporte(result.getInt("id_SOPORTE"));
                 soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
-                soporte.setIdPersona(new Persona(result.getInt("ID_PERSONA")));
-                soporte.setIdTiposoporte(new TipoSoporte(result.getInt("ID_TIPOSOPORTE")));
+                soporte.setIdPersona(new Persona(result.getInt("id_persona")));
+                soporte.setIdTiposoporte(new TipoSoporte(result.getInt("id_TIPOSOPORTE")));
                 soporte.setNombreTmp(result.getNString("NOMBRE_TMP"));
-                soporte.setValidacion(result.getString("VALIDACION"));
+                soporte.setValidacion(result.getString("VALidACION"));
 
                 listaSoporte.add(soporte);
             }
@@ -86,21 +86,21 @@ public class SoporteDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,VALIDACION "
-                        + "FROM soporte WHERE ID_SOPORTE=?"
+                        "SELECT id_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,id_persona,id_TIPOSOPORTE,NOMBRE_TMP,VALidACION "
+                        + "FROM soporte WHERE id_SOPORTE=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
             inputs.add(idSoporte);
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
-                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setIdSoporte(result.getInt("id_SOPORTE"));
                 soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
-                soporte.setIdPersona((new PersonaDAO()).get(result.getInt("ID_PERSONA")));
-                soporte.setIdTiposoporte((new TipoSoporteDAO()).get(result.getInt("ID_TIPOSOPORTE")));
+                soporte.setIdPersona((new PersonaDAO()).get(result.getInt("id_persona")));
+                soporte.setIdTiposoporte((new TipoSoporteDAO()).get(result.getInt("id_TIPOSOPORTE")));
                 soporte.setNombreTmp(result.getNString("NOMBRE_TMP"));
-                soporte.setValidacion(result.getString("VALIDACION"));
+                soporte.setValidacion(result.getString("VALidACION"));
 
             }
         } catch (SQLException e) {
@@ -128,11 +128,11 @@ public class SoporteDAO {
         PreparedStatement psInsert = null;
         long result;
         try {
-            String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP,VALIDACION";
+            String columns = "NOMBRE_SOPORTE,URL_ARCHIVO,id_persona,id_TIPOSOPORTE,NOMBRE_TMP,VALidACION";
             String values = "?,?,?,?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO soporte(" + columns + ") VALUES(" + values + ")", "ID_SOPORTE"
+                        "INSERT INTO soporte(" + columns + ") VALUES(" + values + ")", "id_SOPORTE"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -185,11 +185,11 @@ public class SoporteDAO {
                 inputs.add(soporte.getUrlArchivo());
             }
             if (soporte.getIdPersona() != null) {
-                columns += ",ID_PERSONA=?";
+                columns += ",id_persona=?";
                 inputs.add(soporte.getIdPersona().getDocumento());
             }
             if (soporte.getIdTiposoporte() != null) {
-                columns += ",ID_TIPOSOPORTE=?";
+                columns += ",id_TIPOSOPORTE=?";
                 inputs.add(soporte.getIdTiposoporte().getIdTiposoporte());
             }
 
@@ -199,7 +199,7 @@ public class SoporteDAO {
             }
 
             if (soporte.getValidacion() != null) {
-                columns += ",VALIDACION=?";
+                columns += ",VALidACION=?";
                 inputs.add(soporte.getValidacion());
             }
 
@@ -208,7 +208,7 @@ public class SoporteDAO {
 
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE soporte SET " + columns + " WHERE ID_SOPORTE=?"
+                        "UPDATE soporte SET " + columns + " WHERE id_SOPORTE=?"
                 );
             }
             result = db.ExecuteUpdate(psUpdate, inputs);
@@ -234,7 +234,7 @@ public class SoporteDAO {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
                         "DELETE FROM soporte "
-                        + "WHERE ID_SOPORTE=?"
+                        + "WHERE id_SOPORTE=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -262,9 +262,9 @@ public class SoporteDAO {
         try {
             if (psSelectByAllPerson == null) {
                 psSelectByAllPerson = db.PreparedQuery(
-                        "SELECT S.ID_SOPORTE,S.NOMBRE_SOPORTE,S.URL_ARCHIVO,S.ID_PERSONA,S.ID_TIPOSOPORTE, S.NOMBRE_TMP, S.VALIDACION, TI.NOMBRE AS NOMBRE_SOPORTE "
-                        + "FROM soporte S, tipo_soporte TI, PERSONA P "
-                        + "WHERE S.ID_PERSONA=? AND TI.ID_TIPOSOPORTE=S.ID_TIPOSOPORTE AND P.DOCUMENTO=S.ID_PERSONA AND URL_ARCHIVO LIKE '%soportes/" + codPersona + "/Inscripcion%' ORDER BY S.NOMBRE_SOPORTE"
+                        "SELECT S.id_SOPORTE,S.NOMBRE_SOPORTE,S.URL_ARCHIVO,S.id_persona,S.id_TIPOSOPORTE, S.NOMBRE_TMP, S.VALidACION, TI.NOMBRE AS NOMBRE_SOPORTE "
+                        + "FROM soporte S, tipo_soporte TI, persona P "
+                        + "WHERE S.id_persona=? AND TI.id_TIPOSOPORTE=S.id_TIPOSOPORTE AND P.DOCUMENTO=S.id_persona AND URL_ARCHIVO LIKE '%soportes/" + codPersona + "/Inscripcion%' ORDER BY S.NOMBRE_SOPORTE"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -272,22 +272,22 @@ public class SoporteDAO {
             result = db.ExecuteQuery(psSelectByAllPerson, inputs);
             while (result.next()) {
                 Soporte soporte = new Soporte();
-                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setIdSoporte(result.getInt("id_SOPORTE"));
                 soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
 
                 Persona persona = new Persona();
-                persona.setDocumento(result.getInt("ID_PERSONA"));
+                persona.setDocumento(result.getInt("id_persona"));
                 soporte.setIdPersona(persona);
 
                 TipoSoporte tipoSoporte = new TipoSoporte();
                 tipoSoporte.setNombre(result.getString("NOMBRE_SOPORTE"));
-                tipoSoporte.setIdTiposoporte(result.getInt("ID_TIPOSOPORTE"));
+                tipoSoporte.setIdTiposoporte(result.getInt("id_TIPOSOPORTE"));
                 soporte.setIdTiposoporte(tipoSoporte);
 
                 soporte.setNombreTmp(result.getString("NOMBRE_TMP"));
 
-                soporte.setValidacion(result.getString("VALIDACION"));
+                soporte.setValidacion(result.getString("VALidACION"));
                 listaSoporte.add(soporte);
             }
         } catch (SQLException e) {
@@ -318,23 +318,23 @@ public class SoporteDAO {
         try {
             if (psSelectByPerson == null) {
                 psSelectByPerson = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP FROM soporte WHERE ID_PERSONA=?"
+                        "SELECT id_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,id_persona,id_TIPOSOPORTE,NOMBRE_TMP FROM soporte WHERE id_persona=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
             inputs.add(codPersona);
             result = db.ExecuteQuery(psSelectByPerson, inputs);
             while (result.next()) {
-                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setIdSoporte(result.getInt("id_SOPORTE"));
                 soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
-                //Persona persona = App.PersonaDAO.get(result.getInt("COD_PERSONA"));
+                //Persona persona = App.PersonaDAO.get(result.getInt("COD_persona"));
                 Persona persona = new Persona();
-                persona.setDocumento(result.getInt("ID_PERSONA"));
+                persona.setDocumento(result.getInt("id_persona"));
                 soporte.setIdPersona(persona);
                 //TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(result.getInt("COD_TIPOSOPORTE"));
                 TipoSoporte tipoSoporte = new TipoSoporte();
-                tipoSoporte.setIdTiposoporte(result.getInt("ID_TIPOSOPORTE"));
+                tipoSoporte.setIdTiposoporte(result.getInt("id_TIPOSOPORTE"));
                 soporte.setIdTiposoporte(tipoSoporte);
 
                 soporte.setNombreTmp(result.getString("NOMBRE_TMP"));
@@ -367,23 +367,23 @@ public class SoporteDAO {
         try {
             if (psSelectByPath == null) {
                 psSelectByPath = db.PreparedQuery(
-                        "SELECT ID_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,ID_PERSONA,ID_TIPOSOPORTE,NOMBRE_TMP FROM soporte WHERE URL_ARCHIVO=?"
+                        "SELECT id_SOPORTE,NOMBRE_SOPORTE,URL_ARCHIVO,id_persona,id_TIPOSOPORTE,NOMBRE_TMP FROM soporte WHERE URL_ARCHIVO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
             inputs.add(path);
             result = db.ExecuteQuery(psSelectByPath, inputs);
             while (result.next()) {
-                soporte.setIdSoporte(result.getInt("ID_SOPORTE"));
+                soporte.setIdSoporte(result.getInt("id_SOPORTE"));
                 soporte.setNombreSoporte(result.getString("NOMBRE_SOPORTE"));
                 soporte.setUrlArchivo(result.getString("URL_ARCHIVO"));
-                //Persona persona = App.PersonaDAO.get(result.getInt("COD_PERSONA"));
+                //Persona persona = App.PersonaDAO.get(result.getInt("COD_persona"));
                 Persona persona = new Persona();
-                persona.setDocumento(result.getInt("ID_PERSONA"));
+                persona.setDocumento(result.getInt("id_persona"));
                 soporte.setIdPersona(persona);
                 //TipoSoporte tipoSoporte = App.TipoSoporteDAO.get(result.getInt("COD_TIPOSOPORTE"));
                 TipoSoporte tipoSoporte = new TipoSoporte();
-                tipoSoporte.setIdTiposoporte(result.getInt("ID_TIPOSOPORTE"));
+                tipoSoporte.setIdTiposoporte(result.getInt("id_TIPOSOPORTE"));
                 soporte.setIdTiposoporte(tipoSoporte);
 
                 soporte.setNombreTmp(result.getString("NOMBRE_TMP"));

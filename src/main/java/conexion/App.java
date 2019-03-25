@@ -22,6 +22,7 @@ public class App {
     public static final String HOST_DB = "localhost:3306"; // Host:Port DB
     public static final String NAME_DB = "preinscripcion"; // Name DB
     public static final String USER_DB = "root"; // User DB
+//    public static final String PASS_DB = "123qwe"; // Password DB Servidor 
     public static final String PASS_DB = ""; // Password DB
 
     // Parametros del sistema

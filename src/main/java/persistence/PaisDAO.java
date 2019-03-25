@@ -44,15 +44,15 @@ public class PaisDAO {
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_PAIS,NOMBRE_PAIS "
-                        + "FROM PAIS"
+                        "SELECT ID_pais,NOMBRE_pais "
+                        + "FROM pais"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 Pais pais = new Pais();
-                pais.setIdPais(result.getInt("ID_PAIS"));
-                pais.setNombrePais(result.getString("NOMBRE_PAIS"));
+                pais.setIdPais(result.getInt("ID_pais"));
+                pais.setNombrePais(result.getString("NOMBRE_pais"));
 
                 listaPais.add(pais);
             }
@@ -84,17 +84,17 @@ public class PaisDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_PAIS,NOMBRE_PAIS "
-                        + "FROM PAIS "
-                        + "WHERE ID_PAIS=?"
+                        "SELECT ID_pais,NOMBRE_pais "
+                        + "FROM pais "
+                        + "WHERE ID_pais=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
             inputs.add(idPais);
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
-                pais.setIdPais(result.getInt("ID_PAIS"));
-                pais.setNombrePais(result.getString("NOMBRE_PAIS"));
+                pais.setIdPais(result.getInt("ID_pais"));
+                pais.setNombrePais(result.getString("NOMBRE_pais"));
 
             }
         } catch (SQLException e) {
@@ -122,12 +122,12 @@ public class PaisDAO {
     public long insert(Pais pais) {
         long result;
         try {
-            String columns = "NOMBRE_PAIS";
+            String columns = "NOMBRE_pais";
             String values = "?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO PAIS(" + columns + ") VALUES(" + values + ")",
-                        "ID_PAIS"
+                        "INSERT INTO pais(" + columns + ") VALUES(" + values + ")",
+                        "ID_pais"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -160,7 +160,7 @@ public class PaisDAO {
             ArrayList<Object> inputs = new ArrayList<Object>();
 
             if (pais.getNombrePais() != null) {
-                columns += ",NOMBRE_PAIS=?";
+                columns += ",NOMBRE_pais=?";
                 inputs.add(pais.getNombrePais());
             }
 
@@ -168,7 +168,7 @@ public class PaisDAO {
             columns = columns.substring(1);
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE PAIS SET " + columns + " WHERE ID_PAIS=? "
+                        "UPDATE pais SET " + columns + " WHERE ID_pais=? "
                 );
             }
             result = db.ExecuteUpdate(psUpdate, inputs);
@@ -192,8 +192,8 @@ public class PaisDAO {
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM PAIS "
-                        + "WHERE ID_PAIS=?"
+                        "DELETE FROM pais "
+                        + "WHERE ID_pais=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();

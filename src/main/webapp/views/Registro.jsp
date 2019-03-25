@@ -29,11 +29,11 @@
                 </div>
                 <div class="card-body  mx-auto mt-2">  
                     <form id="myform" method="POST" action="Formulario">
-                        <div class="form-group" style='display: none;'>
+                        <div class="form-group" >
                             <div class="form-row">
                                 <div class="col-md-3">
                                     <label for="Categoria"  >Categoria</label>
-                                    <select class="form-control" id="Categoria" name="Categoria" required="required"   >
+                                    <select class="form-control" id="Categoria" name="Categoria"  disabled  readonly>
                                         <option value="" >--</option>
                                         <option value="1" selected>Especialización</option>
                                         <option value="2">Maestría</option>
@@ -43,14 +43,14 @@
 
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="Programa">Programa al que se inscrbe</label>
-                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción" required="required" value="Gestion de Proyectos" >
+                                    <label for="Programa">Programa al que se inscribe</label>
+                                    <input type="text" id="Programa" name="Programa" class="form-control letras" placeholder="Programa Inscripción"  value="Gestion de Proyectos" readonly >
 
 
                                 </div>
                                 <div class="col-md-5">
                                     <label for="Facultad">Perteneciente a la facultad</label>
-                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad" required="required" value="FCE" >
+                                    <input type="text" id="Facultad" name="Facultad" class="form-control letras" placeholder="Facultad"  value="FCE" readonly>
 
 
                                 </div>
@@ -72,7 +72,7 @@
                                 </div>
                                 <div class="col-md-3">
                                     <label for="Nombre2">Segundo Nombre</label>
-                                    <input type="text" id="Nombre2" name="Nombre2" class="form-control letras" placeholder="Segundo Nombre" required="required" value="${persona.nombre2}">
+                                    <input type="text" id="Nombre2" name="Nombre2" class="form-control letras" placeholder="Segundo Nombre"  value="${persona.nombre2}">
 
 
                                 </div>
@@ -878,7 +878,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Prestamo" class="input-group-text" >Prestamos</label>
                                         </div>
-                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finPrestamo}">
+                                        <input type="text" id="Prestamo" name="Prestamo"  class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finPrestamo!=null?preguntas.finPrestamo:'0'}">
 
 
 
@@ -892,7 +892,7 @@
                                         <div class="input-group-prepend">
                                             <label for="AuxEmp" class="input-group-text" >Auxilio Empresarial</label>
                                         </div>
-                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros recursos" placeholder="" maxlength="4" value="${preguntas.finAuxEmpresarial}">
+                                        <input type="text" id="AuxEmp" name="AuxEmp"  class="form-control numeros recursos" placeholder="" maxlength="4" value="${preguntas.finAuxEmpresarial!=null?preguntas.finAuxEmpresarial:'0'}">
 
 
 
@@ -916,7 +916,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Recursos" class="input-group-text" >Recursos Propios</label>
                                         </div>
-                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finRecPropios}">
+                                        <input type="text" id="Recursos" name="Recursos" class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finRecPropios!=null?preguntas.finRecPropios:'0'}">
 
                                         <div class="input-group-append">
                                             <span class="input-group-text" >%</span>
@@ -928,7 +928,7 @@
                                         <div class="input-group-prepend">
                                             <label for="Beca" class="input-group-text" >Beca</label>
                                         </div>
-                                        <input type="text" id="Beca" name="Beca" class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finBeca}">
+                                        <input type="text" id="Beca" name="Beca" class="form-control numeros recursos" placeholder=""  maxlength="4" value="${preguntas.finBeca!=null?preguntas.finBeca:'0'}">
 
 
 

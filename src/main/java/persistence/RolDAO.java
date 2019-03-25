@@ -44,7 +44,7 @@ public class RolDAO {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
                         "SELECT ID_T_USUARIO, NOMBRE_T_USUARIO "
-                        + "FROM ROL"
+                        + "FROM rol"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -82,7 +82,7 @@ public class RolDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_T_USUARIO,NOMBRE_T_USUARIO FROM ROL WHERE ID_T_USUARIO=?"
+                        "SELECT ID_T_USUARIO,NOMBRE_T_USUARIO FROM rol WHERE ID_T_USUARIO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -121,7 +121,7 @@ public class RolDAO {
             String values = "?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO ROL(" + columns + ") VALUES(" + values + ")", "ID_T_USUARIO"
+                        "INSERT INTO rol(" + columns + ") VALUES(" + values + ")", "ID_T_USUARIO"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -159,7 +159,7 @@ public class RolDAO {
 
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE ROL SET " + columns + " WHERE ID_T_USUARIO=?"
+                        "UPDATE rol SET " + columns + " WHERE ID_T_USUARIO=?"
                 );
             }
             result = db.ExecuteUpdate(psUpdate, inputs);
@@ -183,7 +183,7 @@ public class RolDAO {
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM ROL "
+                        "DELETE FROM rol "
                         + "WHERE ID_T_USUARIO=?"
                 );
             }

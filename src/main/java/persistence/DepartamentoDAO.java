@@ -44,7 +44,7 @@ public class DepartamentoDAO {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
                         "SELECT ID_DPTO,NOMBRE_DPTO,ID_PAIS "
-                        + "FROM DEPARTAMENTO"
+                        + "FROM departamento"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -88,7 +88,7 @@ public class DepartamentoDAO {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
                         "SELECT ID_DPTO,NOMBRE_DPTO,ID_PAIS "
-                        + "FROM DEPARTAMENTO "
+                        + "FROM departamento "
                         + "WHERE ID_DPTO=?"
                 );
             }
@@ -130,7 +130,7 @@ public class DepartamentoDAO {
         try {
             if (psSelectGetByPais == null) {
                 psSelectGetByPais = db.PreparedQuery("SELECT ID_DPTO,NOMBRE_DPTO,ID_PAIS "
-                        + "FROM DEPARTAMENTO "
+                        + "FROM departamento "
                         + "WHERE ID_PAIS=?");
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -175,7 +175,7 @@ public class DepartamentoDAO {
             String values = "?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO DEPARTAMENTO(" + columns + ") VALUES(" + values + ")",
+                        "INSERT INTO departamento(" + columns + ") VALUES(" + values + ")",
                         "ID_DPTO"
                 );
             }
@@ -216,7 +216,7 @@ public class DepartamentoDAO {
             columns = columns.substring(1);
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE DEPARTAMENTO SET " + columns + " WHERE ID_DPTO=? "
+                        "UPDATE departamento SET " + columns + " WHERE ID_DPTO=? "
                 );
             }
             result = db.ExecuteUpdate(psUpdate, inputs);
@@ -240,7 +240,7 @@ public class DepartamentoDAO {
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM DEPARTAMENTO "
+                        "DELETE FROM departamento "
                         + "WHERE ID_DPTO=?"
                 );
             }

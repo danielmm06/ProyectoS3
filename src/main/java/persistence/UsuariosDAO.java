@@ -43,7 +43,7 @@ public class UsuariosDAO {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
                         "SELECT ID_USUARIO, CONTRASENA, ID_ROL "
-                        + "FROM USUARIOS"
+                        + "FROM usuarios"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
@@ -85,7 +85,7 @@ public class UsuariosDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_USUARIO, CONTRASENA, ID_ROL FROM USUARIOS WHERE ID_USUARIO=?"
+                        "SELECT ID_USUARIO, CONTRASENA, ID_ROL FROM usuarios WHERE ID_USUARIO=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -125,7 +125,7 @@ public class UsuariosDAO {
             String values = "?,?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO USUARIOS(" + columns + ") VALUES(" + values + ")", "ID_USUARIO"
+                        "INSERT INTO usuarios(" + columns + ") VALUES(" + values + ")", "ID_USUARIO"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -184,7 +184,7 @@ public class UsuariosDAO {
 
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE USUARIOS SET " + columns + " WHERE ID_USUARIO=?"
+                        "UPDATE usuarios SET " + columns + " WHERE ID_USUARIO=?"
                 );
             }
             result = db.ExecuteUpdate(psUpdate, inputs);
@@ -208,7 +208,7 @@ public class UsuariosDAO {
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM USUARIOS "
+                        "DELETE FROM usuarios "
                         + "WHERE ID_USUARIO=?"
                 );
             }
@@ -256,7 +256,7 @@ public class UsuariosDAO {
 //			}
 //                        System.out.println("INSERT");				
 //                        Usuarios usuarios = new Usuarios();
-//                        usuarios.setIdUsuario(1121);
+//                        usuarios.setIdUsuario(1121906185);
 //                        usuarios.setContrasena("daniel");
 //                        Rol rol = new RolDAO().get(1);
 //                        usuarios.setIdRol(rol);

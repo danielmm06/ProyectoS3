@@ -44,15 +44,15 @@ public class CiudadDAO {
         try {
             if (psSelectAll == null) {
                 psSelectAll = db.PreparedQuery(
-                        "SELECT ID_CIUDAD,NOMBRE_CIUDAD,ID_DPTO "
-                        + "FROM CIUDAD"
+                        "SELECT ID_ciudad,NOMBRE_ciudad,ID_DPTO "
+                        + "FROM ciudad"
                 );
             }
             result = db.ExecuteQuery(psSelectAll);
             while (result.next()) {
                 Ciudad ciudad = new Ciudad();
-                ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
-                ciudad.setNombreCiudad(result.getString("NOMBRE_CIUDAD"));
+                ciudad.setIdCiudad(result.getInt("ID_ciudad"));
+                ciudad.setNombreCiudad(result.getString("NOMBRE_ciudad"));
                 Departamento departamento = new Departamento();
                 departamento.setIdDpto(result.getInt("ID_DPTO"));
                 ciudad.setIdDpto(departamento);
@@ -87,17 +87,17 @@ public class CiudadDAO {
         try {
             if (psSelect == null) {
                 psSelect = db.PreparedQuery(
-                        "SELECT ID_CIUDAD,NOMBRE_CIUDAD,ID_DPTO "
-                        + "FROM CIUDAD "
-                        + "WHERE ID_CIUDAD=?"
+                        "SELECT ID_ciudad,NOMBRE_ciudad,ID_DPTO "
+                        + "FROM ciudad "
+                        + "WHERE ID_ciudad=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
             inputs.add(idCiudad);
             result = db.ExecuteQuery(psSelect, inputs);
             while (result.next()) {
-                ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
-                ciudad.setNombreCiudad(result.getString("NOMBRE_CIUDAD"));
+                ciudad.setIdCiudad(result.getInt("ID_ciudad"));
+                ciudad.setNombreCiudad(result.getString("NOMBRE_ciudad"));
                 ciudad.setIdDpto((new DepartamentoDAO()).get(result.getInt("ID_DPTO")));
 
             }
@@ -129,8 +129,8 @@ public class CiudadDAO {
         ResultSet result = null;
         try {
             if (psSelectGetByDepart == null) {
-                psSelectGetByDepart = db.PreparedQuery("SELECT ID_CIUDAD,NOMBRE_CIUDAD,ID_DPTO "
-                        + "FROM CIUDAD "
+                psSelectGetByDepart = db.PreparedQuery("SELECT ID_ciudad,NOMBRE_ciudad,ID_DPTO "
+                        + "FROM ciudad "
                         + "WHERE ID_DPTO=?");
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -138,8 +138,8 @@ public class CiudadDAO {
             result = db.ExecuteQuery(psSelectGetByDepart, inputs);
             while (result.next()) {
                 Ciudad ciudad = new Ciudad();
-                ciudad.setIdCiudad(result.getInt("ID_CIUDAD"));
-                ciudad.setNombreCiudad(result.getString("NOMBRE_CIUDAD"));
+                ciudad.setIdCiudad(result.getInt("ID_ciudad"));
+                ciudad.setNombreCiudad(result.getString("NOMBRE_ciudad"));
                 Departamento departamento = new Departamento();
                 departamento.setIdDpto(result.getInt("ID_DPTO"));
                 ciudad.setIdDpto(departamento);
@@ -171,12 +171,12 @@ public class CiudadDAO {
     public long insert(Ciudad ciudad) {
         long result;
         try {
-            String columns = "NOMBRE_CIUDAD,ID_DPTO";
+            String columns = "NOMBRE_ciudad,ID_DPTO";
             String values = "?,?";
             if (psInsert == null) {
                 psInsert = db.PreparedUpdate(
-                        "INSERT INTO CIUDAD(" + columns + ") VALUES(" + values + ")",
-                        "ID_CIUDAD"
+                        "INSERT INTO ciudad(" + columns + ") VALUES(" + values + ")",
+                        "ID_ciudad"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
@@ -205,7 +205,7 @@ public class CiudadDAO {
             ArrayList<Object> inputs = new ArrayList<Object>();
 
             if (ciudad.getNombreCiudad() != null) {
-                columns += ",NOMBRE_CIUDAD=?";
+                columns += ",NOMBRE_ciudad=?";
                 inputs.add(ciudad.getNombreCiudad());
             }
             if (ciudad.getIdDpto() != null) {
@@ -217,7 +217,7 @@ public class CiudadDAO {
             columns = columns.substring(1);
             if (psUpdate == null) {
                 psUpdate = db.PreparedUpdate(
-                        "UPDATE CIUDAD SET " + columns + " WHERE ID_CIUDAD=? "
+                        "UPDATE ciudad SET " + columns + " WHERE ID_ciudad=? "
                 );
             }
 
@@ -242,8 +242,8 @@ public class CiudadDAO {
         try {
             if (psDelete == null) {
                 psDelete = db.PreparedUpdate(
-                        "DELETE FROM CIUDAD "
-                        + "WHERE ID_CIUDAD=?"
+                        "DELETE FROM ciudad "
+                        + "WHERE ID_ciudad=?"
                 );
             }
             ArrayList<Object> inputs = new ArrayList<Object>();
